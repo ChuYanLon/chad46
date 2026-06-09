@@ -1,0 +1,36 @@
+name: chad46 sync
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync themes & integrations
+        run: bash sync.sh
+
+      - name: Create Pull Request
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync themes & integrations from NvChad/base46"
+          title: "chore: sync themes & integrations"
+          body: |
+            Automated sync from NvChad/base46.
+            - Updated themes
+            - Updated integrations
+          branch: sync/auto
+          delete-branch: true
+
+      - name: Enable auto-merge
+        if: steps.pr.outputs.pull-request-operation == 'created'
+        run: |
+          gh pr merge --auto --squash "${{ steps.pr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
