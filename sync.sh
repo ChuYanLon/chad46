@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -uo pipefail
 
 CHAD46_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEMES_DIR="$CHAD46_DIR/lua/chad46/themes"
@@ -38,7 +37,14 @@ ALL_INTEGRATIONS=(
   vim-illuminate whichkey
 )
 
-fetch() { curl -sL --max-time 15 "$1" 2>/dev/null || echo ""; }
+fetch() {
+  local url="$1" result="" i
+  for i in 1 2 3; do
+    result=$(curl -sL --max-time 30 "$url" 2>/dev/null) && [[ -n "$result" ]] && { echo "$result"; return 0; }
+    sleep 2
+  done
+  echo ""
+}
 
 sync_dir() {
   local type="$1" dst="$2"
@@ -78,7 +84,7 @@ main() {
   echo ""
   echo "Errors: ${#log_err[@]}"
   for v in "${log_err[@]}"; do echo "  ! $v"; done
-  [[ ${#log_err[@]} -gt 0 ]] && exit 1
+  [[ ${#log_err[@]} -gt 0 ]] && echo "Some files failed (see above)." && exit 1
 }
 
 main

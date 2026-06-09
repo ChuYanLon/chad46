@@ -12,24 +12,39 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Sync themes & integrations
-        run: bash sync.sh
+        id: sync
+        run: |
+          if bash sync.sh 2>&1; then
+            echo "success=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "success=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check for changes
+        id: check
+        if: steps.sync.outputs.success == 'true'
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Create Pull Request
         id: pr
+        if: steps.sync.outputs.success == 'true' && steps.check.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: sync themes & integrations from NvChad/base46"
           title: "chore: sync themes & integrations"
           body: |
-            Automated sync from NvChad/base46.
-            - Updated themes
-            - Updated integrations
+            Automated sync from [NvChad/base46](https://github.com/NvChad/base46).
           branch: sync/auto
           delete-branch: true
 
       - name: Enable auto-merge
-        if: steps.pr.outputs.pull-request-operation == 'created'
+        if: steps.sync.outputs.success == 'true' && steps.check.outputs.changed == 'true'
         run: |
           gh pr merge --auto --squash "${{ steps.pr.outputs.pull-request-number }}"
         env:
