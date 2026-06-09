@@ -1,5 +1,7 @@
 return function()
   return {
-    highlights = require("chad46.adapters.bufferline").get_theme(),
+    highlights = function()
+      return require("chad46.adapters.bufferline").get_theme()
+    end,
   }
 end
