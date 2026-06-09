@@ -112,16 +112,22 @@ function M.setup(opts)
 end
 
 ---@diagnostic disable-next-line: lowercase-global
-function M.apply_configs()
-  for _, mapping in pairs(plugin_configs) do
-    if config.options.integrations[_] then
-      local ok, mod = pcall(require, mapping.mod)
-      if ok and type(mod.setup) == "function" then
-        local chad_cfg = require("chad46.configs." .. mapping.config)
-        local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.deepcopy(chad_cfg)
-        mod.setup(cfg)
-      end
+---@param names? string|string[]
+function M.apply_configs(names)
+  if type(names) == "string" then names = { names } end
+  for integration_name, mapping in pairs(plugin_configs) do
+    if names then
+      if not vim.list_contains(names, integration_name) then goto continue end
+    elseif not config.options.integrations[integration_name] then
+      goto continue
     end
+    local ok, mod = pcall(require, mapping.mod)
+    if ok and type(mod.setup) == "function" then
+      local chad_cfg = require("chad46.configs." .. mapping.config)
+      local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.deepcopy(chad_cfg)
+      mod.setup(cfg)
+    end
+    ::continue::
   end
 end
 

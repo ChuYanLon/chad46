@@ -2,15 +2,15 @@
 
 [![chad46 sync](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml/badge.svg)](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml)
 
-94 NvChad themes extracted from [base46](https://github.com/NvChad/base46), with 44 plugin integrations, lualine/bufferline adapters, and automatic plugin setup (lazy.nvim only).
+94 themes, 44 plugin highlight integrations, lualine & bufferline adapters, type definitions — synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui).
 
-Works with **any** plugin manager. NvChad-style plugin configs are auto-applied when using lazy.nvim, skipped otherwise.
+Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
 ## Features
 
 - **94 themes** from NvChad/base46
 - **44 plugin integrations** (highlights)
-- **14 auto-applied plugin configs** (icons, layout, appearance)
+- **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
 - **Lualine & Bufferline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
@@ -54,9 +54,14 @@ vim.cmd.colorscheme("chad46")
 Optional: apply NvChad-style plugin configs for non-lazy managers:
 
 ```lua
+-- Apply all enabled
 vim.schedule(function()
   require("chad46").apply_configs()
 end)
+
+-- Or apply per-plugin when it loads
+require("chad46").apply_configs("telescope")
+require("chad46").apply_configs({ "lualine", "bufferline" })
 ```
 
 ## Integrations
@@ -117,6 +122,20 @@ opts = {
 ```
 
 ## Lualine
+
+Choose a style via chad46's `statusline` config:
+
+```lua
+require("chad46").setup({
+  statusline = {
+    theme = "vscode_colored",       -- default / minimal / vscode / vscode_colored
+    section_separators = { left = "", right = "" },
+    component_separators = "",
+  },
+})
+```
+
+Then in lualine:
 
 ```lua
 require("lualine").setup({
