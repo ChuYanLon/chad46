@@ -1,5 +1,7 @@
 # chad46
 
+[![chad46 sync](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml/badge.svg)](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml)
+
 A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style plugin configurations auto-applied via lazy.nvim.
 
 Works with any plugin manager. Auto-config patching is lazy.nvim-only and skipped automatically when unavailable.
@@ -12,7 +14,8 @@ Works with any plugin manager. Auto-config patching is lazy.nvim-only and skippe
 - **base_30 / base_16** dual color system
 - **Lualine & Bufferline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
-- **sync.sh** to pull updates from base46
+- **Daily auto-sync** via GitHub Actions
+- **Manual sync** via sync.sh
 
 ## Installation
 
@@ -45,8 +48,6 @@ Works with any plugin manager. Auto-config patching is lazy.nvim-only and skippe
 
 ```lua
 vim.pack.add({ src = "https://github.com/ChuYanLon/chad46", name = "chad46" })
-
--- in your config:
 require("chad46").setup({ theme = "onedark" })
 vim.cmd.colorscheme("chad46")
 ```
@@ -148,13 +149,17 @@ require("bufferline").setup({
 })
 ```
 
+## Auto-sync
+
+Themes and integrations are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) daily at midnight UTC via GitHub Actions. You can also trigger it manually from the Actions tab.
+
 ## Debug
 
 ```vim
 :lua require("chad46").inspect_bufferline()
 ```
 
-## Sync
+## Manual Sync
 
 ```bash
 # Sync themes and integrations from NvChad/base46
