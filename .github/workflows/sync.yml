@@ -17,38 +17,39 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync themes & integrations
-        id: sync
+      - name: Sync and create PR
         shell: bash {0}
         run: |
-          bash sync.sh && echo "success=true" >> "$GITHUB_OUTPUT" || echo "success=false" >> "$GITHUB_OUTPUT"
+          # 1. Sync
+          bash sync.sh || { echo "sync failed"; exit 1; }
 
-      - name: Check for changes
-        id: check
-        if: steps.sync.outputs.success == 'true'
-        run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+          # 2. Check for changes
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes to sync"
+            exit 0
           fi
 
-      - name: Create Pull Request
-        id: pr
-        if: steps.sync.outputs.success == 'true' && steps.check.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: sync themes & integrations from NvChad/base46"
-          title: "chore: sync themes & integrations"
-          body: |
-            Automated sync from [NvChad/base46](https://github.com/NvChad/base46).
-          branch: sync/auto
-          delete-branch: true
+          # 3. Configure git and commit
+          git config user.name "chad46 sync"
+          git config user.email "sync@chad46"
+          BRANCH="sync/auto-$(date +%s)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore: sync themes & integrations from NvChad/base46"
 
-      - name: Enable auto-merge
-        if: steps.sync.outputs.success == 'true' && steps.check.outputs.changed == 'true'
-        run: |
-          gh pr merge --auto --squash "${{ steps.pr.outputs.pull-request-number }}"
+          # 4. Push
+          git push origin "$BRANCH"
+
+          # 5. Create PR
+          PR_URL=$(gh pr create \
+            --title "chore: sync themes & integrations" \
+            --body "Automated sync from [NvChad/base46](https://github.com/NvChad/base46)." \
+            --base main \
+            --head "$BRANCH" \
+            --repo "${{ github.repository }}")
+          PR_NUM="${PR_URL##*/}"
+
+          # 6. Enable auto-merge
+          gh pr merge --auto --squash "$PR_NUM"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
