@@ -1,0 +1,1 @@
+return { indent = { char = "│", highlight = "IblIndent" }, scope = { char = "│", highlight = "IblScope" }, exclude = { filetypes = { "startify", "dashboard", "log", "help", "markdown", "txt", "neo-tree", "Trouble", "TelescopePrompt", "" } } }
