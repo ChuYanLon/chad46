@@ -15,7 +15,6 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
 - **Lualine & Bufferline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
 - **Daily auto-sync** via GitHub Actions
-- **Manual sync** via sync.sh
 
 ## Installation
 
@@ -120,32 +119,6 @@ opts = {
   },
 }
 ```
-
-## Lualine
-
-Choose a style via chad46's `statusline` config:
-
-```lua
-require("chad46").setup({
-  statusline = {
-    theme = "vscode_colored", -- default / minimal / vscode / vscode_colored
-  },
-})
-```
-
-Separators are set in your own lualine config. Then use the adapter:
-
-```lua
-require("lualine").setup({
-  options = {
-    theme = require("chad46.adapters.lualine").get_theme(),
-  },
-})
-```
-
-## Bufferline
-
-Auto-applied when `bufferline` is enabled in `integrations` (or via `apply_configs`). No manual setup needed.
 
 ## Auto-sync
 
