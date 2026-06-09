@@ -34,6 +34,69 @@ local plugin_configs = {
   snacks = { plugin = "snacks.nvim", config = "snacks", mod = "snacks" },
 }
 
+---@type table<string, string>
+local integration_map = {
+  ["alpha-nvim"] = "alpha",
+  ["avante.nvim"] = "avante",
+  ["indent-blankline.nvim"] = "blankline",
+  ["blink.cmp"] = "blink",
+  ["bufferline.nvim"] = "bufferline",
+  ["nvim-cmp"] = "cmp",
+  ["codeactionmenu.nvim"] = "codeactionmenu",
+  ["nvim-dap"] = "dap",
+  ["nvim-web-devicons"] = "devicons",
+  ["diffview.nvim"] = "diffview",
+  ["edgy.nvim"] = "edgy",
+  ["flash.nvim"] = "flash",
+  ["git-conflict.nvim"] = "git-conflict",
+  ["gitsigns.nvim"] = "gitsigns",
+  ["grug-far.nvim"] = "grug_far",
+  ["hop.nvim"] = "hop",
+  ["leap.nvim"] = "leap",
+  ["lualine.nvim"] = "lualine",
+  ["nvim-lspconfig"] = "lsp",
+  ["lspsaga.nvim"] = "lspsaga",
+  ["markview.nvim"] = "markview",
+  ["mason.nvim"] = "mason",
+  ["nvim-navic"] = "navic",
+  ["neogit"] = "neogit",
+  ["noice.nvim"] = "noice",
+  ["nvim-notify"] = "notify",
+  ["nvim-tree.lua"] = "nvimtree",
+  ["nvim-orgmode"] = "orgmode",
+  ["rainbow-delimiters.nvim"] = "rainbowdelimiters",
+  ["render-markdown.nvim"] = "render-markdown",
+  ["snacks.nvim"] = "snacks",
+  ["telescope.nvim"] = "telescope",
+  ["tiny-inline-diagnostic.nvim"] = "tiny-inline-diagnostic",
+  ["todo-comments.nvim"] = "todo",
+  ["trouble.nvim"] = "trouble",
+  ["vim-illuminate"] = "vim-illuminate",
+  ["which-key.nvim"] = "whichkey",
+}
+
+---@type table<string, string>
+local integration_to_plugin = {}
+for plugin_name, integration_name in pairs(integration_map) do
+  integration_to_plugin[integration_name] = plugin_name
+end
+
+---@param name string
+---@return boolean
+local function integration_enabled(name)
+  local val = config.options.integrations[name]
+  if val ~= nil then return val end
+  if name == "treesitter" then return true end
+  local plugin = integration_to_plugin[name]
+  if plugin then
+    local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
+    if lazy_ok and lazy_config.plugins and lazy_config.plugins[plugin] then
+      return true
+    end
+  end
+  return false
+end
+
 ---@param theme ThemeTable
 local function setup_compat(theme)
   local b30 = theme.base_30
@@ -88,7 +151,7 @@ function M.setup(opts)
   if not ok or not lazy_config.plugins then return end
 
   for integration_name, mapping in pairs(plugin_configs) do
-    if config.options.integrations[integration_name] then
+    if integration_enabled(integration_name) then
       local spec = lazy_config.plugins[mapping.plugin]
       if spec then
         local chad46_mod = require("chad46.configs." .. mapping.config)
@@ -118,7 +181,7 @@ function M.apply_configs(names)
   for integration_name, mapping in pairs(plugin_configs) do
     if names then
       if not vim.list_contains(names, integration_name) then goto continue end
-    elseif not config.options.integrations[integration_name] then
+    elseif not integration_enabled(integration_name) then
       goto continue
     end
     local ok, mod = pcall(require, mapping.mod)
@@ -250,10 +313,17 @@ function M.load(name)
 
   for _, default_name in ipairs({ "defaults", "syntax" }) do load_integration(default_name) end
 
-  for integration_name, enabled in pairs(config.options.integrations) do
-    if enabled then
-      load_integration(integration_name)
+  local loaded = {}
+  for name, enabled in pairs(config.options.integrations) do
+    loaded[name] = enabled
+  end
+  for _, name in ipairs(vim.tbl_keys(integration_to_plugin)) do
+    if loaded[name] == nil and integration_enabled(name) then
+      loaded[name] = true
     end
+  end
+  for name, enabled in pairs(loaded) do
+    if enabled then load_integration(name) end
   end
 
   for group, opts in pairs(config.options.hl_add) do

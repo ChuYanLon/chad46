@@ -11,6 +11,7 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
 ## Features
 
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
+- **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
 - **94 themes**
 - **44 plugin integrations** (highlights)
 - **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
@@ -22,6 +23,8 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
 
 ### lazy.nvim
 
+Integrations are auto-detected — highlights for installed plugins load automatically:
+
 ```lua
 {
   "ChuYanLon/chad46",
@@ -29,20 +32,23 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
   priority = 1000,
   opts = {
     theme = "onedark",
-    integrations = {
-      telescope = true,
-      whichkey = true,
-      gitsigns = true,
-      mason = true,
-      lualine = true,
-      bufferline = true,
-    },
   },
   config = function(_, opts)
     require("chad46").setup(opts)
     vim.cmd.colorscheme("chad46")
   end,
 }
+```
+
+To explicitly disable or enable a specific integration:
+
+```lua
+opts = {
+  integrations = {
+    telescope = false,   -- disable even if installed
+    blink = true,        -- force enable even if not auto-detected
+  },
+},
 ```
 
 ### vim.pack / packer.nvim / vim-plug / any
@@ -67,11 +73,15 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 ## Integrations
 
+Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
+
 ### Highlights (44 plugins)
 
 Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, Gitsigns, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, Noice, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, Snacks, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
 ### Auto-applied Configs (lazy.nvim only)
+
+Also auto-detected — when the plugin is installed, chad46 injects its defaults:
 
 | Plugin | What it does |
 |--------|-------------|

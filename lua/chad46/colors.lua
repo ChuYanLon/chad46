@@ -42,6 +42,7 @@ end
 function M.blend(c1, c2, ratio)
   if not c1 or not c2 then return c1 or c2 end
   ratio = ratio or 0.5
+  if ratio > 1 then ratio = ratio / 100 end
   c1 = c1:gsub("#", ""); c2 = c2:gsub("#", "")
   local r1, g1, b1 = tonumber(c1:sub(1, 2), 16), tonumber(c1:sub(3, 4), 16), tonumber(c1:sub(5, 6), 16)
   local r2, g2, b2 = tonumber(c2:sub(1, 2), 16), tonumber(c2:sub(3, 4), 16), tonumber(c2:sub(5, 6), 16)
