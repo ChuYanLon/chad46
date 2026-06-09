@@ -128,14 +128,12 @@ Choose a style via chad46's `statusline` config:
 ```lua
 require("chad46").setup({
   statusline = {
-    theme = "vscode_colored",       -- default / minimal / vscode / vscode_colored
-    section_separators = { left = "", right = "" },
-    component_separators = "",
+    theme = "vscode_colored", -- default / minimal / vscode / vscode_colored
   },
 })
 ```
 
-Then in lualine:
+Separators are set in your own lualine config. Then use the adapter:
 
 ```lua
 require("lualine").setup({
@@ -147,31 +145,8 @@ require("lualine").setup({
 
 ## Bufferline
 
-```lua
-require("bufferline").setup({
-  highlights = require("chad46.adapters.bufferline").get_theme(),
-})
-```
+Auto-applied when `bufferline` is enabled in `integrations` (or via `apply_configs`). No manual setup needed.
 
 ## Auto-sync
 
-Themes, integrations and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) daily at midnight UTC via GitHub Actions. You can also trigger it manually from the Actions tab.
-
-## Debug
-
-```vim
-:lua require("chad46").inspect_bufferline()
-```
-
-## Manual Sync
-
-```bash
-# Sync all (themes + integrations + types)
-bash /path/to/chad46/sync.sh
-
-# Sync only types (from NvChad/ui)
-bash /path/to/chad46/sync.sh --types
-
-# Preview only
-bash /path/to/chad46/sync.sh --dry-run
-```
+Themes, integrations and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) daily at midnight UTC via GitHub Actions.
