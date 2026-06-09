@@ -7,6 +7,7 @@ M.defaults = {
   changed_themes = {},
   hl_override = {},
   hl_add = {},
+  lualine_style = "default",
   integrations = {
     alpha = false, avante = false, blankline = false, blink = false,
     ["blink-pair"] = false, bufferline = false, cmp = false, codeactionmenu = false,
