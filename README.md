@@ -1,24 +1,21 @@
-# 󰛨 chad46
+# chad46
 
->  NvChad themes & plugin configs, standalone.
+A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style plugin configurations auto-applied via lazy.nvim.
 
----
+## Features
 
-##  Features
+- **94 themes** from NvChad/base46
+- **44 plugin integrations** (highlights)
+- **14 auto-applied plugin configs** (icons, layout, appearance)
+- **base_30 / base_16** dual color system
+- **Lualine & Bufferline** adapters with NvChad styling
+- **base46/nvconfig** compatibility layer
+- **sync.sh** to pull updates from base46
 
-| | |
-|---|---|
-|  | **94 themes** from NvChad/base46 |
-|  | **44 integrations** — highlights for everything |
-|  | **14 auto-configs** — icons, layout, appearance |
-|  | **base_30 + base_16** dual color system |
-|  | **sync.sh** — pull updates from base46 |
-
----
-
-##  Installation
+## Installation
 
 ```lua
+-- lazy.nvim
 {
   dir = "/path/to/chad46",
   name = "chad46",
@@ -41,88 +38,50 @@
 }
 ```
 
----
+## Integrations
 
-##  Integrations
+### Highlights (44 plugins)
 
-###  Highlights (44 plugins)
+Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, Gitsigns, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, Noice, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, Snacks, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
-Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap,
-Devicons, Diffview, Edgy, Flash, Git, Git-conflict, Gitsigns, Grug-far, Hop, Leap,
-Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, Noice, Notify,
-Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens,
-Snacks, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble,
-Vim-illuminate, Whichkey
+### Auto-applied Configs
 
-###  Auto-applied Configs
+| Plugin | What it does |
+|--------|-------------|
+| Telescope | search prompt icon, layout, dropdown theme |
+| Nvim-tree | Nerd Font file/folder icons, git status glyphs |
+| Gitsigns | add/change/delete signs in signcolumn |
+| Mason | package pending/installed/uninstalled icons |
+| Indent-blankline | indent guide character |
+| Which-key | modern preset, group labels |
+| Nvim-cmp | 30+ kind icons, menu formatting |
+| Blink-cmp | rounded borders, kind icon column |
+| Devicons | filetype icon color overrides |
+| Lualine | NvChad statusline color theme |
+| Bufferline | NvChad buffer tab color theme |
+| Dap | breakpoint signs |
+| Trouble | right-side layout |
+| Snacks | notifier icons, picker icons, indent style |
 
-| Integration | Icons | Effect |
-|-------------|-------|--------|
-|  Telescope | `` `` | prompt prefix, dropdown layout |
-|  Nvim-tree | `` `` `` | Nerd icons, git glyphs |
-|  Gitsigns | `` `` `` `` | add/change/delete signs |
-|  Mason | `` `` `` | package status icons |
-| │ Blankline | `│` | indent guide |
-|  Which-key | `` `` `` `` | modern preset, group icons |
-|  Cmp | `󰆧` `󰊕` `` 30+ more | kind icons & formatting |
-|  Blink-cmp | rounded borders, kind column |
-| 󰈚 Devicons | filetype icon colors |
-|  Lualine | NvChad statusline theme |
-|  Bufferline | NvChad bufferline theme |
-|  Dap | `●` `▶` `◆` | breakpoint signs |
-| 󰛨 Trouble | right-side layout |
-|  Snacks | `` `` `` `` | icons & appearance |
+## Themes
 
----
-
-##  Themes
+Switch themes at runtime:
 
 ```lua
 require("chad46").load("tokyonight")
 require("chad46").load("catppuccin")
 require("chad46").load("nord")
-require("chad46").load("rosepine")
-require("chad46").toggle()  -- toggle between pair
+require("chad46").toggle()  -- toggle between theme_toggle pair
 ```
 
----
-
-##  Lualine
+## Color System
 
 ```lua
-require("lualine").setup({
-  options = {
-    theme = require("chad46.adapters.lualine").get_theme(),
-  },
-})
-```
-
-Or just `integrations.lualine = true` 
-
----
-
-##  Bufferline
-
-```lua
-require("bufferline").setup({
-  highlights = require("chad46.adapters.bufferline").get_theme(),
-})
-```
-
-Or just `integrations.bufferline = true` 
-
----
-
-##  Color System
-
-```lua
--- base_30 = UI colors
--- base_16 = syntax colors
 local c = require("chad46").get_theme_tb("base_30")
 -- c.blue, c.red, c.green, c.black, c.white ...
 ```
 
-###  Customization
+## Customization
 
 ```lua
 opts = {
@@ -138,22 +97,40 @@ opts = {
 }
 ```
 
----
+## Lualine
 
-##  Debug
+```lua
+require("lualine").setup({
+  options = {
+    theme = require("chad46.adapters.lualine").get_theme(),
+  },
+})
+```
+
+Or enable `integrations.lualine = true` for auto-apply.
+
+## Bufferline
+
+```lua
+require("bufferline").setup({
+  highlights = require("chad46.adapters.bufferline").get_theme(),
+})
+```
+
+Or enable `integrations.bufferline = true` for auto-apply.
+
+## Debug
 
 ```vim
 :lua require("chad46").inspect_bufferline()
 ```
 
----
-
-##  Sync
+## Sync
 
 ```bash
-#  Sync themes & integrations from NvChad/base46
+# Sync themes and integrations from NvChad/base46
 bash /path/to/chad46/sync.sh
 
-#  Preview only
+# Preview only
 bash /path/to/chad46/sync.sh --dry-run
 ```
