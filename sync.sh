@@ -85,6 +85,7 @@ main() {
   echo "Errors: ${#log_err[@]}"
   for v in "${log_err[@]}"; do echo "  ! $v"; done
   [[ ${#log_err[@]} -gt 0 ]] && echo "Some files failed (see above)." && exit 1
+  exit 0
 }
 
 main
