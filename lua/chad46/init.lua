@@ -152,7 +152,7 @@ function M.load(name)
   for _, name in ipairs({ "defaults", "syntax" }) do load_integration(name) end
 
   for integration_name, enabled in pairs(config.options.integrations) do
-    if enabled and not plugin_configs[integration_name] then
+    if enabled then
       load_integration(integration_name)
     end
   end
