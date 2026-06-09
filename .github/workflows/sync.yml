@@ -19,12 +19,9 @@ jobs:
 
       - name: Sync themes & integrations
         id: sync
+        shell: bash {0}
         run: |
-          if bash sync.sh 2>&1; then
-            echo "success=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "success=false" >> "$GITHUB_OUTPUT"
-          fi
+          bash sync.sh && echo "success=true" >> "$GITHUB_OUTPUT" || echo "success=false" >> "$GITHUB_OUTPUT"
 
       - name: Check for changes
         id: check
