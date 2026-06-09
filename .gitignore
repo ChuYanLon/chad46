@@ -1,0 +1,24 @@
+# Lua
+*.luac
+
+# Neovim
+nvim-logs/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editors
+.vscode/
+.idea/
+*.iml
+
+# Build
+build/
+dist/
+
+# Test
+cov-report/
