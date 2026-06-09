@@ -42,6 +42,6 @@ jobs:
             --base main \
             --head "$BRANCH")
           PR_NUM="${PR_URL##*/}"
-          gh pr merge --auto --squash "$PR_NUM"
+          gh pr merge --squash --delete-branch "$PR_NUM"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
