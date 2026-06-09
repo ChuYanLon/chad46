@@ -2,6 +2,8 @@
 
 A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style plugin configurations auto-applied via lazy.nvim.
 
+Works with any plugin manager. Auto-config patching is lazy.nvim-only and skipped automatically when unavailable.
+
 ## Features
 
 - **94 themes** from NvChad/base46
@@ -14,10 +16,11 @@ A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style
 
 ## Installation
 
+### lazy.nvim
+
 ```lua
--- lazy.nvim
 {
-  dir = "/path/to/chad46",
+  "ChuYanLon/chad46",
   name = "chad46",
   priority = 1000,
   opts = {
@@ -38,13 +41,45 @@ A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style
 }
 ```
 
+### vim.pack (Neovim 0.12+)
+
+```lua
+vim.pack.add({ src = "https://github.com/ChuYanLon/chad46", name = "chad46" })
+
+-- in your config:
+require("chad46").setup({ theme = "onedark" })
+vim.cmd.colorscheme("chad46")
+```
+
+### packer.nvim
+
+```lua
+use {
+  "ChuYanLon/chad46",
+  config = function()
+    require("chad46").setup({ theme = "onedark" })
+    vim.cmd.colorscheme("chad46")
+  end,
+}
+```
+
+### vim-plug
+
+```vim
+Plug 'ChuYanLon/chad46'
+lua << EOF
+require("chad46").setup({ theme = "onedark" })
+vim.cmd.colorscheme("chad46")
+EOF
+```
+
 ## Integrations
 
 ### Highlights (44 plugins)
 
 Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, Gitsigns, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, Noice, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, Snacks, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
-### Auto-applied Configs
+### Auto-applied Configs (lazy.nvim only)
 
 | Plugin | What it does |
 |--------|-------------|
@@ -65,13 +100,11 @@ Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Da
 
 ## Themes
 
-Switch themes at runtime:
-
 ```lua
 require("chad46").load("tokyonight")
 require("chad46").load("catppuccin")
 require("chad46").load("nord")
-require("chad46").toggle()  -- toggle between theme_toggle pair
+require("chad46").toggle()
 ```
 
 ## Color System
@@ -107,8 +140,6 @@ require("lualine").setup({
 })
 ```
 
-Or enable `integrations.lualine = true` for auto-apply.
-
 ## Bufferline
 
 ```lua
@@ -116,8 +147,6 @@ require("bufferline").setup({
   highlights = require("chad46.adapters.bufferline").get_theme(),
 })
 ```
-
-Or enable `integrations.bufferline = true` for auto-apply.
 
 ## Debug
 
