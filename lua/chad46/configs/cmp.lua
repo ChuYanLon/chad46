@@ -1,5 +1,5 @@
 local M = { icons = {
-  Namespace = "󰌗", Text = "󰉿", Method = "󰆧", Function = "󰆧", Constructor = "",
+  Namespace = "󰌗", Text = "󰉿", Method = "󰆧", Function = "󰊕", Constructor = "",
   Field = "󰜢", Variable = "󰀫", Class = "󰠱", Interface = "", Module = "",
   Property = "󰜢", Unit = "󰑭", Value = "󰎠", Enum = "", Keyword = "󰌋",
   Snippet = "", Color = "󰏘", File = "󰈚", Reference = "󰈇", Folder = "󰉋",
