@@ -1,7 +1,10 @@
 local M = {}
 
+---@return Base30Table
 local function c()
-  return require("chad46").get_theme_tb("base_30")
+  local t = require("chad46").get_theme_tb("base_30")
+  ---@cast t Base30Table
+  return t
 end
 
 local styles = {
@@ -89,11 +92,13 @@ local function inactive(t)
   }
 end
 
+---@return table
 function M.get_theme()
   local opts = require("chad46.config").options
-  local name = opts.lualine_style or "default"
+  local name = (opts.statusline or {}).theme or "default"
   local t = opts.transparency and "NONE" or c().black
-  local fn = styles[name] or styles.default
+  local fn = styles[name]
+  if not fn then fn = styles.default end
   local mode = fn(t)
   mode.inactive = inactive(t)
   return mode

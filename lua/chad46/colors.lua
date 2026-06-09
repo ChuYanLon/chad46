@@ -1,5 +1,9 @@
+---@class ColorsModule
 local M = {}
 
+---@param hex string
+---@param amount integer
+---@return string
 function M.change_hex_lightness(hex, amount)
   if not hex then return hex end
   hex = hex:gsub("#", "")
@@ -10,6 +14,9 @@ function M.change_hex_lightness(hex, amount)
   return string.format("#%02x%02x%02x", r, g, b)
 end
 
+---@param hex string
+---@param amount number
+---@return string
 function M.darken(hex, amount)
   if not hex then return hex end
   amount = amount or 0
@@ -21,10 +28,17 @@ function M.darken(hex, amount)
   return string.format("#%02x%02x%02x", r, g, b)
 end
 
+---@param hex string
+---@param amount number
+---@return string
 function M.lighten(hex, amount)
   return M.darken(hex, amount)
 end
 
+---@param c1 string
+---@param c2 string
+---@param ratio? number
+---@return string
 function M.blend(c1, c2, ratio)
   if not c1 or not c2 then return c1 or c2 end
   ratio = ratio or 0.5
@@ -34,10 +48,17 @@ function M.blend(c1, c2, ratio)
   return string.format("#%02x%02x%02x", math.floor(r1 + (r2 - r1) * ratio), math.floor(g1 + (g2 - g1) * ratio), math.floor(b1 + (b2 - b1) * ratio))
 end
 
+---@param c1 string
+---@param c2 string
+---@param ratio? number
+---@return string
 function M.mix(c1, c2, ratio)
   return M.blend(c1, c2, ratio)
 end
 
+---@param tb HLGroup
+---@param colors Base30Table|Base16Table
+---@return HLGroup
 function M.resolve_colors(tb, colors)
   local result = {}
   for k, v in pairs(tb) do

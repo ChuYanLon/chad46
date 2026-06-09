@@ -1,0 +1,78 @@
+---@meta
+
+---@class NvConfig
+---@field base46 NvBase46Config
+---@field ui NvUIConfig
+
+---@class NvBase46Config
+---@field theme Chad46ThemeName
+---@field transparency boolean
+---@field hl_add HLTable
+---@field hl_override HLTable
+---@field changed_themes table<string, any>
+
+---@class NvUIConfig
+---@field cmp { style: string }
+---@field telescope { style: string }
+---@field statusline { enabled: boolean }
+
+---@class Chad46Config
+---@field theme? Chad46ThemeName
+---@field theme_toggle? Chad46ThemeName[]
+---@field transparency? boolean
+---@field changed_themes? table<string, { base_30?: Base30Table, base_16?: Base16Table, polish_hl?: table<string, HLTable> }>
+---@field hl_override? table<string, HLTable>
+---@field hl_add? HLTable
+---@field statusline? StatuslineConfig
+---@field integrations? IntegrationsConfig
+
+---@class StatuslineConfig
+---@field theme? '"default"'|'"minimal"'|'"vscode"'|'"vscode_colored"'
+---@field separator_style? '"default"'|'"round"'|'"block"'|'"arrow"'
+---@field enabled? boolean
+---@field section_separators? { left: string, right: string }
+---@field component_separators? { left: string, right: string }
+
+---@class IntegrationsConfig
+---@field alpha? boolean
+---@field avante? boolean
+---@field blankline? boolean
+---@field blink? boolean
+---@field ["blink-pair"]? boolean
+---@field bufferline? boolean
+---@field cmp? boolean
+---@field codeactionmenu? boolean
+---@field dap? boolean
+---@field devicons? boolean
+---@field diffview? boolean
+---@field edgy? boolean
+---@field flash? boolean
+---@field git? boolean
+---@field ["git-conflict"]? boolean
+---@field gitsigns? boolean
+---@field grug_far? boolean
+---@field hop? boolean
+---@field leap? boolean
+---@field lsp? boolean
+---@field lspsaga? boolean
+---@field markview? boolean
+---@field mason? boolean
+---@field ["mini-tabline"]? boolean
+---@field navic? boolean
+---@field neogit? boolean
+---@field noice? boolean
+---@field notify? boolean
+---@field nvimtree? boolean
+---@field nvshades? boolean
+---@field orgmode? boolean
+---@field rainbowdelimiters? boolean
+---@field ["render-markdown"]? boolean
+---@field semantic_tokens? boolean
+---@field snacks? boolean
+---@field telescope? boolean
+---@field ["tiny-inline-diagnostic"]? boolean
+---@field todo? boolean
+---@field treesitter? boolean
+---@field trouble? boolean
+---@field ["vim-illuminate"]? boolean
+---@field whichkey? boolean

@@ -1,7 +1,10 @@
+---@class BufferlineAdapter
 local M = {}
 
+---@return table<string, HLGroup>
 function M.get_theme()
   local c = require("chad46").get_theme_tb("base_30")
+  ---@cast c Base30Table
 
   return {
     fill = { bg = c.black2 },

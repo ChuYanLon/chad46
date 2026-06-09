@@ -1,0 +1,140 @@
+---@meta
+
+---@alias Base30Colors
+---| '"white"'
+---| '"darker_black"'
+---| '"black"'
+---| '"black2"'
+---| '"one_bg"'
+---| '"one_bg2"'
+---| '"one_bg3"'
+---| '"grey"'
+---| '"grey_fg"'
+---| '"grey_fg2"'
+---| '"light_grey"'
+---| '"red"'
+---| '"baby_pink"'
+---| '"pink"'
+---| '"line"'
+---| '"green"'
+---| '"vibrant_green"'
+---| '"blue"'
+---| '"nord_blue"'
+---| '"yellow"'
+---| '"sun"'
+---| '"purple"'
+---| '"dark_purple"'
+---| '"teal"'
+---| '"orange"'
+---| '"cyan"'
+---| '"statusline_bg"'
+---| '"lightbg"'
+---| '"pmenu_bg"'
+---| '"folder_bg"'
+
+---@alias Base16Colors
+---| '"base00"'
+---| '"base01"'
+---| '"base02"'
+---| '"base03"'
+---| '"base04"'
+---| '"base05"'
+---| '"base06"'
+---| '"base07"'
+---| '"base08"'
+---| '"base09"'
+---| '"base0A"'
+---| '"base0B"'
+---| '"base0C"'
+---| '"base0D"'
+---| '"base0E"'
+---| '"base0F"'
+
+---@alias Chad46ColorName Base30Colors|Base16Colors
+
+---@class Base30Table
+---@field white string
+---@field darker_black string
+---@field black string
+---@field black2 string
+---@field one_bg string
+---@field one_bg2 string
+---@field one_bg3 string
+---@field grey string
+---@field grey_fg string
+---@field grey_fg2 string
+---@field light_grey string
+---@field red string
+---@field baby_pink string
+---@field pink string
+---@field line string
+---@field green string
+---@field vibrant_green string
+---@field blue string
+---@field nord_blue string
+---@field yellow string
+---@field sun string
+---@field purple string
+---@field dark_purple string
+---@field teal string
+---@field orange string
+---@field cyan string
+---@field statusline_bg string
+---@field lightbg string
+---@field pmenu_bg string
+---@field folder_bg string
+
+---@class Base16Table
+---@field base00 string
+---@field base01 string
+---@field base02 string
+---@field base03 string
+---@field base04 string
+---@field base05 string
+---@field base06 string
+---@field base07 string
+---@field base08 string
+---@field base09 string
+---@field base0A string
+---@field base0B string
+---@field base0C string
+---@field base0D string
+---@field base0E string
+---@field base0F string
+
+---@class ThemeTable
+---@field base_30 Base30Table
+---@field base_16 Base16Table
+---@field type '"dark"'|'"light"'
+---@field polish_hl? table<string, HLTable>
+
+---@class Base46Table : ThemeTable
+---@field add_hl? HLTable
+---@field polish_hl? table<string, HLTable>
+
+---@class HLGroup
+---@field fg? string|Chad46ColorName|'"NONE"'
+---@field bg? string|Chad46ColorName|'"NONE"'
+---@field sp? string|Chad46ColorName|'"NONE"'
+---@field blend? integer
+---@field bold? boolean
+---@field standout? boolean
+---@field underline? boolean
+---@field undercurl? boolean
+---@field underdouble? boolean
+---@field underdotted? boolean
+---@field underdashed? boolean
+---@field strikethrough? boolean
+---@field italic? boolean
+---@field reverse? boolean
+---@field nocombine? boolean
+---@field link? string|'"NONE"'
+---@field default? boolean
+
+---@alias HLTable table<string, HLGroup>
+
+---@class Base46Compat
+---@field get_theme_tb fun(tb: string): Base30Table|Base16Table|table
+---@field colors ColorsModule
+---@field merge_tb fun(...: HLTable?): HLTable
+---@field turn_str_to_color fun(tb: HLGroup): HLGroup
