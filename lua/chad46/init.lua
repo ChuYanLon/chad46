@@ -69,6 +69,7 @@ function M.setup(opts)
     blink = { plugin = "blink.cmp", config = "blink" },
     devicons = { plugin = "nvim-web-devicons", config = "devicons" },
     lualine = { plugin = "lualine.nvim", config = "lualine" },
+    bufferline = { plugin = "bufferline.nvim", config = "bufferline" },
     dap = { plugin = "nvim-dap", config = "dap" },
     trouble = { plugin = "trouble.nvim", config = "trouble" },
     snacks = { plugin = "snacks.nvim", config = "snacks" },
