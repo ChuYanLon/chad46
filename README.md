@@ -86,9 +86,13 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
+> Three integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, and **Gitsigns**. Synced from NvChad but with local highlight overrides.
+
 ### Highlights (44 plugins)
 
-Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, Gitsigns, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, Noice, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, Snacks, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
+Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
+
+> *Local addition — not present in upstream NvChad/base46.
 
 ### Auto-applied Configs (lazy.nvim only)
 
@@ -98,7 +102,7 @@ Also auto-detected — when the plugin is installed, chad46 injects its defaults
 |--------|-------------|
 | Telescope | search prompt icon, layout, dropdown theme |
 | Nvim-tree | Nerd Font file/folder icons, git status glyphs |
-| Gitsigns | add/change/delete signs in signcolumn |
+| Gitsigns | add/change/delete signs in signcolumn — local config |
 | Mason | package pending/installed/uninstalled icons |
 | Indent-blankline | indent guide character |
 | Which-key | modern preset, group labels |
@@ -109,7 +113,7 @@ Also auto-detected — when the plugin is installed, chad46 injects its defaults
 | Bufferline | NvChad buffer tab color theme |
 | Dap | breakpoint signs |
 | Trouble | right-side layout |
-| Snacks | notifier icons, picker icons, indent style |
+| Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style |
 
 ## Options
 
@@ -122,7 +126,7 @@ Full reference of available `setup()` options:
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
-| `hl_override` | `table` | `{}` | Override highlight groups per integration |
+| `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
 | `hl_add` | `table` | `{}` | Add custom highlight groups |
 
 ## Customization
@@ -136,6 +140,10 @@ require("chad46").setup({
     onedark = { base_30 = { red = "#00ff00" } },
   },
   hl_override = {
+    defaults = {
+      NormalFloat = { bg = "NONE" },
+      FloatBorder = { fg = "blue" },
+    },
     treesitter = {
       ["@variable"] = { fg = "blue", italic = true },
     },

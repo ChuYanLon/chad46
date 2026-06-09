@@ -39,10 +39,10 @@ ALL_THEMES=(
 
 ALL_INTEGRATIONS=(
   alpha avante blankline blink blink-pair bufferline cmp codeactionmenu dap
-  defaults devicons diffview edgy flash git git-conflict gitsigns grug_far hop
-  leap lsp lspsaga markview mason mini-tabline navic neogit noice notify
+  defaults devicons diffview edgy flash git git-conflict grug_far hop
+  leap lsp lspsaga markview mason mini-tabline navic neogit notify
   nvimtree nvshades orgmode rainbowdelimiters render-markdown semantic_tokens
-  snacks syntax telescope tiny-inline-diagnostic todo treesitter trouble
+  syntax telescope tiny-inline-diagnostic todo treesitter trouble
   vim-illuminate whichkey
 )
 
