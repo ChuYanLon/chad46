@@ -14,23 +14,24 @@ local current_colors = {}
 ---@class PluginConfig
 ---@field plugin string
 ---@field config string
+---@field mod string
 
 ---@type table<string, PluginConfig>
 local plugin_configs = {
-  telescope = { plugin = "telescope.nvim", config = "telescope" },
-  nvimtree = { plugin = "nvim-tree.lua", config = "nvimtree" },
-  gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns" },
-  mason = { plugin = "mason.nvim", config = "mason" },
-  blankline = { plugin = "indent-blankline.nvim", config = "blankline" },
-  whichkey = { plugin = "which-key.nvim", config = "whichkey" },
-  cmp = { plugin = "nvim-cmp", config = "cmp" },
-  blink = { plugin = "blink.cmp", config = "blink" },
-  devicons = { plugin = "nvim-web-devicons", config = "devicons" },
-  lualine = { plugin = "lualine.nvim", config = "lualine" },
-  bufferline = { plugin = "bufferline.nvim", config = "bufferline" },
-  dap = { plugin = "nvim-dap", config = "dap" },
-  trouble = { plugin = "trouble.nvim", config = "trouble" },
-  snacks = { plugin = "snacks.nvim", config = "snacks" },
+  telescope = { plugin = "telescope.nvim", config = "telescope", mod = "telescope" },
+  nvimtree = { plugin = "nvim-tree.lua", config = "nvimtree", mod = "nvim-tree" },
+  gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns", mod = "gitsigns" },
+  mason = { plugin = "mason.nvim", config = "mason", mod = "mason" },
+  blankline = { plugin = "indent-blankline.nvim", config = "blankline", mod = "ibl" },
+  whichkey = { plugin = "which-key.nvim", config = "whichkey", mod = "which-key" },
+  cmp = { plugin = "nvim-cmp", config = "cmp", mod = "cmp" },
+  blink = { plugin = "blink.cmp", config = "blink", mod = "blink.cmp" },
+  devicons = { plugin = "nvim-web-devicons", config = "devicons", mod = "nvim-web-devicons" },
+  lualine = { plugin = "lualine.nvim", config = "lualine", mod = "lualine" },
+  bufferline = { plugin = "bufferline.nvim", config = "bufferline", mod = "bufferline" },
+  dap = { plugin = "nvim-dap", config = "dap", mod = "dap" },
+  trouble = { plugin = "trouble.nvim", config = "trouble", mod = "trouble" },
+  snacks = { plugin = "snacks.nvim", config = "snacks", mod = "snacks" },
 }
 
 ---@param theme ThemeTable
@@ -105,6 +106,20 @@ function M.setup(opts)
           local base = type(chad46_mod) == "function" and chad46_mod() or vim.deepcopy(chad46_mod)
           spec.opts = vim.tbl_deep_extend("force", base, user_opts or {})
         end
+      end
+    end
+  end
+end
+
+---@diagnostic disable-next-line: lowercase-global
+function M.apply_configs()
+  for _, mapping in pairs(plugin_configs) do
+    if config.options.integrations[_] then
+      local ok, mod = pcall(require, mapping.mod)
+      if ok and type(mod.setup) == "function" then
+        local chad_cfg = require("chad46.configs." .. mapping.config)
+        local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.deepcopy(chad_cfg)
+        mod.setup(cfg)
       end
     end
   end

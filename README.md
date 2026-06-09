@@ -2,9 +2,9 @@
 
 [![chad46 sync](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml/badge.svg)](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml)
 
-A standalone Neovim theme plugin extracted from NvChad base46, with NvChad-style plugin configurations auto-applied via lazy.nvim.
+94 NvChad themes extracted from [base46](https://github.com/NvChad/base46), with 44 plugin integrations, lualine/bufferline adapters, and automatic plugin setup (lazy.nvim only).
 
-Works with any plugin manager. Auto-config patching is lazy.nvim-only and skipped automatically when unavailable.
+Works with **any** plugin manager. NvChad-style plugin configs are auto-applied when using lazy.nvim, skipped otherwise.
 
 ## Features
 
@@ -44,34 +44,19 @@ Works with any plugin manager. Auto-config patching is lazy.nvim-only and skippe
 }
 ```
 
-### vim.pack (Neovim 0.12+)
+### vim.pack / packer.nvim / vim-plug / any
 
 ```lua
-vim.pack.add({ src = "https://github.com/ChuYanLon/chad46", name = "chad46" })
 require("chad46").setup({ theme = "onedark" })
 vim.cmd.colorscheme("chad46")
 ```
 
-### packer.nvim
+Optional: apply NvChad-style plugin configs for non-lazy managers:
 
 ```lua
-use {
-  "ChuYanLon/chad46",
-  config = function()
-    require("chad46").setup({ theme = "onedark" })
-    vim.cmd.colorscheme("chad46")
-  end,
-}
-```
-
-### vim-plug
-
-```vim
-Plug 'ChuYanLon/chad46'
-lua << EOF
-require("chad46").setup({ theme = "onedark" })
-vim.cmd.colorscheme("chad46")
-EOF
+vim.schedule(function()
+  require("chad46").apply_configs()
+end)
 ```
 
 ## Integrations
@@ -151,7 +136,7 @@ require("bufferline").setup({
 
 ## Auto-sync
 
-Themes and integrations are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) daily at midnight UTC via GitHub Actions. You can also trigger it manually from the Actions tab.
+Themes, integrations and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) daily at midnight UTC via GitHub Actions. You can also trigger it manually from the Actions tab.
 
 ## Debug
 
@@ -162,8 +147,11 @@ Themes and integrations are automatically synced from [NvChad/base46](https://gi
 ## Manual Sync
 
 ```bash
-# Sync themes and integrations from NvChad/base46
+# Sync all (themes + integrations + types)
 bash /path/to/chad46/sync.sh
+
+# Sync only types (from NvChad/ui)
+bash /path/to/chad46/sync.sh --types
 
 # Preview only
 bash /path/to/chad46/sync.sh --dry-run
