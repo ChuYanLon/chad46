@@ -5,11 +5,17 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Sync themes & integrations
         id: sync
@@ -33,7 +39,7 @@ jobs:
       - name: Create Pull Request
         id: pr
         if: steps.sync.outputs.success == 'true' && steps.check.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: sync themes & integrations from NvChad/base46"
