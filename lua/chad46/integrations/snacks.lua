@@ -1,1 +1,87 @@
-404: Not Found
+local colors = require("base46").get_theme_tb "base_30"
+
+local hlgroups = {
+
+  -- Notifier
+  SnacksNotifierError = { fg = colors.red },
+  SnacksNotifierWarn = { fg = colors.yellow },
+  SnacksNotifierInfo = { fg = colors.green },
+  SnacksNotifierDebug = { fg = colors.light_grey },
+  SnacksNotifierTrace = { fg = colors.grey },
+  SnacksNotifierIconError = { fg = colors.red },
+  SnacksNotifierIconWarn = { fg = colors.yellow },
+  SnacksNotifierIconInfo = { fg = colors.green },
+  SnacksNotifierIconDebug = { fg = colors.light_grey },
+  SnacksNotifierIconTrace = { fg = colors.grey },
+  SnacksNotifierBorderError = { fg = colors.red },
+  SnacksNotifierBorderWarn = { fg = colors.yellow },
+  SnacksNotifierBorderInfo = { fg = colors.green },
+  SnacksNotifierBorderDebug = { fg = colors.light_grey },
+  SnacksNotifierBorderTrace = { fg = colors.grey },
+  SnacksNotifierTitleError = { fg = colors.red },
+  SnacksNotifierTitleWarn = { fg = colors.yellow },
+  SnacksNotifierTitleInfo = { fg = colors.green },
+  SnacksNotifierTitleDebug = { fg = colors.light_grey },
+  SnacksNotifierTitleTrace = { fg = colors.grey },
+  SnacksNotifierFooterError = { fg = colors.red },
+  SnacksNotifierFooterWarn = { fg = colors.yellow },
+  SnacksNotifierFooterInfo = { fg = colors.green },
+  SnacksNotifierFooterDebug = { fg = colors.light_grey },
+  SnacksNotifierFooterTrace = { fg = colors.grey },
+  SnacksNotifierHistory = { bg = colors.darker_black },
+  SnacksNotifierHistoryTitle = { fg = colors.blue },
+  SnacksNotifierHistoryDateTime = { fg = colors.light_grey },
+
+  -- Dashboard
+  SnacksDashboardHeader = { fg = colors.blue },
+  SnacksDashboardIcon = { fg = colors.blue },
+  SnacksDashboardKey = { fg = colors.orange },
+  SnacksDashboardDesc = { fg = colors.white },
+  SnacksDashboardFooter = { fg = colors.grey_fg },
+  SnacksDashboardSpecial = { fg = colors.purple },
+  SnacksDashboardTitle = { fg = colors.green, bold = true },
+  SnacksDashboardNormal = { bg = colors.darker_black },
+
+  -- Indent
+  SnacksIndent = { fg = colors.line },
+  SnacksIndentScope = { fg = colors.blue },
+  SnacksIndentChunk = { fg = colors.teal },
+  SnacksIndent1 = { fg = colors.blue },
+  SnacksIndent2 = { fg = colors.purple },
+  SnacksIndent3 = { fg = colors.teal },
+  SnacksIndent4 = { fg = colors.orange },
+  SnacksIndent5 = { fg = colors.blue },
+  SnacksIndent6 = { fg = colors.purple },
+  SnacksIndent7 = { fg = colors.teal },
+  SnacksIndent8 = { fg = colors.orange },
+
+  -- Picker
+  SnacksPickerBorder = { fg = colors.one_bg3 },
+  SnacksPickerTitle = { fg = colors.grey_fg, bg = colors.green },
+  SnacksPickerPreviewTitle = { fg = colors.grey_fg, bg = colors.blue },
+  SnacksPickerListTitle = { fg = colors.grey_fg, bg = colors.red },
+  SnacksPickerFooter = { fg = colors.grey_fg },
+  SnacksPickerMatch = { bg = colors.one_bg, fg = colors.blue },
+  SnacksPickerSpecial = { fg = colors.purple },
+  SnacksPickerSelected = { fg = colors.orange },
+  SnacksPickerUnselected = { fg = colors.grey },
+  SnacksPickerTotals = { fg = colors.grey_fg },
+  SnacksPickerRule = { fg = colors.line },
+  SnacksPickerPrompt = { fg = colors.red},
+  SnacksPickerCursorLine = { bg = colors.black2 },
+  SnacksPickerCode = { bg = colors.black2 },
+  SnacksPickerGitStatus = { fg = colors.purple },
+  SnacksPickerIcon = { fg = colors.blue },
+  SnacksPickerDirectory = { fg = colors.blue },
+  SnacksPickerFile = { fg = colors.white },
+  SnacksPickerSpinner = { fg = colors.blue },
+
+  -- StatusColumn
+  SnacksStatusColumnMark = { fg = colors.orange, bold = true },
+
+  -- Zen
+  SnacksZenBackdrop = { bg = colors.black },
+  SnacksZenIcon = { fg = colors.blue },
+}
+
+return hlgroups
