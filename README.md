@@ -2,19 +2,21 @@
 
 [![chad46 sync](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml/badge.svg)](https://github.com/ChuYanLon/chad46/actions/workflows/sync.yml)
 
-94 themes, 44 plugin highlight integrations, lualine & bufferline adapters, type definitions — synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui).
+> **Daily sync** — themes, integrations, and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. Always up to date with upstream.
+
+94 themes · 44 plugin highlight integrations · 14 auto-applied plugin configs · Lualine & Bufferline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
 ## Features
 
-- **94 themes** from NvChad/base46
+- **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
+- **94 themes**
 - **44 plugin integrations** (highlights)
 - **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
 - **Lualine & Bufferline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
-- **Daily auto-sync** via GitHub Actions
 
 ## Installation
 
@@ -120,6 +122,4 @@ opts = {
 }
 ```
 
-## Auto-sync
 
-Themes, integrations and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) daily at midnight UTC via GitHub Actions.
