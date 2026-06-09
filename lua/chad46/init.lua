@@ -6,6 +6,23 @@ local M = {}
 local current_theme = nil
 local current_colors = nil
 
+local plugin_configs = {
+  telescope = { plugin = "telescope.nvim", config = "telescope" },
+  nvimtree = { plugin = "nvim-tree.lua", config = "nvimtree" },
+  gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns" },
+  mason = { plugin = "mason.nvim", config = "mason" },
+  blankline = { plugin = "indent-blankline.nvim", config = "blankline" },
+  whichkey = { plugin = "which-key.nvim", config = "whichkey" },
+  cmp = { plugin = "nvim-cmp", config = "cmp" },
+  blink = { plugin = "blink.cmp", config = "blink" },
+  devicons = { plugin = "nvim-web-devicons", config = "devicons" },
+  lualine = { plugin = "lualine.nvim", config = "lualine" },
+  bufferline = { plugin = "bufferline.nvim", config = "bufferline" },
+  dap = { plugin = "nvim-dap", config = "dap" },
+  trouble = { plugin = "trouble.nvim", config = "trouble" },
+  snacks = { plugin = "snacks.nvim", config = "snacks" },
+}
+
 -- base46 compat layer
 local function setup_compat(theme)
   local b30 = theme.base_30
@@ -54,26 +71,9 @@ end
 
 function M.setup(opts)
   config.setup(opts)
-  -- patch lazy.nvim specs
+
   local ok, lazy_config = pcall(require, "lazy.core.config")
   if not ok or not lazy_config.plugins then return end
-
-  local plugin_configs = {
-    telescope = { plugin = "telescope.nvim", config = "telescope" },
-    nvimtree = { plugin = "nvim-tree.lua", config = "nvimtree" },
-    gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns" },
-    mason = { plugin = "mason.nvim", config = "mason" },
-    blankline = { plugin = "indent-blankline.nvim", config = "blankline" },
-    whichkey = { plugin = "which-key.nvim", config = "whichkey" },
-    cmp = { plugin = "nvim-cmp", config = "cmp" },
-    blink = { plugin = "blink.cmp", config = "blink" },
-    devicons = { plugin = "nvim-web-devicons", config = "devicons" },
-    lualine = { plugin = "lualine.nvim", config = "lualine" },
-    bufferline = { plugin = "bufferline.nvim", config = "bufferline" },
-    dap = { plugin = "nvim-dap", config = "dap" },
-    trouble = { plugin = "trouble.nvim", config = "trouble" },
-    snacks = { plugin = "snacks.nvim", config = "snacks" },
-  }
 
   for integration_name, mapping in pairs(plugin_configs) do
     if config.options.integrations[integration_name] then
@@ -152,7 +152,9 @@ function M.load(name)
   for _, name in ipairs({ "defaults", "syntax" }) do load_integration(name) end
 
   for integration_name, enabled in pairs(config.options.integrations) do
-    if enabled then load_integration(integration_name) end
+    if enabled and not plugin_configs[integration_name] then
+      load_integration(integration_name)
+    end
   end
 
   for group, opts in pairs(config.options.hl_add) do
@@ -228,6 +230,27 @@ function resolve_opts(opts, colors)
     end
   end
   return result
+end
+
+function M.inspect_bufferline()
+  local theme = require("chad46.adapters.bufferline").get_theme()
+  local lines = {}
+  table.insert(lines, "=== Bufferline Highlights ===")
+  for name, hl in pairs(theme) do
+    local parts = {}
+    if hl.fg then table.insert(parts, "fg=" .. hl.fg) end
+    if hl.bg then table.insert(parts, "bg=" .. hl.bg) end
+    if hl.bold then table.insert(parts, "bold") end
+    table.insert(lines, string.format("  %-30s %s", name, table.concat(parts, " ")))
+  end
+  table.insert(lines, "=== Current theme colors ===")
+  local t30 = M.get_theme_tb("base_30")
+  for _, k in ipairs({ "one_bg2", "one_bg", "darker_black", "white", "grey_fg", "light_grey", "black" }) do
+    if t30[k] then
+      table.insert(lines, string.format("  %-20s %s", k, t30[k]))
+    end
+  end
+  print(table.concat(lines, "\n"))
 end
 
 return M
