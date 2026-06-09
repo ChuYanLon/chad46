@@ -159,7 +159,19 @@ function M.load(name)
 
   for group, opts in pairs(config.options.hl_add) do
     opts = resolve_opts(opts, current_colors)
-    highlights[group] = opts
+    if highlights[group] then
+      highlights[group] = vim.tbl_deep_extend("force", highlights[group], opts)
+    else
+      highlights[group] = opts
+    end
+  end
+
+  if config.options.transparency then
+    for _, group in ipairs({ "Normal", "NormalFloat", "SignColumn", "WinBar", "WinBarNC" }) do
+      if highlights[group] then
+        highlights[group] = vim.tbl_deep_extend("force", highlights[group], { bg = "NONE" })
+      end
+    end
   end
 
   vim.o.background = theme.type or "dark"
