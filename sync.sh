@@ -4,7 +4,16 @@ CHAD46_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEMES_DIR="$CHAD46_DIR/lua/chad46/themes"
 INTEG_DIR="$CHAD46_DIR/lua/chad46/integrations"
 BASE46_URL="https://raw.githubusercontent.com/NvChad/base46/v3.0"
-DRY_RUN="${1:-}"
+DRY_RUN=""
+SYNC_MODE="all"
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN="--dry-run" ;;
+    --types) SYNC_MODE="types" ;;
+    --themes) SYNC_MODE="themes" ;;
+    --integrations) SYNC_MODE="integrations" ;;
+  esac
+done
 
 log_add=()
 log_upd=()
@@ -35,6 +44,10 @@ ALL_INTEGRATIONS=(
   nvimtree nvshades orgmode rainbowdelimiters render-markdown semantic_tokens
   snacks syntax telescope tiny-inline-diagnostic todo treesitter trouble
   vim-illuminate whichkey
+)
+
+ALL_TYPES=(
+  base46 themes
 )
 
 fetch() {
@@ -75,13 +88,48 @@ sync_dir() {
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
 }
 
+TYPES_DIR="$CHAD46_DIR/chad46_types"
+UI_URL="https://raw.githubusercontent.com/NvChad/ui/v3.0"
+
+sync_types() {
+  local dst="$1"
+  shift 1
+  local names=("$@")
+  echo "=== Syncing types ==="
+  local add=0 upd=0 err=0
+  for name in "${names[@]}"; do
+    echo -n "  $name ... "
+    local url="$UI_URL/nvchad_types/$name.lua"
+    local content; content=$(fetch "$url")
+    [[ -z "$content" ]] && { log_err+=("types: $name"); echo "FAILED"; ((err++)); continue; }
+    local f="$dst/$name.lua"
+    if [[ -f "$f" ]]; then
+      local old; old=$(<"$f")
+      [[ "$old" == "$content" ]] && { echo "skip"; continue; }
+      log_upd+=("types: $name"); echo "updated"; ((upd++))
+    else
+      log_add+=("types: $name"); echo "added"; ((add++))
+    fi
+    [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
+  done
+  echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
+}
+
 main() {
-  echo "chad46 sync${DRY_RUN:+ (DRY RUN)}"
-  mkdir -p "$THEMES_DIR" "$INTEG_DIR"
-  sync_dir "themes" "$THEMES_DIR" "${ALL_THEMES[@]}"
-  echo ""
-  sync_dir "integrations" "$INTEG_DIR" "${ALL_INTEGRATIONS[@]}"
-  echo ""
+  echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
+  mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
+  if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "themes" ]]; then
+    sync_dir "themes" "$THEMES_DIR" "${ALL_THEMES[@]}"
+    echo ""
+  fi
+  if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "integrations" ]]; then
+    sync_dir "integrations" "$INTEG_DIR" "${ALL_INTEGRATIONS[@]}"
+    echo ""
+  fi
+  if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "types" ]]; then
+    sync_types "$TYPES_DIR" "${ALL_TYPES[@]}"
+    echo ""
+  fi
   echo "Errors: ${#log_err[@]}"
   for v in "${log_err[@]}"; do echo "  ! $v"; done
   [[ ${#log_err[@]} -gt 0 ]] && echo "Some files failed (see above)." && exit 1
