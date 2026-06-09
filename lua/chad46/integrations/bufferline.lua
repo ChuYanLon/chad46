@@ -25,12 +25,10 @@ return {
 
   -- for diagnostics = "nvim_lsp"
   BufferLineError = {
-    fg = colors.light_grey,
-    bg = colors.black2,
+    fg = colors.red,
   },
   BufferLineErrorDiagnostic = {
-    fg = colors.light_grey,
-    bg = colors.black2,
+    fg = colors.red,
   },
 
   -- close buttons
