@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   sync:
@@ -16,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync and commit
+      - name: Sync and create PR
         shell: bash {0}
         run: |
           bash sync.sh || { echo "sync failed"; exit 1; }
@@ -28,6 +29,19 @@ jobs:
 
           git config user.name "chad46 sync"
           git config user.email "sync@chad46"
+
+          BRANCH="sync/auto-$(date +%s)"
+          git checkout -b "$BRANCH"
           git add -A
           git commit -m "chore: sync themes & integrations from NvChad/base46"
-          git push
+          git push origin "$BRANCH"
+
+          PR_URL=$(gh pr create \
+            --title "chore: sync themes & integrations" \
+            --body "Automated sync from [NvChad/base46](https://github.com/NvChad/base46)." \
+            --base main \
+            --head "$BRANCH")
+          PR_NUM="${PR_URL##*/}"
+          gh pr merge --auto --squash "$PR_NUM"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
