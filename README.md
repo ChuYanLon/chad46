@@ -47,7 +47,7 @@ Integrations are auto-detected — highlights for installed plugins load automat
   "ChuYanLon/chad46",
   name = "chad46",
   opts = {
-    -- statusline = { theme = "atom_colored" },
+    -- cmp = { style = "atom_colored" },
   },
   config = function(_, opts)
     require("chad46").setup(opts)
