@@ -116,24 +116,22 @@ sync_types() {
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
 }
 
-gen_cs() {
-  local name="$1"
-  [[ "$DRY_RUN" == "--dry-run" ]] && return
-  local f="$CHAD46_DIR/colors/chad46_$name.vim"
-  local content="lua require(\"chad46\").load(\"$name\")"
-  if [[ -f "$f" ]]; then
-    local old; old=$(<"$f")
-    [[ "$old" == "$content" ]] && return
-  fi
-  mkdir -p "$CHAD46_DIR/colors"
-  printf '%s\n' "$content" > "$f"
+generate_full_cs() {
+  command -v nvim &>/dev/null || return 0
+  mkdir -p "$CHAD46_DIR/colors" "$CHAD46_DIR/autoload/airline/themes"
+  echo "=== Generating Vim colorschemes & airline themes ==="
+  nvim --headless --noplugin -c "luafile $CHAD46_DIR/generate_vim.lua" -c "qa!" 2>&1
+  echo "  done"
 }
+
+gen_cs() { return 0; }
 
 main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
   mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "themes" ]]; then
     sync_dir "themes" "$THEMES_DIR" "${ALL_THEMES[@]}"
+    generate_full_cs
     echo ""
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "integrations" ]]; then

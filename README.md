@@ -6,7 +6,7 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
 
-94 themes · 44 plugin highlight integrations · 14 auto-applied plugin configs · Lualine & Bufferline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
+94 themes · 44 plugin highlight integrations · 14 auto-applied plugin configs · Lualine, Heirline & Bufferline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer · vim-airline themes
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
@@ -33,8 +33,9 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 - **44 plugin integrations** (highlights)
 - **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
-- **Lualine & Bufferline** adapters with NvChad styling
+- **Lualine, Heirline & Bufferline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
+- **vim-airline themes** — 94 pre-generated airline themes included
 
 ## Installation
 
@@ -281,12 +282,21 @@ require("heirline").setup({
 :colorscheme chad46_nord
 ```
 
-Or via Lua:
+Or via Lua (Neovim only):
 
 ```lua
 require("chad46").load("tokyonight")
 require("chad46").load("catppuccin")
 require("chad46").load("nord")
+```
+
+### vim-airline themes
+
+94 airline themes match the colorschemes. Airline theme names use underscores instead of hyphens:
+
+```vim
+:let g:airline_theme = 'chad46_bearded_arc'   " note: bearded_arc (underscore)
+:AirlineRefresh
 ```
 
 <details>
@@ -305,6 +315,27 @@ local c = require("chad46").get_theme_tb("base_30")
 
 **base_30** — semantic color names (used by integrations).  
 **base_16** — base16 canonical palette (used by treesitter/syntax).
+
+<details>
+<summary>Vim usage (pre-generated colorscheme files)</summary>
+
+The repo contains pre-generated `.vim` files with full `hi` commands — no Neovim needed.
+
+```vim
+" ~/.vimrc
+set rtp+=/path/to/chad46
+syntax on
+colorscheme chad46_bearded-arc   " or chad46_nord, chad46_catppuccin, etc.
+```
+
+**vim-airline:** 94 airline themes are included (underscores instead of hyphens):
+
+```vim
+let g:airline_theme = 'chad46_bearded_arc'
+source /path/to/chad46/autoload/airline/themes/chad46_bearded_arc.vim
+```
+
+</details>
 
 ## Related
 
