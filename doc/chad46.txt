@@ -14,7 +14,7 @@ Contents                                    *chad46-contents*
 ==============================================================================
 Introduction                                    *chad46-introduction*
 
-chad46 provides 94 themes synced daily from NvChad/base46, with 44 plugin
+chad46 provides 94 themes synced daily from NvChad/base46, with 46 plugin
 highlight integrations and 14 auto-applied plugin configs. Works with any
 plugin manager.
 
@@ -22,10 +22,10 @@ Features:
   - Daily auto-sync from NvChad/base46
   - Auto-detected integrations — install a plugin, highlights load automatically
   - 94 themes
-  - 44 plugin integrations (highlights)
+  - 46 plugin integrations (highlights)
   - 14 auto-applied plugin configs
   - base_30 / base_16 dual color system
-  - Lualine, Heirline & Bufferline adapters
+  - Lualine, Heirline, Bufferline, Airline & Lightline adapters
   - base46/nvconfig compatibility layer
 
 ==============================================================================
@@ -164,6 +164,11 @@ Heirline~
   local h = require("chad46.adapters.heirline")
   local c = h.get_colors()
   -- use c.section, c.mode_a, c.mode_b, c.mode_c in components
+<
+
+Airline & Lightline~
+  94 pre-generated themes each. See the Vim usage section in README for
+  configuration.
 <
 
 ==============================================================================
