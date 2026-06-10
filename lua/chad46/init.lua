@@ -398,25 +398,6 @@ function M.override_theme(theme, name)
   return theme
 end
 
-function M.inspect_bufferline()
-  local theme = require("chad46.adapters.bufferline").get_theme()
-  local lines = {}
-  table.insert(lines, "=== Bufferline Highlights ===")
-  for name, hl in pairs(theme) do
-    local parts = {}
-    if hl.fg then table.insert(parts, "fg=" .. hl.fg) end
-    if hl.bg then table.insert(parts, "bg=" .. hl.bg) end
-    if hl.bold then table.insert(parts, "bold") end
-    table.insert(lines, string.format("  %-30s %s", name, table.concat(parts, " ")))
-  end
-  table.insert(lines, "=== Current theme colors ===")
-  local t30 = M.get_theme_tb("base_30")
-  for _, k in ipairs({ "one_bg2", "one_bg", "darker_black", "white", "grey_fg", "light_grey", "black" }) do
-    if t30[k] then
-      table.insert(lines, string.format("  %-20s %s", k, t30[k]))
-    end
-  end
-  print(table.concat(lines, "\n"))
 end
 
 return M

@@ -216,8 +216,48 @@ require("bufferline").setup({
 
 -- heirline
 local h = require("chad46.adapters.heirline")
-local colors = h.get_colors()       -- base colors + style section/mode colors
-local mode = h.get_mode_colors()    -- mode.normal, mode.insert, ...
+local c = h.get_colors()       -- includes .section, .mode_a, .mode_b, .mode_c
+local m = h.get_mode_colors()  -- .normal, .insert, .visual, ...
+
+local colors = {
+  bright_bg = c.section.bg,
+  bright_fg = c.section.fg,
+  red = c.red, blue = c.blue, green = c.green,
+  purple = c.purple, orange = c.orange, yellow = c.yellow,
+  gray = c.gray, gray_fg = c.gray_fg, light_grey = c.light_grey,
+  white = c.white, black = c.black, bg = c.bg, bg_alt = c.one_bg2,
+  -- mode colors
+  normal   = m.normal.bg,
+  insert   = m.insert.bg,
+  visual   = m.visual.bg,
+  replace  = m.replace.bg,
+  command  = m.command.bg,
+}
+
+-- Then use `colors` in your heirline components
+local ViMode = {
+  provider = function()
+    return { " NORMAL ", " INSERT ", " VISUAL ", " REPLACE ", " COMMAND ", " TERMINAL " }
+  end,
+  hl = function()
+    local mode_colors = { normal = colors.normal, insert = colors.insert,
+      visual = colors.visual, replace = colors.replace,
+      command = colors.command, terminal = colors.insert }
+    return { bg = mode_colors[vim.fn.mode()], fg = colors.black, bold = true }
+  end,
+}
+
+local FileName = {
+  provider = function() return " " .. vim.fn.expand "%:t" end,
+  hl = { bg = colors.bg_alt, fg = colors.white },
+}
+
+require("heirline").setup({
+  statusline = {
+    ViMode,
+    FileName,
+  },
+})
 ```
 
 ## Themes
