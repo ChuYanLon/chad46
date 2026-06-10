@@ -319,20 +319,26 @@ local c = require("chad46").get_theme_tb("base_30")
 <details>
 <summary>Vim usage (pre-generated colorscheme files)</summary>
 
-The repo contains pre-generated `.vim` files with full `hi` commands — no Neovim needed.
+Pre-generated `.vim` files with full `hi` commands — no Neovim needed.
 
 ```vim
+" vim-plug
+Plug 'ChuYanLon/chad46'
+
 " ~/.vimrc
-set rtp+=/path/to/chad46
 syntax on
 colorscheme chad46_bearded-arc   " or chad46_nord, chad46_catppuccin, etc.
 ```
 
-**vim-airline:** 94 airline themes are included (underscores instead of hyphens):
+**vim-airline themes** (94 included, underscores instead of hyphens):
 
 ```vim
+Plug 'ChuYanLon/chad46'
+Plug 'vim-airline/vim-airline'
+
 let g:airline_theme = 'chad46_bearded_arc'
-source /path/to/chad46/autoload/airline/themes/chad46_bearded_arc.vim
+execute 'source ' . globpath(&rtp, 'autoload/airline/themes/chad46_bearded_arc.vim')
+" after changing theme: :AirlineRefresh
 ```
 
 </details>
