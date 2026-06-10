@@ -1,6 +1,31 @@
 # Changelog
 
-## Unreleased
+## v1.1.0 (2026-06-10)
+
+### Added
+
+- `doc/chad46.txt` — vimdoc help file for `:help chad46`.
+- Heirline adapter: `adapters/heirline.lua` with mode colors and style support.
+- Shared statusline module: `adapters/statusline.lua` — unified API for all statusline consumers.
+- `cmp.style` config option for nvim-cmp / blink.cmp UI style selection.
+- `statusline.styles` config option for user-defined or overridden statusline themes.
+- `sync.sh` local prefix protection: `-- >>> chad46` / `-- <<< chad46` markers preserve local edits across sync.
+- LICENSE: added NvChad contributors copyright attribution.
+
+### Changed
+
+- Lualine adapter refactored to delegate to shared `statusline` module.
+- Heirline adapter refactored to delegate to shared `statusline` module.
+- README: updated installation example to pass `opts` to `setup()`.
+- README: added `cmp.style` and `statusline.*` options documentation with default config reference.
+- README: Adapters section now includes shared API and full Heirline example.
+
+### Removed
+
+- `inspect_bufferline()` debug function and its type definition.
+- `zsh` local helper and `M.get_styles()` from `statusline.lua`.
+
+## v1.0.0 (2026-06-02)
 
 ### Added
 
