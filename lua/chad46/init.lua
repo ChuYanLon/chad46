@@ -109,50 +109,52 @@ local function integration_enabled(name)
   return false
 end
 
----@param theme ThemeTable
+---@type { base_30: Base30Table, base_16: Base16Table, type: string, polish_hl: table }
+local compat_theme = { base_30 = {}, base_16 = {}, type = "dark", polish_hl = {} }
+
+local compat = {
+  get_theme_tb = function(tb)
+    if tb == "base_30" then return compat_theme.base_30
+    elseif tb == "base_16" then return compat_theme.base_16
+    elseif tb == "type" then return compat_theme.type
+    elseif tb == "polish_hl" then return compat_theme.polish_hl or {}
+    end
+    return {}
+  end,
+  colors = colors_util,
+  merge_tb = function(...)
+    local r = {}
+    for _, t in ipairs({ ... }) do
+      if t then r = vim.tbl_deep_extend("force", r, t) end
+    end
+    return r
+  end,
+  turn_str_to_color = function(tb)
+    return colors_util.resolve_colors(tb, current_colors)
+  end,
+}
+
+local nvconfig = {
+  base46 = {},
+  ui = { cmp = { style = "default" }, telescope = { style = "borderless" }, statusline = { enabled = false }, tabufline = { enabled = false } },
+}
+
+package.loaded["base46"] = compat
+package.loaded["base46.colors"] = colors_util
+package.loaded["nvconfig"] = nvconfig
+
 local function setup_compat(theme)
-  local b30 = theme.base_30
-  local b16 = theme.base_16
+  compat_theme.base_30 = theme.base_30
+  compat_theme.base_16 = theme.base_16
+  compat_theme.type = theme.type
+  compat_theme.polish_hl = theme.polish_hl
 
-  local compat = {
-    get_theme_tb = function(tb)
-      if tb == "base_30" then return b30
-      elseif tb == "base_16" then return b16
-      elseif tb == "type" then return theme.type
-      elseif tb == "polish_hl" then return theme.polish_hl or {}
-      end
-      return {}
-    end,
-    colors = colors_util,
-    merge_tb = function(...)
-      local r = {}
-      for _, t in ipairs({ ... }) do
-        if t then r = vim.tbl_deep_extend("force", r, t) end
-      end
-      return r
-    end,
-    turn_str_to_color = function(tb)
-      return colors_util.resolve_colors(tb, current_colors)
-    end,
-  }
-
-  package.loaded["base46"] = compat
-  package.loaded["base46.colors"] = colors_util
-  package.loaded["nvconfig"] = {
-    base46 = {
-      theme = config.options.theme,
-      transparency = config.options.transparency,
-      hl_add = config.options.hl_add,
-      hl_override = config.options.hl_override,
-      changed_themes = config.options.changed_themes,
-    },
-    ui = {
-      cmp = { style = "default" },
-      telescope = { style = "borderless" },
-      statusline = { enabled = false },
-      tabufline = { enabled = false },
-    },
-  }
+  local b46 = nvconfig.base46
+  b46.theme = config.options.theme
+  b46.transparency = config.options.transparency
+  b46.hl_add = config.options.hl_add
+  b46.hl_override = config.options.hl_override
+  b46.changed_themes = config.options.changed_themes
 end
 
 ---@param opts? Chad46Config
@@ -170,16 +172,18 @@ function M.setup(opts)
         local user_opts = spec.opts
         if type(user_opts) == "function" then
           local user_fn = user_opts
+          local mod_is_fn = type(chad46_mod) == "function"
           spec.opts = function(plugin, plugin_opts)
             plugin_opts = plugin_opts or {}
             local result = user_fn(plugin, plugin_opts)
             local merged = type(result) == "table" and result or plugin_opts
-            local base = type(chad46_mod) == "function" and chad46_mod() or vim.deepcopy(chad46_mod)
+            local base = mod_is_fn and chad46_mod() or vim.tbl_deep_extend("force", {}, chad46_mod)
             return vim.tbl_deep_extend("force", base, merged)
           end
         else
-          local base = type(chad46_mod) == "function" and chad46_mod() or vim.deepcopy(chad46_mod)
-          spec.opts = vim.tbl_deep_extend("force", base, user_opts or {})
+          spec.opts = type(chad46_mod) == "function"
+            and vim.tbl_deep_extend("force", chad46_mod(), user_opts or {})
+            or vim.tbl_deep_extend("force", {}, chad46_mod, user_opts or {})
         end
       end
     end
@@ -199,7 +203,7 @@ function M.apply_configs(names)
     local ok, mod = pcall(require, mapping.mod)
     if ok and type(mod.setup) == "function" then
       local chad_cfg = require("chad46.configs." .. mapping.config)
-      local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.deepcopy(chad_cfg)
+      local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.tbl_deep_extend("force", {}, chad_cfg)
       mod.setup(cfg)
     end
     ::continue::
