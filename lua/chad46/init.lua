@@ -274,7 +274,7 @@ end
 
 ---@param name? Chad46ThemeName
 function M.load(name)
-  local theme_name = name or config.options.theme or "onedark"
+  local theme_name = name or config.options.theme or "bearded-arc"
   ---@cast theme_name Chad46ThemeName
 
   local ok, theme = pcall(require, "chad46.themes." .. theme_name)

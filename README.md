@@ -42,7 +42,7 @@ Integrations are auto-detected — highlights for installed plugins load automat
   name = "chad46",
   config = function()
     require("chad46").setup()
-    vim.cmd.colorscheme("chad46_onedark")
+    vim.cmd.colorscheme("chad46_bearded-arc")
   end,
 }
 ```
@@ -62,7 +62,7 @@ opts = {
 
 ```lua
 require("chad46").setup()
-vim.cmd.colorscheme("chad46_onedark")
+vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
 Optional: apply NvChad-style plugin configs for non-lazy managers:
