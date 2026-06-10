@@ -45,7 +45,6 @@ Integrations are auto-detected — highlights for installed plugins load automat
 ```lua
 {
   "ChuYanLon/chad46",
-  name = "chad46",
   opts = {
     -- cmp = { style = "atom_colored" },
   },
@@ -129,11 +128,25 @@ Full reference of available `setup()` options:
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
 | `cmp.style` | `string` | `"default"` | nvim-cmp / blink.cmp UI style: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
 | `statusline.theme` | `string` | `"default"` | Statusline style: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` — affects lualine, heirline, and `statusline` adapter |
-| `statusline.styles` | `table` | `{}` | Define or override lualine theme styles (see Lualine Customization below) |
+| `statusline.styles` | `table` | `{}` | Define or override statusline theme styles |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
 | `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
 | `hl_add` | `table` | `{}` | Add custom highlight groups |
+
+Default config for reference:
+
+```lua
+{
+  transparency = false,
+  changed_themes = {},
+  hl_override = {},
+  hl_add = {},
+  statusline = { theme = "default", styles = {} },
+  cmp = { style = "default" },
+  integrations = {},
+}
+```
 
 ## Customization
 

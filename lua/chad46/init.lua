@@ -398,6 +398,4 @@ function M.override_theme(theme, name)
   return theme
 end
 
-end
-
 return M
