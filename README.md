@@ -228,4 +228,6 @@ local c = require("chad46").get_theme_tb("base_30")
 
 [MIT](LICENSE) © ChuYanLon
 
+**Acknowledgments:** This project contains code derived from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui). Themes, integrations, and type definitions are synced from those upstream projects. All upstream code remains copyright © NvChad contributors and is used under the terms of the MIT License.
+
 
