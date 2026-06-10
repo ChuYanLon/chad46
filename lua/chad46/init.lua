@@ -81,6 +81,20 @@ for plugin_name, integration_name in pairs(integration_map) do
   integration_to_plugin[integration_name] = plugin_name
 end
 
+---@type string[]
+local integration_keys = vim.tbl_keys(integration_to_plugin)
+
+---@type table<string, true>|false?
+local lazy_plugins = nil
+
+local function get_lazy_plugins()
+  if lazy_plugins == nil then
+    local ok, config = pcall(require, "lazy.core.config")
+    lazy_plugins = ok and config.plugins or false
+  end
+  return lazy_plugins
+end
+
 ---@param name string
 ---@return boolean
 local function integration_enabled(name)
@@ -89,10 +103,8 @@ local function integration_enabled(name)
   if name == "treesitter" then return true end
   local plugin = integration_to_plugin[name]
   if plugin then
-    local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
-    if lazy_ok and lazy_config.plugins and lazy_config.plugins[plugin] then
-      return true
-    end
+    local plugins = get_lazy_plugins()
+    if plugins and plugins[plugin] then return true end
   end
   return false
 end
@@ -147,12 +159,12 @@ end
 function M.setup(opts)
   config.setup(opts)
 
-  local ok, lazy_config = pcall(require, "lazy.core.config")
-  if not ok or not lazy_config.plugins then return end
+  local plugins = get_lazy_plugins()
+  if not plugins then return end
 
   for integration_name, mapping in pairs(plugin_configs) do
     if integration_enabled(integration_name) then
-      local spec = lazy_config.plugins[mapping.plugin]
+      local spec = plugins[mapping.plugin]
       if spec then
         local chad46_mod = require("chad46.configs." .. mapping.config)
         local user_opts = spec.opts
@@ -271,14 +283,17 @@ function M.load(name)
   end
 
   if type(theme) == "table" then
-    local copied = vim.deepcopy(theme)
+    local copied = { base_30 = vim.deepcopy(theme.base_30), base_16 = vim.deepcopy(theme.base_16), type = theme.type }
+    if theme.polish_hl then copied.polish_hl = vim.deepcopy(theme.polish_hl) end
     ---@cast copied ThemeTable
     theme = copied
   end
   ---@cast theme ThemeTable
   theme = M.override_theme(theme, theme_name)
   current_theme = theme
-  local merged_colors = vim.tbl_deep_extend("force", {}, theme.base_30, theme.base_16)
+  local merged_colors = {}
+  for k, v in pairs(theme.base_30) do merged_colors[k] = v end
+  for k, v in pairs(theme.base_16) do merged_colors[k] = v end
   ---@cast merged_colors Base30Table & Base16Table
   current_colors = merged_colors
 
@@ -313,17 +328,13 @@ function M.load(name)
 
   for _, default_name in ipairs({ "defaults", "syntax" }) do load_integration(default_name) end
 
-  local loaded = {}
   for name, enabled in pairs(config.options.integrations) do
-    loaded[name] = enabled
-  end
-  for _, name in ipairs(vim.tbl_keys(integration_to_plugin)) do
-    if loaded[name] == nil and integration_enabled(name) then
-      loaded[name] = true
-    end
-  end
-  for name, enabled in pairs(loaded) do
     if enabled then load_integration(name) end
+  end
+  for _, name in ipairs(integration_keys) do
+    if config.options.integrations[name] == nil and integration_enabled(name) then
+      load_integration(name)
+    end
   end
 
   for group, opts in pairs(config.options.hl_add) do
