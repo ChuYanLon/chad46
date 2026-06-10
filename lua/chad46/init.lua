@@ -143,14 +143,14 @@ package.loaded["base46"] = compat
 package.loaded["base46.colors"] = colors_util
 package.loaded["nvconfig"] = nvconfig
 
-local function setup_compat(theme)
+local function setup_compat(theme, theme_name)
   compat_theme.base_30 = theme.base_30
   compat_theme.base_16 = theme.base_16
   compat_theme.type = theme.type
   compat_theme.polish_hl = theme.polish_hl
 
   local b46 = nvconfig.base46
-  b46.theme = config.options.theme
+  b46.theme = theme_name or "bearded-arc"
   b46.transparency = config.options.transparency
   b46.hl_add = config.options.hl_add
   b46.hl_override = config.options.hl_override
@@ -301,7 +301,7 @@ function M.load(name)
   ---@cast merged_colors Base30Table & Base16Table
   current_colors = merged_colors
 
-  setup_compat(theme)
+  setup_compat(theme, theme_name)
 
   for name in pairs(package.loaded) do
     if name:find("^chad46%.integrations%.") then

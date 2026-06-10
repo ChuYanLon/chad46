@@ -17,8 +17,6 @@
 ---@field statusline { enabled: boolean }
 
 ---@class Chad46Config
----@field theme? Chad46ThemeName
----@field theme_toggle? Chad46ThemeName[]
 ---@field transparency? boolean
 ---@field changed_themes? table<string, { base_30?: Base30Table, base_16?: Base16Table, polish_hl?: table<string, HLTable> }>
 ---@field hl_override? table<string, HLTable>
