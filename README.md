@@ -6,7 +6,7 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
 
-94 themes · 44 plugin highlight integrations · 14 auto-applied plugin configs · Lualine, Heirline & Bufferline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer · vim-airline themes
+94 themes · 46 plugin highlight integrations · 14 auto-applied plugin configs · Lualine, Heirline, Bufferline, Airline & Lightline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
@@ -30,12 +30,11 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
 - **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
 - **94 themes**
-- **44 plugin integrations** (highlights)
+- **46 plugin integrations** (highlights)
 - **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
-- **Lualine, Heirline & Bufferline** adapters with NvChad styling
+- **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
-- **vim-airline themes** — 94 pre-generated airline themes included
 
 ## Installation
 
@@ -91,13 +90,11 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
-> Three integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, and **Gitsigns**. Synced from NvChad but with local highlight overrides.
+> Five integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc**, and **NERDTree**.
 
-### Highlights (44 plugins)
+### Highlights (46 plugins)
 
-Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
-
-> *Local addition — not present in upstream NvChad/base46.
+Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, **Coc***, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, **NERDTree***, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
 ### Auto-applied Configs (lazy.nvim only)
 
@@ -330,15 +327,30 @@ syntax on
 colorscheme chad46_bearded-arc   " or chad46_nord, chad46_catppuccin, etc.
 ```
 
-**vim-airline themes** (94 included, underscores instead of hyphens):
+**vim-airline** (94 themes, underscores instead of hyphens):
 
 ```vim
 Plug 'ChuYanLon/chad46'
 Plug 'vim-airline/vim-airline'
-
 let g:airline_theme = 'chad46_bearded_arc'
 execute 'source ' . globpath(&rtp, 'autoload/airline/themes/chad46_bearded_arc.vim')
-" after changing theme: :AirlineRefresh
+```
+
+**lightline** (94 themes):
+
+```vim
+Plug 'ChuYanLon/chad46'
+Plug 'itchyny/lightline.vim'
+let g:lightline = { 'colorscheme': 'chad46_bearded_arc' }
+execute 'source ' . globpath(&rtp, 'autoload/lightline/colorscheme/chad46_bearded_arc.vim')
+```
+
+**coc.nvim & NERDTree** highlights are included — no extra config:
+
+```vim
+Plug 'ChuYanLon/chad46'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
 ```
 
 </details>

@@ -31,7 +31,7 @@ end
 
 local INTEGRATIONS = {
   "defaults", "syntax",
-  "alpha", "avante", "blankline", "blink", "blink-pair",
+  "alpha", "avante", "blankline", "blink", "blink-pair", "coc", "nerdtree",
   "bufferline", "cmp", "codeactionmenu", "dap", "devicons",
   "diffview", "edgy", "flash", "git", "git-conflict",
   "gitsigns", "grug_far", "hop", "leap", "lsp",
@@ -292,6 +292,24 @@ function M.generate_all(output_dir)
   return count
 end
 
+function M.generate_all_lightline(output_dir, ll_dir)
+  local count = 0
+  for _, name in ipairs(ALL_THEMES) do
+    local ok, theme = pcall(require, "chad46.themes." .. name)
+    if ok and type(theme) == "table" and theme.base_30 then
+      local colors = vim.deepcopy(theme.base_30)
+      local path = ll_dir .. "/chad46_" .. name:gsub("-", "_") .. ".vim"
+      if require("chad46.adapters.lightline").generate(name, colors, path) then
+        count = count + 1
+      end
+    end
+  end
+  if count > 0 then
+    print(string.format("chad46: generated %d lightline themes", count))
+  end
+  return count
+end
+
 function M.generate_all_airline(output_dir, airline_dir)
   local count = 0
   for _, name in ipairs(ALL_THEMES) do
@@ -299,7 +317,7 @@ function M.generate_all_airline(output_dir, airline_dir)
     if ok and type(theme) == "table" and theme.base_30 then
       local colors = vim.deepcopy(theme.base_30)
       local path = airline_dir .. "/chad46_" .. name:gsub("-", "_") .. ".vim"
-      if require("chad46.airline").generate(name, colors, path) then
+      if require("chad46.adapters.airline").generate(name, colors, path) then
         count = count + 1
       end
     end
@@ -315,10 +333,13 @@ function M.run()
   local dir = root .. "/colors"
   vim.fn.mkdir(dir, "p")
   local al_dir = root .. "/autoload/airline/themes"
+  local ll_dir = root .. "/autoload/lightline/colorscheme"
   vim.fn.mkdir(al_dir, "p")
+  vim.fn.mkdir(ll_dir, "p")
   local cs_count = M.generate_all(dir)
   local al_count = M.generate_all_airline(dir, al_dir)
-  print(string.format("chad46: generated %d colorschemes, %d airline themes", cs_count, al_count))
+  local ll_count = M.generate_all_lightline(dir, ll_dir)
+  print(string.format("chad46: generated %d colorschemes, %d airline, %d lightline themes", cs_count, al_count, ll_count))
 end
 
 return M

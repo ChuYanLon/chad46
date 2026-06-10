@@ -118,7 +118,7 @@ sync_types() {
 
 generate_full_cs() {
   command -v nvim &>/dev/null || return 0
-  mkdir -p "$CHAD46_DIR/colors" "$CHAD46_DIR/autoload/airline/themes"
+  mkdir -p "$CHAD46_DIR/colors" "$CHAD46_DIR/autoload/airline/themes" "$CHAD46_DIR/autoload/lightline/colorscheme"
   echo "=== Generating Vim colorschemes & airline themes ==="
   nvim --headless --noplugin -c "luafile $CHAD46_DIR/generate_vim.lua" -c "qa!" 2>&1
   echo "  done"
