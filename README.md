@@ -207,6 +207,12 @@ require("lualine").setup({
 require("bufferline").setup({
   highlights = require("chad46.adapters.bufferline").get_theme(),
 })
+
+-- heirline (respects statusline.theme)
+local h = require("chad46.adapters.heirline")
+local colors = h.get_colors()       -- base colors + style section/mode colors
+local mode = h.get_mode_colors()    -- mode.normal, mode.insert, ...
+-- colors.fg, colors.bg, colors.blue, colors.section.bg, colors.mode_a.fg, ...
 ```
 
 ## Themes
