@@ -128,7 +128,7 @@ Full reference of available `setup()` options:
 |--------|------|---------|-------------|
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
 | `cmp.style` | `string` | `"default"` | nvim-cmp / blink.cmp UI style: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
-| `statusline.theme` | `string` | `"default"` | Lualine theme: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` |
+| `statusline.theme` | `string` | `"default"` | Statusline style: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` — affects lualine, heirline, and `statusline` adapter |
 | `statusline.styles` | `table` | `{}` | Define or override lualine theme styles (see Lualine Customization below) |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
@@ -198,6 +198,12 @@ require("chad46").apply_configs({"lualine","bufferline"}) -- multiple
 ## Adapters
 
 ```lua
+-- Shared statusline API (all styles, respects statusline.theme)
+local st = require("chad46.adapters.statusline")
+local theme = st.get_theme()        -- mode-based theme (normal/insert/etc)
+local colors = st.get_colors()      -- raw color palette from current theme
+local mode_colors = st.get_mode_colors()  -- mode indicator colors
+
 -- lualine
 require("lualine").setup({
   options = { theme = require("chad46.adapters.lualine").get_theme() },
@@ -208,11 +214,10 @@ require("bufferline").setup({
   highlights = require("chad46.adapters.bufferline").get_theme(),
 })
 
--- heirline (respects statusline.theme)
+-- heirline
 local h = require("chad46.adapters.heirline")
 local colors = h.get_colors()       -- base colors + style section/mode colors
 local mode = h.get_mode_colors()    -- mode.normal, mode.insert, ...
--- colors.fg, colors.bg, colors.blue, colors.section.bg, colors.mode_a.fg, ...
 ```
 
 ## Themes
