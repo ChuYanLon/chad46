@@ -333,7 +333,6 @@ colorscheme chad46_bearded-arc   " or chad46_nord, chad46_catppuccin, etc.
 Plug 'ChuYanLon/chad46'
 Plug 'vim-airline/vim-airline'
 let g:airline_theme = 'chad46_bearded_arc'
-execute 'source ' . globpath(&rtp, 'autoload/airline/themes/chad46_bearded_arc.vim')
 ```
 
 **lightline** (94 themes):
@@ -342,7 +341,6 @@ execute 'source ' . globpath(&rtp, 'autoload/airline/themes/chad46_bearded_arc.v
 Plug 'ChuYanLon/chad46'
 Plug 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'chad46_bearded_arc' }
-execute 'source ' . globpath(&rtp, 'autoload/lightline/colorscheme/chad46_bearded_arc.vim')
 ```
 
 **coc.nvim & NERDTree** highlights are included — no extra config:
