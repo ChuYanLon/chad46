@@ -42,25 +42,13 @@ jobs:
             echo "[$timestamp] OK - added: $added, updated: $updated" >> sync.log
           fi
 
-          # Check what changed
-          git add -A
-          if git diff --cached --name-only --exit-code -- . ':!sync.log' > /dev/null 2>&1; then
-            only_log=true
-          else
-            only_log=false
-          fi
-
           git config user.name "chad46 sync"
           git config user.email "sync@chad46"
 
+          git add -A
           BRANCH="sync/auto-$(date +%s)"
           git checkout -b "$BRANCH"
-
-          if [[ "$only_log" == "true" ]]; then
-            git commit -m "chore: update sync.log"
-          else
-            git commit -m "chore: sync themes & integrations from NvChad/base46"
-          fi
+          git commit -m "chore: sync themes & integrations from NvChad/base46"
 
           git push origin "$BRANCH"
 
@@ -72,7 +60,6 @@ jobs:
           PR_NUM="${PR_URL##*/}"
           gh pr merge --squash --delete-branch "$BRANCH"
 
-          # If sync failed, still let the job fail after committing
           if [[ $sync_exit -ne 0 ]]; then
             exit 1
           fi
