@@ -4,11 +4,6 @@ local function c()
   return require("chad46").get_theme_tb("base_30")
 end
 
-local function get_theme()
-  local opts = require("chad46.config").options
-  return (opts.statusline or {}).theme or "default"
-end
-
 local styles = {
   default = function(cb)
     return {
@@ -120,10 +115,6 @@ function M.get_colors()
     nord_blue     = cb.nord_blue,
     vibrant_green = cb.vibrant_green,
   }
-end
-
-function M.get_styles()
-  return styles
 end
 
 return M
