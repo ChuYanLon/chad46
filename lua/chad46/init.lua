@@ -358,7 +358,7 @@ function M.load(name)
     end
   end
 
-  vim.o.background = theme.type or "dark"
+  if vim.o.background ~= (theme.type or "dark") then vim.o.background = theme.type or "dark" end
   for group, opts in pairs(highlights) do
     if opts.link then
       vim.api.nvim_set_hl(0, group, { link = opts.link, default = true })
