@@ -12,10 +12,11 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
 
 ## Preview
 
-| Theme Preview | Theme Preview | Theme Preview |
+| **bearded-arc** ⬅️ | **tokyonight** | **catppuccin** |
 |:-:|:-:|:-:|
-| ![bearded-arc](https://nvchad.com/themes/bearded-arc.webp)<br>**bearded-arc** ⬅️ | ![tokyonight](https://nvchad.com/themes/tokyonight.webp)<br>**tokyonight** | ![catppuccin](https://nvchad.com/themes/catppuccin.webp)<br>**catppuccin** |
-| ![nord](https://nvchad.com/themes/nord.webp)<br>**nord** | ![onedark](https://nvchad.com/themes/onedark.webp)<br>**onedark** | ![gruvbox](https://nvchad.com/themes/gruvbox.webp)<br>**gruvbox** |
+| ![bearded-arc](https://nvchad.com/themes/bearded-arc.webp) | ![tokyonight](https://nvchad.com/themes/tokyonight.webp) | ![catppuccin](https://nvchad.com/themes/catppuccin.webp) |
+| **nord** | **onedark** | **gruvbox** |
+| ![nord](https://nvchad.com/themes/nord.webp) | ![onedark](https://nvchad.com/themes/onedark.webp) | ![gruvbox](https://nvchad.com/themes/gruvbox.webp) |
 
 All 94 themes are visually identical to their NvChad/base46 counterparts.  
 See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
