@@ -69,7 +69,7 @@ sync_dir() {
     echo -n "  $name ... "
     local url="$BASE46_URL/lua/base46/$type/$name.lua"
     local content; content=$(fetch "$url")
-    [[ -z "$content" ]] && { log_err+=("$type: $name"); echo "FAILED"; ((err++)); continue; }
+    [[ -z "$content" ]] && { log_err+=("$type: $name"); echo "FAILED"; ((err++)); [[ "$type" == "themes" ]] && gen_cs "$name"; continue; }
     if [[ "$type" == "themes" ]]; then
       content=$(echo "$content" | grep -v 'require("base46").override_theme')
       content="${content%"${content##*[![:space:]]}"}"
@@ -78,12 +78,13 @@ sync_dir() {
     local f="$dst/$name.lua"
     if [[ -f "$f" ]]; then
       local old; old=$(<"$f")
-      [[ "$old" == "$content" ]] && { echo "skip"; continue; }
+      [[ "$old" == "$content" ]] && { echo "skip"; [[ "$type" == "themes" ]] && gen_cs "$name"; continue; }
       log_upd+=("$type: $name"); echo "updated"; ((upd++))
     else
       log_add+=("$type: $name"); echo "added"; ((add++))
     fi
     [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
+    [[ "$type" == "themes" ]] && gen_cs "$name"
   done
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
 }
@@ -113,6 +114,19 @@ sync_types() {
     [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
   done
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
+}
+
+gen_cs() {
+  local name="$1"
+  [[ "$DRY_RUN" == "--dry-run" ]] && return
+  local f="$CHAD46_DIR/colors/chad46_$name.vim"
+  local content="lua require(\"chad46\").load(\"$name\")"
+  if [[ -f "$f" ]]; then
+    local old; old=$(<"$f")
+    [[ "$old" == "$content" ]] && return
+  fi
+  mkdir -p "$CHAD46_DIR/colors"
+  printf '%s\n' "$content" > "$f"
 }
 
 main() {

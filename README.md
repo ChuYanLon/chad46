@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/ChuYanLon/chad46)](LICENSE)
 [![Lua](https://img.shields.io/badge/lua-5.1-blue)](https://www.lua.org)
 
-> **Daily sync** — themes, integrations, and type definitions are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. Always up to date with upstream.
+> **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
 
 94 themes · 44 plugin highlight integrations · 14 auto-applied plugin configs · Lualine & Bufferline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
@@ -40,13 +40,9 @@ Integrations are auto-detected — highlights for installed plugins load automat
 {
   "ChuYanLon/chad46",
   name = "chad46",
-  priority = 1000,
-  opts = {
-    theme = "onedark",
-  },
-  config = function(_, opts)
-    require("chad46").setup(opts)
-    vim.cmd.colorscheme("chad46")
+  config = function()
+    require("chad46").setup()
+    vim.cmd.colorscheme("chad46_onedark")
   end,
 }
 ```
@@ -65,8 +61,8 @@ opts = {
 ### vim.pack / packer.nvim / vim-plug / any
 
 ```lua
-require("chad46").setup({ theme = "onedark" })
-vim.cmd.colorscheme("chad46")
+require("chad46").setup()
+vim.cmd.colorscheme("chad46_onedark")
 ```
 
 Optional: apply NvChad-style plugin configs for non-lazy managers:
@@ -121,8 +117,6 @@ Full reference of available `setup()` options:
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `theme` | `string` | `"onedark"` | Theme name from `lua/chad46/themes/` |
-| `theme_toggle` | `string[]` | `{"onedark","tokyonight"}` | Two themes to cycle with `toggle()` |
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
@@ -133,7 +127,6 @@ Full reference of available `setup()` options:
 
 ```lua
 require("chad46").setup({
-  theme = "onedark",
   transparency = true,
   changed_themes = {
     all = { base_30 = { blue = "#ff0000" } },
@@ -158,9 +151,9 @@ require("chad46").setup({
 
 ```lua
 -- Load/setup
-require("chad46").setup(opts)           -- configure and enable auto-config patching
-require("chad46").load("tokyonight")     -- switch theme at runtime
-require("chad46").toggle()              -- cycle between theme_toggle[1] and [2]
+require("chad46").setup(opts)              -- configure and enable auto-config patching
+vim.cmd.colorscheme("chad46_tokyonight")   -- switch theme at runtime
+require("chad46").load("tokyonight")       -- switch theme at runtime (same as above)
 
 -- Query colors
 local c = require("chad46").get_theme_tb("base_30")  -- { blue = "#...", red = "#...", ... }
@@ -188,11 +181,18 @@ require("bufferline").setup({
 
 ## Themes
 
+```vim
+:colorscheme chad46_tokyonight   " switch theme — standard :colorscheme command
+:colorscheme chad46_catppuccin
+:colorscheme chad46_nord
+```
+
+Or via Lua:
+
 ```lua
 require("chad46").load("tokyonight")
 require("chad46").load("catppuccin")
 require("chad46").load("nord")
-require("chad46").toggle()
 ```
 
 <details>

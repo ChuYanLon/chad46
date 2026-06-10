@@ -2,8 +2,6 @@ local M = {}
 
 ---@type Chad46Config
 M.defaults = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "tokyonight" },
   transparency = false,
   changed_themes = {},
   hl_override = {},

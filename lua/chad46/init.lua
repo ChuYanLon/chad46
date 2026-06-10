@@ -274,7 +274,7 @@ end
 
 ---@param name? Chad46ThemeName
 function M.load(name)
-  local theme_name = name or config.options.theme
+  local theme_name = name or config.options.theme or "onedark"
   ---@cast theme_name Chad46ThemeName
 
   local ok, theme = pcall(require, "chad46.themes." .. theme_name)
@@ -302,6 +302,12 @@ function M.load(name)
   current_colors = merged_colors
 
   setup_compat(theme)
+
+  for name in pairs(package.loaded) do
+    if name:find("^chad46%.integrations%.") then
+      package.loaded[name] = nil
+    end
+  end
 
   ---@type table<string, HLGroup>
   local highlights = {}
@@ -370,12 +376,6 @@ function M.load(name)
 
   vim.g.colors_name = "chad46"
   vim.api.nvim_exec_autocmds("User", { pattern = "Chad46ThemeReload" })
-end
-
-function M.toggle()
-  local t1, t2 = config.options.theme_toggle[1], config.options.theme_toggle[2]
-  config.options.theme = config.options.theme == t1 and t2 or t1
-  M.load(config.options.theme)
 end
 
 ---@param theme ThemeTable
