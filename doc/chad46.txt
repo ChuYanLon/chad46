@@ -1,0 +1,174 @@
+*chad46.txt*    A collection of 94 NvChad themes with auto-detected plugin integrations.
+
+==============================================================================
+Contents                                    *chad46-contents*
+
+  1. Introduction ............... |chad46-introduction|
+  2. Installation .............. |chad46-installation|
+  3. Setup ..................... |chad46-setup|
+  4. Options ................... |chad46-options|
+  5. Commands .................. |chad46-commands|
+  6. Adapters .................. |chad46-adapters|
+  7. License ................... |chad46-license|
+
+==============================================================================
+Introduction                                    *chad46-introduction*
+
+chad46 provides 94 themes synced daily from NvChad/base46, with 44 plugin
+highlight integrations and 14 auto-applied plugin configs. Works with any
+plugin manager.
+
+Features:
+  - Daily auto-sync from NvChad/base46
+  - Auto-detected integrations — install a plugin, highlights load automatically
+  - 94 themes
+  - 44 plugin integrations (highlights)
+  - 14 auto-applied plugin configs
+  - base_30 / base_16 dual color system
+  - Lualine, Heirline & Bufferline adapters
+  - base46/nvconfig compatibility layer
+
+==============================================================================
+Installation                                    *chad46-installation*
+
+lazy.nvim~
+>
+  {
+    "ChuYanLon/chad46",
+    opts = {
+      -- cmp = { style = "atom_colored" },
+    },
+    config = function(_, opts)
+      require("chad46").setup(opts)
+      vim.cmd.colorscheme("chad46_bearded-arc")
+    end,
+  }
+<
+
+  Integrations are auto-detected — highlights for installed plugins load
+  automatically.
+
+Other plugin managers~
+>
+  require("chad46").setup()
+  vim.cmd.colorscheme("chad46_bearded-arc")
+<
+
+  Optional: apply NvChad-style plugin configs for non-lazy managers:
+>
+  vim.schedule(function()
+    require("chad46").apply_configs()
+  end)
+<
+
+==============================================================================
+Setup                                           *chad46-setup*
+
+  require("chad46").setup({opts})
+
+  Call setup() before setting the colorscheme. This enables auto-config
+  patching for lazy.nvim and applies your custom options.
+
+==============================================================================
+Options                                         *chad46-options*
+
+                                                *chad46-option-transparency*
+transparency ~
+  Type: `boolean`, Default: `false`
+  Disable background color for transparent terminals.
+
+                                                *chad46-option-cmp.style*
+cmp.style ~
+  Type: `string`, Default: `"default"`
+  nvim-cmp / blink.cmp UI style. Valid values:
+    "default", "atom", "atom_colored", "flat_light", "flat_dark"
+
+                                                *chad46-option-statusline.theme*
+statusline.theme ~
+  Type: `string`, Default: `"default"`
+  Statusline style. Affects lualine, heirline, and the statusline adapter.
+  Valid values:
+    "default", "flat_light", "flat_dark", "atom", "atom_colored"
+
+                                                *chad46-option-statusline.styles*
+statusline.styles ~
+  Type: `table`, Default: `{}`
+  Define or override statusline theme styles.
+
+                                                *chad46-option-integrations*
+integrations ~
+  Type: `table`, Default: `{}`
+  Explicit enable/disable overrides for auto-detection.
+
+                                                *chad46-option-changed_themes*
+changed_themes ~
+  Type: `table`, Default: `{}`
+  Per-theme color overrides.
+
+                                                *chad46-option-hl_override*
+hl_override ~
+  Type: `table`, Default: `{}`
+  Override highlight groups per integration.
+
+                                                *chad46-option-hl_add*
+hl_add ~
+  Type: `table`, Default: `{}`
+  Add custom highlight groups.
+
+Default config~
+>
+  {
+    transparency = false,
+    changed_themes = {},
+    hl_override = {},
+    hl_add = {},
+    statusline = { theme = "default", styles = {} },
+    cmp = { style = "default" },
+    integrations = {},
+  }
+<
+
+==============================================================================
+Commands                                        *chad46-commands*
+
+  :colorscheme chad46_<name>    Switch to a chad46 theme.
+  :chad46 [name]                Same as :colorscheme.
+
+==============================================================================
+Adapters                                        *chad46-adapters*
+
+Shared statusline API~
+>
+  local st = require("chad46.adapters.statusline")
+  local theme = st.get_theme()             -- mode-based theme
+  local colors = st.get_colors()           -- raw color palette
+  local mode_colors = st.get_mode_colors() -- mode indicator colors
+<
+
+Lualine~
+>
+  require("lualine").setup({
+    options = { theme = require("chad46.adapters.lualine").get_theme() },
+  })
+<
+
+Bufferline~
+>
+  require("bufferline").setup({
+    highlights = require("chad46.adapters.bufferline").get_theme(),
+  })
+<
+
+Heirline~
+>
+  local h = require("chad46.adapters.heirline")
+  local c = h.get_colors()
+  -- use c.section, c.mode_a, c.mode_b, c.mode_c in components
+<
+
+==============================================================================
+License                                         *chad46-license*
+
+MIT License. See LICENSE file for details.
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
