@@ -17,14 +17,37 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Sync and create PR
+      - name: Sync and log
         shell: bash {0}
         run: |
-          bash sync.sh || { echo "sync failed"; exit 1; }
+          # Run sync, capture output and exit code
+          sync_output=$(bash sync.sh 2>&1)
+          sync_exit=$?
+          echo "$sync_output"
 
-          if [[ -z "$(git status --porcelain)" ]]; then
-            echo "No changes to sync"
-            exit 0
+          timestamp=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
+
+          added=$(echo "$sync_output" | grep -c '\.\.\. added$' || true)
+          updated=$(echo "$sync_output" | grep -c '\.\.\. updated$' || true)
+          failed=$(echo "$sync_output" | grep -c '\.\.\. FAILED$' || true)
+
+          if [[ $sync_exit -ne 0 ]]; then
+            echo "[$timestamp] FAILED - added: $added, updated: $updated, errors: $failed" >> sync.log
+            echo "$sync_output" | grep '\.\.\. FAILED$' | while IFS= read -r line; do
+              echo "  - $line" >> sync.log
+            done
+          elif [[ $added -eq 0 && $updated -eq 0 ]]; then
+            echo "[$timestamp] OK - no updates" >> sync.log
+          else
+            echo "[$timestamp] OK - added: $added, updated: $updated" >> sync.log
+          fi
+
+          # Check what changed
+          git add -A
+          if git diff --cached --name-only --exit-code -- . ':!sync.log' > /dev/null 2>&1; then
+            only_log=true
+          else
+            only_log=false
           fi
 
           git config user.name "chad46 sync"
@@ -32,8 +55,13 @@ jobs:
 
           BRANCH="sync/auto-$(date +%s)"
           git checkout -b "$BRANCH"
-          git add -A
-          git commit -m "chore: sync themes & integrations from NvChad/base46"
+
+          if [[ "$only_log" == "true" ]]; then
+            git commit -m "chore: update sync.log"
+          else
+            git commit -m "chore: sync themes & integrations from NvChad/base46"
+          fi
+
           git push origin "$BRANCH"
 
           PR_URL=$(gh pr create \
@@ -42,6 +70,11 @@ jobs:
             --base main \
             --head "$BRANCH")
           PR_NUM="${PR_URL##*/}"
-          gh pr merge --squash --delete-branch "$PR_NUM"
+          gh pr merge --squash --delete-branch "$BRANCH"
+
+          # If sync failed, still let the job fail after committing
+          if [[ $sync_exit -ne 0 ]]; then
+            exit 1
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
