@@ -46,8 +46,11 @@ Integrations are auto-detected — highlights for installed plugins load automat
 {
   "ChuYanLon/chad46",
   name = "chad46",
-  config = function()
-    require("chad46").setup()
+  opts = {
+    -- statusline = { theme = "atom_colored" },
+  },
+  config = function(_, opts)
+    require("chad46").setup(opts)
     vim.cmd.colorscheme("chad46_bearded-arc")
   end,
 }
@@ -124,6 +127,9 @@ Full reference of available `setup()` options:
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
+| `cmp.style` | `string` | `"default"` | nvim-cmp / blink.cmp UI style: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
+| `statusline.theme` | `string` | `"default"` | Lualine theme: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` |
+| `statusline.styles` | `table` | `{}` | Define or override lualine theme styles (see Lualine Customization below) |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
 | `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
@@ -149,6 +155,24 @@ require("chad46").setup({
   },
   hl_add = {
     MyCustomGroup = { fg = "green", bg = "black", bold = true },
+  },
+  statusline = {
+    theme = "flat_dark",
+    styles = {
+      my_style = function()
+        local c = require("chad46").get_theme_tb("base_30")
+        return {
+          normal = { a = { bg = c.blue, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.white }, c = { bg = "NONE", fg = c.white } },
+          insert = { a = { bg = c.green, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.green }, c = { bg = "NONE", fg = c.white } },
+          visual = { a = { bg = c.purple, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.purple }, c = { bg = "NONE", fg = c.white } },
+          replace = { a = { bg = c.orange, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.orange }, c = { bg = "NONE", fg = c.white } },
+          command = { a = { bg = c.yellow, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.yellow }, c = { bg = "NONE", fg = c.white } },
+          terminal = { a = { bg = c.green, fg = c.black, gui = "bold" }, b = { bg = c.one_bg2, fg = c.green }, c = { bg = "NONE", fg = c.white } },
+        }
+      end,
+      -- override a built-in style:
+      -- default = function() ... end,
+    },
   },
 })
 ```

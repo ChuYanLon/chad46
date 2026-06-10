@@ -22,10 +22,15 @@
 ---@field hl_override? table<string, HLTable>
 ---@field hl_add? HLTable
 ---@field statusline? StatuslineConfig
+---@field cmp? CmpConfig
 ---@field integrations? IntegrationsConfig
 
+---@class CmpConfig
+---@field style? '"default"'|'"atom"'|'"atom_colored"'|'"flat_light"'|'"flat_dark"'
+
 ---@class StatuslineConfig
----@field theme? '"default"'|'"minimal"'|'"vscode"'|'"vscode_colored"'
+---@field theme? string
+---@field styles? table<string, fun(): table>
 ---@field separator_style? '"default"'|'"round"'|'"block"'|'"arrow"'
 ---@field enabled? boolean
 ---@field section_separators? { left: string, right: string }

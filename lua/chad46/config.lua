@@ -8,6 +8,10 @@ M.defaults = {
   hl_add = {},
   statusline = {
     theme = "default",
+    styles = {},
+  },
+  cmp = {
+    style = "default",
   },
   integrations = {},
 }

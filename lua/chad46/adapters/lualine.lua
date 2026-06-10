@@ -97,8 +97,9 @@ function M.get_theme()
   local opts = require("chad46.config").options
   local name = (opts.statusline or {}).theme or "default"
   local t = opts.transparency and "NONE" or c().black
-  local fn = styles[name]
-  if not fn then fn = styles.default end
+  local merged = vim.tbl_deep_extend("keep", opts.statusline.styles or {}, styles)
+  local fn = merged[name]
+  if not fn then fn = merged.default end
   local mode = fn(t)
   mode.inactive = inactive(t)
   return mode

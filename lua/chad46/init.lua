@@ -161,6 +161,8 @@ end
 function M.setup(opts)
   config.setup(opts)
 
+  nvconfig.ui.cmp.style = config.options.cmp.style
+
   local plugins = get_lazy_plugins()
   if not plugins then return end
 
