@@ -130,13 +130,11 @@ main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
   mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "themes" ]]; then
-    local before=$(( ${#log_add[@]} + ${#log_upd[@]} ))
+    local theme_before=$(( ${#log_add[@]} + ${#log_upd[@]} ))
     sync_dir "themes" "$THEMES_DIR" "${ALL_THEMES[@]}"
-    local after=$(( ${#log_add[@]} + ${#log_upd[@]} ))
-    if (( after > before )); then
+    local theme_after=$(( ${#log_add[@]} + ${#log_upd[@]} ))
+    if (( theme_after > theme_before )); then
       generate_full_cs
-    else
-      echo "=== No theme changes, skipping colorscheme regeneration ==="
     fi
     echo ""
   fi
