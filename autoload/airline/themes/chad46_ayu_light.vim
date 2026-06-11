@@ -44,3 +44,4 @@ let g:airline#themes#chad46_ayu_light#palette.accents = {
 function! airline#themes#chad46_ayu_light#apply()
   let g:airline#themes#chad46_ayu_light#palette = g:airline#themes#chad46_ayu_light#palette
 endfunction
+" synced: 8461fa11e5e785c6
