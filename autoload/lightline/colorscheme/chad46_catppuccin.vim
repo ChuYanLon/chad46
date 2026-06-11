@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_catppuccin#palette.inactive = {
 \ 'right': [['#D9E0EE', '#2d2c3c', 254, 236], ['#D9E0EE', '#2d2c3c', 254, 236]],
 \ 'middle': [['#D9E0EE', '#2d2c3c', 254, 236]]
 \ }
+" synced: 280c1a8e106fd288

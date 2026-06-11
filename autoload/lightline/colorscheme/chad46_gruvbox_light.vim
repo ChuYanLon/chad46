@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_gruvbox_light#palette.inactive = {
 \ 'right': [['#504945', '#e5d8af', 239, 187], ['#504945', '#e5d8af', 239, 187]],
 \ 'middle': [['#504945', '#e5d8af', 239, 187]]
 \ }
+" synced: 70bbb8f010c053e3

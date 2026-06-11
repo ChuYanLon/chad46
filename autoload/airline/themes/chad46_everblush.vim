@@ -44,3 +44,4 @@ let g:airline#themes#chad46_everblush#palette.accents = {
 function! airline#themes#chad46_everblush#apply()
   let g:airline#themes#chad46_everblush#palette = g:airline#themes#chad46_everblush#palette
 endfunction
+" synced: 41b8730eec3ca140

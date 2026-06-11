@@ -44,3 +44,4 @@ let g:airline#themes#chad46_aylin#palette.accents = {
 function! airline#themes#chad46_aylin#apply()
   let g:airline#themes#chad46_aylin#palette = g:airline#themes#chad46_aylin#palette
 endfunction
+" synced: 2ced2c17be18d4f4

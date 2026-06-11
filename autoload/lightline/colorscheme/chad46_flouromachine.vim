@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_flouromachine#palette.inactive = {
 \ 'right': [['#ffffff', '#322f47', 231, 237], ['#ffffff', '#322f47', 231, 237]],
 \ 'middle': [['#ffffff', '#322f47', 231, 237]]
 \ }
+" synced: 3ea830194ef0c2e7

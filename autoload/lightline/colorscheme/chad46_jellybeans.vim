@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_jellybeans#palette.inactive = {
 \ 'right': [['#e8e8d3', '#252525', 254, 235], ['#e8e8d3', '#252525', 254, 235]],
 \ 'middle': [['#e8e8d3', '#252525', 254, 235]]
 \ }
+" synced: de76dcef73b30bf5

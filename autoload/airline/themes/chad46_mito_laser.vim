@@ -44,3 +44,4 @@ let g:airline#themes#chad46_mito_laser#palette.accents = {
 function! airline#themes#chad46_mito_laser#apply()
   let g:airline#themes#chad46_mito_laser#palette = g:airline#themes#chad46_mito_laser#palette
 endfunction
+" synced: 2236f092f20405c1

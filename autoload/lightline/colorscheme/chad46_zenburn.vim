@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_zenburn#palette.inactive = {
 \ 'right': [['#ffffff', '#464646', 231, 238], ['#ffffff', '#464646', 231, 238]],
 \ 'middle': [['#ffffff', '#464646', 231, 238]]
 \ }
+" synced: 67af65e829d1494f

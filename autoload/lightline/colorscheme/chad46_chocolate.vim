@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_chocolate#palette.inactive = {
 \ 'right': [['#cdc0ad', '#2f2c2b', 181, 236], ['#cdc0ad', '#2f2c2b', 181, 236]],
 \ 'middle': [['#cdc0ad', '#2f2c2b', 181, 236]]
 \ }
+" synced: 26c7f704c9d7e06a
