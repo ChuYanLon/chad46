@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_neofusion#palette.inactive = {
 \ 'right': [['#66def9', '#0c2242', 81, 235], ['#66def9', '#0c2242', 81, 235]],
 \ 'middle': [['#66def9', '#0c2242', 81, 235]]
 \ }
+" synced: 64df24ac808fe452

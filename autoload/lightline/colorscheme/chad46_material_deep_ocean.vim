@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_material_deep_ocean#palette.inactive = {
 \ 'right': [['#eeffff', '#23293e', 231, 236], ['#eeffff', '#23293e', 231, 236]],
 \ 'middle': [['#eeffff', '#23293e', 231, 236]]
 \ }
+" synced: 5928d97e71045620

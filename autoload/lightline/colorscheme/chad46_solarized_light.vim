@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_solarized_light#palette.inactive = {
 \ 'right': [['#002b36', '#e8dfc9', 234, 253], ['#002b36', '#e8dfc9', 234, 253]],
 \ 'middle': [['#002b36', '#e8dfc9', 234, 253]]
 \ }
+" synced: 9b49ee0ea8e9933d
