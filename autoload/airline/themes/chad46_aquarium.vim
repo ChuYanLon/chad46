@@ -44,3 +44,4 @@ let g:airline#themes#chad46_aquarium#palette.accents = {
 function! airline#themes#chad46_aquarium#apply()
   let g:airline#themes#chad46_aquarium#palette = g:airline#themes#chad46_aquarium#palette
 endfunction
+" synced: be40715556331edd

@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_vscode_light#palette.inactive = {
 \ 'right': [['#343434', '#e7e7e7', 236, 254], ['#343434', '#e7e7e7', 236, 254]],
 \ 'middle': [['#343434', '#e7e7e7', 236, 254]]
 \ }
+" synced: d94ec31fb6ce4884

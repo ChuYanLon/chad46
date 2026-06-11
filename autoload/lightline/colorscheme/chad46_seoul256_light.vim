@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_seoul256_light#palette.inactive = {
 \ 'right': [['#4e4e4e', '#c8c8c8', 239, 251], ['#4e4e4e', '#c8c8c8', 239, 251]],
 \ 'middle': [['#4e4e4e', '#c8c8c8', 239, 251]]
 \ }
+" synced: 52169438f3c442aa

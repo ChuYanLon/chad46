@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_eldritch#palette.inactive = {
 \ 'right': [['#EBFAFA', '#292D48', 255, 236], ['#EBFAFA', '#292D48', 255, 236]],
 \ 'middle': [['#EBFAFA', '#292D48', 255, 236]]
 \ }
+" synced: 1ea58e2841524a2c

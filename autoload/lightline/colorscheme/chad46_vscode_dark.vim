@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_vscode_dark#palette.inactive = {
 \ 'right': [['#dee1e6', '#282828', 254, 235], ['#dee1e6', '#282828', 254, 235]],
 \ 'middle': [['#dee1e6', '#282828', 254, 235]]
 \ }
+" synced: 2e5b206c6b36b26a

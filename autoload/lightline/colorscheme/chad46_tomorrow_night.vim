@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_tomorrow_night#palette.inactive = {
 \ 'right': [['#C5C8C2', '#2d2f31', 251, 236], ['#C5C8C2', '#2d2f31', 251, 236]],
 \ 'middle': [['#C5C8C2', '#2d2f31', 251, 236]]
 \ }
+" synced: 343267722fe3bcdc

@@ -48,3 +48,4 @@ let g:lightline#colorscheme#chad46_tundra#palette.inactive = {
 \ 'right': [['#FFFFFF', '#1e2534', 231, 235], ['#FFFFFF', '#1e2534', 231, 235]],
 \ 'middle': [['#FFFFFF', '#1e2534', 231, 235]]
 \ }
+" synced: 57c1fc4928550ceb

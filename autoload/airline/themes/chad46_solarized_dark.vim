@@ -44,3 +44,4 @@ let g:airline#themes#chad46_solarized_dark#palette.accents = {
 function! airline#themes#chad46_solarized_dark#apply()
   let g:airline#themes#chad46_solarized_dark#palette = g:airline#themes#chad46_solarized_dark#palette
 endfunction
+" synced: c9cefd53a44672ba
