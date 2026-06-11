@@ -339,7 +339,73 @@ function M.run()
   local cs_count = M.generate_all(dir)
   local al_count = M.generate_all_airline(dir, al_dir)
   local ll_count = M.generate_all_lightline(dir, ll_dir)
+  M.stamp_hashes(dir, al_dir, ll_dir)
   print(string.format("chad46: generated %d colorschemes, %d airline, %d lightline themes", cs_count, al_count, ll_count))
+end
+
+--- Read a generated colorscheme .vim file and return its sha256 prefix.
+---@param cs_dir string path to colors/ directory
+---@param theme_name string
+---@return string|nil 16-char hex prefix
+local function colorscheme_hash(cs_dir, theme_name)
+  local path = cs_dir .. "/chad46_" .. theme_name .. ".vim"
+  local f = io.open(path, "r")
+  if not f then return nil end
+  local content = f:read("*a")
+  f:close()
+  return vim.fn.sha256(content):sub(1, 16)
+end
+
+---Stamp a hash of each colorscheme into its corresponding airline & lightline files.
+---This ensures autoload files change whenever the colorscheme content changes.
+---@param cs_dir string path to colors/ directory
+---@param al_dir string path to autoload/airline/themes
+---@param ll_dir string path to autoload/lightline/colorscheme
+function M.stamp_hashes(cs_dir, al_dir, ll_dir)
+  local al_stamped, ll_stamped = 0, 0
+  for _, name in ipairs(ALL_THEMES) do
+    local hash = colorscheme_hash(cs_dir, name)
+    if not hash then goto skip end
+
+    local escaped = name:gsub("-", "_")
+    local comment = ('" synced: %s'):format(hash)
+
+    -- Airline
+    local al_path = ("%s/chad46_%s.vim"):format(al_dir, escaped)
+    local f = io.open(al_path, "r")
+    if f then
+      local content = f:read("*a")
+      f:close()
+      content = content:gsub('" synced: [^\n]+\n?', "")
+      content = content:gsub("%s+$", "") .. "\n" .. comment .. "\n"
+      local w = io.open(al_path, "w")
+      w:write(content)
+      w:close()
+      al_stamped = al_stamped + 1
+    end
+
+    -- Lightline
+    local ll_path = ("%s/chad46_%s.vim"):format(ll_dir, escaped)
+    local f2 = io.open(ll_path, "r")
+    if f2 then
+      local content = f2:read("*a")
+      f2:close()
+      content = content:gsub('" synced: [^\n]+\n?', "")
+      content = content:gsub("%s+$", "") .. "\n" .. comment .. "\n"
+      local w = io.open(ll_path, "w")
+      w:write(content)
+      w:close()
+      ll_stamped = ll_stamped + 1
+    end
+
+    ::skip::
+  end
+  if al_stamped > 0 then
+    print(("chad46: stamped %d airline themes with colorscheme hash"):format(al_stamped))
+  end
+  if ll_stamped > 0 then
+    print(("chad46: stamped %d lightline themes with colorscheme hash"):format(ll_stamped))
+  end
 end
 
 return M
