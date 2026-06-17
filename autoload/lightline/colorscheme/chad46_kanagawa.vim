@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_kanagawa#palette.inactive = {
 \ 'right': [['#DCD7BA', '#272730', 187, 235], ['#DCD7BA', '#272730', 187, 235]],
 \ 'middle': [['#DCD7BA', '#272730', 187, 235]]
 \ }
-" synced: 394b6ea9c4b68d51
+" synced: d3817e2595f96993

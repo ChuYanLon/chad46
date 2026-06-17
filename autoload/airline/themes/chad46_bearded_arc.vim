@@ -44,4 +44,4 @@ let g:airline#themes#chad46_bearded_arc#palette.accents = {
 function! airline#themes#chad46_bearded_arc#apply()
   let g:airline#themes#chad46_bearded_arc#palette = g:airline#themes#chad46_bearded_arc#palette
 endfunction
-" synced: 87ef7bfff1c38f35
+" synced: 85cdca3f6394d232

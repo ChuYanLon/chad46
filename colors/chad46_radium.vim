@@ -13,107 +13,71 @@ endif
 
 let g:colors_name = "chad46_radium"
 
-hi CmpSel guibg=#3bdda2 guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE gui=bold
 hi BlinkCmpMenuSelection guibg=#3bdda2 guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE gui=bold
-hi RenderMarkdownH6Bg guibg=#272125 ctermbg=235 cterm=NONE
-hi RenderMarkdownH5Bg guibg=#21202a ctermbg=235 cterm=NONE
-hi RenderMarkdownH4Bg guibg=#182326 ctermbg=234 cterm=NONE
-hi RenderMarkdownH3Bg guibg=#132624 ctermbg=234 cterm=NONE
-hi RenderMarkdownH2Bg guibg=#272824 ctermbg=235 cterm=NONE
-hi Number guifg=#f0a988 ctermfg=216 cterm=NONE
-hi Title guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi TelescopeMatching guibg=#212428 guifg=#7ab0df ctermfg=110 ctermbg=235 cterm=NONE
-hi TinyInlineInvDiagnosticVirtualTextHint guifg=#3c3447 guibg=#101317 ctermfg=237 ctermbg=233 cterm=NONE
-hi TinyInlineInvDiagnosticVirtualTextInfo guifg=#194438 guibg=#101317 ctermfg=236 ctermbg=233 cterm=NONE
-hi TinyInlineInvDiagnosticVirtualTextWarn guifg=#4b4738 guibg=#101317 ctermfg=238 ctermbg=233 cterm=NONE
-hi TinyInlineInvDiagnosticVirtualTextError guifg=#4a2a2d guibg=#101317 ctermfg=237 ctermbg=233 cterm=NONE
-hi TinyInlineDiagnosticVirtualTextHint guifg=#c397d8 guibg=#3c3447 ctermfg=140 ctermbg=237 cterm=NONE
-hi TinyInlineDiagnosticVirtualTextInfo guifg=#37d99e guibg=#194438 ctermfg=79 ctermbg=236 cterm=NONE
-hi TinyInlineDiagnosticVirtualTextWarn guifg=#ffe59e guibg=#4b4738 ctermfg=223 ctermbg=238 cterm=NONE
-hi TinyInlineDiagnosticVirtualTextError guifg=#f87070 guibg=#4a2a2d ctermfg=203 ctermbg=237 cterm=NONE
-hi TinyInlineDiagnosticVirtualTextArrow guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
-hi TelescopePromptNormal guifg=#d4d4d5 guibg=#191d22 ctermfg=188 ctermbg=234 cterm=NONE
-hi TelescopePromptBorder guifg=#191d22 guibg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
-hi TelescopeBorder guifg=#0a0d11 guibg=#0a0d11 ctermfg=233 ctermbg=233 cterm=NONE
-hi TelescopeNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi TelescopePreviewTitle guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
-hi TelescopeResultsTitle guifg=#0a0d11 guibg=#0a0d11 ctermfg=233 ctermbg=233 cterm=NONE
-hi TelescopeResultsDiffDelete guifg=#f87070 ctermfg=203 cterm=NONE
-hi TelescopeResultsDiffChange guifg=#ffe59e ctermfg=223 cterm=NONE
-hi TelescopeResultsDiffAdd guifg=#37d99e ctermfg=79 cterm=NONE
-hi TelescopePromptTitle guifg=#101317 guibg=#f87070 ctermfg=233 ctermbg=203 cterm=NONE
-hi def link TodoSignWarn TodoFgWarn
-hi TodoFgWarn guifg=#f0a988 ctermfg=216 cterm=NONE
-hi def link TodoSignTodo TodoFgTodo
-hi TodoFgTodo guifg=#ffe59e ctermfg=223 cterm=NONE
-hi def link TodoSignTest TodoFgTest
-hi TodoFgTest guifg=#c397d8 ctermfg=140 cterm=NONE
-hi def link TodoSignPerf TodoFgPerf
-hi TodoFgPerf guifg=#c397d8 ctermfg=140 cterm=NONE
-hi def link TodoSignNote TodoFgNote
-hi TodoFgNote guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TodoSignHack TodoFgHack
-hi TodoFgHack guifg=#f0a988 ctermfg=216 cterm=NONE
-hi def link TodoSignFix TodoFgFix
-hi TodoFgFix guifg=#f87070 ctermfg=203 cterm=NONE
-hi TodoBgWarn guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
-hi TodoBgTodo guifg=#191d22 guibg=#ffe59e ctermfg=234 ctermbg=223 cterm=NONE gui=bold
-hi TodoBgTest guifg=#191d22 guibg=#c397d8 ctermfg=234 ctermbg=140 cterm=NONE gui=bold
-hi TodoBgPerf guifg=#191d22 guibg=#c397d8 ctermfg=234 ctermbg=140 cterm=NONE gui=bold
-hi TodoBgNote guifg=#191d22 guibg=#d4d4d5 ctermfg=234 ctermbg=188 cterm=NONE gui=bold
-hi TodoBgHack guifg=#191d22 guibg=#f0a988 ctermfg=234 ctermbg=216 cterm=NONE gui=bold
-hi TodoBgFix guifg=#191d22 guibg=#f87070 ctermfg=234 ctermbg=203 cterm=NONE gui=bold
-hi RainbowDelimiterRed guifg=#f87070 ctermfg=203 cterm=NONE
-hi MiniTablineCurrent guibg=#101317 guifg=#d4d4d5 ctermfg=188 ctermbg=233 cterm=NONE gui=underline
-hi MiniTablineVisible guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
-hi MiniTablineHidden guifg=#525559 guibg=#191d22 ctermfg=240 ctermbg=234 cterm=NONE
-hi MiniTablineModifiedCurrent guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE gui=underline
-hi MiniTablineModifiedVisible guifg=#37d99e guibg=#101317 ctermfg=79 ctermbg=233 cterm=NONE
-hi MiniTablineModifiedHidden guifg=#f87070 guibg=#191d22 ctermfg=203 ctermbg=234 cterm=NONE
-hi MiniTablineTabpagesection guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
-hi CocLoaderHighlightBlock guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
-hi CocLoaderBackdrop guibg=#101317 ctermbg=233 cterm=NONE
-hi CocLoaderWarning guifg=#ffe59e ctermfg=223 cterm=NONE
-hi def link CocLoaderSearchMatch Search
-hi def link CocLoaderNormal NormalFloat
-hi def link CocLoaderError ErrorMsg
-hi CocLoaderMuted guifg=#525559 ctermfg=240 cterm=NONE
-hi CocLoaderHighlight guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocLoaderHeading cterm=NONE gui=bold
-hi CocLoaderTabInactive guifg=#101317 guibg=#3e4145 ctermfg=233 ctermbg=238 cterm=NONE
-hi CocLoaderTabActive guibg=#63b3ad guifg=#101317 ctermfg=233 ctermbg=73 cterm=NONE gui=bold
-hi CocLoaderHeaderSec guibg=#63b3ad guifg=#101317 ctermfg=233 ctermbg=73 cterm=NONE gui=bold
-hi CocLoaderHeader guibg=#7ab0df guifg=#101317 ctermfg=233 ctermbg=110 cterm=NONE gui=bold
-hi LspInlayHint guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi LspSignatureActiveParameter guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
-hi DiagnosticInfo guifg=#37d99e ctermfg=79 cterm=NONE
-hi DiagnosticWarn guifg=#ffe59e ctermfg=223 cterm=NONE
-hi DiagnosticError guifg=#f87070 ctermfg=203 cterm=NONE
-hi DiagnosticHint guifg=#c397d8 ctermfg=140 cterm=NONE
-hi LspReferenceWrite guibg=#33363a ctermbg=237 cterm=NONE
-hi LspReferenceRead guibg=#33363a ctermbg=237 cterm=NONE
-hi LspReferenceText guibg=#33363a ctermbg=237 cterm=NONE
-hi NERDTreeUp guifg=#45484c ctermfg=238 cterm=NONE
-hi NERDTreeExecFile guifg=#37d99e ctermfg=79 cterm=NONE
-hi NERDTreeFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi NERDTreeClosable guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NERDTreeOpenable guifg=#37d99e ctermfg=79 cterm=NONE
-hi NERDTreeDirSlash guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NERDTreeDir guifg=#7ab0df ctermfg=110 cterm=NONE
-hi Include guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi Identifier guifg=#37d99e guisp=NONE ctermfg=79 cterm=NONE
-hi Float guifg=#f0a988 ctermfg=216 cterm=NONE
-hi Delimiter guifg=#e87979 ctermfg=174 cterm=NONE
-hi Define guifg=#c397d8 guisp=NONE ctermfg=140 cterm=NONE
+hi CmpSel guibg=#3bdda2 guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE gui=bold
+hi BlinkCmpLabelMatch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi BlinkCmpLabelDeprecated guifg=#f87070 ctermfg=203 cterm=NONE gui=strikethrough
+hi BlinkCmpLabel guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BlinkCmpScrollBarGutter guibg=#191d22 ctermbg=234 cterm=NONE
+hi BlinkCmpScrollBarThumb guibg=#3e4145 ctermbg=238 cterm=NONE
+hi BlinkCmpKindMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi BlinkCmpKindStructure guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkCmpKindEnum guifg=#7ab0df ctermfg=110 cterm=NONE
+hi BlinkCmpKindValue guifg=#50cad2 ctermfg=80 cterm=NONE
+hi BlinkCmpKindTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindUnit guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkCmpKindTabNine guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi BlinkCmpKindProperty guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindModule guifg=#e5d487 ctermfg=186 cterm=NONE
+hi BlinkCmpKindOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi BlinkCmpKindInterface guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindIdentifier guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindClass guifg=#63b3ad ctermfg=73 cterm=NONE
+hi BlinkCmpKindColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BlinkCmpKindVariable guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkCmpKindField guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindCopilot guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkCmpKindConstructor guifg=#7ab0df ctermfg=110 cterm=NONE
+hi BlinkCmpKindFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi BlinkCmpKindEvent guifg=#ffe59e ctermfg=223 cterm=NONE
+hi BlinkCmpKindStruct guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkCmpKindSuperMaven guifg=#ffe59e ctermfg=223 cterm=NONE
+hi BlinkCmpKindConstant guifg=#f0a988 ctermfg=216 cterm=NONE
+hi BlinkCmpKindEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkCmpKindKeyword guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BlinkCmpKindFolder guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BlinkCmpKindText guifg=#e87979 ctermfg=174 cterm=NONE
+hi BlinkCmpKindReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi BlinkCmpKindFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BlinkCmpKindType guifg=#e5d487 ctermfg=186 cterm=NONE
+hi BlinkCmpKindSnippet guifg=#f87070 ctermfg=203 cterm=NONE
+hi NoiceFormatLevelWarn guifg=#ffe59e ctermfg=223 cterm=NONE
+hi NoiceFormatDate guifg=#525559 ctermfg=240 cterm=NONE
+hi NoiceFormatKind guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NoiceFormatEvent guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NoiceFormatTitle guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi NoiceFormatProgressTodo guibg=#212428 ctermbg=235 cterm=NONE
+hi BlinkPairsMatchParen guifg=#50cad2 ctermfg=80 cterm=NONE
+hi BlinkPairsUnmatched guifg=#f87070 ctermfg=203 cterm=NONE
+hi BlinkPairsViolet guifg=#b68acb ctermfg=140 cterm=NONE
+hi BlinkPairsCyan guifg=#50cad2 ctermfg=80 cterm=NONE
+hi BlinkPairsGreen guifg=#37d99e ctermfg=79 cterm=NONE
+hi BlinkPairsYellow guifg=#ffe59e ctermfg=223 cterm=NONE
+hi BlinkPairsRed guifg=#f87070 ctermfg=203 cterm=NONE
+hi BlinkPairsBlue guifg=#7ab0df ctermfg=110 cterm=NONE
+hi BlinkPairsPurple guifg=#c397d8 ctermfg=140 cterm=NONE
+hi BlinkPairsOrange guifg=#f0a988 ctermfg=216 cterm=NONE
+hi WhichKeyDesc guifg=#f87070 ctermfg=203 cterm=NONE
+hi WhichKey guifg=#7ab0df ctermfg=110 cterm=NONE
 hi gitcommitSelectedFile guifg=#e87979 ctermfg=174 cterm=NONE gui=bold
 hi gitcommitDiscardedFile guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
 hi gitcommitUnmergedFile guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
 hi gitcommitUntrackedFile guifg=#e5d487 ctermfg=186 cterm=NONE
-hi NoiceScrollbarThumb guibg=#3e4145 ctermbg=238 cterm=NONE
-hi NoiceVirtualText guifg=#525559 ctermfg=240 cterm=NONE
-hi NoiceLspProgressSpinner guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NoiceLspProgressClient guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NoiceLspProgressTitle guifg=#525559 ctermfg=240 cterm=NONE
+hi gitcommitBranch guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
+hi gitcommitDiscardedType guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi gitcommitUnmergedType guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi gitcommitSelectedType guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi gitcommitHeader guifg=#c397d8 ctermfg=140 cterm=NONE
 hi gitcommitSelected guifg=#2b2e32 ctermfg=236 cterm=NONE
 hi gitcommitDiscarded guifg=#2b2e32 ctermfg=236 cterm=NONE
 hi gitcommitUntracked guifg=#2b2e32 ctermfg=236 cterm=NONE
@@ -130,215 +94,168 @@ hi DiffAdded guibg=#132624 guifg=#37d99e ctermfg=79 ctermbg=234 cterm=NONE
 hi DiffAdd guibg=#132624 guifg=#37d99e ctermfg=79 ctermbg=234 cterm=NONE
 hi diffNewFile guifg=#7ab0df ctermfg=110 cterm=NONE
 hi diffOldFile guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi BufferLineDuplicate guibg=#191d22 guifg=NONE ctermbg=234 cterm=NONE
+hi GitConflictDiffText guibg=#15302b ctermbg=235 cterm=NONE
+hi GitConflictDiffAdd guibg=#1f2a35 ctermbg=235 cterm=NONE
+hi NvDashFooter guifg=#f87070 ctermfg=203 cterm=NONE
+hi NvDashButtons guifg=#525559 ctermfg=240 cterm=NONE
+hi NvDashAscii guifg=#7ab0df ctermfg=110 cterm=NONE
+hi LazyProgressDone guifg=#37d99e ctermfg=79 cterm=NONE
+hi LazyReasonImport guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi LazyReasonSource guifg=#50cad2 ctermfg=80 cterm=NONE
+hi LazyReasonCmd guifg=#ffeda6 ctermfg=229 cterm=NONE
+hi LazyReasonRuntime guifg=#87bdec ctermfg=111 cterm=NONE
+hi LazyReasonStart guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi LazyReasonEvent guifg=#ffe59e ctermfg=223 cterm=NONE
+hi LazyCommitIssue guifg=#ffa7a7 ctermfg=217 cterm=NONE
+hi LazyTaskOutput guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi LazyReasonKeys guifg=#63b3ad ctermfg=73 cterm=NONE
+hi LazyOperator guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi LazyReasonFt guifg=#c397d8 ctermfg=140 cterm=NONE
+hi LazySpecial guifg=#7ab0df ctermfg=110 cterm=NONE
+hi LazyNoCond guifg=#f87070 ctermfg=203 cterm=NONE
+hi LazyCommit guifg=#37d99e ctermfg=79 cterm=NONE
+hi LazyUrl guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi LazyDir guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi LazyValue guifg=#63b3ad ctermfg=73 cterm=NONE
+hi LazyReasonPlugin guifg=#f87070 ctermfg=203 cterm=NONE
+hi LazyH2 guifg=#f87070 ctermfg=203 cterm=NONE gui=underline,bold
+hi LazyButton guifg=#5c5f63 guibg=#212428 ctermfg=59 ctermbg=235 cterm=NONE
+hi LazyH1 guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
+hi healthSuccess guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
+hi QuickFixLine guibg=#1a1d21 ctermbg=234 cterm=NONE
+hi CursorColumn guibg=#1a1d21 ctermbg=234 cterm=NONE
+hi ColorColumn guibg=#191d22 ctermbg=234 cterm=NONE
+hi NonText guifg=#2b2e32 ctermfg=236 cterm=NONE
+hi Cursor guibg=#c5c5c6 guifg=#101317 ctermfg=233 ctermbg=251 cterm=NONE
+hi Conceal guibg=NONE cterm=NONE
+hi WildMenu guibg=#e5d487 guifg=#37d99e ctermfg=79 ctermbg=186 cterm=NONE
+hi VisualNOS guifg=#37d99e ctermfg=79 cterm=NONE
+hi Visual guibg=#23262a ctermbg=235 cterm=NONE
+hi TooLong guifg=#37d99e ctermfg=79 cterm=NONE
+hi SpecialKey guifg=#2b2e32 ctermfg=236 cterm=NONE
+hi Substitute guibg=#e5d487 guifg=#1a1d21 ctermfg=234 ctermbg=186 cterm=NONE
+hi Search guibg=#e5d487 guifg=#1a1d21 ctermfg=234 ctermbg=186 cterm=NONE
+hi Question guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi MoreMsg guifg=#e87979 ctermfg=174 cterm=NONE
+hi ModeMsg guifg=#e87979 ctermfg=174 cterm=NONE
+hi Macro guifg=#37d99e ctermfg=79 cterm=NONE
+hi IncSearch guibg=#f0a988 guifg=#1a1d21 ctermfg=234 ctermbg=216 cterm=NONE
+hi Folded guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi FoldColumn guibg=NONE cterm=NONE
+hi Operator guisp=NONE guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi ErrorMsg guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE
+hi Debug guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocLoaderMutedBlock guifg=#101317 guibg=#3e4145 ctermfg=233 ctermbg=238 cterm=NONE
+hi CocLoaderHighlightBlock guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
+hi CocLoaderBackdrop guibg=#101317 ctermbg=233 cterm=NONE
+hi CocLoaderWarning guifg=#ffe59e ctermfg=223 cterm=NONE
+hi def link CocLoaderSearchMatch Search
+hi def link CocLoaderNormal NormalFloat
+hi def link CocLoaderError ErrorMsg
+hi CocLoaderMuted guifg=#525559 ctermfg=240 cterm=NONE
+hi CocLoaderHighlight guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocLoaderHeading cterm=NONE gui=bold
+hi CocLoaderTabInactive guifg=#101317 guibg=#3e4145 ctermfg=233 ctermbg=238 cterm=NONE
+hi CocLoaderTabActive guibg=#63b3ad guifg=#101317 ctermfg=233 ctermbg=73 cterm=NONE gui=bold
+hi PmenuSbar guibg=#212428 ctermbg=235 cterm=NONE
+hi Pmenu guibg=#212428 ctermbg=235 cterm=NONE
+hi Changed guifg=#ffe59e ctermfg=223 cterm=NONE
+hi Removed guifg=#f87070 ctermfg=203 cterm=NONE
+hi Added guifg=#37d99e ctermfg=79 cterm=NONE
+hi Variable guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi LspInlayHint guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi LspSignatureActiveParameter guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
+hi DiagnosticInfo guifg=#37d99e ctermfg=79 cterm=NONE
+hi DiagnosticWarn guifg=#ffe59e ctermfg=223 cterm=NONE
+hi DiagnosticError guifg=#f87070 ctermfg=203 cterm=NONE
+hi DiagnosticHint guifg=#c397d8 ctermfg=140 cterm=NONE
+hi LspReferenceWrite guibg=#33363a ctermbg=237 cterm=NONE
+hi LspReferenceRead guibg=#33363a ctermbg=237 cterm=NONE
+hi LspReferenceText guibg=#33363a ctermbg=237 cterm=NONE
+hi NERDTreeFlags guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NERDTreeCWD guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi NERDTreeUp guifg=#45484c ctermfg=238 cterm=NONE
+hi Typedef guifg=#e5d487 ctermfg=186 cterm=NONE
+hi NERDTreeFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi NERDTreeClosable guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NERDTreeOpenable guifg=#37d99e ctermfg=79 cterm=NONE
+hi NERDTreeDirSlash guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi NERDTreeDir guifg=#7ab0df ctermfg=110 cterm=NONE
+hi StorageClass guifg=#e5d487 ctermfg=186 cterm=NONE
+hi Statement guifg=#37d99e ctermfg=79 cterm=NONE
+hi SpecialChar guifg=#e87979 ctermfg=174 cterm=NONE
+hi Special guifg=#37d99e ctermfg=79 cterm=NONE
+hi Repeat guifg=#e5d487 ctermfg=186 cterm=NONE
+hi PreProc guifg=#e5d487 ctermfg=186 cterm=NONE
+hi Label guifg=#e5d487 ctermfg=186 cterm=NONE
+hi Include guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi Identifier guisp=NONE guifg=#37d99e ctermfg=79 cterm=NONE
+hi Float guifg=#f0a988 ctermfg=216 cterm=NONE
+hi Delimiter guifg=#e87979 ctermfg=174 cterm=NONE
+hi Define guisp=NONE guifg=#c397d8 ctermfg=140 cterm=NONE
+hi Conditional guifg=#c397d8 ctermfg=140 cterm=NONE
+hi Character guifg=#37d99e ctermfg=79 cterm=NONE
+hi Boolean guifg=#f0a988 ctermfg=216 cterm=NONE
+hi BufferLineRightCustomAreaText2 guifg=#f87070 ctermfg=203 cterm=NONE
+hi BufferLineRightCustomAreaText1 guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BufferLineDuplicateVisible guibg=#191d22 guifg=#7ab0df ctermfg=110 ctermbg=234 cterm=NONE
+hi BufferLineDuplicateSelected guibg=#101317 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
+hi CmpDoc guibg=#101317 ctermbg=233 cterm=NONE
 hi BufferLineDevIconDefaultInactive guibg=NONE cterm=NONE
 hi BufferLineDevIconDefaultSelected guibg=NONE cterm=NONE
 hi BufferLineTabClose guibg=#101317 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
 hi BufferLineTabSelected guibg=#87bdec guifg=#191d22 ctermfg=234 ctermbg=111 cterm=NONE
 hi BufferLineTab guibg=#33363a guifg=#525559 ctermfg=240 ctermbg=237 cterm=NONE
 hi BufferLineSeparatorSelected guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
-hi BufferLineSeparatorVisible guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
-hi BufferLineSeparator guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
-hi BufferLineModifiedSelected guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE
-hi BufferLineModifiedVisible guibg=#191d22 guifg=#f87070 ctermfg=203 ctermbg=234 cterm=NONE
-hi BufferLineModified guibg=#191d22 guifg=#f87070 ctermfg=203 ctermbg=234 cterm=NONE
-hi BufferlineIndicatorSelected guibg=#101317 guifg=#101317 ctermfg=233 ctermbg=233 cterm=NONE
-hi BufferLineFill guibg=#191d22 guifg=#45484c ctermfg=238 ctermbg=234 cterm=NONE
+hi CmpItemKindTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi CmpItemKindEvent guifg=#ffe59e ctermfg=223 cterm=NONE
+hi CmpItemKindValue guifg=#50cad2 ctermfg=80 cterm=NONE
+hi CmpItemKindStruct guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CmpItemKindEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CmpItemKindReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
 hi BufferLineCloseButtonSelected guibg=#101317 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
 hi BufferLineCloseButtonVisible guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi BufferLineCloseButton guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi CmpItemKindFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
 hi BufferLineErrorDiagnostic guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi BufferLineError guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi BufferLineBufferVisible guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi BufferLineBufferSelected guibg=#101317 guifg=#d4d4d5 ctermfg=188 ctermbg=233 cterm=NONE
-hi BufferlineIndicatorVisible guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
-hi BufferLineBackground guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi NotifyTRACETitle guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NotifyTRACEIcon guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NotifyTRACEBorder guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NotifyDEBUGTitle guifg=#3e4145 ctermfg=238 cterm=NONE
-hi NotifyDEBUGIcon guifg=#3e4145 ctermfg=238 cterm=NONE
-hi NotifyDEBUGBorder guifg=#3e4145 ctermfg=238 cterm=NONE
-hi NotifyINFOTitle guifg=#37d99e ctermfg=79 cterm=NONE
-hi NotifyINFOIcon guifg=#37d99e ctermfg=79 cterm=NONE
-hi NotifyINFOBorder guifg=#37d99e ctermfg=79 cterm=NONE
-hi NotifyWARNTitle guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NotifyWARNIcon guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NotifyWARNBorder guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NotifyERRORTitle guifg=#f87070 ctermfg=203 cterm=NONE
-hi NotifyERRORIcon guifg=#f87070 ctermfg=203 cterm=NONE
-hi NotifyERRORBorder guifg=#f87070 ctermfg=203 cterm=NONE
+hi CmpItemKindUnit guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CmpItemKindEnum guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CmpItemKindProperty guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindModule guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CmpItemKindFolder guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CmpItemKindConstructor guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CmpItemKindMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CmpItemKindKeyword guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CmpItemKindType guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CmpItemKindStructure guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CmpItemKindText guifg=#e87979 ctermfg=174 cterm=NONE
+hi CmpItemKindSnippet guifg=#f87070 ctermfg=203 cterm=NONE
+hi CmpItemKindVariable guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CmpItemKindField guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindIdentifier guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CmpItemKindConstant guifg=#f0a988 ctermfg=216 cterm=NONE
+hi CmpItemAbbrMatch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi CmpItemAbbr guifg=#d4d4d5 ctermfg=188 cterm=NONE
 hi CocSymbolKeyword guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSymbolNamespace guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSymbolClass guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CocSymbolMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSymbolProperty guifg=#37d99e ctermfg=79 cterm=NONE
-hi def link CocSymbolText CocSymbolDefault
-hi def link CocSymbolUnit CocSymbolDefault
-hi def link CocSymbolValue CocSymbolDefault
-hi CocSymbolSnippet guifg=#f87070 ctermfg=203 cterm=NONE
-hi CocSymbolColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CocSymbolReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi CocSymbolFolder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocSymbolFile guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocSymbolModule guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CocSymbolPackage guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CocSymbolField guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocSymbolConstructor guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CocSymbolEnum guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocSymbolInterface guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocSymbolFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSymbolVariable guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSymbolConstant guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocSymbolString guifg=#e87979 ctermfg=174 cterm=NONE
-hi CocSymbolNumber guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocSymbolBoolean guifg=#50cad2 ctermfg=80 cterm=NONE
-hi def link CocSymbolArray CocSymbolDefault
-hi def link CocSymbolObject CocSymbolDefault
+hi DapBreakpointCondition guifg=#ffe59e ctermfg=223 cterm=NONE
+hi DapBreakpoint guifg=#f87070 ctermfg=203 cterm=NONE
+hi DevIconDart guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DevIconJava guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DevIconSvelte guifg=#f87070 ctermfg=203 cterm=NONE
+hi DevIconJSX guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconTSX guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconMd guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconZig guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DevIconzip guifg=#ffeda6 ctermfg=229 cterm=NONE
+hi DevIconxz guifg=#ffeda6 ctermfg=229 cterm=NONE
+hi DevIconwoff2 guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconwoff guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconvue guifg=#79dcaa ctermfg=115 cterm=NONE
+hi Directory guifg=#5fb0fc ctermfg=75 cterm=NONE
 hi CocSymbolKey guifg=#c397d8 ctermfg=140 cterm=NONE
 hi CocSymbolNull guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocSymbolEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSymbolStruct guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSymbolEvent guifg=#ffe59e ctermfg=223 cterm=NONE
-hi CocSymbolOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi NavicSeparator guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
-hi NavicText guifg=#525559 guibg=#15191e ctermfg=240 ctermbg=234 cterm=NONE
-hi NavicIconsNull guifg=#50cad2 guibg=#15191e ctermfg=80 ctermbg=234 cterm=NONE
-hi NavicIconsKey guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
-hi NavicIconsObject guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NavicIconsArray guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
-hi NavicIconsBoolean guifg=#f0a988 guibg=#15191e ctermfg=216 ctermbg=234 cterm=NONE
-hi NavicIconsNumber guifg=#ffa7a7 guibg=#15191e ctermfg=217 ctermbg=234 cterm=NONE
-hi NavicIconsString guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsPackage guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsNamespace guifg=#63b3ad guibg=#15191e ctermfg=73 ctermbg=234 cterm=NONE
-hi NavicIconsTypeParameter guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsOperator guifg=#c5c5c6 guibg=#15191e ctermfg=251 ctermbg=234 cterm=NONE
-hi NavicIconsEvent guifg=#ffe59e guibg=#15191e ctermfg=223 ctermbg=234 cterm=NONE
-hi NavicIconsValue guifg=#50cad2 guibg=#15191e ctermfg=80 ctermbg=234 cterm=NONE
-hi NavicIconsStruct guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NavicIconsEnumMember guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NavicIconsReference guifg=#c5c5c6 guibg=#15191e ctermfg=251 ctermbg=234 cterm=NONE
-hi NavicIconsColor guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
-hi NavicIconsInterface guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsFile guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
-hi NvimDapViewSeparator guifg=#525559 ctermfg=240 cterm=NONE
-hi NavicIconsUnit guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NvimDapViewFileName guifg=#79dcaa ctermfg=115 cterm=NONE
-hi NvimDapViewMissingData guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi DapUIUnavailableNC guifg=#45484c ctermfg=238 cterm=NONE
-hi CocSemTypeVariable guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSemTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocSemTypeTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocSemTypeStruct guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSemTypeInterface guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocSemTypeEnum guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocSemTypeClass guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CocSemTypeType guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CocSemTypeNamespace guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSymbolDefault guifg=#525559 ctermfg=240 cterm=NONE
-hi CocTreeSelected guibg=#191d22 ctermbg=234 cterm=NONE
-hi CocTreeOpenClose cterm=NONE gui=bold
-hi CocTreeDescription guifg=#525559 ctermfg=240 cterm=NONE
-hi CocTreeTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
-hi def link CocNotificationInfo CocInfoFloat
-hi CocInfoFloat guibg=#0a0d11 guifg=#7ab0df ctermfg=110 ctermbg=233 cterm=NONE
-hi def link CocNotificationWarning CocWarningFloat
-hi CocWarningFloat guibg=#0a0d11 guifg=#ffe59e ctermfg=223 ctermbg=233 cterm=NONE
-hi def link CocNotificationError CocErrorFloat
-hi CocErrorFloat guibg=#0a0d11 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
-hi CocNotificationKey guifg=#525559 ctermfg=240 cterm=NONE
-hi CocNotificationButton guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
-hi CocNotificationProgress guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocMarkdownCode guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CocMarkdownHeader guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
-hi CocMarkdownLink guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
-hi CocFadeOut guifg=#3e4145 ctermfg=238 cterm=NONE
-hi DapUIDecoration guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DapUIModifiedValue guifg=#f0a988 ctermfg=216 cterm=NONE
-hi DAPUIVariable guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CocItalic cterm=NONE gui=italic
-hi CocBold cterm=NONE gui=bold
-hi CocListBgGrey guibg=#3e4145 ctermbg=238 cterm=NONE
-hi DapStoppedLine guibg=#212428 ctermbg=235 cterm=NONE
-hi DapStopped guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi DapLogPoint guifg=#50cad2 ctermfg=80 cterm=NONE
-hi NeogitChangeUnmerged guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold,italic
-hi NeogitChangeCopied guifg=#50cad2 ctermfg=80 cterm=NONE gui=bold,italic
-hi DapBreakpoint guifg=#f87070 ctermfg=203 cterm=NONE
-hi CocListBgRed guibg=#f87070 ctermbg=203 cterm=NONE
-hi CocListBgBlack guibg=#191d22 ctermbg=234 cterm=NONE
-hi CocListFgGrey guifg=#45484c ctermfg=238 cterm=NONE
-hi CocListFgWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CocListFgCyan guifg=#50cad2 ctermfg=80 cterm=NONE
-hi CocListFgMagenta guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocListFgBlue guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocListFgYellow guifg=#ffe59e ctermfg=223 cterm=NONE
-hi CocListFgGreen guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocListFgRed guifg=#f87070 ctermfg=203 cterm=NONE
-hi CocListFgBlack guifg=#191d22 ctermfg=234 cterm=NONE
-hi CocListLine guibg=#191d22 ctermbg=234 cterm=NONE
-hi CocListPath guifg=#525559 ctermfg=240 cterm=NONE
-hi CocListMode guifg=#7ab0df ctermfg=110 cterm=NONE
-hi def link CocListSearch CocSearch
-hi CocSearch guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocLink guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
-hi CocInlineAnnotation guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocInlineVirtualText guifg=#45484c ctermfg=238 cterm=NONE
-hi def link CocInputBoxVirtualText CocVirtualText
-hi CocVirtualText guifg=#45484c ctermfg=238 cterm=NONE
-hi CocPumVirtualText guifg=#45484c ctermfg=238 cterm=NONE
-hi CocPumDeprecated guifg=#45484c ctermfg=238 cterm=NONE gui=strikethrough
-hi CocPumShortcut guifg=#45484c ctermfg=238 cterm=NONE
-hi CocPumSearch guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocFloatDividingLine guifg=#30303a ctermfg=236 cterm=NONE
-hi CocFloatActive guibg=#212428 ctermbg=235 cterm=NONE
-hi CocFloatBorder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NeogitHunkMergeHeaderCursor guifg=#101317 guibg=#50cad2 ctermfg=233 ctermbg=80 cterm=NONE gui=bold
-hi NeogitHunkMergeHeaderHighlight guifg=#101317 guibg=#50cad2 ctermfg=233 ctermbg=80 cterm=NONE gui=bold
-hi NeogitHunkMergeHeader guifg=#191d22 guibg=#3e4145 ctermfg=234 ctermbg=238 cterm=NONE gui=bold
-hi NeogitGraphBoldGray guifg=#3e4145 ctermfg=238 cterm=NONE gui=bold
-hi NeogitGraphBoldPurple guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
-hi NeogitGraphBoldBlue guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NeogitGraphBoldCyan guifg=#50cad2 ctermfg=80 cterm=NONE gui=bold
-hi DiffviewDiffAddAsDelete guibg=#322024 ctermbg=235 cterm=NONE
-hi DiffviewDiffDeleteDim guibg=#322024 ctermbg=235 cterm=NONE
-hi NeogitGraphBoldWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
-hi NeogitGraphBoldRed guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
-hi NeogitGraphBoldOrange guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
-hi NeogitGraphOrange guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NeogitGraphGray guifg=#3e4145 ctermfg=238 cterm=NONE
-hi NeogitGraphPurple guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NeogitGraphBlue guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NeogitGraphCyan guifg=#50cad2 ctermfg=80 cterm=NONE
-hi NeogitGraphGreen guifg=#37d99e ctermfg=79 cterm=NONE
-hi NeogitGraphYellow guifg=#ffe59e ctermfg=223 cterm=NONE
-hi NeogitGraphWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi NeogitGraphRed guifg=#f87070 ctermfg=203 cterm=NONE
-hi NeogitGraphAuthor guifg=#f0a988 ctermfg=216 cterm=NONE
-hi TroubleIndent cterm=NONE
-hi TroubleLocation guifg=#f87070 ctermfg=203 cterm=NONE
-hi TroubleNormal guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TroubleFoldIcon Folded
-hi TroubleFile guifg=#ffe59e ctermfg=223 cterm=NONE
-hi TroubleText guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TroubleSignError DiagnosticError
-hi TroubleTextError guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi TroubleError guifg=#f87070 ctermfg=203 cterm=NONE
-hi TroubleInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi TroubleTextInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi TroubleSignInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TroubleSignOther DiagnosticNormal
-hi TroubleHint guifg=#f0a988 ctermfg=216 cterm=NONE
-hi TroubleTextHint guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TroubleSignHint DiagnosticHint
-hi TroubleSource guifg=#50cad2 ctermfg=80 cterm=NONE
-hi TroublePreview guifg=#f87070 ctermfg=203 cterm=NONE
-hi TroubleTextWarning guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi def link TroubleSignWarning DiagnosticWarn
-hi TroubleWarning guifg=#f0a988 ctermfg=216 cterm=NONE
-hi TroubleCode guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi TroubleCount guifg=#ffa7a7 ctermfg=217 cterm=NONE
+hi Error guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
 hi Normal guibg=#101317 guifg=#c5c5c6 ctermfg=251 ctermbg=233 cterm=NONE
 hi NormalFloat guibg=#0a0d11 ctermbg=233 cterm=NONE
 hi SignColumn guifg=#2b2e32 ctermfg=236 cterm=NONE
@@ -355,67 +272,183 @@ hi def link NvimTreeDiagnosticHintFolderHL DiagnosticHint
 hi def link NvimTreeDiagnosticHintFileHL DiagnosticHint
 hi def link NvimTreeDiagnosticWarnFolderHL DiagnosticWarn
 hi def link NvimTreeDiagnosticWarnFileHL DiagnosticWarn
-hi EdgyWinBarInactive guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi EdgyWinBar guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi EdgyNormal guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi IlluminatedWordRead cterm=NONE gui=bold,reverse
-hi CocFloatSbar guibg=#212428 ctermbg=235 cterm=NONE
-hi CocFloatThumb guibg=#3e4145 ctermbg=238 cterm=NONE
-hi CocMenuSel guifg=#101317 guibg=#3bdda2 ctermfg=233 ctermbg=79 cterm=NONE
-hi Error guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
-hi def link CocSelectedRange CocHighlightText
-hi CocHighlightText guibg=#33363a ctermbg=237 cterm=NONE
-hi CocHoverRange guibg=#33363a ctermbg=237 cterm=NONE
-hi def link CocLinkedEditing CocCursorRange
-hi CocCursorRange guibg=#33363a ctermbg=237 cterm=NONE
-hi CocSelectedText guifg=#d4d4d5 guibg=#292c30 ctermfg=188 ctermbg=236 cterm=NONE
-hi def link CocHighlightWrite CocHighlightText
-hi def link CocHighlightRead CocHighlightText
-hi def link CocInlayHintType CocInlayHint
-hi CocInlayHint guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi def link CocInlayHintParameter CocInlayHint
-hi CocHintFloat guibg=#0a0d11 guifg=#63b3ad ctermfg=73 ctermbg=233 cterm=NONE
-hi CocHintSign guifg=#63b3ad ctermfg=73 cterm=NONE
+hi def link NvimTreeDiagnosticInfoFolderHL DiagnosticNormal
+hi def link NvimTreeDiagnosticInfoFileHL DiagnosticNormal
+hi def link NvimTreeDiagnosticErrorFolderHL DiagnosticError
+hi def link CodeActionMenuDetailsUndefined Comment
+hi def link CodeActionMenuDetailsDisabled Comment
+hi CodeActionMenuDetailsPreferred guifg=#37d99e ctermfg=79 cterm=NONE
+hi CodeActionMenuDetailsLabel guifg=#ffe59e ctermfg=223 cterm=NONE
+hi CodeActionMenuDetailsTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CodeActionMenuMenuSelection guifg=#7ab0df ctermfg=110 cterm=NONE
+hi def link CodeActionMenuMenuDisabled Comment
+hi CodeActionMenuMenuTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CodeActionMenuMenuKind guifg=#37d99e ctermfg=79 cterm=NONE
+hi CodeActionMenuMenuIndex guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CodeActionMenuWarningMessageBorder guifg=#f87070 ctermfg=203 cterm=NONE
+hi CodeActionMenuWarningMessageText guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi NvimTreeEmptyFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocTreeTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
+hi def link CocNotificationInfo CocInfoFloat
+hi CocInfoFloat guibg=#0a0d11 guifg=#7ab0df ctermfg=110 ctermbg=233 cterm=NONE
+hi def link CocNotificationWarning CocWarningFloat
+hi CocWarningFloat guibg=#0a0d11 guifg=#ffe59e ctermfg=223 ctermbg=233 cterm=NONE
+hi def link CocNotificationError CocErrorFloat
+hi CocErrorFloat guibg=#0a0d11 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
+hi CocNotificationKey guifg=#525559 ctermfg=240 cterm=NONE
+hi CocNotificationButton guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
+hi CocNotificationProgress guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocMarkdownCode guifg=#63b3ad ctermfg=73 cterm=NONE
+hi CocMarkdownHeader guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
+hi def link NvimDapViewConstant Constant
+hi def link NvimDapViewFunction Function
+hi def link NvimDapViewFloat Float
+hi def link NvimDapViewNumber Number
+hi def link NvimDapViewString String
+hi def link NvimDapViewBoolean Boolean
+hi NvimDapViewWatchUpdated guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NvimDapViewWatchError guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi NvimDapViewWatchMore guifg=#525559 ctermfg=240 cterm=NONE
+hi NvimDapViewWatchExpr guifg=#79dcaa ctermfg=115 cterm=NONE
+hi NvimDapViewControlDisconnect guifg=#f87070 ctermfg=203 cterm=NONE
+hi NvimDapViewControlTerminate guifg=#f87070 ctermfg=203 cterm=NONE
+hi NvimDapViewControlRunLast guifg=#37d99e ctermfg=79 cterm=NONE
+hi NvimDapViewControlStepBack guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NvimDapViewControlStepOver guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NvimDapViewControlStepOut guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NvimDapViewControlStepInto guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NvimDapViewControlPause guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NvimDapViewControlPlay guifg=#37d99e ctermfg=79 cterm=NONE
+hi NvimDapViewControlNC guifg=#45484c ctermfg=238 cterm=NONE
+hi NvimDapViewTabSelected guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
+hi NvimDapViewTab guifg=#525559 guibg=#191d22 ctermfg=240 ctermbg=234 cterm=NONE
+hi NvimDapViewExceptionFilterDisabled guifg=#525559 ctermfg=240 cterm=NONE
+hi NvimDapViewExceptionFilterEnabled guifg=#37d99e ctermfg=79 cterm=NONE
+hi NvimDapViewFrameCurrent guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NvimDapViewThreadError guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi NvimDapViewThreadStopped guifg=#50cad2 ctermfg=80 cterm=NONE
+hi NvimDapViewThread guifg=#37d99e ctermfg=79 cterm=NONE
+hi NvimDapViewSeparator guifg=#525559 ctermfg=240 cterm=NONE
+hi NvimDapViewLineNumber guifg=#50cad2 ctermfg=80 cterm=NONE
+hi NvimDapViewFileName guifg=#79dcaa ctermfg=115 cterm=NONE
+hi NvimDapViewMissingData guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi DapUIUnavailableNC guifg=#45484c ctermfg=238 cterm=NONE
+hi DapUIUnavailable guifg=#45484c ctermfg=238 cterm=NONE
+hi DapUIRestartNC guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIRestart guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIPlayPauseNC guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIPlayPause guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIStopNC guifg=#f87070 ctermfg=203 cterm=NONE
+hi DapUIStop guifg=#f87070 ctermfg=203 cterm=NONE
+hi DapUIStepOutNC guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepOut guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepBackNC guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepBack guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepIntoNC guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepInto guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepOverNC guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIStepOver guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DapUIBreakpointsDisabledLine guifg=#4a4d51 ctermfg=239 cterm=NONE
+hi DapUIBreakPointsCurrentLine guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
+hi DapUIBreakpointsInfo guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIBreakpointsPath guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DapUIWatchesError guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi DapUIWatchesValue guifg=#37d99e ctermfg=79 cterm=NONE
+hi DapUIWatchesEmpty guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi DapUIFloatBorder guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DapUILineNumber guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DapUISource cterm=NONE
+hi DapUIStoppedThread guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DapUIThread guifg=#37d99e ctermfg=79 cterm=NONE
 hi CocInfoSign guifg=#7ab0df ctermfg=110 cterm=NONE
 hi CocWarningSign guifg=#ffe59e ctermfg=223 cterm=NONE
 hi CocErrorSign guifg=#f87070 ctermfg=203 cterm=NONE
 hi CocHintVirtualText guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CocInfoVirtualText guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CocWarningVirtualText guifg=#ffe59e ctermfg=223 cterm=NONE
+hi DAPUIType guifg=#b68acb ctermfg=140 cterm=NONE
+hi def link TodoSignFix TodoFgFix
 hi CocErrorVirtualText guifg=#f87070 ctermfg=203 cterm=NONE
 hi CocUnusedHighlight guifg=#45484c ctermfg=238 cterm=NONE
 hi CocDeprecatedHighlight guifg=#45484c ctermfg=238 cterm=NONE gui=strikethrough
-hi CocHintHighlight guifg=#63b3ad guisp=#63b3ad ctermfg=73 cterm=NONE gui=undercurl
-hi CocInfoHighlight guifg=#7ab0df guisp=#7ab0df ctermfg=110 cterm=NONE gui=undercurl
-hi CocWarningHighlight guifg=#ffe59e guisp=#ffe59e ctermfg=223 cterm=NONE gui=undercurl
-hi CocErrorHighlight guifg=#f87070 guisp=#f87070 ctermfg=203 cterm=NONE gui=undercurl
+hi CocHintHighlight guisp=#63b3ad guifg=#63b3ad ctermfg=73 cterm=NONE gui=undercurl
+hi TodoBgPerf guibg=#c397d8 guifg=#191d22 ctermfg=234 ctermbg=140 cterm=NONE gui=bold
+hi CocInfoHighlight guisp=#7ab0df guifg=#7ab0df ctermfg=110 cterm=NONE gui=undercurl
+hi CocWarningHighlight guisp=#ffe59e guifg=#ffe59e ctermfg=223 cterm=NONE gui=undercurl
+hi WarningMsg guifg=#37d99e ctermfg=79 cterm=NONE
 hi GitSignsCurrentLineBlame guifg=#525559 ctermfg=240 cterm=NONE
 hi GitSignsDeletePreview guibg=#f87070 ctermbg=203 cterm=NONE
 hi GitSignsChangePreview guibg=#7ab0df ctermbg=110 cterm=NONE
 hi GitSignsAddPreview guibg=#37d99e ctermbg=79 cterm=NONE
 hi GitSignsDeleteNr guifg=#f87070 ctermfg=203 cterm=NONE
-hi GitSignsChangeNr guifg=#7ab0df ctermfg=110 cterm=NONE
 hi GitSignsAddNr guifg=#37d99e ctermfg=79 cterm=NONE
 hi GitSignsDeleteLn guifg=#f87070 ctermfg=203 cterm=NONE
-hi GitSignsChangeLn guifg=#7ab0df ctermfg=110 cterm=NONE
 hi GitSignsAddLn guifg=#37d99e ctermfg=79 cterm=NONE
-hi GitSignsDelete guifg=#f87070 ctermfg=203 cterm=NONE
 hi GitSignsChange guifg=#7ab0df ctermfg=110 cterm=NONE
-hi GitSignsAdd guifg=#37d99e ctermfg=79 cterm=NONE
+hi NoiceFormatProgressDone guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
+hi NoiceConfirmBorder guifg=#37d99e ctermfg=79 cterm=NONE
+hi NoiceConfirm guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NoiceMini guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NoiceSplitBorder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NoiceSplit guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NoicePopupBorder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NoicePopup guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NoiceCmdlinePopupBorderSearch guifg=#ffe59e ctermfg=223 cterm=NONE
+hi NoiceCmdlinePopupTitle guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NoiceCmdlinePopupBorder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NoiceCmdlinePopup guibg=#0a0d11 ctermbg=233 cterm=NONE
 hi def link GrugFarResultsMatchRemoved DiffDelete
 hi def link GrugFarResultsMatchAdded DiffAdd
-hi def link GrugFarResultsMatch DiffChange
+hi TroubleIndent cterm=NONE
+hi TroubleLocation guifg=#f87070 ctermfg=203 cterm=NONE
+hi TroubleNormal guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi def link TroubleFoldIcon Folded
+hi TroubleFile guifg=#ffe59e ctermfg=223 cterm=NONE
+hi TroubleText guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi def link TroubleSignError DiagnosticError
+hi TroubleTextError guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi TroubleError guifg=#f87070 ctermfg=203 cterm=NONE
+hi TroubleInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi TroubleTextInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi NotifyTRACETitle guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NotifyTRACEIcon guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NotifyTRACEBorder guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NotifyDEBUGTitle guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NotifyDEBUGIcon guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NotifyDEBUGBorder guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NotifyINFOTitle guifg=#37d99e ctermfg=79 cterm=NONE
 hi HopNextKey2 guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
 hi HopNextKey1 guifg=#50cad2 ctermfg=80 cterm=NONE gui=bold
-hi HopNextKey guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
-hi FlashLabel guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
-hi FlashCurrent guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
-hi FlashMatch guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
+hi NotifyWARNTitle guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NotifyWARNIcon guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NotifyWARNBorder guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NotifyERRORTitle guifg=#f87070 ctermfg=203 cterm=NONE
+hi NotifyERRORIcon guifg=#f87070 ctermfg=203 cterm=NONE
+hi NotifyERRORBorder guifg=#f87070 ctermfg=203 cterm=NONE
+hi LeapMatch guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
+hi LeapLabel guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
 hi LeapBackdrop guifg=#45484c ctermfg=238 cterm=NONE
-hi Operator guifg=#c5c5c6 guisp=NONE ctermfg=251 cterm=NONE
+hi NvShTitle guibg=#33363a guifg=#d4d4d5 ctermfg=188 ctermbg=237 cterm=NONE
+hi WhichKeyGroup guifg=#37d99e ctermfg=79 cterm=NONE
+hi WhichKeySeparator guifg=#525559 ctermfg=240 cterm=NONE
+hi SagaNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi SagaBorder guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi RainbowDelimiterCyan guifg=#50cad2 ctermfg=80 cterm=NONE
+hi RainbowDelimiterViolet guifg=#c397d8 ctermfg=140 cterm=NONE
+hi RainbowDelimiterGreen guifg=#37d99e ctermfg=79 cterm=NONE
+hi RainbowDelimiterOrange guifg=#f0a988 ctermfg=216 cterm=NONE
+hi RainbowDelimiterBlue guifg=#7ab0df ctermfg=110 cterm=NONE
+hi RainbowDelimiterYellow guifg=#ffe59e ctermfg=223 cterm=NONE
+hi RainbowDelimiterRed guifg=#f87070 ctermfg=203 cterm=NONE
+hi Number guifg=#f0a988 ctermfg=216 cterm=NONE
+hi Title guifg=#5fb0fc ctermfg=75 cterm=NONE
 hi SnacksZenIcon guifg=#7ab0df ctermfg=110 cterm=NONE
 hi SnacksZenBackdrop guibg=#101317 ctermbg=233 cterm=NONE
-hi Constant guifg=#f0a988 ctermfg=216 cterm=NONE
+hi SnacksStatusColumnMark guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
+hi SnacksPickerPathHidden guifg=#3e4145 ctermfg=238 cterm=NONE
+hi SnacksPickerPathIgnored guifg=#3e4145 ctermfg=238 cterm=NONE
+hi SnacksPickerRow guifg=#45484c ctermfg=238 cterm=NONE
+hi SnacksPickerDelim guifg=#45484c ctermfg=238 cterm=NONE
+hi SnacksPickerDir guifg=#525559 ctermfg=240 cterm=NONE
+hi SnacksPickerDirectory guifg=#7ab0df ctermfg=110 cterm=NONE
 hi SnacksPickerCmd guifg=#50cad2 ctermfg=80 cterm=NONE
 hi SnacksPickerDesc guifg=#525559 ctermfg=240 cterm=NONE
 hi SnacksPickerComment guifg=#525559 ctermfg=240 cterm=NONE
@@ -426,9 +459,6 @@ hi SnacksPickerLink guifg=#63b3ad ctermfg=73 cterm=NONE
 hi SnacksPickerDimmed guifg=#3e4145 ctermfg=238 cterm=NONE
 hi SnacksPickerSearch guifg=#f87070 ctermfg=203 cterm=NONE
 hi SnacksPickerSpinner guifg=#7ab0df ctermfg=110 cterm=NONE
-hi Keyword guifg=#c397d8 ctermfg=140 cterm=NONE
-hi SnacksPickerDirectory guifg=#7ab0df ctermfg=110 cterm=NONE
-hi SnacksPickerIcon guifg=#7ab0df ctermfg=110 cterm=NONE
 hi SnacksPickerGitStatus guifg=#c397d8 ctermfg=140 cterm=NONE
 hi SnacksPickerCode guibg=#191d22 ctermbg=234 cterm=NONE
 hi SnacksPickerCursorLine guibg=#191d22 ctermbg=234 cterm=NONE
@@ -438,12 +468,12 @@ hi SnacksPickerTotals guifg=#45484c ctermfg=238 cterm=NONE
 hi SnacksPickerUnselected guifg=#3e4145 ctermfg=238 cterm=NONE
 hi SnacksPickerSelected guifg=#f0a988 ctermfg=216 cterm=NONE
 hi SnacksPickerSpecial guifg=#c397d8 ctermfg=140 cterm=NONE
-hi SnacksPickerMatch guifg=#7ab0df guibg=#212428 ctermfg=110 ctermbg=235 cterm=NONE
-hi Variable guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi SnacksPickerListTitle guibg=#f87070 guifg=#45484c ctermfg=238 ctermbg=203 cterm=NONE
-hi SnacksPickerPreviewTitle guibg=#7ab0df guifg=#45484c ctermfg=238 ctermbg=110 cterm=NONE
-hi SnacksPickerTitle guibg=#37d99e guifg=#45484c ctermfg=238 ctermbg=79 cterm=NONE
-hi Function guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi SnacksPickerMatch guibg=#212428 guifg=#7ab0df ctermfg=110 ctermbg=235 cterm=NONE
+hi SnacksPickerFooter guifg=#45484c ctermfg=238 cterm=NONE
+hi SnacksPickerListTitle guifg=#45484c guibg=#f87070 ctermfg=238 ctermbg=203 cterm=NONE
+hi SnacksPickerPreviewTitle guifg=#45484c guibg=#7ab0df ctermfg=238 ctermbg=110 cterm=NONE
+hi SnacksPickerTitle guifg=#45484c guibg=#37d99e ctermfg=238 ctermbg=79 cterm=NONE
+hi SnacksPickerBorder guifg=#33363a ctermfg=237 cterm=NONE
 hi SnacksIndent8 guifg=#f0a988 ctermfg=216 cterm=NONE
 hi SnacksIndent7 guifg=#63b3ad ctermfg=73 cterm=NONE
 hi SnacksIndent6 guifg=#c397d8 ctermfg=140 cterm=NONE
@@ -452,6 +482,54 @@ hi SnacksIndent4 guifg=#f0a988 ctermfg=216 cterm=NONE
 hi SnacksIndent3 guifg=#63b3ad ctermfg=73 cterm=NONE
 hi SnacksIndent2 guifg=#c397d8 ctermfg=140 cterm=NONE
 hi SnacksIndent1 guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CursorLine guibg=#191d22 ctermbg=234 cterm=NONE
+hi def link TodoSignWarn TodoFgWarn
+hi TodoFgWarn guifg=#f0a988 ctermfg=216 cterm=NONE
+hi def link TodoSignTodo TodoFgTodo
+hi TodoFgTodo guifg=#ffe59e ctermfg=223 cterm=NONE
+hi def link TodoSignTest TodoFgTest
+hi TodoFgTest guifg=#c397d8 ctermfg=140 cterm=NONE
+hi def link TodoSignPerf TodoFgPerf
+hi TodoFgPerf guifg=#c397d8 ctermfg=140 cterm=NONE
+hi def link TodoSignNote TodoFgNote
+hi TodoFgNote guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi def link TodoSignHack TodoFgHack
+hi NavicIconsFunction guifg=#5fb0fc guibg=#15191e ctermfg=75 ctermbg=234 cterm=NONE
+hi NavicIconsIdentifier guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsField guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsVariable guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsSnippet guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
+hi NavicIconsText guifg=#e87979 guibg=#15191e ctermfg=174 ctermbg=234 cterm=NONE
+hi NavicIconsStructure guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsType guifg=#e5d487 guibg=#15191e ctermfg=186 ctermbg=234 cterm=NONE
+hi NavicIconsKeyword guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
+hi NavicIconsMethod guifg=#5fb0fc guibg=#15191e ctermfg=75 ctermbg=234 cterm=NONE
+hi NoiceLspProgressSpinner guifg=#c397d8 ctermfg=140 cterm=NONE
+hi TodoBgWarn guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
+hi NavicIconsModule guifg=#e5d487 guibg=#15191e ctermfg=186 ctermbg=234 cterm=NONE
+hi NavicIconsProperty guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi BlinkCmpMenuBorder guifg=#45484c ctermfg=238 cterm=NONE
+hi BlinkCmpMenu guibg=#101317 ctermbg=233 cterm=NONE
+hi NoiceFormatConfirmDefault guibg=#212428 ctermbg=235 cterm=NONE
+hi NotifyINFOBorder guifg=#37d99e ctermfg=79 cterm=NONE
+hi NavicIconsConstant guifg=#f0a988 guibg=#15191e ctermfg=216 ctermbg=234 cterm=NONE
+hi DapStoppedLine guibg=#212428 ctermbg=235 cterm=NONE
+hi TelescopeSelection guibg=#191d22 guifg=#d4d4d5 ctermfg=188 ctermbg=234 cterm=NONE
+hi TelescopeMatching guibg=#212428 guifg=#7ab0df ctermfg=110 ctermbg=235 cterm=NONE
+hi NoiceLspProgressClient guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi TodoBgTodo guibg=#ffe59e guifg=#191d22 ctermfg=234 ctermbg=223 cterm=NONE gui=bold
+hi IlluminatedWordRead cterm=NONE gui=bold,reverse
+hi IlluminatedWordWrite cterm=NONE gui=bold,reverse
+hi TroubleCode guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi TroubleWarning guifg=#f0a988 ctermfg=216 cterm=NONE
+hi def link TroubleSignWarning DiagnosticWarn
+hi TroubleTextWarning guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi TroublePreview guifg=#f87070 ctermfg=203 cterm=NONE
+hi TroubleSource guifg=#50cad2 ctermfg=80 cterm=NONE
+hi def link TroubleSignHint DiagnosticHint
+hi CocHintSign guifg=#63b3ad ctermfg=73 cterm=NONE
+hi CocHintFloat guibg=#0a0d11 guifg=#63b3ad ctermfg=73 ctermbg=233 cterm=NONE
+hi def link CocInlayHintParameter CocInlayHint
 hi SnacksIndentChunk guifg=#63b3ad ctermfg=73 cterm=NONE
 hi SnacksIndentScope guifg=#7ab0df ctermfg=110 cterm=NONE
 hi SnacksIndent guifg=#30303a ctermfg=236 cterm=NONE
@@ -491,49 +569,400 @@ hi SnacksNotifierDebug guifg=#525559 ctermfg=240 cterm=NONE
 hi SnacksNotifierInfo guifg=#37d99e ctermfg=79 cterm=NONE
 hi SnacksNotifierWarn guifg=#ffe59e ctermfg=223 cterm=NONE
 hi SnacksNotifierError guifg=#f87070 ctermfg=203 cterm=NONE
-hi CmpBorder guifg=#45484c ctermfg=238 cterm=NONE
+hi CocInlayHint guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi def link CocInlayHintType CocInlayHint
+hi def link CocHighlightRead CocHighlightText
+hi def link CocHighlightWrite CocHighlightText
+hi CocSelectedText guifg=#d4d4d5 guibg=#292c30 ctermfg=188 ctermbg=236 cterm=NONE
+hi CocCursorRange guibg=#33363a ctermbg=237 cterm=NONE
+hi def link CocLinkedEditing CocCursorRange
+hi CocHoverRange guibg=#33363a ctermbg=237 cterm=NONE
+hi CocHighlightText guibg=#33363a ctermbg=237 cterm=NONE
+hi def link CocSelectedRange CocHighlightText
+hi CocCodeLens guifg=#525559 ctermfg=240 cterm=NONE
+hi TelescopePromptNormal guifg=#d4d4d5 guibg=#191d22 ctermfg=188 ctermbg=234 cterm=NONE
+hi TelescopePromptBorder guifg=#191d22 guibg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
+hi TelescopeBorder guifg=#0a0d11 guibg=#0a0d11 ctermfg=233 ctermbg=233 cterm=NONE
+hi TelescopeNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi TelescopePreviewTitle guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
+hi TelescopeResultsTitle guifg=#0a0d11 guibg=#0a0d11 ctermfg=233 ctermbg=233 cterm=NONE
+hi TelescopeResultsDiffDelete guifg=#f87070 ctermfg=203 cterm=NONE
+hi TelescopeResultsDiffChange guifg=#ffe59e ctermfg=223 cterm=NONE
+hi TelescopeResultsDiffAdd guifg=#37d99e ctermfg=79 cterm=NONE
+hi TelescopePromptTitle guifg=#101317 guibg=#f87070 ctermfg=233 ctermbg=203 cterm=NONE
+hi CocMenuSel guifg=#101317 guibg=#3bdda2 ctermfg=233 ctermbg=79 cterm=NONE
+hi CocFloatThumb guibg=#3e4145 ctermbg=238 cterm=NONE
+hi CocFloatSbar guibg=#212428 ctermbg=235 cterm=NONE
+hi CocFloatBorder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocFloatActive guibg=#212428 ctermbg=235 cterm=NONE
+hi CocFloatDividingLine guifg=#30303a ctermfg=236 cterm=NONE
+hi CocPumSearch guifg=#f0a988 ctermfg=216 cterm=NONE
+hi CocFloating guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi CocPumShortcut guifg=#45484c ctermfg=238 cterm=NONE
+hi CocPumDeprecated guifg=#45484c ctermfg=238 cterm=NONE gui=strikethrough
+hi CocPumVirtualText guifg=#45484c ctermfg=238 cterm=NONE
+hi CocVirtualText guifg=#45484c ctermfg=238 cterm=NONE
+hi def link CocInputBoxVirtualText CocVirtualText
+hi CocInlineVirtualText guifg=#45484c ctermfg=238 cterm=NONE
+hi CocInlineAnnotation guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocLink guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
+hi CocSearch guifg=#f0a988 ctermfg=216 cterm=NONE
+hi def link CocListSearch CocSearch
+hi CocListMode guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocListPath guifg=#525559 ctermfg=240 cterm=NONE
+hi CocListLine guibg=#191d22 ctermbg=234 cterm=NONE
+hi DevIconrpm guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DevIconrb guifg=#ffa7a7 ctermfg=217 cterm=NONE
+hi DevIconttf guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconts guifg=#63b3ad ctermfg=73 cterm=NONE
+hi DevIcontoml guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconpy guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DevIconpng guifg=#b68acb ctermfg=140 cterm=NONE
+hi DevIconout guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconmp4 guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconmp3 guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DevIconlua guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconlock guifg=#f87070 ctermfg=203 cterm=NONE
+hi DevIconkt guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DevIconjs guifg=#ffeda6 ctermfg=229 cterm=NONE
+hi DevIconjpg guifg=#b68acb ctermfg=140 cterm=NONE
+hi DevIconjpeg guifg=#b68acb ctermfg=140 cterm=NONE
+hi DevIconhtml guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi DevIconDockerfile guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DevIcondeb guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DevIconcss guifg=#7ab0df ctermfg=110 cterm=NONE
+hi DevIconc guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocListFgBlack guifg=#191d22 ctermfg=234 cterm=NONE
+hi FlashMatch guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
+hi FlashCurrent guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
+hi FlashLabel guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
+hi CocListFgBlue guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocListFgMagenta guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocListFgCyan guifg=#50cad2 ctermfg=80 cterm=NONE
+hi CocListFgWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CocListFgGrey guifg=#45484c ctermfg=238 cterm=NONE
+hi CocListBgBlack guibg=#191d22 ctermbg=234 cterm=NONE
+hi CocListBgRed guibg=#f87070 ctermbg=203 cterm=NONE
+hi CocListBgGreen guibg=#37d99e ctermbg=79 cterm=NONE
+hi CocListBgYellow guibg=#ffe59e ctermbg=223 cterm=NONE
+hi CocListBgBlue guibg=#7ab0df ctermbg=110 cterm=NONE
+hi CocListBgMagenta guibg=#c397d8 ctermbg=140 cterm=NONE
+hi CocListBgCyan guibg=#50cad2 ctermbg=80 cterm=NONE
+hi CocListBgWhite guibg=#d4d4d5 ctermbg=188 cterm=NONE
+hi DiffviewDiffAddAsDelete guibg=#322024 ctermbg=235 cterm=NONE
+hi DiffviewDiffDeleteDim guibg=#322024 ctermbg=235 cterm=NONE
+hi CocListBgGrey guibg=#3e4145 ctermbg=238 cterm=NONE
+hi CocBold cterm=NONE gui=bold
+hi CocItalic cterm=NONE gui=italic
+hi CocStrikeThrough cterm=NONE gui=strikethrough
+hi CocUnderline guisp=#45484c cterm=NONE gui=underline
+hi CocDisabled guifg=#45484c ctermfg=238 cterm=NONE
+hi CocFadeOut guifg=#3e4145 ctermfg=238 cterm=NONE
+hi CocMarkdownLink guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline
+hi def link GrugFarResultsMatch DiffChange
+hi FloatBorder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi LineNr guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NvimTreeEndOfBuffer guifg=#0a0d11 ctermfg=233 cterm=NONE
+hi NvimTreeFolderIcon guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi NvimTreeFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi NvimTreeFolderArrowOpen guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi NvimTreeFolderArrowClosed guifg=#45484c ctermfg=238 cterm=NONE
+hi NvimTreeGitDirty guifg=#f87070 ctermfg=203 cterm=NONE
+hi NvimTreeIndentMarker guifg=#2e2e38 ctermfg=236 cterm=NONE
+hi NvimTreeNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NvimTreeNormalNC guibg=#0a0d11 ctermbg=233 cterm=NONE
+hi NvimTreeOpenedFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi NvimTreeGitIgnored guifg=#525559 ctermfg=240 cterm=NONE
+hi def link NvimTreeDiagnosticErrorFileHL DiagnosticError
+hi TroubleCount guifg=#ffa7a7 ctermfg=217 cterm=NONE
+hi Function guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi DAPUIValue guifg=#50cad2 ctermfg=80 cterm=NONE
+hi EdgyWinBarInactive guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi EdgyWinBar guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi EdgyNormal guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DAPUIVariable guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DapUIModifiedValue guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DapUIDecoration guifg=#50cad2 ctermfg=80 cterm=NONE
+hi HopNextKey guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
+hi TodoBgNote guibg=#d4d4d5 guifg=#191d22 ctermfg=234 ctermbg=188 cterm=NONE gui=bold
+hi TodoBgHack guibg=#f0a988 guifg=#191d22 ctermfg=234 ctermbg=216 cterm=NONE gui=bold
+hi BufferLineError guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi GitSignsChangeNr guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NeogitFloatHeaderHighlight guibg=#191d22 guifg=#50cad2 ctermfg=80 ctermbg=234 cterm=NONE gui=bold
+hi NeogitFloatHeader guibg=#101317 ctermbg=233 cterm=NONE gui=bold
+hi NeogitTagDistance guifg=#50cad2 ctermfg=80 cterm=NONE
+hi NeogitTagName guifg=#ffe59e ctermfg=223 cterm=NONE
+hi NeogitSectionHeader guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
+hi NeogitChangeNewFile guifg=#37d99e ctermfg=79 cterm=NONE gui=bold,italic
+hi NeogitChangeUnmerged guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold,italic
+hi NeogitChangeCopied guifg=#50cad2 ctermfg=80 cterm=NONE gui=bold,italic
+hi NeogitChangeUpdated guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold,italic
+hi NeogitChangeRenamed guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold,italic
+hi NeogitChangeDeleted guifg=#f87070 ctermfg=203 cterm=NONE gui=bold,italic
+hi NeogitChangeAdded guifg=#37d99e guibg=#19bb80 ctermfg=79 ctermbg=36 cterm=NONE gui=bold,italic
+hi NeogitChangeModified guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold,italic
+hi NeogitUnpulledFrom guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
+hi NeogitUnpushedTo guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
+hi NeogitUnmergedInto guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
+hi NeogitRemote guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
+hi NeogitBranchHead guifg=#7ab0df ctermfg=110 cterm=NONE gui=underline,bold
+hi NeogitBranch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi NeogitDiffHeaderHighlight guibg=#292c30 guifg=#f0a988 ctermfg=216 ctermbg=236 cterm=NONE gui=bold
+hi NeogitDiffHeader guibg=#292c30 guifg=#7ab0df ctermfg=110 ctermbg=236 cterm=NONE gui=bold
+hi NeogitCommitViewHeader guibg=#50cad2 guifg=#101317 ctermfg=233 ctermbg=80 cterm=NONE
+hi NeogitFilePath guifg=#7ab0df ctermfg=110 cterm=NONE gui=italic
+hi NeogitPopupActionKey guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NeogitPopupConfigKey guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NeogitPopupOptionKey guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NeogitPopupSwitchKey guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NeogitDiffDeleteCursor guibg=#212428 guifg=#f87070 ctermfg=203 ctermbg=235 cterm=NONE
+hi NeogitDiffDeleteHighlight guibg=#c94141 guifg=#f87070 ctermfg=203 ctermbg=167 cterm=NONE
+hi NeogitDiffDelete guibg=#c63e3e guifg=#f87070 ctermfg=203 ctermbg=167 cterm=NONE
+hi NeogitDiffDeletions guifg=#f87070 ctermfg=203 cterm=NONE
+hi NeogitDiffAddCursor guibg=#212428 guifg=#37d99e ctermfg=79 ctermbg=235 cterm=NONE
+hi NeogitDiffAddHighlight guifg=#37d99e guibg=#08aa6f ctermfg=79 ctermbg=35 cterm=NONE
+hi NeogitDiffAdd guifg=#37d99e guibg=#05a76c ctermfg=79 ctermbg=35 cterm=NONE
+hi NeogitDiffAdditions guifg=#37d99e ctermfg=79 cterm=NONE
+hi NeogitDiffContextCursor guibg=#212428 ctermbg=235 cterm=NONE
+hi NeogitDiffContextHighlight guibg=#191d22 ctermbg=234 cterm=NONE
+hi NeogitDiffContext guibg=#212428 ctermbg=235 cterm=NONE
+hi NeogitHunkHeaderCursor guibg=#b68acb guifg=#101317 ctermfg=233 ctermbg=140 cterm=NONE gui=bold
+hi NeogitHunkHeaderHighlight guibg=#b68acb guifg=#101317 ctermfg=233 ctermbg=140 cterm=NONE gui=bold
+hi NeogitHunkHeader guibg=#3e4145 guifg=#101317 ctermfg=233 ctermbg=238 cterm=NONE gui=bold
+hi NeogitHunkMergeHeaderCursor guibg=#50cad2 guifg=#101317 ctermfg=233 ctermbg=80 cterm=NONE gui=bold
+hi NeogitHunkMergeHeaderHighlight guibg=#50cad2 guifg=#101317 ctermfg=233 ctermbg=80 cterm=NONE gui=bold
+hi NeogitHunkMergeHeader guibg=#3e4145 guifg=#191d22 ctermfg=234 ctermbg=238 cterm=NONE gui=bold
+hi NeogitGraphBoldGray guifg=#3e4145 ctermfg=238 cterm=NONE gui=bold
+hi NeogitGraphBoldPurple guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
+hi NeogitGraphBoldBlue guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
+hi BlinkCmpKindCodeium guifg=#79dcaa ctermfg=115 cterm=NONE
+hi NeogitGraphBoldGreen guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
+hi NeogitGraphBoldYellow guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
+hi NeogitGraphBoldWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE gui=bold
+hi NeogitGraphBoldRed guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
+hi NeogitGraphBoldOrange guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
+hi NeogitGraphOrange guifg=#f0a988 ctermfg=216 cterm=NONE
+hi NeogitGraphGray guifg=#3e4145 ctermfg=238 cterm=NONE
+hi NeogitGraphPurple guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NeogitGraphBlue guifg=#7ab0df ctermfg=110 cterm=NONE
+hi NeogitGraphCyan guifg=#50cad2 ctermfg=80 cterm=NONE
+hi NeogitGraphGreen guifg=#37d99e ctermfg=79 cterm=NONE
+hi NeogitGraphYellow guifg=#ffe59e ctermfg=223 cterm=NONE
+hi NeogitGraphWhite guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi NeogitGraphRed guifg=#f87070 ctermfg=203 cterm=NONE
+hi NeogitGraphAuthor guifg=#f0a988 ctermfg=216 cterm=NONE
+hi GitSignsChangeLn guifg=#7ab0df ctermfg=110 cterm=NONE
+hi GitSignsDelete guifg=#f87070 ctermfg=203 cterm=NONE
+hi GitSignsAdd guifg=#37d99e ctermfg=79 cterm=NONE
+hi NeogitGraphBoldCyan guifg=#50cad2 ctermfg=80 cterm=NONE gui=bold
+hi CocSymbolClass guifg=#63b3ad ctermfg=73 cterm=NONE
+hi CocSymbolEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSymbolStruct guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSymbolEvent guifg=#ffe59e ctermfg=223 cterm=NONE
+hi RenderMarkdownH6Bg guibg=#272125 ctermbg=235 cterm=NONE
+hi RenderMarkdownH5Bg guibg=#21202a ctermbg=235 cterm=NONE
+hi RenderMarkdownH4Bg guibg=#182326 ctermbg=234 cterm=NONE
+hi RenderMarkdownH3Bg guibg=#132624 ctermbg=234 cterm=NONE
+hi RenderMarkdownH2Bg guibg=#272824 ctermbg=235 cterm=NONE
+hi RenderMarkdownH1Bg guibg=#1a222b ctermbg=235 cterm=NONE
+hi CocPumDetail guifg=#525559 ctermfg=240 cterm=NONE
+hi CocSymbolMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocCursorTransparent cterm=NONE
+hi CocSnippetVisual guibg=#33363a ctermbg=237 cterm=NONE
+hi CocSemModDeprecated guifg=#45484c ctermfg=238 cterm=NONE gui=strikethrough
+hi CocSymbolFile guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocSemTypeDecorator guifg=#50cad2 ctermfg=80 cterm=NONE
+hi CocSemTypeOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi CocSemTypeRegexp guifg=#e87979 ctermfg=174 cterm=NONE
+hi CocSemTypeBoolean guifg=#50cad2 ctermfg=80 cterm=NONE
+hi CocSemTypeNumber guifg=#f0a988 ctermfg=216 cterm=NONE
+hi CocSemTypeString guifg=#e87979 ctermfg=174 cterm=NONE
+hi CocSemTypeComment guifg=#525559 ctermfg=240 cterm=NONE
+hi CocSemTypeModifier guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSemTypeKeyword guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSemTypeMacro guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CocSemTypeMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocSemTypeFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocSemTypeEvent guifg=#ffe59e ctermfg=223 cterm=NONE
+hi CocSemTypeEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSemTypeProperty guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSemTypeVariable guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSemTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSemTypeTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSemTypeStruct guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSemTypeInterface guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSemTypeEnum guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocSemTypeClass guifg=#63b3ad ctermfg=73 cterm=NONE
+hi CocSemTypeType guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CocSemTypeNamespace guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocSymbolDefault guifg=#525559 ctermfg=240 cterm=NONE
+hi CocTreeSelected guibg=#191d22 ctermbg=234 cterm=NONE
+hi CocTreeOpenClose cterm=NONE gui=bold
+hi CocTreeDescription guifg=#525559 ctermfg=240 cterm=NONE
+hi CocSymbolProperty guifg=#37d99e ctermfg=79 cterm=NONE
+hi def link CocSymbolText CocSymbolDefault
+hi def link CocSymbolUnit CocSymbolDefault
+hi def link CocSymbolValue CocSymbolDefault
+hi CocSymbolSnippet guifg=#f87070 ctermfg=203 cterm=NONE
+hi CocSymbolColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi CocSymbolReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi CocSymbolFolder guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocSymbolModule guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CocSymbolPackage guifg=#e5d487 ctermfg=186 cterm=NONE
+hi CocSymbolField guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSymbolConstructor guifg=#63b3ad ctermfg=73 cterm=NONE
+hi CocSymbolEnum guifg=#7ab0df ctermfg=110 cterm=NONE
+hi CocSymbolInterface guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocSymbolFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi CocSymbolVariable guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocSymbolConstant guifg=#f0a988 ctermfg=216 cterm=NONE
+hi CocSymbolString guifg=#e87979 ctermfg=174 cterm=NONE
+hi CocSymbolNumber guifg=#f0a988 ctermfg=216 cterm=NONE
+hi CocSymbolBoolean guifg=#50cad2 ctermfg=80 cterm=NONE
+hi def link CocSymbolArray CocSymbolDefault
+hi def link CocSymbolObject CocSymbolDefault
+hi CocSymbolNamespace guifg=#5fb0fc ctermfg=75 cterm=NONE
+hi def link CocPumMenu CocFloating
+hi CmpItemKindCodeium guifg=#79dcaa ctermfg=115 cterm=NONE
+hi CocInfoVirtualText guifg=#7ab0df ctermfg=110 cterm=NONE
+hi Todo guibg=#1a1d21 guifg=#e5d487 ctermfg=186 ctermbg=234 cterm=NONE
+hi Tag guifg=#e5d487 ctermfg=186 cterm=NONE
 hi CmpDocBorder guifg=#45484c ctermfg=238 cterm=NONE
-hi CmpDoc guibg=#101317 ctermbg=233 cterm=NONE
-hi CmpPmenu guibg=#101317 ctermbg=233 cterm=NONE
-hi WhichKeyValue guifg=#37d99e ctermfg=79 cterm=NONE
-hi WhichKeyGroup guifg=#37d99e ctermfg=79 cterm=NONE
-hi WhichKeyDesc guifg=#f87070 ctermfg=203 cterm=NONE
-hi CmpItemKindCopilot guifg=#37d99e ctermfg=79 cterm=NONE
-hi WhichKey guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CmpItemKindOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi CmpItemKindEvent guifg=#ffe59e ctermfg=223 cterm=NONE
-hi CmpItemKindValue guifg=#50cad2 ctermfg=80 cterm=NONE
-hi CmpItemKindStruct guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CmpItemKindEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CmpItemKindReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi CmpItemKindColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CmpItemKindInterface guifg=#37d99e ctermfg=79 cterm=NONE
-hi CmpItemKindFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi Constant guifg=#f0a988 ctermfg=216 cterm=NONE
+hi Type guisp=NONE guifg=#e5d487 ctermfg=186 cterm=NONE
+hi Keyword guifg=#c397d8 ctermfg=140 cterm=NONE
+hi String guifg=#e87979 ctermfg=174 cterm=NONE
+hi Structure guifg=#c397d8 ctermfg=140 cterm=NONE
+hi CocWarningVirtualText guifg=#ffe59e ctermfg=223 cterm=NONE
+hi CocErrorHighlight guisp=#f87070 guifg=#f87070 ctermfg=203 cterm=NONE gui=undercurl
+hi CocListFgRed guifg=#f87070 ctermfg=203 cterm=NONE
+hi CocListFgGreen guifg=#37d99e ctermfg=79 cterm=NONE
+hi CocListFgYellow guifg=#ffe59e ctermfg=223 cterm=NONE
+hi def link TroubleSignOther DiagnosticNormal
+hi TroubleHint guifg=#f0a988 ctermfg=216 cterm=NONE
+hi TroubleTextHint guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi BufferLineBackground guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi BufferlineIndicatorVisible guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
+hi BufferLineBufferSelected guibg=#101317 guifg=#d4d4d5 ctermfg=188 ctermbg=233 cterm=NONE
+hi TodoFgHack guifg=#f0a988 ctermfg=216 cterm=NONE
+hi TodoBgFix guibg=#f87070 guifg=#191d22 ctermfg=234 ctermbg=203 cterm=NONE gui=bold
+hi TodoFgFix guifg=#f87070 ctermfg=203 cterm=NONE
 hi CmpItemKindClass guifg=#63b3ad ctermfg=73 cterm=NONE
-hi CmpItemKindUnit guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CmpItemKindEnum guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CmpItemKindProperty guifg=#37d99e ctermfg=79 cterm=NONE
-hi CmpItemKindModule guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CmpItemKindFolder guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CmpItemKindConstructor guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CmpItemKindMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CmpItemKindKeyword guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CmpItemKindType guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CmpItemKindStructure guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CmpItemKindText guifg=#e87979 ctermfg=174 cterm=NONE
-hi CmpItemKindSnippet guifg=#f87070 ctermfg=203 cterm=NONE
-hi CmpItemKindVariable guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CmpItemKindField guifg=#37d99e ctermfg=79 cterm=NONE
-hi CmpItemKindIdentifier guifg=#37d99e ctermfg=79 cterm=NONE
-hi CmpItemKindFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CmpItemKindConstant guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CmpItemAbbrMatch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi CmpItemAbbr guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi TelescopeSelection guibg=#191d22 guifg=#d4d4d5 ctermfg=188 ctermbg=234 cterm=NONE
-hi BlinkCmpMenu guibg=#101317 ctermbg=233 cterm=NONE
-hi BlinkCmpMenuBorder guifg=#45484c ctermfg=238 cterm=NONE
+hi CmpItemKindInterface guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi DapBreakPointRejected guifg=#f0a988 ctermfg=216 cterm=NONE
+hi DapLogPoint guifg=#50cad2 ctermfg=80 cterm=NONE
+hi DapStopped guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi Exception guifg=#37d99e ctermfg=79 cterm=NONE
+hi DevIconDefault guifg=#f87070 ctermfg=203 cterm=NONE
+hi BufferLineCloseButton guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi PmenuThumb guibg=#3e4145 ctermbg=238 cterm=NONE
+hi def link MatchParen MatchWord
+hi CocSymbolOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
+hi CocSymbolTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
+hi BufferLineBufferVisible guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
+hi BufferLineFill guibg=#191d22 guifg=#45484c ctermfg=238 ctermbg=234 cterm=NONE
+hi BufferlineIndicatorSelected guibg=#101317 guifg=#101317 ctermfg=233 ctermbg=233 cterm=NONE
+hi BufferLineModified guibg=#191d22 guifg=#f87070 ctermfg=203 ctermbg=234 cterm=NONE
+hi BufferLineModifiedVisible guibg=#191d22 guifg=#f87070 ctermfg=203 ctermbg=234 cterm=NONE
+hi BufferLineModifiedSelected guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE
+hi BufferLineSeparator guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
+hi BufferLineSeparatorVisible guibg=#191d22 guifg=#191d22 ctermfg=234 ctermbg=234 cterm=NONE
+hi CmpItemKindCopilot guifg=#37d99e ctermfg=79 cterm=NONE
+hi CmpItemKindTabNine guifg=#ff8e8e ctermfg=210 cterm=NONE
+hi CmpItemKindSuperMaven guifg=#ffe59e ctermfg=223 cterm=NONE
+hi CmpPmenu guibg=#101317 ctermbg=233 cterm=NONE
+hi CmpBorder guifg=#45484c ctermfg=238 cterm=NONE
+hi NvimInternalError guifg=#f87070 ctermfg=203 cterm=NONE
+hi NERDTreeExecFile guifg=#37d99e ctermfg=79 cterm=NONE
+hi NERDTreeLinkTarget guifg=#63b3ad ctermfg=73 cterm=NONE
+hi NERDTreeHelp guifg=#525559 ctermfg=240 cterm=NONE
+hi NERDTreeBookmark guifg=#c397d8 ctermfg=140 cterm=NONE
+hi NERDTreePart guifg=#30303a ctermfg=236 cterm=NONE
+hi NERDTreePartFile guifg=#30303a ctermfg=236 cterm=NONE
+hi MasonMutedBlock guibg=#212428 guifg=#525559 ctermfg=240 ctermbg=235 cterm=NONE
+hi MasonMuted guifg=#525559 ctermfg=240 cterm=NONE
+hi def link MasonHeaderSecondary MasonHighlightBlock
+hi MasonHighlightBlock guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
+hi def link MasonHighlightBlockBold MasonHighlightBlock
+hi MasonHighlight guifg=#7ab0df ctermfg=110 cterm=NONE
+hi MasonHeader guibg=#f87070 guifg=#101317 ctermfg=233 ctermbg=203 cterm=NONE
+hi TinyInlineInvDiagnosticVirtualTextHint guifg=#3c3447 guibg=#101317 ctermfg=237 ctermbg=233 cterm=NONE
+hi TinyInlineInvDiagnosticVirtualTextInfo guifg=#194438 guibg=#101317 ctermfg=236 ctermbg=233 cterm=NONE
+hi TinyInlineInvDiagnosticVirtualTextWarn guifg=#4b4738 guibg=#101317 ctermfg=238 ctermbg=233 cterm=NONE
+hi TinyInlineInvDiagnosticVirtualTextError guifg=#4a2a2d guibg=#101317 ctermfg=237 ctermbg=233 cterm=NONE
+hi TinyInlineDiagnosticVirtualTextHint guifg=#c397d8 guibg=#3c3447 ctermfg=140 ctermbg=237 cterm=NONE
+hi TinyInlineDiagnosticVirtualTextInfo guifg=#37d99e guibg=#194438 ctermfg=79 ctermbg=236 cterm=NONE
+hi TinyInlineDiagnosticVirtualTextWarn guifg=#ffe59e guibg=#4b4738 ctermfg=223 ctermbg=238 cterm=NONE
+hi TinyInlineDiagnosticVirtualTextError guifg=#f87070 guibg=#4a2a2d ctermfg=203 ctermbg=237 cterm=NONE
+hi TinyInlineDiagnosticVirtualTextArrow guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
+hi CocLoaderHeader guibg=#7ab0df guifg=#101317 ctermfg=233 ctermbg=110 cterm=NONE gui=bold
+hi CocLoaderHeaderSec guibg=#63b3ad guifg=#101317 ctermfg=233 ctermbg=73 cterm=NONE gui=bold
+hi PmenuSel guifg=#101317 guibg=#3bdda2 ctermfg=233 ctermbg=79 cterm=NONE
+hi AlphaButtons guifg=#525559 ctermfg=240 cterm=NONE
+hi AlphaHeader guifg=#45484c ctermfg=238 cterm=NONE
+hi MatchWord guifg=#d4d4d5 guibg=#3e4145 ctermfg=188 ctermbg=238 cterm=NONE
+hi Comment guifg=#525559 ctermfg=240 cterm=NONE
+hi CursorLineNr guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi MiniTablineCurrent guibg=#101317 guifg=#d4d4d5 ctermfg=188 ctermbg=233 cterm=NONE gui=underline
+hi MiniTablineVisible guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
+hi MiniTablineHidden guifg=#525559 guibg=#191d22 ctermfg=240 ctermbg=234 cterm=NONE
+hi MiniTablineModifiedCurrent guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE gui=underline
+hi MiniTablineModifiedVisible guifg=#37d99e guibg=#101317 ctermfg=79 ctermbg=233 cterm=NONE
+hi MiniTablineModifiedHidden guifg=#f87070 guibg=#191d22 ctermfg=203 ctermbg=234 cterm=NONE
+hi MiniTablineTabpagesection guifg=#101317 guibg=#7ab0df ctermfg=233 ctermbg=110 cterm=NONE
+hi FloatTitle guibg=#3e4145 guifg=#d4d4d5 ctermfg=188 ctermbg=238 cterm=NONE
+hi WinSeparator guifg=#30303a ctermfg=236 cterm=NONE
+hi TelescopePromptPrefix guibg=#191d22 guifg=#f87070 ctermfg=203 ctermbg=234 cterm=NONE
+hi TodoBgTest guibg=#c397d8 guifg=#191d22 ctermfg=234 ctermbg=140 cterm=NONE gui=bold
+hi AvanteReversedThirdTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi AvanteThirdTitle guibg=#d4d4d5 guifg=#191d22 ctermfg=234 ctermbg=188 cterm=NONE
+hi AvanteReversedSubtitle guifg=#87bdec guibg=#191d22 ctermfg=111 ctermbg=234 cterm=NONE
+hi AvanteSubtitle guifg=#191d22 guibg=#87bdec ctermfg=234 ctermbg=111 cterm=NONE
+hi AvanteReversedTitle guifg=#79dcaa guibg=#191d22 ctermfg=115 ctermbg=234 cterm=NONE
+hi AvanteTitle guifg=#191d22 guibg=#79dcaa ctermfg=234 ctermbg=115 cterm=NONE
+hi TroubleSignInformation guifg=#d4d4d5 ctermfg=188 cterm=NONE
+hi NavicSeparator guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
+hi NavicText guifg=#525559 guibg=#15191e ctermfg=240 ctermbg=234 cterm=NONE
+hi NavicIconsNull guifg=#50cad2 guibg=#15191e ctermfg=80 ctermbg=234 cterm=NONE
+hi NavicIconsKey guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
+hi NavicIconsObject guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsArray guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
+hi NavicIconsBoolean guifg=#f0a988 guibg=#15191e ctermfg=216 ctermbg=234 cterm=NONE
+hi NavicIconsNumber guifg=#ffa7a7 guibg=#15191e ctermfg=217 ctermbg=234 cterm=NONE
+hi NavicIconsString guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsPackage guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsNamespace guifg=#63b3ad guibg=#15191e ctermfg=73 ctermbg=234 cterm=NONE
+hi NavicIconsTypeParameter guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsOperator guifg=#c5c5c6 guibg=#15191e ctermfg=251 ctermbg=234 cterm=NONE
+hi NavicIconsEvent guifg=#ffe59e guibg=#15191e ctermfg=223 ctermbg=234 cterm=NONE
+hi NavicIconsValue guifg=#50cad2 guibg=#15191e ctermfg=80 ctermbg=234 cterm=NONE
+hi IblScopeChar guifg=#3e4145 ctermfg=238 cterm=NONE
+hi IblChar guifg=#30303a ctermfg=236 cterm=NONE
+hi IlluminatedWordText cterm=NONE gui=bold,reverse
+hi WhichKeyValue guifg=#37d99e ctermfg=79 cterm=NONE
+hi NoiceVirtualText guifg=#525559 ctermfg=240 cterm=NONE
+hi NoiceFormatLevelInfo guifg=#37d99e ctermfg=79 cterm=NONE
+hi NoiceFormatLevelError guifg=#f87070 ctermfg=203 cterm=NONE
+hi NoiceLspProgressTitle guifg=#525559 ctermfg=240 cterm=NONE
+hi NoiceScrollbarThumb guibg=#3e4145 ctermbg=238 cterm=NONE
+hi NoiceFormatConfirm guibg=#191d22 ctermbg=234 cterm=NONE
+hi NotifyINFOIcon guifg=#37d99e ctermfg=79 cterm=NONE
+hi BufferLineDuplicate guibg=#191d22 guifg=NONE ctermbg=234 cterm=NONE
+hi DAPUIScope guifg=#50cad2 ctermfg=80 cterm=NONE
+hi NavicIconsStruct guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsEnumMember guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsReference guifg=#c5c5c6 guibg=#15191e ctermfg=251 ctermbg=234 cterm=NONE
+hi NavicIconsColor guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
+hi NavicIconsInterface guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
+hi NavicIconsFile guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
+hi NavicIconsClass guifg=#63b3ad guibg=#15191e ctermfg=73 ctermbg=234 cterm=NONE
+hi NavicIconsUnit guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
+hi NavicIconsEnum guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
 hi BlinkCmpDocBorder guifg=#45484c ctermfg=238 cterm=NONE
 hi BlinkCmpDoc guibg=#101317 ctermbg=233 cterm=NONE
+hi NavicIconsFolder guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
+hi NavicIconsConstructor guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
 hi BlinkCmpSignatureHelpActiveParameter guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
 hi BlinkCmpSignatureHelpBorder guifg=#45484c ctermfg=238 cterm=NONE
 hi BlinkCmpSignatureHelp guibg=#101317 ctermbg=233 cterm=NONE
@@ -543,429 +972,3 @@ hi BlinkCmpGhostText guifg=#45484c ctermfg=238 cterm=NONE
 hi BlinkCmpSource guifg=#45484c ctermfg=238 cterm=NONE
 hi BlinkCmpLabelDescription guifg=#525559 ctermfg=240 cterm=NONE
 hi BlinkCmpLabelDetail guifg=#525559 ctermfg=240 cterm=NONE
-hi BlinkCmpLabelMatch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi BlinkCmpLabelDeprecated guifg=#f87070 ctermfg=203 cterm=NONE gui=strikethrough
-hi BlinkCmpLabel guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BlinkCmpScrollBarGutter guibg=#191d22 ctermbg=234 cterm=NONE
-hi BlinkCmpScrollBarThumb guibg=#3e4145 ctermbg=238 cterm=NONE
-hi BlinkCmpKindCopilot guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindVariable guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkCmpKindField guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindSuperMaven guifg=#ffe59e ctermfg=223 cterm=NONE
-hi BlinkCmpKindConstructor guifg=#7ab0df ctermfg=110 cterm=NONE
-hi BlinkCmpKindFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi BlinkCmpKindEvent guifg=#ffe59e ctermfg=223 cterm=NONE
-hi BlinkCmpKindStruct guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkCmpKindTabNine guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi BlinkCmpKindConstant guifg=#f0a988 ctermfg=216 cterm=NONE
-hi BlinkCmpKindCodeium guifg=#79dcaa ctermfg=115 cterm=NONE
-hi BlinkCmpKindEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkCmpKindOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi BlinkCmpKindFolder guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BlinkCmpKindType guifg=#e5d487 ctermfg=186 cterm=NONE
-hi BlinkCmpKindReference guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi BlinkCmpKindFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BlinkCmpKindStructure guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkCmpKindSnippet guifg=#f87070 ctermfg=203 cterm=NONE
-hi BlinkCmpKindTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindKeyword guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BlinkCmpKindEnum guifg=#7ab0df ctermfg=110 cterm=NONE
-hi BlinkCmpKindValue guifg=#50cad2 ctermfg=80 cterm=NONE
-hi BlinkCmpKindMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi BlinkCmpKindUnit guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkCmpKindColor guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BlinkCmpKindProperty guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindModule guifg=#e5d487 ctermfg=186 cterm=NONE
-hi BlinkCmpKindIdentifier guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindInterface guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkCmpKindText guifg=#e87979 ctermfg=174 cterm=NONE
-hi BlinkCmpKindClass guifg=#63b3ad ctermfg=73 cterm=NONE
-hi LazyH2 guifg=#f87070 ctermfg=203 cterm=NONE gui=bold,underline
-hi LazyButton guifg=#5c5f63 guibg=#212428 ctermfg=59 ctermbg=235 cterm=NONE
-hi LazyH1 guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
-hi healthSuccess guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
-hi QuickFixLine guibg=#1a1d21 ctermbg=234 cterm=NONE
-hi CursorColumn guibg=#1a1d21 ctermbg=234 cterm=NONE
-hi ColorColumn guibg=#191d22 ctermbg=234 cterm=NONE
-hi NonText guifg=#2b2e32 ctermfg=236 cterm=NONE
-hi Cursor guibg=#c5c5c6 guifg=#101317 ctermfg=233 ctermbg=251 cterm=NONE
-hi Conceal guibg=NONE cterm=NONE
-hi WildMenu guibg=#e5d487 guifg=#37d99e ctermfg=79 ctermbg=186 cterm=NONE
-hi DevIconDart guifg=#50cad2 ctermfg=80 cterm=NONE
-hi Visual guibg=#23262a ctermbg=235 cterm=NONE
-hi TooLong guifg=#37d99e ctermfg=79 cterm=NONE
-hi SpecialKey guifg=#2b2e32 ctermfg=236 cterm=NONE
-hi BlinkPairsUnmatched guifg=#f87070 ctermfg=203 cterm=NONE
-hi Search guibg=#e5d487 guifg=#1a1d21 ctermfg=234 ctermbg=186 cterm=NONE
-hi Question guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi MoreMsg guifg=#e87979 ctermfg=174 cterm=NONE
-hi ModeMsg guifg=#e87979 ctermfg=174 cterm=NONE
-hi Macro guifg=#37d99e ctermfg=79 cterm=NONE
-hi IncSearch guibg=#f0a988 guifg=#1a1d21 ctermfg=234 ctermbg=216 cterm=NONE
-hi Folded guibg=#191d22 guifg=#525559 ctermfg=240 ctermbg=234 cterm=NONE
-hi FoldColumn guibg=NONE cterm=NONE
-hi Exception guifg=#37d99e ctermfg=79 cterm=NONE
-hi ErrorMsg guibg=#101317 guifg=#37d99e ctermfg=79 ctermbg=233 cterm=NONE
-hi Debug guifg=#37d99e ctermfg=79 cterm=NONE
-hi DevIconDefault guifg=#f87070 ctermfg=203 cterm=NONE
-hi WinSeparator guifg=#30303a ctermfg=236 cterm=NONE
-hi NvimInternalError guifg=#f87070 ctermfg=203 cterm=NONE
-hi FloatTitle guibg=#3e4145 guifg=#d4d4d5 ctermfg=188 ctermbg=238 cterm=NONE
-hi FloatBorder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi LineNr guifg=#3e4145 ctermfg=238 cterm=NONE
-hi DevIconlua guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconlock guifg=#f87070 ctermfg=203 cterm=NONE
-hi DevIconkt guifg=#f0a988 ctermfg=216 cterm=NONE
-hi DevIconjs guifg=#ffeda6 ctermfg=229 cterm=NONE
-hi DevIconjpg guifg=#b68acb ctermfg=140 cterm=NONE
-hi DevIconjpeg guifg=#b68acb ctermfg=140 cterm=NONE
-hi PmenuSbar guibg=#212428 ctermbg=235 cterm=NONE
-hi Pmenu guibg=#212428 ctermbg=235 cterm=NONE
-hi Changed guifg=#ffe59e ctermfg=223 cterm=NONE
-hi DevIconcss guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconc guifg=#7ab0df ctermfg=110 cterm=NONE
-hi AlphaButtons guifg=#525559 ctermfg=240 cterm=NONE
-hi AlphaHeader guifg=#45484c ctermfg=238 cterm=NONE
-hi AvanteReversedThirdTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi AvanteThirdTitle guibg=#d4d4d5 guifg=#191d22 ctermfg=234 ctermbg=188 cterm=NONE
-hi AvanteReversedSubtitle guifg=#87bdec guibg=#191d22 ctermfg=111 ctermbg=234 cterm=NONE
-hi AvanteSubtitle guifg=#191d22 guibg=#87bdec ctermfg=234 ctermbg=111 cterm=NONE
-hi AvanteReversedTitle guifg=#79dcaa guibg=#191d22 ctermfg=115 ctermbg=234 cterm=NONE
-hi AvanteTitle guifg=#191d22 guibg=#79dcaa ctermfg=234 ctermbg=115 cterm=NONE
-hi IblScopeChar guifg=#3e4145 ctermfg=238 cterm=NONE
-hi IblChar guifg=#30303a ctermfg=236 cterm=NONE
-hi CocFloating guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NvDashFooter guifg=#f87070 ctermfg=203 cterm=NONE
-hi NvDashButtons guifg=#525559 ctermfg=240 cterm=NONE
-hi NvDashAscii guifg=#7ab0df ctermfg=110 cterm=NONE
-hi LazyProgressDone guifg=#37d99e ctermfg=79 cterm=NONE
-hi LazyReasonImport guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi LazyReasonSource guifg=#50cad2 ctermfg=80 cterm=NONE
-hi LazyReasonCmd guifg=#ffeda6 ctermfg=229 cterm=NONE
-hi LazyReasonRuntime guifg=#87bdec ctermfg=111 cterm=NONE
-hi LazyReasonStart guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi LazyReasonEvent guifg=#ffe59e ctermfg=223 cterm=NONE
-hi LazyCommitIssue guifg=#ffa7a7 ctermfg=217 cterm=NONE
-hi LazyTaskOutput guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi LazyReasonKeys guifg=#63b3ad ctermfg=73 cterm=NONE
-hi LazyOperator guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi LazyReasonFt guifg=#c397d8 ctermfg=140 cterm=NONE
-hi LazySpecial guifg=#7ab0df ctermfg=110 cterm=NONE
-hi LazyNoCond guifg=#f87070 ctermfg=203 cterm=NONE
-hi LazyCommit guifg=#37d99e ctermfg=79 cterm=NONE
-hi LazyUrl guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi LazyDir guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi LazyValue guifg=#63b3ad ctermfg=73 cterm=NONE
-hi LazyReasonPlugin guifg=#f87070 ctermfg=203 cterm=NONE
-hi CursorLine guibg=#191d22 ctermbg=234 cterm=NONE
-hi SnacksPickerFooter guifg=#45484c ctermfg=238 cterm=NONE
-hi SnacksPickerBorder guifg=#33363a ctermfg=237 cterm=NONE
-hi SnacksPickerFile guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi SnacksStatusColumnMark guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
-hi RenderMarkdownH1Bg guibg=#1a222b ctermbg=235 cterm=NONE
-hi NeogitSectionHeader guifg=#f87070 ctermfg=203 cterm=NONE gui=bold
-hi NeogitChangeNewFile guifg=#37d99e ctermfg=79 cterm=NONE gui=bold,italic
-hi NeogitFloatHeaderHighlight guifg=#50cad2 guibg=#191d22 ctermfg=80 ctermbg=234 cterm=NONE gui=bold
-hi NeogitFloatHeader guibg=#101317 ctermbg=233 cterm=NONE gui=bold
-hi NeogitTagDistance guifg=#50cad2 ctermfg=80 cterm=NONE
-hi NeogitChangeUpdated guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold,italic
-hi NoiceSplit guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NoiceSplitBorder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NoiceMini guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NoiceConfirm guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi RainbowDelimiterCyan guifg=#50cad2 ctermfg=80 cterm=NONE
-hi RainbowDelimiterViolet guifg=#c397d8 ctermfg=140 cterm=NONE
-hi RainbowDelimiterGreen guifg=#37d99e ctermfg=79 cterm=NONE
-hi RainbowDelimiterOrange guifg=#f0a988 ctermfg=216 cterm=NONE
-hi RainbowDelimiterBlue guifg=#7ab0df ctermfg=110 cterm=NONE
-hi RainbowDelimiterYellow guifg=#ffe59e ctermfg=223 cterm=NONE
-hi NavicIconsFolder guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
-hi NavicIconsField guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsIdentifier guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsFunction guifg=#5fb0fc guibg=#15191e ctermfg=75 ctermbg=234 cterm=NONE
-hi NavicIconsConstant guifg=#f0a988 guibg=#15191e ctermfg=216 ctermbg=234 cterm=NONE
-hi NeogitPopupSwitchKey guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NeogitPopupOptionKey guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NeogitPopupConfigKey guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NeogitPopupActionKey guifg=#c397d8 ctermfg=140 cterm=NONE
-hi Conditional guifg=#c397d8 ctermfg=140 cterm=NONE
-hi Boolean guifg=#f0a988 ctermfg=216 cterm=NONE
-hi gitcommitBranch guifg=#f0a988 ctermfg=216 cterm=NONE gui=bold
-hi gitcommitDiscardedType guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi gitcommitUnmergedType guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi gitcommitSelectedType guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi gitcommitHeader guifg=#c397d8 ctermfg=140 cterm=NONE
-hi StorageClass guifg=#e5d487 ctermfg=186 cterm=NONE
-hi Statement guifg=#37d99e ctermfg=79 cterm=NONE
-hi SpecialChar guifg=#e87979 ctermfg=174 cterm=NONE
-hi Special guifg=#37d99e ctermfg=79 cterm=NONE
-hi GitConflictDiffAdd guibg=#1f2a35 ctermbg=235 cterm=NONE
-hi GitConflictDiffText guibg=#15302b ctermbg=235 cterm=NONE
-hi CocCodeLens guifg=#525559 ctermfg=240 cterm=NONE
-hi CmpItemKindSuperMaven guifg=#ffe59e ctermfg=223 cterm=NONE
-hi CmpItemKindTabNine guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi def link CodeActionMenuDetailsUndefined Comment
-hi def link CodeActionMenuDetailsDisabled Comment
-hi CodeActionMenuDetailsPreferred guifg=#37d99e ctermfg=79 cterm=NONE
-hi CodeActionMenuDetailsLabel guifg=#ffe59e ctermfg=223 cterm=NONE
-hi CodeActionMenuDetailsTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CodeActionMenuMenuSelection guifg=#7ab0df ctermfg=110 cterm=NONE
-hi def link CodeActionMenuMenuDisabled Comment
-hi CodeActionMenuMenuTitle guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CodeActionMenuMenuKind guifg=#37d99e ctermfg=79 cterm=NONE
-hi CodeActionMenuMenuIndex guifg=#7ab0df ctermfg=110 cterm=NONE
-hi CodeActionMenuWarningMessageBorder guifg=#f87070 ctermfg=203 cterm=NONE
-hi CodeActionMenuWarningMessageText guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi CmpItemKindCodeium guifg=#79dcaa ctermfg=115 cterm=NONE
-hi CmpItemKindTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
-hi CursorLineNr guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi Comment guifg=#525559 ctermfg=240 cterm=NONE
-hi def link MatchParen MatchWord
-hi MatchWord guifg=#d4d4d5 guibg=#3e4145 ctermfg=188 ctermbg=238 cterm=NONE
-hi PmenuThumb guibg=#3e4145 ctermbg=238 cterm=NONE
-hi PmenuSel guifg=#101317 guibg=#3bdda2 ctermfg=233 ctermbg=79 cterm=NONE
-hi Removed guifg=#f87070 ctermfg=203 cterm=NONE
-hi Added guifg=#37d99e ctermfg=79 cterm=NONE
-hi WhichKeySeparator guifg=#525559 ctermfg=240 cterm=NONE
-hi IlluminatedWordWrite cterm=NONE gui=bold,reverse
-hi IlluminatedWordText cterm=NONE gui=bold,reverse
-hi CocSemTypeModifier guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSemTypeKeyword guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSemTypeMacro guifg=#e5d487 ctermfg=186 cterm=NONE
-hi CocSemTypeFunction guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSemTypeEvent guifg=#ffe59e ctermfg=223 cterm=NONE
-hi def link NvimDapViewConstant Constant
-hi def link NvimDapViewFunction Function
-hi def link NvimDapViewFloat Float
-hi def link NvimDapViewNumber Number
-hi def link NvimDapViewString String
-hi def link NvimDapViewBoolean Boolean
-hi NvimDapViewWatchUpdated guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NvimDapViewWatchError guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi SagaNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi SagaBorder guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NvimDapViewControlDisconnect guifg=#f87070 ctermfg=203 cterm=NONE
-hi NvimDapViewControlTerminate guifg=#f87070 ctermfg=203 cterm=NONE
-hi NvimDapViewControlRunLast guifg=#37d99e ctermfg=79 cterm=NONE
-hi NvimDapViewControlStepBack guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NvimDapViewControlStepOver guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NvimDapViewControlStepOut guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NvimDapViewControlStepInto guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NvimDapViewControlPause guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NvimDapViewControlPlay guifg=#37d99e ctermfg=79 cterm=NONE
-hi NvimDapViewControlNC guifg=#45484c ctermfg=238 cterm=NONE
-hi NvimDapViewTabSelected guifg=#d4d4d5 guibg=#101317 ctermfg=188 ctermbg=233 cterm=NONE
-hi NvimDapViewTab guifg=#525559 guibg=#191d22 ctermfg=240 ctermbg=234 cterm=NONE
-hi NvimDapViewExceptionFilterDisabled guifg=#525559 ctermfg=240 cterm=NONE
-hi NvimDapViewExceptionFilterEnabled guifg=#37d99e ctermfg=79 cterm=NONE
-hi NvimDapViewFrameCurrent guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocSemTypeEnumMember guifg=#c397d8 ctermfg=140 cterm=NONE
-hi CocSemTypeProperty guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocListBgWhite guibg=#d4d4d5 ctermbg=188 cterm=NONE
-hi BufferLineRightCustomAreaText2 guifg=#f87070 ctermfg=203 cterm=NONE
-hi BufferLineRightCustomAreaText1 guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi BufferLineDuplicateVisible guibg=#191d22 guifg=#7ab0df ctermfg=110 ctermbg=234 cterm=NONE
-hi BufferLineDuplicateSelected guibg=#101317 guifg=#f87070 ctermfg=203 ctermbg=233 cterm=NONE
-hi VisualNOS guifg=#37d99e ctermfg=79 cterm=NONE
-hi NERDTreeHelp guifg=#525559 ctermfg=240 cterm=NONE
-hi TelescopePromptPrefix guifg=#f87070 guibg=#191d22 ctermfg=203 ctermbg=234 cterm=NONE
-hi NvimDapViewWatchExpr guifg=#79dcaa ctermfg=115 cterm=NONE
-hi NvimDapViewWatchMore guifg=#525559 ctermfg=240 cterm=NONE
-hi CocSemModDeprecated guifg=#45484c ctermfg=238 cterm=NONE gui=strikethrough
-hi DevIconJava guifg=#f0a988 ctermfg=216 cterm=NONE
-hi DevIconSvelte guifg=#f87070 ctermfg=203 cterm=NONE
-hi DevIconJSX guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconTSX guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconMd guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconZig guifg=#f0a988 ctermfg=216 cterm=NONE
-hi DevIconzip guifg=#ffeda6 ctermfg=229 cterm=NONE
-hi DevIconxz guifg=#ffeda6 ctermfg=229 cterm=NONE
-hi MasonMutedBlock guibg=#212428 guifg=#525559 ctermfg=240 ctermbg=235 cterm=NONE
-hi MasonMuted guifg=#525559 ctermfg=240 cterm=NONE
-hi def link MasonHeaderSecondary MasonHighlightBlock
-hi MasonHighlightBlock guibg=#37d99e guifg=#101317 ctermfg=233 ctermbg=79 cterm=NONE
-hi def link MasonHighlightBlockBold MasonHighlightBlock
-hi MasonHighlight guifg=#7ab0df ctermfg=110 cterm=NONE
-hi MasonHeader guibg=#f87070 guifg=#101317 ctermfg=233 ctermbg=203 cterm=NONE
-hi DevIconwoff2 guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DevIconwoff guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DevIconvue guifg=#79dcaa ctermfg=115 cterm=NONE
-hi DevIconrpm guifg=#f0a988 ctermfg=216 cterm=NONE
-hi DevIconrb guifg=#ffa7a7 ctermfg=217 cterm=NONE
-hi NeogitGraphBoldYellow guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
-hi NeogitGraphBoldGreen guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
-hi NeogitHunkHeader guifg=#101317 guibg=#3e4145 ctermfg=233 ctermbg=238 cterm=NONE gui=bold
-hi NeogitHunkHeaderHighlight guifg=#101317 guibg=#b68acb ctermfg=233 ctermbg=140 cterm=NONE gui=bold
-hi NeogitHunkHeaderCursor guifg=#101317 guibg=#b68acb ctermfg=233 ctermbg=140 cterm=NONE gui=bold
-hi NeogitDiffContext guibg=#212428 ctermbg=235 cterm=NONE
-hi NeogitDiffContextHighlight guibg=#191d22 ctermbg=234 cterm=NONE
-hi NeogitDiffContextCursor guibg=#212428 ctermbg=235 cterm=NONE
-hi NeogitDiffAdditions guifg=#37d99e ctermfg=79 cterm=NONE
-hi NeogitDiffAdd guifg=#37d99e guibg=#05a76c ctermfg=79 ctermbg=35 cterm=NONE
-hi NeogitDiffAddHighlight guifg=#37d99e guibg=#08aa6f ctermfg=79 ctermbg=35 cterm=NONE
-hi NeogitDiffAddCursor guibg=#212428 guifg=#37d99e ctermfg=79 ctermbg=235 cterm=NONE
-hi NeogitDiffDeletions guifg=#f87070 ctermfg=203 cterm=NONE
-hi NeogitDiffDelete guibg=#c63e3e guifg=#f87070 ctermfg=203 ctermbg=167 cterm=NONE
-hi NeogitDiffDeleteHighlight guibg=#c94141 guifg=#f87070 ctermfg=203 ctermbg=167 cterm=NONE
-hi NeogitDiffDeleteCursor guibg=#212428 guifg=#f87070 ctermfg=203 ctermbg=235 cterm=NONE
-hi NeogitFilePath guifg=#7ab0df ctermfg=110 cterm=NONE gui=italic
-hi NeogitCommitViewHeader guibg=#50cad2 guifg=#101317 ctermfg=233 ctermbg=80 cterm=NONE
-hi NeogitDiffHeader guifg=#7ab0df guibg=#292c30 ctermfg=110 ctermbg=236 cterm=NONE gui=bold
-hi NeogitDiffHeaderHighlight guifg=#f0a988 guibg=#292c30 ctermfg=216 ctermbg=236 cterm=NONE gui=bold
-hi NeogitBranch guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NeogitBranchHead guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold,underline
-hi NeogitRemote guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
-hi NeogitUnmergedInto guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
-hi NeogitUnpushedTo guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
-hi NeogitUnpulledFrom guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold
-hi NeogitChangeModified guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold,italic
-hi NeogitChangeAdded guibg=#19bb80 guifg=#37d99e ctermfg=79 ctermbg=36 cterm=NONE gui=bold,italic
-hi NeogitChangeDeleted guifg=#f87070 ctermfg=203 cterm=NONE gui=bold,italic
-hi NeogitChangeRenamed guifg=#c397d8 ctermfg=140 cterm=NONE gui=bold,italic
-hi CocListBgGreen guibg=#37d99e ctermbg=79 cterm=NONE
-hi CocListBgYellow guibg=#ffe59e ctermbg=223 cterm=NONE
-hi CocListBgBlue guibg=#7ab0df ctermbg=110 cterm=NONE
-hi CocListBgMagenta guibg=#c397d8 ctermbg=140 cterm=NONE
-hi CocListBgCyan guibg=#50cad2 ctermbg=80 cterm=NONE
-hi NeogitTagName guifg=#ffe59e ctermfg=223 cterm=NONE
-hi DAPUIScope guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DAPUIType guifg=#b68acb ctermfg=140 cterm=NONE
-hi DAPUIValue guifg=#50cad2 ctermfg=80 cterm=NONE
-hi CocStrikeThrough cterm=NONE gui=strikethrough
-hi CocUnderline guisp=#45484c cterm=NONE gui=underline
-hi CocDisabled guifg=#45484c ctermfg=238 cterm=NONE
-hi DapUIThread guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIStoppedThread guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DapUISource cterm=NONE
-hi DapUILineNumber guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DapUIFloatBorder guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DapUIWatchesEmpty guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi DapUIWatchesValue guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIWatchesError guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi DapUIBreakpointsPath guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DapUIBreakpointsInfo guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIBreakPointsCurrentLine guifg=#37d99e ctermfg=79 cterm=NONE gui=bold
-hi DapUIBreakpointsDisabledLine guifg=#4a4d51 ctermfg=239 cterm=NONE
-hi DapUIStepOver guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepOverNC guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepInto guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepIntoNC guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepBack guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepBackNC guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NavicIconsVariable guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NavicIconsSnippet guifg=#f87070 guibg=#15191e ctermfg=203 ctermbg=234 cterm=NONE
-hi NavicIconsText guifg=#e87979 guibg=#15191e ctermfg=174 ctermbg=234 cterm=NONE
-hi NavicIconsStructure guifg=#c397d8 guibg=#15191e ctermfg=140 ctermbg=234 cterm=NONE
-hi NavicIconsType guifg=#e5d487 guibg=#15191e ctermfg=186 ctermbg=234 cterm=NONE
-hi NavicIconsKeyword guifg=#d4d4d5 guibg=#15191e ctermfg=188 ctermbg=234 cterm=NONE
-hi NavicIconsMethod guifg=#5fb0fc guibg=#15191e ctermfg=75 ctermbg=234 cterm=NONE
-hi NavicIconsConstructor guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
-hi DapUIUnavailable guifg=#45484c ctermfg=238 cterm=NONE
-hi NavicIconsModule guifg=#e5d487 guibg=#15191e ctermfg=186 ctermbg=234 cterm=NONE
-hi NavicIconsProperty guifg=#37d99e guibg=#15191e ctermfg=79 ctermbg=234 cterm=NONE
-hi NavicIconsEnum guifg=#7ab0df guibg=#15191e ctermfg=110 ctermbg=234 cterm=NONE
-hi NvimDapViewLineNumber guifg=#50cad2 ctermfg=80 cterm=NONE
-hi CocSemTypeMethod guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi NvimDapViewThread guifg=#37d99e ctermfg=79 cterm=NONE
-hi NvimDapViewThreadStopped guifg=#50cad2 ctermfg=80 cterm=NONE
-hi NvimDapViewThreadError guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi CocSemTypeComment guifg=#525559 ctermfg=240 cterm=NONE
-hi CocSemTypeString guifg=#e87979 ctermfg=174 cterm=NONE
-hi CocSemTypeNumber guifg=#f0a988 ctermfg=216 cterm=NONE
-hi CocSemTypeBoolean guifg=#50cad2 ctermfg=80 cterm=NONE
-hi CocSemTypeRegexp guifg=#e87979 ctermfg=174 cterm=NONE
-hi CocSemTypeOperator guifg=#c5c5c6 ctermfg=251 cterm=NONE
-hi CocSemTypeDecorator guifg=#50cad2 ctermfg=80 cterm=NONE
-hi Directory guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi CocSnippetVisual guibg=#33363a ctermbg=237 cterm=NONE
-hi CocCursorTransparent cterm=NONE
-hi CocPumDetail guifg=#525559 ctermfg=240 cterm=NONE
-hi def link CocPumMenu CocFloating
-hi NvShTitle guibg=#33363a guifg=#d4d4d5 ctermfg=188 ctermbg=237 cterm=NONE
-hi CocSymbolTypeParameter guifg=#37d99e ctermfg=79 cterm=NONE
-hi DevIconttf guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DevIconts guifg=#63b3ad ctermfg=73 cterm=NONE
-hi NoiceCmdlinePopup guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NoiceCmdlinePopupBorder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NoiceCmdlinePopupTitle guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NoiceCmdlinePopupBorderSearch guifg=#ffe59e ctermfg=223 cterm=NONE
-hi NoicePopup guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NoicePopupBorder guifg=#7ab0df ctermfg=110 cterm=NONE
-hi NoiceConfirmBorder guifg=#37d99e ctermfg=79 cterm=NONE
-hi NoiceFormatProgressDone guifg=#101317 guibg=#37d99e ctermfg=233 ctermbg=79 cterm=NONE
-hi NoiceFormatProgressTodo guibg=#212428 ctermbg=235 cterm=NONE
-hi NoiceFormatTitle guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NoiceFormatEvent guifg=#f0a988 ctermfg=216 cterm=NONE
-hi NoiceFormatKind guifg=#c397d8 ctermfg=140 cterm=NONE
-hi NoiceFormatDate guifg=#525559 ctermfg=240 cterm=NONE
-hi NoiceFormatConfirm guibg=#191d22 ctermbg=234 cterm=NONE
-hi NoiceFormatConfirmDefault guibg=#212428 ctermbg=235 cterm=NONE
-hi NoiceFormatLevelInfo guifg=#37d99e ctermfg=79 cterm=NONE
-hi NoiceFormatLevelWarn guifg=#ffe59e ctermfg=223 cterm=NONE
-hi NoiceFormatLevelError guifg=#f87070 ctermfg=203 cterm=NONE
-hi Character guifg=#37d99e ctermfg=79 cterm=NONE
-hi Label guifg=#e5d487 ctermfg=186 cterm=NONE
-hi PreProc guifg=#e5d487 ctermfg=186 cterm=NONE
-hi def link NvimTreeDiagnosticInfoFolderHL DiagnosticNormal
-hi Repeat guifg=#e5d487 ctermfg=186 cterm=NONE
-hi def link NvimTreeDiagnosticInfoFileHL DiagnosticNormal
-hi def link NvimTreeDiagnosticErrorFolderHL DiagnosticError
-hi def link NvimTreeDiagnosticErrorFileHL DiagnosticError
-hi NvimTreeGitIgnored guifg=#525559 ctermfg=240 cterm=NONE
-hi NvimTreeOpenedFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi NvimTreeNormalNC guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NvimTreeNormal guibg=#0a0d11 ctermbg=233 cterm=NONE
-hi NvimTreeIndentMarker guifg=#2e2e38 ctermfg=236 cterm=NONE
-hi NvimTreeGitDirty guifg=#f87070 ctermfg=203 cterm=NONE
-hi NvimTreeFolderArrowClosed guifg=#45484c ctermfg=238 cterm=NONE
-hi NvimTreeFolderArrowOpen guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi NvimTreeFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi NvimTreeFolderIcon guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi NvimTreeEndOfBuffer guifg=#0a0d11 ctermfg=233 cterm=NONE
-hi NvimTreeEmptyFolderName guifg=#5fb0fc ctermfg=75 cterm=NONE
-hi String guifg=#e87979 ctermfg=174 cterm=NONE
-hi Structure guifg=#c397d8 ctermfg=140 cterm=NONE
-hi Tag guifg=#e5d487 ctermfg=186 cterm=NONE
-hi Todo guibg=#1a1d21 guifg=#e5d487 ctermfg=186 ctermbg=234 cterm=NONE
-hi Type guifg=#e5d487 guisp=NONE ctermfg=186 cterm=NONE
-hi Typedef guifg=#e5d487 ctermfg=186 cterm=NONE
-hi NERDTreePartFile guifg=#30303a ctermfg=236 cterm=NONE
-hi DevIcontoml guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DevIconpy guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DevIconpng guifg=#b68acb ctermfg=140 cterm=NONE
-hi BlinkPairsYellow guifg=#ffe59e ctermfg=223 cterm=NONE
-hi BlinkPairsGreen guifg=#37d99e ctermfg=79 cterm=NONE
-hi CocLoaderMutedBlock guifg=#101317 guibg=#3e4145 ctermfg=233 ctermbg=238 cterm=NONE
-hi BlinkPairsCyan guifg=#50cad2 ctermfg=80 cterm=NONE
-hi BlinkPairsViolet guifg=#b68acb ctermfg=140 cterm=NONE
-hi Substitute guibg=#e5d487 guifg=#1a1d21 ctermfg=234 ctermbg=186 cterm=NONE
-hi WarningMsg guifg=#37d99e ctermfg=79 cterm=NONE
-hi BlinkPairsRed guifg=#f87070 ctermfg=203 cterm=NONE
-hi BlinkPairsBlue guifg=#7ab0df ctermfg=110 cterm=NONE
-hi BlinkPairsPurple guifg=#c397d8 ctermfg=140 cterm=NONE
-hi BlinkPairsOrange guifg=#f0a988 ctermfg=216 cterm=NONE
-hi BlinkPairsMatchParen guifg=#50cad2 ctermfg=80 cterm=NONE
-hi NERDTreeLinkTarget guifg=#63b3ad ctermfg=73 cterm=NONE
-hi NERDTreeFlags guifg=#3e4145 ctermfg=238 cterm=NONE
-hi NERDTreeCWD guifg=#7ab0df ctermfg=110 cterm=NONE gui=bold
-hi NERDTreePart guifg=#30303a ctermfg=236 cterm=NONE
-hi NERDTreeBookmark guifg=#c397d8 ctermfg=140 cterm=NONE
-hi DevIconhtml guifg=#ff8e8e ctermfg=210 cterm=NONE
-hi DevIconDockerfile guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DevIcondeb guifg=#50cad2 ctermfg=80 cterm=NONE
-hi DevIconout guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DevIconmp3 guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DevIconmp4 guifg=#d4d4d5 ctermfg=188 cterm=NONE
-hi DapUIRestartNC guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIRestart guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIPlayPauseNC guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIPlayPause guifg=#37d99e ctermfg=79 cterm=NONE
-hi DapUIStopNC guifg=#f87070 ctermfg=203 cterm=NONE
-hi DapUIStop guifg=#f87070 ctermfg=203 cterm=NONE
-hi DapUIStepOutNC guifg=#7ab0df ctermfg=110 cterm=NONE
-hi DapUIStepOut guifg=#7ab0df ctermfg=110 cterm=NONE
-hi LeapMatch guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
-hi LeapLabel guifg=#ffe59e ctermfg=223 cterm=NONE gui=bold
-hi NavicIconsClass guifg=#63b3ad guibg=#15191e ctermfg=73 ctermbg=234 cterm=NONE
-hi DapBreakpointCondition guifg=#ffe59e ctermfg=223 cterm=NONE
-hi DapBreakPointRejected guifg=#f0a988 ctermfg=216 cterm=NONE

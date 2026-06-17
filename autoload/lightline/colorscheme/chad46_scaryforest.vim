@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_scaryforest#palette.inactive = {
 \ 'right': [['#dde5e0', '#1d2b28', 254, 235], ['#dde5e0', '#1d2b28', 254, 235]],
 \ 'middle': [['#dde5e0', '#1d2b28', 254, 235]]
 \ }
-" synced: cd6db3d763347745
+" synced: e22cac6b58c88430

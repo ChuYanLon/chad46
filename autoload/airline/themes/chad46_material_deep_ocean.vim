@@ -44,4 +44,4 @@ let g:airline#themes#chad46_material_deep_ocean#palette.accents = {
 function! airline#themes#chad46_material_deep_ocean#apply()
   let g:airline#themes#chad46_material_deep_ocean#palette = g:airline#themes#chad46_material_deep_ocean#palette
 endfunction
-" synced: e09122521928f83e
+" synced: 7e6b468ee7dfd0d3

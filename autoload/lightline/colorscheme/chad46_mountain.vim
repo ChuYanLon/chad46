@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_mountain#palette.inactive = {
 \ 'right': [['#F0f0f0', '#191919', 255, 234], ['#F0f0f0', '#191919', 255, 234]],
 \ 'middle': [['#F0f0f0', '#191919', 255, 234]]
 \ }
-" synced: c2bdd9818d61ec39
+" synced: 92ad34494f9426a0

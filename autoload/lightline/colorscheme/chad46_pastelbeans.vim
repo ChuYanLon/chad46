@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_pastelbeans#palette.inactive = {
 \ 'right': [['#e8e8d3', '#252525', 254, 235], ['#e8e8d3', '#252525', 254, 235]],
 \ 'middle': [['#e8e8d3', '#252525', 254, 235]]
 \ }
-" synced: 4372d2eed41b17f0
+" synced: 47a6b3716b8a7629

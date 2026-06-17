@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_nightfox#palette.inactive = {
 \ 'right': [['#cdcecf', '#252f3c', 252, 236], ['#cdcecf', '#252f3c', 252, 236]],
 \ 'middle': [['#cdcecf', '#252f3c', 252, 236]]
 \ }
-" synced: 21995cf8e7cbfefa
+" synced: c1cf6ebc54493aca

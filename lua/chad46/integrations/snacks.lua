@@ -71,9 +71,6 @@ local hlgroups = {
   SnacksPickerCursorLine = { bg = colors.black2 },
   SnacksPickerCode = { bg = colors.black2 },
   SnacksPickerGitStatus = { fg = colors.purple },
-  SnacksPickerIcon = { fg = colors.blue },
-  SnacksPickerDirectory = { fg = colors.blue },
-  SnacksPickerFile = { fg = colors.white },
   SnacksPickerSpinner = { fg = colors.blue },
   SnacksPickerSearch = { fg = colors.red },
   SnacksPickerDimmed = { fg = colors.grey },
@@ -84,6 +81,14 @@ local hlgroups = {
   SnacksPickerComment = { fg = colors.light_grey },
   SnacksPickerDesc = { fg = colors.light_grey },
   SnacksPickerCmd = { fg = colors.cyan },
+
+  -- File tree / Explorer (via picker)
+  SnacksPickerDirectory = { fg = colors.blue },
+  SnacksPickerDir = { fg = colors.light_grey },
+  SnacksPickerDelim = { fg = colors.grey_fg },
+  SnacksPickerRow = { fg = colors.grey_fg },
+  SnacksPickerPathIgnored = { fg = colors.grey },
+  SnacksPickerPathHidden = { fg = colors.grey },
 
   -- StatusColumn
   SnacksStatusColumnMark = { fg = colors.orange, bold = true },

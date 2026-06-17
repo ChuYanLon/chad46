@@ -44,4 +44,4 @@ let g:airline#themes#chad46_tokyodark#palette.accents = {
 function! airline#themes#chad46_tokyodark#apply()
   let g:airline#themes#chad46_tokyodark#palette = g:airline#themes#chad46_tokyodark#palette
 endfunction
-" synced: 1743dbc28deb070c
+" synced: 244026be13c59d99

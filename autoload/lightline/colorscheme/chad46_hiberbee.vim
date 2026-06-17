@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_hiberbee#palette.inactive = {
 \ 'right': [['#fffefd', '#2a2625', 231, 235], ['#fffefd', '#2a2625', 231, 235]],
 \ 'middle': [['#fffefd', '#2a2625', 231, 235]]
 \ }
-" synced: e4da52e282826e8a
+" synced: f4d9c6e949c2fef0

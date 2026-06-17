@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_aquarium#palette.inactive = {
 \ 'right': [['#ced4df', '#2a2a34', 188, 236], ['#ced4df', '#2a2a34', 188, 236]],
 \ 'middle': [['#ced4df', '#2a2a34', 188, 236]]
 \ }
-" synced: 5c3ef05f41f91afe
+" synced: 6ef456226c98d4b1

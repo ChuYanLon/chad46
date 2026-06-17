@@ -44,4 +44,4 @@ let g:airline#themes#chad46_rosepine_dawn#palette.accents = {
 function! airline#themes#chad46_rosepine_dawn#apply()
   let g:airline#themes#chad46_rosepine_dawn#palette = g:airline#themes#chad46_rosepine_dawn#palette
 endfunction
-" synced: c71a4db28f5e96be
+" synced: 2bc6ac7cab27a9cc

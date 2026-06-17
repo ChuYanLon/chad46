@@ -44,4 +44,4 @@ let g:airline#themes#chad46_solarized_osaka#palette.accents = {
 function! airline#themes#chad46_solarized_osaka#apply()
   let g:airline#themes#chad46_solarized_osaka#palette = g:airline#themes#chad46_solarized_osaka#palette
 endfunction
-" synced: 928a69aceb65b6a6
+" synced: f2f94754fa253fb6

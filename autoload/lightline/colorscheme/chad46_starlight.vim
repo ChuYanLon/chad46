@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_starlight#palette.inactive = {
 \ 'right': [['#E6E6E6', '#323232', 254, 236], ['#E6E6E6', '#323232', 254, 236]],
 \ 'middle': [['#E6E6E6', '#323232', 254, 236]]
 \ }
-" synced: adadb0d8c002e585
+" synced: 6556649cef5f310d

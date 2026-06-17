@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_oceanic_next#palette.inactive = {
 \ 'right': [['#D8DEE9', '#25353e', 254, 236], ['#D8DEE9', '#25353e', 254, 236]],
 \ 'middle': [['#D8DEE9', '#25353e', 254, 236]]
 \ }
-" synced: 9aeba8dcc40abf61
+" synced: 0dc51d13d9417125
