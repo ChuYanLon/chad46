@@ -44,4 +44,4 @@ let g:airline#themes#chad46_scaryforest#palette.accents = {
 function! airline#themes#chad46_scaryforest#apply()
   let g:airline#themes#chad46_scaryforest#palette = g:airline#themes#chad46_scaryforest#palette
 endfunction
-" synced: f67e5446353ae26d
+" synced: cd6db3d763347745

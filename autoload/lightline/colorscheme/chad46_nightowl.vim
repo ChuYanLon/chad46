@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_nightowl#palette.inactive = {
 \ 'right': [['#d6deeb', '#112637', 254, 235], ['#d6deeb', '#112637', 254, 235]],
 \ 'middle': [['#d6deeb', '#112637', 254, 235]]
 \ }
-" synced: eff6016563d2004f
+" synced: 1b90da9769fa4db4

@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_embark#palette.inactive = {
 \ 'right': [['#cbe3e7', '#282643', 253, 236], ['#cbe3e7', '#282643', 253, 236]],
 \ 'middle': [['#cbe3e7', '#282643', 253, 236]]
 \ }
-" synced: 3b898587153719d0
+" synced: bbd5e52ecb7040a0

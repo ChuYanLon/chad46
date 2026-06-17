@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_material_darker#palette.inactive = {
 \ 'right': [['#eeffff', '#303030', 231, 236], ['#eeffff', '#303030', 231, 236]],
 \ 'middle': [['#eeffff', '#303030', 231, 236]]
 \ }
-" synced: 10e088e5f481ef53
+" synced: a35df9aaa2e63ca6

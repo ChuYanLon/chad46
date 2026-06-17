@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_carbonfox#palette.inactive = {
 \ 'right': [['#dfdfe0', '#242424', 254, 235], ['#dfdfe0', '#242424', 254, 235]],
 \ 'middle': [['#dfdfe0', '#242424', 254, 235]]
 \ }
-" synced: e20b13d09c2fd0cf
+" synced: afb4073d85244fb6

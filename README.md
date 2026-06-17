@@ -90,7 +90,7 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
-> Six integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc** (160+ highlights, auto-config), and **NERDTree**.
+> Seven integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc** (160+ highlights, auto-config), **CocLoader** (TUI highlights), and **NERDTree**.
 
 ### Highlights (47 plugins)
 

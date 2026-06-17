@@ -31,7 +31,7 @@ end
 
 local INTEGRATIONS = {
   "defaults", "syntax",
-  "alpha", "avante", "blankline", "blink", "blink-pair", "coc", "nerdtree",
+  "alpha", "avante", "blankline", "blink", "blink-pair", "coc", "coc-vscode-loader", "nerdtree",
   "bufferline", "cmp", "codeactionmenu", "dap", "devicons",
   "diffview", "edgy", "flash", "git", "git-conflict",
   "gitsigns", "grug_far", "hop", "leap", "lsp",

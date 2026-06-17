@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_ashes#palette.inactive = {
 \ 'right': [['#c7ccd1', '#272b2e', 252, 235], ['#c7ccd1', '#272b2e', 252, 235]],
 \ 'middle': [['#c7ccd1', '#272b2e', 252, 235]]
 \ }
-" synced: bbf7b97378a597fd
+" synced: f9bcc033d7dec9f6

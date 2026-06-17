@@ -33,6 +33,7 @@ local plugin_configs = {
   trouble = { plugin = "trouble.nvim", config = "trouble", mod = "trouble" },
   snacks = { plugin = "snacks.nvim", config = "snacks", mod = "snacks" },
   coc = { plugin = "coc.nvim", config = "coc", mod = "coc", no_auto = true },
+  ["coc-vscode-loader"] = { plugin = "coc-vscode-loader", config = "coc-vscode-loader", mod = "coc-vscode-loader", no_auto = true },
 }
 
 ---@type table<string, string>
@@ -44,6 +45,7 @@ local integration_map = {
   ["bufferline.nvim"] = "bufferline",
   ["nvim-cmp"] = "cmp",
   ["coc.nvim"] = "coc",
+  ["coc-vscode-loader"] = "coc-vscode-loader",
   ["codeactionmenu.nvim"] = "codeactionmenu",
   ["nvim-dap"] = "dap",
   ["nvim-web-devicons"] = "devicons",

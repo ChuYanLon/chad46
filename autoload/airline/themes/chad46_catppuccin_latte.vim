@@ -44,4 +44,4 @@ let g:airline#themes#chad46_catppuccin_latte#palette.accents = {
 function! airline#themes#chad46_catppuccin_latte#apply()
   let g:airline#themes#chad46_catppuccin_latte#palette = g:airline#themes#chad46_catppuccin_latte#palette
 endfunction
-" synced: cebac30ae22f5ef8
+" synced: 6a885f4057930157
