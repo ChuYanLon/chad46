@@ -137,6 +137,7 @@ local function integration_enabled(name)
   if plugin then
     local plugins = get_lazy_plugins()
     if plugins and plugins[plugin] then return true end
+    if name == "coc" and vim.fn.exists("*coc#rpc#started") == 2 then return true end
   end
   return false
 end
