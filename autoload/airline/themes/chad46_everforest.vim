@@ -44,4 +44,4 @@ let g:airline#themes#chad46_everforest#palette.accents = {
 function! airline#themes#chad46_everforest#apply()
   let g:airline#themes#chad46_everforest#palette = g:airline#themes#chad46_everforest#palette
 endfunction
-" synced: ea8000da8b9d9b39
+" synced: 371fdfbf31d2a689

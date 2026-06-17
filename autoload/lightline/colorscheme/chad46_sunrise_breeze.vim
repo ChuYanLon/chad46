@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_sunrise_breeze#palette.inactive = {
 \ 'right': [['#1b1f23', '#f5f5f5', 234, 255], ['#1b1f23', '#f5f5f5', 234, 255]],
 \ 'middle': [['#1b1f23', '#f5f5f5', 234, 255]]
 \ }
-" synced: b17a42d949e42cff
+" synced: 396721da1226d834

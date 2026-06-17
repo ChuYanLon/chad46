@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_aylin#palette.inactive = {
 \ 'right': [['#ffffff', '#363b46', 231, 237], ['#ffffff', '#363b46', 231, 237]],
 \ 'middle': [['#ffffff', '#363b46', 231, 237]]
 \ }
-" synced: 2ced2c17be18d4f4
+" synced: 894b0ff9f18ee46b

@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_radium#palette.inactive = {
 \ 'right': [['#d4d4d5', '#212428', 188, 235], ['#d4d4d5', '#212428', 188, 235]],
 \ 'middle': [['#d4d4d5', '#212428', 188, 235]]
 \ }
-" synced: 5f5ee9ddae711858
+" synced: 012e2bbeb45f7bb5

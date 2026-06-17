@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_catppuccin_latte#palette.inactive = {
 \ 'right': [['#7287FD', '#d1d6e3', 69, 253], ['#7287FD', '#d1d6e3', 69, 253]],
 \ 'middle': [['#7287FD', '#d1d6e3', 69, 253]]
 \ }
-" synced: 0ff7f040d600b6b8
+" synced: cebac30ae22f5ef8
