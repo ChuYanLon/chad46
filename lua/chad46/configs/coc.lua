@@ -67,7 +67,7 @@ return function()
       floatSource = true,
       floatPrefix = "●",
       floatFormat = "%source% %message% %code%",
-      signText = { Error = "●", Warning = "▲", Info = "●", Hint = "●" },
+      signText = { Error = "", Warning = "", Info = "", Hint = "" },
       signPriority = 10,
       refreshAfterInsertMode = true,
       checkCurrentLine = true,
