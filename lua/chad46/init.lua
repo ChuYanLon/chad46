@@ -32,6 +32,7 @@ local plugin_configs = {
   dap = { plugin = "nvim-dap", config = "dap", mod = "dap" },
   trouble = { plugin = "trouble.nvim", config = "trouble", mod = "trouble" },
   snacks = { plugin = "snacks.nvim", config = "snacks", mod = "snacks" },
+  coc = { plugin = "coc.nvim", config = "coc", mod = "coc", no_auto = true },
 }
 
 ---@type table<string, string>
@@ -169,6 +170,7 @@ function M.setup(opts)
   if not plugins then return end
 
   for integration_name, mapping in pairs(plugin_configs) do
+    if mapping.no_auto then goto continue end
     if integration_enabled(integration_name) then
       local spec = plugins[mapping.plugin]
       if spec then
@@ -191,6 +193,19 @@ function M.setup(opts)
         end
       end
     end
+    ::continue::
+  end
+
+  for integration_name, mapping in pairs(plugin_configs) do
+    if not mapping.no_auto then goto cont end
+    if integration_enabled(integration_name) then
+      local spec = plugins[mapping.plugin]
+      if spec then
+        local chad_cfg = require("chad46.configs." .. mapping.config)
+        if type(chad_cfg) == "function" then chad_cfg() end
+      end
+    end
+    ::cont::
   end
 end
 
@@ -205,10 +220,14 @@ function M.apply_configs(names)
       goto continue
     end
     local ok, mod = pcall(require, mapping.mod)
-    if ok and type(mod.setup) == "function" then
+    if ok then
       local chad_cfg = require("chad46.configs." .. mapping.config)
-      local cfg = type(chad_cfg) == "function" and chad_cfg() or vim.tbl_deep_extend("force", {}, chad_cfg)
-      mod.setup(cfg)
+      if type(chad_cfg) == "function" then
+        chad_cfg()
+      elseif type(mod.setup) == "function" then
+        local cfg = vim.tbl_deep_extend("force", {}, chad_cfg)
+        mod.setup(cfg)
+      end
     end
     ::continue::
   end

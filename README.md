@@ -6,7 +6,7 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
 
-94 themes · 46 plugin highlight integrations · 14 auto-applied plugin configs · Lualine, Heirline, Bufferline, Airline & Lightline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
+94 themes · 47 plugin highlight integrations · 15 auto-applied plugin configs · Complete coc.nvim support (160+ highlights, completion icons, diagnostic config) · Lualine, Heirline, Bufferline, Airline & Lightline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
@@ -30,8 +30,8 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
 - **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
 - **94 themes**
-- **46 plugin integrations** (highlights)
-- **14 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
+- **47 plugin integrations** (highlights)
+- **15 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
@@ -90,11 +90,11 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
-> Five integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc**, and **NERDTree**.
+> Six integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc** (160+ highlights, auto-config), and **NERDTree**.
 
-### Highlights (46 plugins)
+### Highlights (47 plugins)
 
-Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, **Coc***, CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, **NERDTree***, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
+Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, **Coc** (160+ groups), CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, **NERDTree***, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
 ### Auto-applied Configs (lazy.nvim only)
 
@@ -116,6 +116,7 @@ Also auto-detected — when the plugin is installed, chad46 injects its defaults
 | Dap | breakpoint signs |
 | Trouble | right-side layout |
 | Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style |
+| Coc | diagnostics, completion kind icons (Nerd Font), format items order, signature/hover/floating borders, inlayHint, codeLens — respects `cmp.style` |
 
 ## Options
 
@@ -124,7 +125,7 @@ Full reference of available `setup()` options:
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
-| `cmp.style` | `string` | `"default"` | nvim-cmp / blink.cmp UI style: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
+| `cmp.style` | `string` | `"default"` | Completion UI style — affects **nvim-cmp**, **blink.cmp**, and **coc.nvim** PUM: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
 | `statusline.theme` | `string` | `"default"` | Statusline style: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` — affects lualine, heirline, and `statusline` adapter |
 | `statusline.styles` | `table` | `{}` | Define or override statusline theme styles |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
@@ -141,7 +142,7 @@ Default config for reference:
   hl_override = {},
   hl_add = {},
   statusline = { theme = "default", styles = {} },
-  cmp = { style = "default" },
+  cmp = { style = "default" },  -- also controls coc.nvim PUM
   integrations = {},
 }
 ```
@@ -343,11 +344,20 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'chad46_bearded_arc' }
 ```
 
-**coc.nvim & NERDTree** highlights are included — no extra config:
+**coc.nvim** — full support (160+ highlights + auto-config):
 
 ```vim
 Plug 'ChuYanLon/chad46'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+```
+
+All diagnostic highlights, completion menu icons (kind column), signature/hover/floating styling, and tree view are themed automatically.  
+Completion item kind icons reuse the same Nerd Font set as nvim-cmp and blink.cmp, and respect the `cmp.style` option.
+
+**NERDTree** highlights are included — no extra config:
+
+```vim
+Plug 'ChuYanLon/chad46'
 Plug 'preservim/nerdtree'
 ```
 
