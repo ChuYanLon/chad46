@@ -82,6 +82,7 @@ local highlights = {
 
   -- List UI
   CocListMode = { fg = colors.blue },
+  CocSelectedLine = { bg = colors.black2 },
   CocListPath = { fg = colors.light_grey },
   CocListLine = { bg = colors.black2 },
   CocListFgBlack = { fg = colors.black2 },
