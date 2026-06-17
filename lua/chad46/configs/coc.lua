@@ -4,6 +4,13 @@ return function()
     "coc-tsserver",
   }
 
+  vim.g.coc_status_error_sign = " "
+  vim.g.coc_status_warning_sign = " "
+  vim.g.coc_notify_error_icon = " "
+  vim.g.coc_notify_warning_icon = " "
+  vim.g.coc_notify_info_icon = " "
+  vim.g.coc_borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+
   local cmp_style = require("chad46.config").options.cmp.style
   local styled = cmp_style ~= "default"
 
@@ -72,7 +79,7 @@ return function()
     floating = { border = "rounded" },
     codeLens = { enable = true },
     inlayHint = { enable = true },
-    tree = { renderChildren = true },
+    tree = { renderChildren = true, openedIcon = "", closedIcon = "" },
   }
 
   vim.g.coc_user_config = vim.tbl_deep_extend("force", vim.g.coc_user_config or {}, config)

@@ -24,6 +24,12 @@ local highlights = {
   CocInfoSign = { fg = colors.blue },
   CocHintSign = { fg = colors.teal },
 
+  -- Diagnostic sign linehl (subtle tinted line background when sign is placed)
+  CocErrorLine = { bg = mixcolors(colors.red, colors.black, 85) },
+  CocWarningLine = { bg = mixcolors(colors.yellow, colors.black, 85) },
+  CocInfoLine = { bg = mixcolors(colors.blue, colors.black, 85) },
+  CocHintLine = { bg = mixcolors(colors.teal, colors.black, 85) },
+
   -- Diagnostic float windows
   CocErrorFloat = { fg = colors.red, bg = colors.darker_black },
   CocWarningFloat = { fg = colors.yellow, bg = colors.darker_black },
@@ -39,7 +45,7 @@ local highlights = {
   CocHighlightText = { bg = colors.one_bg3 },
   CocHighlightRead = { link = "CocHighlightText" },
   CocHighlightWrite = { link = "CocHighlightText" },
-  CocSelectedText = { bg = colors.one_bg2, fg = colors.white },
+  CocSelectedText = { fg = colors.red },
   CocCursorRange = { bg = colors.one_bg3 },
   CocLinkedEditing = { link = "CocCursorRange" },
   CocHoverRange = { bg = colors.one_bg3 },
@@ -96,6 +102,52 @@ local highlights = {
   CocListBgCyan = { bg = colors.cyan },
   CocListBgWhite = { bg = colors.white },
   CocListBgGrey = { bg = colors.grey },
+
+  -- List source: CocDiagnostics
+  CocDiagnosticsFile = { fg = colors.light_grey },
+  CocDiagnosticsError = { link = "CocErrorSign" },
+  CocDiagnosticsWarning = { link = "CocWarningSign" },
+  CocDiagnosticsInfo = { link = "CocInfoSign" },
+  CocDiagnosticsHint = { link = "CocHintSign" },
+
+  -- List source: CocServices
+  CocServicesPrefix = { fg = colors.purple },
+  CocServicesName = { fg = colors.blue },
+  CocServicesStat = { fg = colors.green },
+  CocServicesLanguages = { fg = colors.light_grey },
+
+  -- List source: CocSources
+  CocSourcesPrefix = { fg = colors.purple },
+  CocSourcesName = { fg = colors.blue },
+  CocSourcesPriority = { fg = base16.base09 },
+  CocSourcesFileTypes = { fg = colors.light_grey },
+  CocSourcesType = { fg = colors.green },
+
+  -- List source: CocLists
+  CocListsDesc = { fg = colors.light_grey },
+
+  -- List source: CocExtensions
+  CocExtensionsActivated = { fg = colors.green },
+  CocExtensionsLoaded = { fg = colors.white },
+  CocExtensionsDisabled = { fg = colors.grey_fg },
+  CocExtensionsName = { fg = colors.green },
+  CocExtensionsLocal = { fg = colors.blue },
+  CocExtensionsRoot = { fg = colors.light_grey },
+
+  -- List source: CocOutline
+  CocOutlineName = { fg = colors.white },
+  CocOutlineIndentLine = { fg = colors.light_grey },
+  CocOutlineKind = { fg = colors.purple },
+  CocOutlineLine = { fg = colors.light_grey },
+
+  -- List source: CocNotifications
+  CocNotificationTime = { fg = colors.light_grey },
+
+  -- List source: CocCommands
+  CocCommandsTitle = { fg = colors.light_grey },
+
+  -- Popup terminal
+  CocPopupTerminal = { link = "CocFloating" },
 
   -- Text formatting
   CocBold = { bold = true },
