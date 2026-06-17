@@ -44,4 +44,4 @@ let g:airline#themes#chad46_flouromachine#palette.accents = {
 function! airline#themes#chad46_flouromachine#apply()
   let g:airline#themes#chad46_flouromachine#palette = g:airline#themes#chad46_flouromachine#palette
 endfunction
-" synced: a138d373f74a948d
+" synced: 5f0b4f2d50260a67

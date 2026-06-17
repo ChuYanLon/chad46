@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_nano_light#palette.inactive = {
 \ 'right': [['#37474F', '#ebebeb', 238, 255], ['#37474F', '#ebebeb', 238, 255]],
 \ 'middle': [['#37474F', '#ebebeb', 238, 255]]
 \ }
-" synced: 4a00fec16904637f
+" synced: bd376b7e4b9e93ad

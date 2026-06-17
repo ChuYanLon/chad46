@@ -126,6 +126,17 @@ generate_full_cs() {
 
 gen_cs() { return 0; }
 
+# Fix devicons.lua: correct DevIcon group names to PascalCase
+# so they match nvim-web-devicons' naming convention.
+fixup_devicons() {
+  local f="$INTEG_DIR/devicons.lua"
+  [[ ! -f "$f" ]] && return 0
+  [[ "$DRY_RUN" == "--dry-run" ]] && return 0
+  nvim --headless --noplugin \
+    -c "let g:fixup_file='$f'" \
+    -c "luafile $CHAD46_DIR/fixup_devicons.lua" -c "qa!" 2>&1
+}
+
 main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
   mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
@@ -140,6 +151,7 @@ main() {
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "integrations" ]]; then
     sync_dir "integrations" "$INTEG_DIR" "${ALL_INTEGRATIONS[@]}"
+    fixup_devicons
     echo ""
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "types" ]]; then

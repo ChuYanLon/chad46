@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_ayu_dark#palette.inactive = {
 \ 'right': [['#ced4df', '#1c1f25', 188, 234], ['#ced4df', '#1c1f25', 188, 234]],
 \ 'middle': [['#ced4df', '#1c1f25', 188, 234]]
 \ }
-" synced: fa2c730ca2456aff
+" synced: 59ee13bd2f8d20de

@@ -5,6 +5,33 @@ local colors_util = require("chad46.colors")
 ---@diagnostic disable-next-line: missing-fields
 local M = {}
 
+-- Fix nvim-web-devicons get_icon not returning highlight group name
+-- due to internal icons table losing the `name` field after merge.
+local devicons_patched = false
+local function patch_devicons_get_icon()
+  if devicons_patched then return end
+  local ok, dev = pcall(require, "nvim-web-devicons")
+  if not ok then return end
+  local orig = dev.get_icon
+  local ext_icons = dev.get_icons_by_extension()
+  dev.get_icon = function(name, ext, opts)
+    local icon, hl = orig(name, ext, opts)
+    if icon and not hl and ext then
+      local data = ext_icons[ext:lower()]
+      if data and data.name then
+        hl = "DevIcon" .. data.name
+      end
+    end
+    return icon, hl
+  end
+  devicons_patched = true
+end
+patch_devicons_get_icon()
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("Chad46DeviconsFix", { clear = true }),
+  callback = patch_devicons_get_icon,
+})
+
 ---@type ThemeTable?
 local current_theme = nil
 ---@type Base30Table & Base16Table

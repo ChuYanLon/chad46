@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_obsidian_ember#palette.inactive = {
 \ 'right': [['#d3d3d3', '#2c2c2c', 252, 236], ['#d3d3d3', '#2c2c2c', 252, 236]],
 \ 'middle': [['#d3d3d3', '#2c2c2c', 252, 236]]
 \ }
-" synced: 71d3698736c9c418
+" synced: 286ca72a35228aef

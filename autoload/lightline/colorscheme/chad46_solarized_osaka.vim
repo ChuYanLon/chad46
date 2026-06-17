@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_solarized_osaka#palette.inactive = {
 \ 'right': [['#9eabac', '#022736', 248, 234], ['#9eabac', '#022736', 248, 234]],
 \ 'middle': [['#9eabac', '#022736', 248, 234]]
 \ }
-" synced: f2f94754fa253fb6
+" synced: 384dc2cf4c085cf0

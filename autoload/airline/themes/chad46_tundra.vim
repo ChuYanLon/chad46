@@ -44,4 +44,4 @@ let g:airline#themes#chad46_tundra#palette.accents = {
 function! airline#themes#chad46_tundra#apply()
   let g:airline#themes#chad46_tundra#palette = g:airline#themes#chad46_tundra#palette
 endfunction
-" synced: a45609e0b7996d41
+" synced: d6225ae6792d1ab0

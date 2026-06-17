@@ -84,6 +84,7 @@ local hlgroups = {
 
   -- File tree / Explorer (via picker)
   SnacksPickerDirectory = { fg = colors.blue },
+  SnacksPickerFile = { fg = colors.white },
   SnacksPickerDir = { fg = colors.light_grey },
   SnacksPickerDelim = { fg = colors.grey_fg },
   SnacksPickerRow = { fg = colors.grey_fg },

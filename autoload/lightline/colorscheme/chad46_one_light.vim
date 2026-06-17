@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_one_light#palette.inactive = {
 \ 'right': [['#54555b', '#dadadb', 240, 253], ['#54555b', '#dadadb', 240, 253]],
 \ 'middle': [['#54555b', '#dadadb', 240, 253]]
 \ }
-" synced: c739e885017ebda6
+" synced: f9809fbedc857a34

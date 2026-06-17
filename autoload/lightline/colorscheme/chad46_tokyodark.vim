@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_tokyodark#palette.inactive = {
 \ 'right': [['#A0A8CD', '#1d1e29', 146, 235], ['#A0A8CD', '#1d1e29', 146, 235]],
 \ 'middle': [['#A0A8CD', '#1d1e29', 146, 235]]
 \ }
-" synced: 244026be13c59d99
+" synced: 6eb4d4dda5081c24

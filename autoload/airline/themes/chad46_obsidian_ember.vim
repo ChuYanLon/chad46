@@ -44,4 +44,4 @@ let g:airline#themes#chad46_obsidian_ember#palette.accents = {
 function! airline#themes#chad46_obsidian_ember#apply()
   let g:airline#themes#chad46_obsidian_ember#palette = g:airline#themes#chad46_obsidian_ember#palette
 endfunction
-" synced: 71d3698736c9c418
+" synced: 286ca72a35228aef

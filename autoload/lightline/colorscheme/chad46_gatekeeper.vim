@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_gatekeeper#palette.inactive = {
 \ 'right': [['#cccdd1', '#1e1e1e', 252, 234], ['#cccdd1', '#1e1e1e', 252, 234]],
 \ 'middle': [['#cccdd1', '#1e1e1e', 252, 234]]
 \ }
-" synced: ab915fc935fc324a
+" synced: 982384c5a9591a91

@@ -44,4 +44,4 @@ let g:airline#themes#chad46_monekai#palette.accents = {
 function! airline#themes#chad46_monekai#apply()
   let g:airline#themes#chad46_monekai#palette = g:airline#themes#chad46_monekai#palette
 endfunction
-" synced: 4e19f940b33952c4
+" synced: 2d68e0d7e25712a5
