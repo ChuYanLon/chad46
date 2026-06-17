@@ -53,7 +53,7 @@ local highlights = {
   CocCodeLens = { fg = colors.light_grey },
 
   -- Floating windows
-  CocFloating = { bg = colors.darker_black },
+  CocFloating = { fg = base16.base05, bg = colors.darker_black },
   CocMenuSel = { bg = colors.pmenu_bg, fg = colors.black },
   CocFloatThumb = { bg = colors.grey },
   CocFloatSbar = { bg = colors.one_bg },

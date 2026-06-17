@@ -61,6 +61,10 @@ return function()
   end
 
   local config = {
+    dialog = {
+      floatHighlight = "CocFloating",
+      floatBorderHighlight = "CocFloatBorder",
+    },
     diagnostic = {
       enable = true,
       virtualText = true,
