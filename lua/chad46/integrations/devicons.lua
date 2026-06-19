@@ -8,8 +8,8 @@ return {
   DevIconHtml = { fg = colors.baby_pink },
   DevIconJpeg = { fg = colors.dark_purple },
   DevIconJpg = { fg = colors.dark_purple },
-  DevIconJs = { fg = colors.sun }
-  DevIconJson = { fg = colors.sun },,
+  DevIconJs = { fg = colors.sun },
+  DevIconJson = { fg = colors.sun },
   DevIconKt = { fg = colors.orange },
   DevIconLock = { fg = colors.red },
   DevIconLua = { fg = colors.blue },
@@ -34,5 +34,5 @@ return {
   DevIconJSX = { fg = colors.blue },
   DevIconSvelte = { fg = colors.red },
   DevIconJava = { fg = colors.orange },
-  DevIconDart = { fg = colors.cyan },
+  DevIconDart = { fg = colors.cyan }
 }
