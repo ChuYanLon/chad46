@@ -1,15 +1,15 @@
 local colors = require("base46").get_theme_tb "base_30"
 
 return {
-  DevIconC = { fg = colors.blue },
+  DevIconc = { fg = colors.blue },
   DevIconCss = { fg = colors.blue },
   DevIconDeb = { fg = colors.cyan },
   DevIconDockerfile = { fg = colors.cyan },
   DevIconHtml = { fg = colors.baby_pink },
   DevIconJpeg = { fg = colors.dark_purple },
   DevIconJpg = { fg = colors.dark_purple },
-  DevIconJs = { fg = colors.sun },
-  DevIconJson = { fg = colors.sun },
+  DevIconJs = { fg = colors.sun }
+  DevIconJson = { fg = colors.sun },,
   DevIconKt = { fg = colors.orange },
   DevIconLock = { fg = colors.red },
   DevIconLua = { fg = colors.blue },
