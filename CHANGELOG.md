@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.1.0 (2026-06-28)
+
+### Fixed
+
+- `fixup_devicons.lua`: guard condition no longer skips casing fixes when `pairs()` iterates in non-deterministic order (`css` before `c`, `woff2` before `woff`).
+- `fixup_devicons.lua`: DevIconJson insertion no longer produces double-comma syntax error.
+- `sync.sh`: devicons fixup applied inline during download — eliminates false `updated: 1` in sync.log from upstream's lowercase DevIcon names.
+
 ## v1.1.0 (2026-06-10)
 
 ### Added
