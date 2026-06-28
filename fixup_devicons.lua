@@ -23,7 +23,7 @@ local changed = false
 for lower, pascal in pairs(fix) do
   local old = "DevIcon" .. lower
   local new = "DevIcon" .. pascal
-  if content:find(old, 1, true) and not content:find(new, 1, true) then
+  if content:find(old, 1, true) then
     content = content:gsub(old, new)
     changed = true
   end
@@ -31,7 +31,7 @@ end
 
 -- Add missing DevIconJson
 if not content:find("DevIconJson", 1, true) then
-  content = content:gsub("(DevIconJs = { fg = colors%.[^}]+})",
+  content = content:gsub("(DevIconJs = { fg = colors%.[^}]+},?)",
     "%1\n  DevIconJson = { fg = colors.sun },")
   changed = true
 end
