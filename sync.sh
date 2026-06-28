@@ -75,6 +75,15 @@ sync_dir() {
       content="${content%"${content##*[![:space:]]}"}"
       if ! echo "$content" | grep -q '^return M$'; then content="$content"$'\n\nreturn M\n'; fi
     fi
+    if [[ "$type" == "integrations" && "$name" == "devicons" ]]; then
+      local tmp=$(mktemp)
+      printf '%s\n' "$content" > "$tmp"
+      command -v nvim &>/dev/null && nvim --headless --noplugin \
+        -c "let g:fixup_file='$tmp'" \
+        -c "luafile $CHAD46_DIR/fixup_devicons.lua" -c "qa!" 2>/dev/null
+      content=$(<"$tmp")
+      rm -f "$tmp"
+    fi
     local f="$dst/$name.lua"
     if [[ -f "$f" ]]; then
       local old; old=$(<"$f")
@@ -151,7 +160,6 @@ main() {
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "integrations" ]]; then
     sync_dir "integrations" "$INTEG_DIR" "${ALL_INTEGRATIONS[@]}"
-    fixup_devicons
     echo ""
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "types" ]]; then
