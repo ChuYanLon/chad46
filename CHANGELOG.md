@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `nvchad_stl` lualine-style refresh architecture: 16ms continuous polling timer (`coalesce_timer`) merges rapid events, 1000ms periodic fallback timer (`refresh_interval`) for custom components.
+- `nvchad_stl.enable({ modules = {}, order = {} })` — custom statusline components with full position control.
+- `nvchad_stl.enable({ refresh_interval = 1000 })` — configurable periodic refresh (default 1000ms, set 0 to disable).
+
+### Changed
+
+- `nvchad_stl` rendering now matches lualine architecture: no `%!` caching, no `_G.chad46_stl_render`. `process_refresh()` computes and sets `vim.o.statusline` directly. Events only set a flag; the 16ms polling timer handles processing.
+
 ## v2.1.0 (2026-06-28)
 
 ### Fixed

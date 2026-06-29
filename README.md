@@ -213,14 +213,30 @@ require("chad46").apply_configs({"lualine","bufferline"}) -- multiple
 ### NvChad Native Statusline (nvchad_stl)
 
 Built-in NvChad-style statusline with 4 themes. No external dependency required.
+Lualine-style refresh architecture: 16ms event coalescing + 1000ms periodic fallback.
 
 ```lua
 require("chad46").setup({ ... })
 require("chad46").load("tokyonight")
 
 require("chad46.adapters.nvchad_stl").enable({
-  theme = "default",           -- default / minimal / vscode / vscode_colored
-  separator_style = "default", -- default / round / block / arrow
+  theme = "default",             -- default / minimal / vscode / vscode_colored
+  separator_style = "default",   -- default / round / block / arrow
+  order = nil,                   -- custom component order (see below)
+  modules = nil,                 -- custom component modules (see below)
+  refresh_interval = 1000,       -- ms, periodic refresh for custom components; 0 = disable
+})
+```
+
+Custom components:
+
+```lua
+require("chad46.adapters.nvchad_stl").enable({
+  modules = {
+    clock = function() return os.date(" %H:%M:%S ") end,
+    battery = function() return "   85% " end,
+  },
+  order = { "mode", "file", "git", "%=", "clock", "battery", "lsp", "cwd", "cursor" },
 })
 ```
 

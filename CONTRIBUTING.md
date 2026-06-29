@@ -9,8 +9,10 @@
 ## How to add a new statusline theme
 
 1. Add your rendering module to `lua/chad46/adapters/nvchad_stl/<name>.lua`.
-2. Add the theme-specific highlights in `lua/chad46/adapters/nvchad_stl/init.lua`.
+2. Add the theme-specific highlights in `lua/chad46/adapters/nvchad_stl/init.lua` (`theme_highlights` table + `apply_*_highlights()` function).
 3. Add the theme to `ALL_STL` in `sync.sh` if it should be synced from NvChad/ui.
+
+The nvchad_stl uses lualine-style refresh: a 16ms continuous polling timer checks `refresh_pending` flag. Events (`ModeChanged`, `BufEnter`, etc.) set the flag; `process_refresh()` computes `vim.o.statusline` directly. Users can add custom components via `modules` and `order`, and control periodic refresh via `refresh_interval` (default 1000ms).
 
 ## How to add a new theme
 
