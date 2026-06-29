@@ -2,22 +2,6 @@ local utils = require("chad46.adapters.nvchad_stl.utils")
 
 -- Override utils LSP/Diagnostics to support coc.nvim
 -- utils.lua is synced from upstream, so local patches go here.
-local function log(...)
-  local ok, f = pcall(io.open, "/tmp/chad46_stl.log", "a")
-  if not ok then return end
-  local parts = {}
-  for _, v in ipairs({ ... }) do
-    table.insert(parts, tostring(v))
-  end
-  f:write(os.date("%H:%M:%S") .. " " .. table.concat(parts, " ") .. "\n")
-  f:close()
-end
-
-local function coc_ready()
-  local ok, ready = pcall(vim.fn["coc#rpc#ready"])
-  log("coc_ready: ok=", ok, " ready=", ready or -1)
-  return ok and ready == 1
-end
 
 local cached_services = nil
 
@@ -29,9 +13,18 @@ local function refresh_services()
   end
 end
 
+-- Per-render caches to avoid redundant RPC/parsing
+local last_coc_status = ""
+local is_coc_ready = false
+
+local function coc_ready()
+  local ok, ready = pcall(vim.fn["coc#rpc#ready"])
+  is_coc_ready = ok and ready == 1
+  return is_coc_ready
+end
+
 local function patch_utils_for_coc()
-  if not pcall(vim.fn.exists, "*coc#rpc#ready") then log("patch: exists failed, skip"); return end
-  log("patch_utils_for_coc: applying")
+  if not pcall(vim.fn.exists, "*coc#rpc#ready") then return end
 
   local function running_services()
     return cached_services
@@ -111,16 +104,46 @@ local function patch_utils_for_coc()
 
   utils.lsp = function()
     local buf = utils.stbufnr()
-    log("lsp: buf=", buf)
     if rawget(vim, "lsp") then
       for _, client in ipairs(vim.lsp.get_clients()) do
-        log("lsp: client=", client.name, " attached=", client.attached_buffers[buf] and "yes" or "no")
         if client.attached_buffers[buf] then
           return (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
         end
       end
     end
     if coc_ready() then
+      -- Progress detection (side-effect via vim.notify, runs regardless of services)
+      local raw_status = vim.g.coc_status or ""
+      if raw_status ~= last_coc_status then
+        last_coc_status = raw_status
+        local progress = extract_progress(raw_status)
+        if progress ~= "" then
+          if progress ~= last_progress then
+            last_progress = progress
+            if progress:match("(%d+)%%") then
+              stop_anim()
+              vim.schedule(function()
+                vim.notify(format_progress(progress), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+              end)
+            else
+              stop_anim()
+              anim_text = progress
+              anim_frame = 0
+              vim.notify(" " .. progress .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+              anim_timer = vim.uv.new_timer()
+              anim_timer:start(200, 200, vim.schedule_wrap(function()
+                anim_frame = (anim_frame + 1) % 11
+                vim.notify(" " .. anim_text .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+              end))
+            end
+          end
+        elseif last_progress ~= "" then
+          local done = last_progress:gsub("%s*%d+/%d+%s*%d+%%", ""):gsub("%s+$", "")
+          last_progress = ""
+          stop_anim(done ~= "" and done or nil)
+        end
+      end
+
       local services = running_services()
       if services then
         local names = {}
@@ -138,35 +161,8 @@ local function patch_utils_for_coc()
           return "   " .. names[1] .. " "
         end
       end
-      local progress = extract_progress(vim.g.coc_status or "")
-      if progress ~= "" and progress ~= last_progress then
-        last_progress = progress
-        if progress:match("(%d+)%%") then
-          -- Has percentage → real progress bar
-          stop_anim()
-          vim.schedule(function()
-            vim.notify(format_progress(progress), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
-          end)
-        else
-          -- No percentage → indeterminate animation
-          stop_anim()
-          anim_text = progress
-          anim_frame = 0
-          vim.notify(" " .. progress .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
-          anim_timer = vim.uv.new_timer()
-          anim_timer:start(200, 200, vim.schedule_wrap(function()
-            anim_frame = (anim_frame + 1) % 11
-            vim.notify(" " .. anim_text .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
-          end))
-        end
-      elseif progress == "" and last_progress ~= "" then
-        local done = last_progress:gsub("%s*%d+/%d+%s*%d+%%", ""):gsub("%s+$", "")
-        last_progress = ""
-        stop_anim(done ~= "" and done or nil)
-      end
       return "   CoC "
     end
-    log("lsp: none, empty")
     return ""
   end
 
@@ -176,9 +172,8 @@ local function patch_utils_for_coc()
 
   utils.diagnostics = function()
     local buf = utils.stbufnr()
-    if coc_ready() then
+    if is_coc_ready then
       local diag = vim.b[buf].coc_diagnostic_info
-      log("diag: coc diag=", diag and vim.inspect(diag) or "nil")
       if diag then
         local err = (diag.error and diag.error > 0) and ("%#St_lspError#" .. " " .. diag.error .. " ") or ""
         local warn = (diag.warning and diag.warning > 0) and ("%#St_lspWarning#" .. " " .. diag.warning .. " ") or ""
@@ -188,7 +183,7 @@ local function patch_utils_for_coc()
       end
       return ""
     end
-    if not rawget(vim, "lsp") then log("diag: no native lsp"); return "" end
+    if not rawget(vim, "lsp") then return "" end
     local err = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.ERROR })
     local warn = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.WARN })
     local hints = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.HINT })
