@@ -35,8 +35,23 @@ local function patch_utils_for_coc()
       end
     end
     if coc_ready() then
-      local status = vim.g.coc_status or ""
-      log("lsp: coc ready, status=", status)
+      local ok, services = pcall(vim.fn["coc#rpc#request"], "services", {})
+      if ok and type(services) == "table" and #services > 0 then
+        local names = {}
+        for _, s in ipairs(services) do
+          if s.state == "running" then
+            table.insert(names, s.id)
+          end
+        end
+        if #names > 0 then
+          local label = table.concat(names, " ~ ")
+          if vim.o.columns > 100 then
+            if #label > 40 then label = label:sub(1, 37) .. "..." end
+            return "   " .. label .. " "
+          end
+          return "   " .. names[1] .. " "
+        end
+      end
       return "   CoC "
     end
     log("lsp: none, empty")
