@@ -5,6 +5,14 @@ local utils = require("chad46.adapters.nvchad_stl.utils")
 
 local cached_services = nil
 
+local stl_cache = ""
+local stl_dirty = true
+
+local function invalidate_stl()
+  stl_dirty = true
+  vim.schedule(vim.cmd.redrawstatus)
+end
+
 local function refresh_services()
   if not pcall(vim.fn.exists, "*coc#rpc#ready") then return end
   local ok, result = pcall(vim.fn["coc#rpc#request"], "services", {})
@@ -304,7 +312,28 @@ function M.enable(opts)
 
   patch_utils_for_coc()
 
-  utils.autocmds()
+  stl_dirty = true
+  invalidate_stl()
+
+  -- LspProgress (replaces utils.autocmds() — adds cache invalidation)
+  local spinners = { "", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "" }
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = augroup,
+    pattern = { "begin", "report", "end" },
+    callback = function(args)
+      if not args.data or not args.data.params then return end
+      local data = args.data.params.value
+      local progress = ""
+      if data.percentage then
+        local idx = math.max(1, math.floor(data.percentage / 10))
+        progress = spinners[idx] .. " " .. data.percentage .. "%% "
+      end
+      local loaded_count = data.message and string.match(data.message, "^(%d+/%d+)") or ""
+      local str = progress .. (data.title or "") .. " " .. (loaded_count or "")
+      utils.state.lsp_msg = data.kind == "end" and "" or str
+      invalidate_stl()
+    end,
+  })
 
   vim.api.nvim_create_autocmd("User", {
     group = augroup,
@@ -314,6 +343,7 @@ function M.enable(opts)
       local fn = theme_highlights[config.theme]
       if fn then fn() end
       patch_utils_for_coc()
+      invalidate_stl()
     end,
   })
 
@@ -322,18 +352,32 @@ function M.enable(opts)
     pattern = { "CocStatusChange", "CocDiagnosticChange" },
     callback = function()
       refresh_services()
-      vim.schedule(vim.cmd.redrawstatus)
+      invalidate_stl()
     end,
   })
 
+  vim.api.nvim_create_autocmd({ "ModeChanged", "DirChanged", "BufEnter", "VimResized" }, {
+    group = augroup,
+    callback = function() invalidate_stl() end,
+  })
+
+  vim.api.nvim_create_autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach" }, {
+    group = augroup,
+    callback = function() invalidate_stl() end,
+  })
+
   _G.chad46_stl_render = function()
-    local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
-    if not ok then return "" end
-    local ok2, result = pcall(theme_mod, config)
-    if not ok2 then return "" end
-    local ok3, str = pcall(result)
-    if not ok3 then return "" end
-    return str
+    if stl_dirty then
+      local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
+      if not ok then return "" end
+      local ok2, result = pcall(theme_mod, config)
+      if not ok2 then return "" end
+      local ok3, str = pcall(result)
+      if not ok3 then return "" end
+      stl_cache = str
+      stl_dirty = false
+    end
+    return stl_cache
   end
 
   vim.o.statusline = "%!v:lua.chad46_stl_render()"
@@ -342,6 +386,8 @@ end
 function M.disable()
   vim.o.statusline = ""
   _G.chad46_stl_render = nil
+  stl_cache = ""
+  stl_dirty = true
   config = vim.deepcopy(defaults)
   pcall(vim.api.nvim_del_augroup_by_name, "Chad46NvchadStl")
 end
