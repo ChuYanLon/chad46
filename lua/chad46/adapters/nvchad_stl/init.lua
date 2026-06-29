@@ -1,5 +1,82 @@
 local utils = require("chad46.adapters.nvchad_stl.utils")
 
+-- Override utils LSP/Diagnostics to support coc.nvim
+-- utils.lua is synced from upstream, so local patches go here.
+local function log(...)
+  local ok, f = pcall(io.open, "/tmp/chad46_stl.log", "a")
+  if not ok then return end
+  local parts = {}
+  for _, v in ipairs({ ... }) do
+    table.insert(parts, tostring(v))
+  end
+  f:write(os.date("%H:%M:%S") .. " " .. table.concat(parts, " ") .. "\n")
+  f:close()
+end
+
+local function coc_ready()
+  local ok, ready = pcall(vim.fn["coc#rpc#ready"])
+  log("coc_ready: ok=", ok, " ready=", ready or -1)
+  return ok and ready == 1
+end
+
+local function patch_utils_for_coc()
+  if not pcall(vim.fn.exists, "*coc#rpc#ready") then log("patch: exists failed, skip"); return end
+  log("patch_utils_for_coc: applying")
+
+  utils.lsp = function()
+    local buf = utils.stbufnr()
+    log("lsp: buf=", buf)
+    if rawget(vim, "lsp") then
+      for _, client in ipairs(vim.lsp.get_clients()) do
+        log("lsp: client=", client.name, " attached=", client.attached_buffers[buf] and "yes" or "no")
+        if client.attached_buffers[buf] then
+          return (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
+        end
+      end
+    end
+    if coc_ready() then
+      local status = vim.g.coc_status or ""
+      log("lsp: coc ready, status=", status)
+      return "   CoC "
+    end
+    log("lsp: none, empty")
+    return ""
+  end
+
+  utils.lsp_msg = function()
+    if coc_ready() then
+      local status = vim.g.coc_status or ""
+      log("lsp_msg: status=", status)
+      return status ~= "" and ("%#St_LspMsg#" .. status) or ""
+    end
+    return vim.o.columns < 120 and "" or utils.state.lsp_msg
+  end
+
+  utils.diagnostics = function()
+    local buf = utils.stbufnr()
+    if coc_ready() then
+      local diag = vim.b[buf].coc_diagnostic_info
+      log("diag: coc diag=", diag and vim.inspect(diag) or "nil")
+      if diag then
+        local err = (diag.error and diag.error > 0) and ("%#St_lspError#" .. " " .. diag.error .. " ") or ""
+        local warn = (diag.warning and diag.warning > 0) and ("%#St_lspWarning#" .. " " .. diag.warning .. " ") or ""
+        return " " .. err .. warn
+      end
+      return ""
+    end
+    if not rawget(vim, "lsp") then log("diag: no native lsp"); return "" end
+    local err = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.ERROR })
+    local warn = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.WARN })
+    local hints = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.HINT })
+    local info = #vim.diagnostic.get(buf, { severity = vim.diagnostic.severity.INFO })
+    err = (err and err > 0) and ("%#St_lspError#" .. " " .. err .. " ") or ""
+    warn = (warn and warn > 0) and ("%#St_lspWarning#" .. " " .. warn .. " ") or ""
+    hints = (hints and hints > 0) and ("%#St_LspHints#" .. "󰛩 " .. hints .. " ") or ""
+    info = (info and info > 0) and ("%#St_LspInfo#" .. "󰋼 " .. info .. " ") or ""
+    return " " .. err .. warn .. hints .. info
+  end
+end
+
 local defaults = {
   theme = "default",
   separator_style = "default",
@@ -104,6 +181,8 @@ function M.enable(opts)
   local fn = theme_highlights[config.theme]
   if fn then fn() end
 
+  patch_utils_for_coc()
+
   utils.autocmds()
 
   local augroup = vim.api.nvim_create_augroup("Chad46NvchadStl", { clear = true })
@@ -115,13 +194,18 @@ function M.enable(opts)
       apply_default_highlights()
       local fn = theme_highlights[config.theme]
       if fn then fn() end
+      patch_utils_for_coc()
     end,
   })
 
   _G.chad46_stl_render = function()
     local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
     if not ok then return "" end
-    return theme_mod(config)()
+    local ok2, result = pcall(theme_mod, config)
+    if not ok2 then return "" end
+    local ok3, str = pcall(result)
+    if not ok3 then return "" end
+    return str
   end
 
   vim.o.statusline = "%!v:lua.chad46_stl_render()"
