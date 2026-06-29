@@ -386,7 +386,7 @@ function M.load(name)
     end
   end
 
-  for _, default_name in ipairs({ "defaults", "syntax" }) do load_integration(default_name) end
+  for _, default_name in ipairs({ "defaults", "syntax", "statusline" }) do load_integration(default_name) end
 
   for name, enabled in pairs(config.options.integrations) do
     if enabled then load_integration(name) end

@@ -6,7 +6,7 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
 
-94 themes · 47 plugin highlight integrations · 15 auto-applied plugin configs · Complete coc.nvim support (160+ highlights, completion icons, diagnostic config) · Lualine, Heirline, Bufferline, Airline & Lightline adapters · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
+94 themes · 48 plugin highlight integrations · 15 auto-applied plugin configs · Complete coc.nvim support (160+ highlights, completion icons, diagnostic config) · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline (4 styles)** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
@@ -30,9 +30,10 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
 - **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
 - **94 themes**
-- **47 plugin integrations** (highlights)
+- **48 plugin integrations** (highlights) — including native `St_*` statusline groups
 - **15 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
+- **NvChad native statusline** — 4 themes (default, minimal, vscode, vscode_colored), auto-synced from NvChad/ui
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
 - **base46/nvconfig** compatibility layer
 
@@ -209,6 +210,24 @@ require("chad46").apply_configs({"lualine","bufferline"}) -- multiple
 
 ## Adapters
 
+### NvChad Native Statusline (nvchad_stl)
+
+Built-in NvChad-style statusline with 4 themes. No external dependency required.
+
+```lua
+require("chad46").setup({ ... })
+require("chad46").load("tokyonight")
+
+require("chad46.adapters.nvchad_stl").enable({
+  theme = "default",           -- default / minimal / vscode / vscode_colored
+  separator_style = "default", -- default / round / block / arrow
+})
+```
+
+Sync from upstream via `bash sync.sh --stl`.
+
+### Lualine / Heirline / Bufferline
+
 ```lua
 -- Shared statusline API (all styles, respects statusline.theme)
 local st = require("chad46.adapters.statusline")
@@ -363,16 +382,29 @@ Plug 'preservim/nerdtree'
 
 </details>
 
+## Sync
+
+```bash
+# Sync themes and integrations from NvChad/base46
+bash sync.sh
+
+# Sync types from NvChad/ui
+bash sync.sh --types
+
+# Sync native statusline modules from NvChad/ui (with chad46 compatibility fixup)
+bash sync.sh --stl
+```
+
 ## Related
 
 - [NvChad/base46](https://github.com/NvChad/base46) — upstream source for themes and integrations
-- [NvChad/ui](https://github.com/NvChad/ui) — upstream source for type definitions
+- [NvChad/ui](https://github.com/NvChad/ui) — upstream source for type definitions and statusline
 - [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) — inspired the auto-detect integration system
 
 ## License
 
 [MIT](LICENSE) © ChuYanLon
 
-**Acknowledgments:** This project contains code derived from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui). Themes, integrations, and type definitions are synced from those upstream projects. All upstream code remains copyright © NvChad contributors and is used under the terms of the MIT License.
+**Acknowledgments:** This project contains code derived from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui). Themes, integrations, type definitions, and statusline modules are synced from those upstream projects. All upstream code remains copyright © NvChad contributors and is used under the terms of the MIT License.
 
 

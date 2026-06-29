@@ -19,12 +19,13 @@ highlight integrations and 14 auto-applied plugin configs. Works with any
 plugin manager.
 
 Features:
-  - Daily auto-sync from NvChad/base46
+  - Daily auto-sync from NvChad/base46 and NvChad/ui
   - Auto-detected integrations — install a plugin, highlights load automatically
   - 94 themes
-  - 46 plugin integrations (highlights)
-  - 14 auto-applied plugin configs
+  - 48 plugin integrations (highlights)
+  - 15 auto-applied plugin configs
   - base_30 / base_16 dual color system
+  - Native NvChad statusline (4 themes, auto-synced from NvChad/ui)
   - Lualine, Heirline, Bufferline, Airline & Lightline adapters
   - base46/nvconfig compatibility layer
 
@@ -136,6 +137,20 @@ Commands                                        *chad46-commands*
 
 ==============================================================================
 Adapters                                        *chad46-adapters*
+
+                                                        *chad46-adapter-nvchad_stl*
+NvChad Native Statusline (nvchad_stl)~
+  Built-in NvChad-style statusline with 4 themes.
+  No external dependency required.
+
+  Enable after setup():
+>
+  require("chad46.adapters.nvchad_stl").enable({
+    theme = "default",           -- default / minimal / vscode / vscode_colored
+    separator_style = "default", -- default / round / block / arrow
+  })
+<
+  Sync from upstream: `bash sync.sh --stl`
 
 Shared statusline API~
 >

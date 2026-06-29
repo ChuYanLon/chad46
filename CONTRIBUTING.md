@@ -6,6 +6,12 @@
 2. Add the lazy.nvim plugin name mapping in `init.lua` → `integration_map`.
 3. Run `bash sync.sh --dry-run` to verify no conflicts.
 
+## How to add a new statusline theme
+
+1. Add your rendering module to `lua/chad46/adapters/nvchad_stl/<name>.lua`.
+2. Add the theme-specific highlights in `lua/chad46/adapters/nvchad_stl/init.lua`.
+3. Add the theme to `ALL_STL` in `sync.sh` if it should be synced from NvChad/ui.
+
 ## How to add a new theme
 
 Themes are synced from NvChad/base46. If you want a theme that's not available, open an issue requesting it, or add it directly to `lua/chad46/themes/`.

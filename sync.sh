@@ -12,6 +12,7 @@ for arg in "$@"; do
     --types) SYNC_MODE="types" ;;
     --themes) SYNC_MODE="themes" ;;
     --integrations) SYNC_MODE="integrations" ;;
+    --stl) SYNC_MODE="stl" ;;
   esac
 done
 
@@ -48,6 +49,10 @@ ALL_INTEGRATIONS=(
 
 ALL_TYPES=(
   base46 themes
+)
+
+ALL_STL=(
+  default minimal vscode vscode_colored utils
 )
 
 fetch() {
@@ -125,6 +130,41 @@ sync_types() {
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
 }
 
+STL_URL="https://raw.githubusercontent.com/NvChad/ui/v3.0/lua/nvchad/stl"
+STL_DIR="$CHAD46_DIR/lua/chad46/adapters/nvchad_stl"
+
+sync_stl() {
+  local dst="$1"
+  shift 1
+  local names=("$@")
+  echo "=== Syncing stl ==="
+  local upd=0 err=0
+  for name in "${names[@]}"; do
+    echo -n "  $name ... "
+    local url="$STL_URL/$name.lua"
+    local content; content=$(fetch "$url")
+    [[ -z "$content" ]] && { log_err+=("stl: $name"); echo "FAILED"; ((err++)); continue; }
+    local tmp=$(mktemp)
+    printf '%s\n' "$content" > "$tmp"
+    command -v nvim &>/dev/null && nvim --headless --noplugin \
+      -c "let g:fixup_file='$tmp'" \
+      -c "let g:fixup_name='$name'" \
+      -c "luafile $CHAD46_DIR/fixup_stl.lua" -c "qa!" 2>/dev/null
+    content=$(<"$tmp")
+    rm -f "$tmp"
+    local f="$dst/$name.lua"
+    if [[ -f "$f" ]]; then
+      local old; old=$(<"$f")
+      [[ "$old" == "$content" ]] && { echo "skip"; continue; }
+      log_upd+=("stl: $name"); echo "updated"
+    else
+      log_add+=("stl: $name"); echo "added"
+    fi
+    [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
+  done
+  echo "  total: ${#names[@]}, updated: $upd, errors: $err"
+}
+
 generate_full_cs() {
   command -v nvim &>/dev/null || return 0
   mkdir -p "$CHAD46_DIR/colors" "$CHAD46_DIR/autoload/airline/themes" "$CHAD46_DIR/autoload/lightline/colorscheme"
@@ -164,6 +204,10 @@ main() {
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "types" ]]; then
     sync_types "$TYPES_DIR" "${ALL_TYPES[@]}"
+    echo ""
+  fi
+  if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "stl" ]]; then
+    sync_stl "$STL_DIR" "${ALL_STL[@]}"
     echo ""
   fi
   echo "Errors: ${#log_err[@]}"
