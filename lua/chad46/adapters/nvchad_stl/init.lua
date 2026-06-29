@@ -324,7 +324,14 @@ local M = {}
 function M.enable(opts)
   if opts then
     for k, v in pairs(opts) do
-      config[k] = v
+      if k == "modules" and type(v) == "table" then
+        config.modules = config.modules or {}
+        for key, val in pairs(v) do
+          config.modules[key] = val
+        end
+      else
+        config[k] = v
+      end
     end
   end
 

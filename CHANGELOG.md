@@ -10,7 +10,7 @@
 
 ### Changed
 
-- `nvchad_stl` rendering now matches lualine architecture: no `%!` caching, no `_G.chad46_stl_render`. `process_refresh()` computes and sets `vim.o.statusline` directly. Events only set a flag; the 16ms polling timer handles processing.
+- `nvchad_stl` rendering now matches lualine architecture: no `%!`, no `_G.chad46_stl_render`. `process_refresh()` iterates non-popup windows, sets `vim.g.statusline_winid` per-window, computes statusline strings, and sets them via `nvim_win_set_option`. Events only set a flag; the 16ms polling timer handles processing.
 
 ## v2.1.0 (2026-06-28)
 
