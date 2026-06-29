@@ -5,12 +5,22 @@ local utils = require("chad46.adapters.nvchad_stl.utils")
 
 local cached_services = nil
 
-local stl_cache = ""
-local stl_dirty = true
+local refresh_pending = false
+local coalesce_timer
+local refresh_timer
 
-local function invalidate_stl()
-  stl_dirty = true
-  vim.schedule(vim.cmd.redrawstatus)
+local function do_refresh()
+  refresh_pending = false
+  vim.cmd.redrawstatus()
+end
+
+-- 16ms coalescing window: rapid calls merge into one refresh
+local function queue_refresh()
+  if refresh_pending then return end
+  refresh_pending = true
+  if coalesce_timer then coalesce_timer:stop() end
+  coalesce_timer = vim.uv.new_timer()
+  coalesce_timer:start(16, 0, vim.schedule_wrap(do_refresh))
 end
 
 local function refresh_services()
@@ -209,6 +219,7 @@ local defaults = {
   separator_style = "default",
   order = nil,
   modules = nil,
+  refresh_interval = 1000, -- ms, periodic refresh for custom components; 0 = disable
 }
 
 local config = vim.deepcopy(defaults)
@@ -312,10 +323,9 @@ function M.enable(opts)
 
   patch_utils_for_coc()
 
-  stl_dirty = true
-  invalidate_stl()
+  vim.cmd.redrawstatus()
 
-  -- LspProgress (replaces utils.autocmds() — adds cache invalidation)
+  -- LspProgress (replaces utils.autocmds())
   local spinners = { "", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "" }
   vim.api.nvim_create_autocmd("LspProgress", {
     group = augroup,
@@ -331,7 +341,7 @@ function M.enable(opts)
       local loaded_count = data.message and string.match(data.message, "^(%d+/%d+)") or ""
       local str = progress .. (data.title or "") .. " " .. (loaded_count or "")
       utils.state.lsp_msg = data.kind == "end" and "" or str
-      invalidate_stl()
+      queue_refresh()
     end,
   })
 
@@ -343,7 +353,7 @@ function M.enable(opts)
       local fn = theme_highlights[config.theme]
       if fn then fn() end
       patch_utils_for_coc()
-      invalidate_stl()
+      queue_refresh()
     end,
   })
 
@@ -352,32 +362,41 @@ function M.enable(opts)
     pattern = { "CocStatusChange", "CocDiagnosticChange" },
     callback = function()
       refresh_services()
-      invalidate_stl()
+      queue_refresh()
     end,
   })
 
   vim.api.nvim_create_autocmd({ "ModeChanged", "DirChanged", "BufEnter", "VimResized" }, {
     group = augroup,
-    callback = function() invalidate_stl() end,
+    callback = function() queue_refresh() end,
   })
 
   vim.api.nvim_create_autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach" }, {
     group = augroup,
-    callback = function() invalidate_stl() end,
+    callback = function() queue_refresh() end,
   })
 
+  -- Periodic refresh for custom components (clock, etc.)
+  if refresh_timer then
+    refresh_timer:stop()
+    refresh_timer:close()
+    refresh_timer = nil
+  end
+  if config.refresh_interval > 0 then
+    refresh_timer = vim.uv.new_timer()
+    refresh_timer:start(config.refresh_interval, config.refresh_interval, vim.schedule_wrap(function()
+      queue_refresh()
+    end))
+  end
+
   _G.chad46_stl_render = function()
-    if stl_dirty then
-      local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
-      if not ok then return "" end
-      local ok2, result = pcall(theme_mod, config)
-      if not ok2 then return "" end
-      local ok3, str = pcall(result)
-      if not ok3 then return "" end
-      stl_cache = str
-      stl_dirty = false
-    end
-    return stl_cache
+    local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
+    if not ok then return "" end
+    local ok2, result = pcall(theme_mod, config)
+    if not ok2 then return "" end
+    local ok3, str = pcall(result)
+    if not ok3 then return "" end
+    return str
   end
 
   vim.o.statusline = "%!v:lua.chad46_stl_render()"
@@ -386,8 +405,17 @@ end
 function M.disable()
   vim.o.statusline = ""
   _G.chad46_stl_render = nil
-  stl_cache = ""
-  stl_dirty = true
+  refresh_pending = false
+  if coalesce_timer then
+    coalesce_timer:stop()
+    coalesce_timer:close()
+    coalesce_timer = nil
+  end
+  if refresh_timer then
+    refresh_timer:stop()
+    refresh_timer:close()
+    refresh_timer = nil
+  end
   config = vim.deepcopy(defaults)
   pcall(vim.api.nvim_del_augroup_by_name, "Chad46NvchadStl")
 end
