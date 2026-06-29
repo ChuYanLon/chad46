@@ -207,12 +207,9 @@ function M.setup(opts)
         local chad46_mod = require("chad46.configs." .. mapping.config)
         local user_opts = spec.opts
         if type(user_opts) == "function" then
-          local user_fn = user_opts
           local mod_is_fn = type(chad46_mod) == "function"
           spec.opts = function(plugin, plugin_opts)
-            plugin_opts = plugin_opts or {}
-            local result = user_fn(plugin, plugin_opts)
-            local merged = type(result) == "table" and result or plugin_opts
+            local merged = plugin_opts or {}
             local base = mod_is_fn and chad46_mod() or vim.tbl_deep_extend("force", {}, chad46_mod)
             return vim.tbl_deep_extend("force", base, merged)
           end
