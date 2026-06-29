@@ -34,13 +34,60 @@ local function patch_utils_for_coc()
   if not pcall(vim.fn.exists, "*coc#rpc#ready") then log("patch: exists failed, skip"); return end
   log("patch_utils_for_coc: applying")
 
-  -- braille spinner chars: \xE2[\xA0-\xA3][\x80-\xBF]
-  local COC_SPINNER = "\xE2[\xA0-\xA3][\x80-\xBF]"
-
   local function running_services()
     if not cached_services then fetch_services_async() end
     return cached_services
   end
+
+  local COC_SPINNER = "\xE2[\xA0-\xA3][\x80-\xBF]"
+
+  local function format_progress(text)
+    local pct = text:match("(%d+)%%")
+    if not pct then return " " .. text end
+    local n = math.min(math.max(tonumber(pct), 0), 100)
+    local bar_w = 10
+    local filled = math.floor(n / 100 * bar_w + 0.5)
+    local bar = string.rep("█", filled) .. string.rep("░", bar_w - filled)
+    local label = text:gsub("%s*%d+/%d+%s*%d+%%", ""):gsub("%s+$", "")
+    return " " .. label .. "  " .. bar .. "  " .. pct .. "%"
+  end
+
+  -- Extract text after each braille spinner. Takes the text between consecutive
+  -- spinners, discarding functional items (which have no spinner prefix).
+  -- For the last segment (after the final spinner), truncate at known
+  -- functional status markers to avoid trailing Live Server / TSC / SNIP text.
+  local function extract_progress(raw)
+    if raw == "" then return "" end
+    local parts = {}
+    local i = 1
+    while i <= #raw do
+      local s, e = raw:find(COC_SPINNER, i)
+      if not s then break end
+      local ns = raw:find(COC_SPINNER, e + 1)
+      local seg_start = e + 1
+      local seg_end = ns and (ns - 1) or #raw
+      local seg = raw:sub(seg_start, seg_end):gsub("^%s+", ""):gsub("%s+$", "")
+        -- Skip transient requesting items (hover, definition, etc.)
+        if seg:lower():find("requesting") then goto skip end
+        if seg ~= "" then
+          -- Last segment: truncate at functional markers
+          if not ns then
+            local fp = seg:find("\xE2\x96\xB6") or seg:find("\xE2\x97[\x8C\x8F]") or seg:find("%s+TSC[^%s]*") or seg:find("%s+SNIP")
+            if fp then seg = seg:sub(1, fp - 1):gsub("%s+$", "") end
+          end
+          if seg ~= "" then table.insert(parts, seg) end
+        end
+        ::skip::
+      i = ns or (#raw + 1)
+    end
+    local seen, deduped = {}, {}
+    for _, p in ipairs(parts) do
+      if not seen[p] then table.insert(deduped, p); seen[p] = true end
+    end
+    return table.concat(deduped, "  ")
+  end
+
+  local last_progress = ""
 
   utils.lsp = function()
     local buf = utils.stbufnr()
@@ -71,33 +118,27 @@ local function patch_utils_for_coc()
           return "   " .. names[1] .. " "
         end
       end
+      local progress = extract_progress(vim.g.coc_status or "")
+      if progress ~= "" and progress ~= last_progress then
+        last_progress = progress
+        vim.schedule(function()
+          vim.notify(format_progress(progress), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+        end)
+      elseif progress == "" and last_progress ~= "" then
+        local done = last_progress:gsub("%s*%d+/%d+%s*%d+%%", ""):gsub("%s+$", "")
+        last_progress = ""
+        vim.schedule(function()
+          vim.notify(" " .. done, vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+        end)
+      end
       return "   CoC "
     end
     log("lsp: none, empty")
     return ""
   end
 
-  local last_progress = ""
   utils.lsp_msg = function()
-    if coc_ready() then
-      local raw = vim.g.coc_status or ""
-      local has_spinner = raw:find(COC_SPINNER)
-      local has_loading = raw:find("Loading") or raw:find("Initializing")
-      if has_spinner and has_loading then
-        local msg = raw:gsub(COC_SPINNER, ""):gsub("^%s+", ""):gsub("%s+$", "")
-        if msg ~= "" and msg ~= last_progress then
-          last_progress = msg
-          vim.schedule(function()
-            vim.notify(msg, vim.log.levels.INFO, { title = "coc" })
-          end)
-        end
-        return ""
-      end
-      last_progress = ""
-      local s = raw:gsub(COC_SPINNER, ""):gsub("^%s+", ""):gsub("%s+$", "")
-      return s ~= "" and ("%#St_LspMsg#" .. s) or ""
-    end
-    return vim.o.columns < 120 and "" or utils.state.lsp_msg
+    return ""
   end
 
   utils.diagnostics = function()
