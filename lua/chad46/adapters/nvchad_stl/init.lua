@@ -20,15 +20,17 @@ local function process_refresh()
   local ok2, result_fn = pcall(theme_mod, config)
   if not ok2 then return end
 
-  local wins = vim.tbl_filter(function(w)
-    return vim.fn.win_gettype(w) ~= 'popup'
-  end, vim.api.nvim_list_wins())
-
-  for _, win in ipairs(wins) do
-    vim.g.statusline_winid = win
-    local ok3, str = pcall(result_fn)
-    if ok3 then
-      vim.api.nvim_win_set_option(win, 'statusline', str)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local ft = vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].filetype or ""
+    if config.ignore_focus and vim.tbl_contains(config.ignore_focus, ft) then
+      vim.api.nvim_win_set_option(win, 'statusline', '')
+    else
+      vim.g.statusline_winid = win
+      local ok3, str = pcall(result_fn)
+      if ok3 then
+        vim.api.nvim_win_set_option(win, 'statusline', str)
+      end
     end
   end
 end
@@ -234,6 +236,7 @@ local defaults = {
   order = nil,
   modules = nil,
   refresh_interval = 1000, -- ms, periodic refresh for custom components; 0 = disable
+  ignore_focus = {},       -- filetypes to hide statusline (like lualine's ignore_focus)
 }
 
 config = vim.deepcopy(defaults)
