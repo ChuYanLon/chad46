@@ -222,6 +222,7 @@ require("chad46").load("tokyonight")
 require("chad46.adapters.nvchad_stl").enable({
   theme = "default",             -- default / minimal / vscode / vscode_colored
   separator_style = "default",   -- default / round / block / arrow
+  ignore_focus = {},             -- filetypes to hide statusline (e.g. { "list" })
   order = nil,                   -- custom component order (see below)
   modules = nil,                 -- custom component modules (see below)
   refresh_interval = 1000,       -- ms, periodic refresh for custom components; 0 = disable

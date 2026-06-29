@@ -14,8 +14,8 @@ Contents                                    *chad46-contents*
 ==============================================================================
 Introduction                                    *chad46-introduction*
 
-chad46 provides 94 themes synced daily from NvChad/base46, with 46 plugin
-highlight integrations and 14 auto-applied plugin configs. Works with any
+chad46 provides 94 themes synced daily from NvChad/base46, with 48 plugin
+highlight integrations and 15 auto-applied plugin configs. Works with any
 plugin manager.
 
 Features:
@@ -146,8 +146,12 @@ NvChad Native Statusline (nvchad_stl)~
   Enable after setup():
 >
   require("chad46.adapters.nvchad_stl").enable({
-    theme = "default",           -- default / minimal / vscode / vscode_colored
-    separator_style = "default", -- default / round / block / arrow
+    theme = "default",             -- default / minimal / vscode / vscode_colored
+    separator_style = "default",   -- default / round / block / arrow
+    ignore_focus = {},             -- filetypes to hide statusline (e.g. { "list" })
+    order = nil,                   -- custom component order
+    modules = nil,                 -- custom component modules
+    refresh_interval = 1000,       -- ms, periodic refresh; 0 = disable
   })
 <
   Sync from upstream: `bash sync.sh --stl`
