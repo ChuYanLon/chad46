@@ -14,13 +14,23 @@ local config
 local function process_refresh()
   if not refresh_pending then return end
   refresh_pending = false
+
   local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
   if not ok then return end
-  local ok2, result = pcall(theme_mod, config)
+  local ok2, result_fn = pcall(theme_mod, config)
   if not ok2 then return end
-  local ok3, str = pcall(result)
-  if not ok3 then return end
-  vim.o.statusline = str
+
+  local wins = vim.tbl_filter(function(w)
+    return vim.fn.win_gettype(w) ~= 'popup'
+  end, vim.api.nvim_list_wins())
+
+  for _, win in ipairs(wins) do
+    vim.g.statusline_winid = win
+    local ok3, str = pcall(result_fn)
+    if ok3 then
+      vim.api.nvim_win_set_option(win, 'statusline', str)
+    end
+  end
 end
 
 local function queue_refresh()
@@ -403,12 +413,16 @@ function M.enable(opts)
     end))
   end
 
-  -- Initial render via schedule (lualine style)
-  vim.schedule(queue_refresh)
+  -- Initial render
+  refresh_pending = true
+  process_refresh()
 end
 
 function M.disable()
   vim.o.statusline = ""
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    pcall(vim.api.nvim_win_set_option, win, 'statusline', "")
+  end
   refresh_pending = false
   if coalesce_timer then
     coalesce_timer:stop()
