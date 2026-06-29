@@ -23,6 +23,25 @@ local function patch_utils_for_coc()
   if not pcall(vim.fn.exists, "*coc#rpc#ready") then log("patch: exists failed, skip"); return end
   log("patch_utils_for_coc: applying")
 
+  -- braille spinner chars: \xE2[\xA0-\xA3][\x80-\xBF]
+  local COC_SPINNER = "\xE2[\xA0-\xA3][\x80-\xBF]"
+
+  local cached_services = nil
+  local last_services_check = 0
+  local function running_services()
+    local now = (vim.uv or vim.loop).now()
+    if cached_services and now - last_services_check < 3000 then
+      return cached_services
+    end
+    local ok, services = pcall(vim.fn["coc#rpc#request"], "services", {})
+    if ok and type(services) == "table" then
+      cached_services = services
+      last_services_check = now
+      return services
+    end
+    return nil
+  end
+
   utils.lsp = function()
     local buf = utils.stbufnr()
     log("lsp: buf=", buf)
@@ -35,8 +54,8 @@ local function patch_utils_for_coc()
       end
     end
     if coc_ready() then
-      local ok, services = pcall(vim.fn["coc#rpc#request"], "services", {})
-      if ok and type(services) == "table" and #services > 0 then
+      local services = running_services()
+      if services then
         local names = {}
         for _, s in ipairs(services) do
           if s.state == "running" then
@@ -58,11 +77,25 @@ local function patch_utils_for_coc()
     return ""
   end
 
+  local last_progress = ""
   utils.lsp_msg = function()
     if coc_ready() then
-      local status = vim.g.coc_status or ""
-      log("lsp_msg: status=", status)
-      return status ~= "" and ("%#St_LspMsg#" .. status) or ""
+      local raw = vim.g.coc_status or ""
+      local has_spinner = raw:find(COC_SPINNER)
+      local has_loading = raw:find("Loading") or raw:find("Initializing")
+      if has_spinner and has_loading then
+        local msg = raw:gsub(COC_SPINNER, ""):gsub("^%s+", ""):gsub("%s+$", "")
+        if msg ~= "" and msg ~= last_progress then
+          last_progress = msg
+          vim.schedule(function()
+            vim.notify(msg, vim.log.levels.INFO, { title = "coc" })
+          end)
+        end
+        return ""
+      end
+      last_progress = ""
+      local s = raw:gsub(COC_SPINNER, ""):gsub("^%s+", ""):gsub("%s+$", "")
+      return s ~= "" and ("%#St_LspMsg#" .. s) or ""
     end
     return vim.o.columns < 120 and "" or utils.state.lsp_msg
   end
