@@ -21,13 +21,12 @@ end
 
 local cached_services = nil
 
-local function fetch_services_async()
+local function refresh_services()
   if not pcall(vim.fn.exists, "*coc#rpc#ready") then return end
-  vim.fn["coc#rpc#request_async"]("services", {}, function(err, services)
-    if not err and type(services) == "table" then
-      cached_services = services
-    end
-  end)
+  local ok, result = pcall(vim.fn["coc#rpc#request"], "services", {})
+  if ok and type(result) == "table" then
+    cached_services = result
+  end
 end
 
 local function patch_utils_for_coc()
@@ -35,9 +34,10 @@ local function patch_utils_for_coc()
   log("patch_utils_for_coc: applying")
 
   local function running_services()
-    if not cached_services then fetch_services_async() end
     return cached_services
   end
+
+  refresh_services()
 
   local COC_SPINNER = "\xE2[\xA0-\xA3][\x80-\xBF]"
 
@@ -326,8 +326,7 @@ function M.enable(opts)
     group = augroup,
     pattern = { "CocStatusChange", "CocDiagnosticChange" },
     callback = function()
-      cached_services = nil
-      fetch_services_async()
+      refresh_services()
       vim.schedule(vim.cmd.redrawstatus)
     end,
   })
