@@ -9,18 +9,15 @@ local refresh_pending = false
 local coalesce_timer
 local refresh_timer
 
-local function do_refresh()
+-- 16ms continuous poll (lualine style): events set flag, timer processes
+local function process_refresh()
+  if not refresh_pending then return end
   refresh_pending = false
   vim.cmd.redrawstatus()
 end
 
--- 16ms coalescing window: rapid calls merge into one refresh
 local function queue_refresh()
-  if refresh_pending then return end
   refresh_pending = true
-  if coalesce_timer then coalesce_timer:stop() end
-  coalesce_timer = vim.uv.new_timer()
-  coalesce_timer:start(16, 0, vim.schedule_wrap(do_refresh))
 end
 
 local function refresh_services()
@@ -375,6 +372,15 @@ function M.enable(opts)
     group = augroup,
     callback = function() queue_refresh() end,
   })
+
+  -- 16ms continuous poll for event coalescing (lualine style)
+  if coalesce_timer then
+    coalesce_timer:stop()
+    coalesce_timer:close()
+    coalesce_timer = nil
+  end
+  coalesce_timer = vim.uv.new_timer()
+  coalesce_timer:start(16, 16, vim.schedule_wrap(process_refresh))
 
   -- Periodic refresh for custom components (clock, etc.)
   if refresh_timer then
