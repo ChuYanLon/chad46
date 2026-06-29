@@ -60,7 +60,9 @@ local function patch_utils_for_coc()
       if diag then
         local err = (diag.error and diag.error > 0) and ("%#St_lspError#" .. " " .. diag.error .. " ") or ""
         local warn = (diag.warning and diag.warning > 0) and ("%#St_lspWarning#" .. " " .. diag.warning .. " ") or ""
-        return " " .. err .. warn
+        local hints = (diag.hint and diag.hint > 0) and ("%#St_LspHints#" .. "󰛩 " .. diag.hint .. " ") or ""
+        local info = (diag.information and diag.information > 0) and ("%#St_LspInfo#" .. "󰋼 " .. diag.information .. " ") or ""
+        return " " .. err .. warn .. hints .. info
       end
       return ""
     end
