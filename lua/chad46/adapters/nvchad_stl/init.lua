@@ -19,6 +19,17 @@ local function coc_ready()
   return ok and ready == 1
 end
 
+local cached_services = nil
+
+local function fetch_services_async()
+  if not pcall(vim.fn.exists, "*coc#rpc#ready") then return end
+  vim.fn["coc#rpc#request_async"]("services", {}, function(err, services)
+    if not err and type(services) == "table" then
+      cached_services = services
+    end
+  end)
+end
+
 local function patch_utils_for_coc()
   if not pcall(vim.fn.exists, "*coc#rpc#ready") then log("patch: exists failed, skip"); return end
   log("patch_utils_for_coc: applying")
@@ -26,20 +37,9 @@ local function patch_utils_for_coc()
   -- braille spinner chars: \xE2[\xA0-\xA3][\x80-\xBF]
   local COC_SPINNER = "\xE2[\xA0-\xA3][\x80-\xBF]"
 
-  local cached_services = nil
-  local last_services_check = 0
   local function running_services()
-    local now = (vim.uv or vim.loop).now()
-    if cached_services and now - last_services_check < 3000 then
-      return cached_services
-    end
-    local ok, services = pcall(vim.fn["coc#rpc#request"], "services", {})
-    if ok and type(services) == "table" then
-      cached_services = services
-      last_services_check = now
-      return services
-    end
-    return nil
+    if not cached_services then fetch_services_async() end
+    return cached_services
   end
 
   utils.lsp = function()
@@ -231,11 +231,11 @@ function M.enable(opts)
   local fn = theme_highlights[config.theme]
   if fn then fn() end
 
+  local augroup = vim.api.nvim_create_augroup("Chad46NvchadStl", { clear = true })
+
   patch_utils_for_coc()
 
   utils.autocmds()
-
-  local augroup = vim.api.nvim_create_augroup("Chad46NvchadStl", { clear = true })
 
   vim.api.nvim_create_autocmd("User", {
     group = augroup,
@@ -245,6 +245,16 @@ function M.enable(opts)
       local fn = theme_highlights[config.theme]
       if fn then fn() end
       patch_utils_for_coc()
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("User", {
+    group = augroup,
+    pattern = { "CocStatusChange", "CocDiagnosticChange" },
+    callback = function()
+      cached_services = nil
+      fetch_services_async()
+      vim.schedule(vim.cmd.redrawstatus)
     end,
   })
 
