@@ -211,12 +211,12 @@ function M.setup(opts)
           spec.opts = function(plugin, plugin_opts)
             local merged = plugin_opts or {}
             local base = mod_is_fn and chad46_mod() or vim.tbl_deep_extend("force", {}, chad46_mod)
-            return vim.tbl_deep_extend("force", base, merged)
+            return vim.tbl_deep_extend("force", merged, base)
           end
         else
           spec.opts = type(chad46_mod) == "function"
-            and vim.tbl_deep_extend("force", chad46_mod(), user_opts or {})
-            or vim.tbl_deep_extend("force", {}, chad46_mod, user_opts or {})
+            and vim.tbl_deep_extend("force", user_opts or {}, chad46_mod())
+            or vim.tbl_deep_extend("force", {}, user_opts or {}, chad46_mod)
         end
       end
     end
