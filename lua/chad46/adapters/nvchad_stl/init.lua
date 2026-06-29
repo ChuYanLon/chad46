@@ -88,6 +88,26 @@ local function patch_utils_for_coc()
   end
 
   local last_progress = ""
+  local anim_timer = nil
+  local anim_frame = 0
+  local anim_text = ""
+
+  local function anim_bar()
+    return string.rep("█", anim_frame) .. string.rep("░", 10 - anim_frame)
+  end
+
+  local function stop_anim(done_text)
+    if anim_timer then
+      anim_timer:stop()
+      anim_timer:close()
+      anim_timer = nil
+    end
+    if done_text then
+      vim.schedule(function()
+        vim.notify(" " .. done_text, vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+      end)
+    end
+  end
 
   utils.lsp = function()
     local buf = utils.stbufnr()
@@ -121,15 +141,28 @@ local function patch_utils_for_coc()
       local progress = extract_progress(vim.g.coc_status or "")
       if progress ~= "" and progress ~= last_progress then
         last_progress = progress
-        vim.schedule(function()
-          vim.notify(format_progress(progress), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
-        end)
+        if progress:match("(%d+)%%") then
+          -- Has percentage → real progress bar
+          stop_anim()
+          vim.schedule(function()
+            vim.notify(format_progress(progress), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+          end)
+        else
+          -- No percentage → indeterminate animation
+          stop_anim()
+          anim_text = progress
+          anim_frame = 0
+          vim.notify(" " .. progress .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+          anim_timer = vim.uv.new_timer()
+          anim_timer:start(200, 200, vim.schedule_wrap(function()
+            anim_frame = (anim_frame + 1) % 11
+            vim.notify(" " .. anim_text .. "  " .. anim_bar(), vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
+          end))
+        end
       elseif progress == "" and last_progress ~= "" then
         local done = last_progress:gsub("%s*%d+/%d+%s*%d+%%", ""):gsub("%s+$", "")
         last_progress = ""
-        vim.schedule(function()
-          vim.notify(" " .. done, vim.log.levels.INFO, { title = "coc", id = "coc_progress" })
-        end)
+        stop_anim(done ~= "" and done or nil)
       end
       return "   CoC "
     end
