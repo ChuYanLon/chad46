@@ -29,10 +29,14 @@
 ---@field style? '"default"'|'"atom"'|'"atom_colored"'|'"flat_light"'|'"flat_dark"'
 
 ---@class StatuslineConfig
----@field theme? string
+---@field nvchad_stl? boolean Enable nvchad native statusline
+---@field theme? string nvchad_stl: "default"/"minimal"/"vscode"/"vscode_colored"; lualine: "default"/"flat_light"/"flat_dark"/"atom"/"atom_colored"
 ---@field styles? table<string, fun(): table>
 ---@field separator_style? '"default"'|'"round"'|'"block"'|'"arrow"'
----@field enabled? boolean
+---@field ignore_focus? string[] Filetypes to hide statusline
+---@field order? string[] Custom nvchad_stl component order
+---@field modules? table<string, function> Custom nvchad_stl component modules
+---@field refresh_interval? number nvchad_stl periodic refresh in ms
 ---@field section_separators? { left: string, right: string }
 ---@field component_separators? { left: string, right: string }
 

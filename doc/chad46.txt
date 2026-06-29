@@ -84,14 +84,42 @@ cmp.style ~
   nvim-cmp / blink.cmp UI style. Valid values:
     "default", "atom", "atom_colored", "flat_light", "flat_dark"
 
-                                                *chad46-option-statusline.theme*
+                                                 *chad46-option-statusline.nvchad_stl*
+statusline.nvchad_stl ~
+  Type: `boolean`, Default: `false`
+  Enable NvChad native statusline.
+
+                                                 *chad46-option-statusline.theme*
 statusline.theme ~
   Type: `string`, Default: `"default"`
-  Statusline style. Affects lualine, heirline, and the statusline adapter.
-  Valid values:
-    "default", "flat_light", "flat_dark", "atom", "atom_colored"
+  "default", "minimal", "vscode", "vscode_colored"
 
-                                                *chad46-option-statusline.styles*
+                                                 *chad46-option-statusline.separator_style*
+statusline.separator_style ~
+  Type: `string`, Default: `"default"`
+  nvchad_stl: "default", "round", "block", "arrow"
+
+                                                 *chad46-option-statusline.ignore_focus*
+statusline.ignore_focus ~
+  Type: `table`, Default: `{}`
+  Filetypes to hide statusline.
+
+                                                 *chad46-option-statusline.order*
+statusline.order ~
+  Type: `table`, Default: `nil`
+  Custom nvchad_stl component order.
+
+                                                 *chad46-option-statusline.modules*
+statusline.modules ~
+  Type: `table`, Default: `nil`
+  Custom nvchad_stl component modules.
+
+                                                 *chad46-option-statusline.refresh_interval*
+statusline.refresh_interval ~
+  Type: `number`, Default: `1000`
+  nvchad_stl periodic refresh in ms; 0 = disable.
+
+                                                 *chad46-option-statusline.styles*
 statusline.styles ~
   Type: `table`, Default: `{}`
   Define or override statusline theme styles.
@@ -123,7 +151,7 @@ Default config~
     changed_themes = {},
     hl_override = {},
     hl_add = {},
-    statusline = { theme = "default", styles = {} },
+    statusline = { nvchad_stl = false, theme = "default", styles = {} },
     cmp = { style = "default" },
     integrations = {},
   }
@@ -143,15 +171,31 @@ NvChad Native Statusline (nvchad_stl)~
   Built-in NvChad-style statusline with 4 themes.
   No external dependency required.
 
-  Enable after setup():
+  Simple — enable via setup():
+>
+  require("chad46").setup({
+    statusline = {
+      nvchad_stl = true,
+      theme = "minimal",
+      separator_style = "round",
+      ignore_focus = { "list" },
+      order = { "mode", "file", "git", "%=", "lsp_msg", "diagnostics", "lsp", "cwd", "cursor" },
+      modules = {
+        clock = function() return os.date(" %H:%M:%S ") end,
+      },
+      refresh_interval = 1000,
+    },
+  })
+<
+  Or call enable() directly:
 >
   require("chad46.adapters.nvchad_stl").enable({
-    theme = "default",             -- default / minimal / vscode / vscode_colored
-    separator_style = "default",   -- default / round / block / arrow
-    ignore_focus = {},             -- filetypes to hide statusline (e.g. { "list" })
-    order = nil,                   -- custom component order
-    modules = nil,                 -- custom component modules
-    refresh_interval = 1000,       -- ms, periodic refresh; 0 = disable
+    theme = "minimal",
+    separator_style = "round",
+    ignore_focus = { "list" },
+    order = {},
+    modules = {},
+    refresh_interval = 1000,
   })
 <
   Sync from upstream: `bash sync.sh --stl`

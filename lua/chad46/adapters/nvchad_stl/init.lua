@@ -325,6 +325,12 @@ local theme_highlights = {
 local M = {}
 
 function M.enable(opts)
+  config = vim.deepcopy(defaults)
+  -- Fall back to global setup({ statusline = { ... } }) values
+  local sl_opts = require("chad46.config").options.statusline or {}
+  if sl_opts.theme then config.theme = sl_opts.theme end
+  if sl_opts.separator_style then config.separator_style = sl_opts.separator_style end
+  -- User opts override everything
   if opts then
     for k, v in pairs(opts) do
       if k == "modules" and type(v) == "table" then

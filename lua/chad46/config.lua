@@ -9,6 +9,7 @@ M.defaults = {
   statusline = {
     theme = "default",
     styles = {},
+    nvchad_stl = false,
   },
   cmp = {
     style = "default",

@@ -127,8 +127,14 @@ Full reference of available `setup()` options:
 |--------|------|---------|-------------|
 | `transparency` | `boolean` | `false` | Disable background color for transparent terminals |
 | `cmp.style` | `string` | `"default"` | Completion UI style — affects **nvim-cmp**, **blink.cmp**, and **coc.nvim** PUM: `"default"`, `"atom"`, `"atom_colored"`, `"flat_light"`, `"flat_dark"` |
-| `statusline.theme` | `string` | `"default"` | Statusline style: `"default"`, `"flat_light"`, `"flat_dark"`, `"atom"`, `"atom_colored"` — affects lualine, heirline, and `statusline` adapter |
-| `statusline.styles` | `table` | `{}` | Define or override statusline theme styles |
+| `statusline.nvchad_stl` | `boolean` | `false` | Enable NvChad native statusline |
+| `statusline.theme` | `string` | `"default"` | Themes: `"default"`, `"minimal"`, `"vscode"`, `"vscode_colored"` |
+| `statusline.separator_style` | `string` | `"default"` | nvchad_stl separator: `"default"`, `"round"`, `"block"`, `"arrow"` |
+| `statusline.ignore_focus` | `table` | `{}` | Filetypes to hide statusline |
+| `statusline.order` | `table` | `nil` | Custom nvchad_stl component order |
+| `statusline.modules` | `table` | `nil` | Custom nvchad_stl component modules |
+| `statusline.refresh_interval` | `number` | `1000` | nvchad_stl periodic refresh in ms; 0 = disable |
+| `statusline.styles` | `table` | `{}` | Lualine/heirline theme style overrides |
 | `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
 | `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
@@ -142,7 +148,7 @@ Default config for reference:
   changed_themes = {},
   hl_override = {},
   hl_add = {},
-  statusline = { theme = "default", styles = {} },
+  statusline = { nvchad_stl = false, theme = "default", styles = {} },
   cmp = { style = "default" },  -- also controls coc.nvim PUM
   integrations = {},
 }
@@ -170,7 +176,9 @@ require("chad46").setup({
     MyCustomGroup = { fg = "green", bg = "black", bold = true },
   },
   statusline = {
+    nvchad_stl = true,
     theme = "flat_dark",
+    separator_style = "round",
     styles = {
       my_style = function()
         local c = require("chad46").get_theme_tb("base_30")
@@ -215,17 +223,37 @@ require("chad46").apply_configs({"lualine","bufferline"}) -- multiple
 Built-in NvChad-style statusline with 4 themes. No external dependency required.
 Lualine-style refresh architecture: 16ms event coalescing + 1000ms periodic fallback.
 
-```lua
-require("chad46").setup({ ... })
-require("chad46").load("tokyonight")
+Simple — enable via `setup()`:
 
+```lua
+require("chad46").setup({
+  statusline = {
+    nvchad_stl = true,
+    theme = "minimal",
+    separator_style = "round",
+    ignore_focus = { "list" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "diagnostics", "lsp", "cwd", "cursor" },
+    modules = {
+      clock = function() return os.date(" %H:%M:%S ") end,
+    },
+    refresh_interval = 1000,
+  },
+})
+```
+
+All fields except `nvchad_stl` and `styles` are passed to `nvchad_stl.enable()`.
+Or call it directly for full control:
+
+```lua
 require("chad46.adapters.nvchad_stl").enable({
-  theme = "default",             -- default / minimal / vscode / vscode_colored
-  separator_style = "default",   -- default / round / block / arrow
-  ignore_focus = {},             -- filetypes to hide statusline (e.g. { "list" })
-  order = nil,                   -- custom component order (see below)
-  modules = nil,                 -- custom component modules (see below)
-  refresh_interval = 1000,       -- ms, periodic refresh for custom components; 0 = disable
+  theme = "minimal",
+  separator_style = "round",
+  ignore_focus = { "list" },
+  order = { "mode", "file", "git", "%=", "lsp_msg", "diagnostics", "lsp", "cwd", "cursor" },
+  modules = {
+    clock = function() return os.date(" %H:%M:%S ") end,
+  },
+  refresh_interval = 1000,
 })
 ```
 

@@ -196,6 +196,18 @@ function M.setup(opts)
 
   nvconfig.ui.cmp.style = config.options.cmp.style
 
+  -- Auto-enable nvchad_stl when statusline.nvchad_stl = true
+  local sl = config.options.statusline or {}
+  if sl.nvchad_stl then
+    local nvchad_opts = {}
+    for k, v in pairs(sl) do
+      if k ~= "nvchad_stl" and k ~= "styles" then
+        nvchad_opts[k] = v
+      end
+    end
+    require("chad46.adapters.nvchad_stl").enable(nvchad_opts)
+  end
+
   local plugins = get_lazy_plugins()
   if not plugins then return end
 

@@ -16,50 +16,41 @@ local styles = {
     }
   end,
 
-  flat_light = function(cb)
-    local bg_b = cb.one_bg2
-    return {
-      normal   = { a = { bg = cb.blue, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.white }, c = { bg = cb.black, fg = cb.white } },
-      insert   = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.white } },
-      visual   = { a = { bg = cb.purple, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.purple }, c = { bg = cb.black, fg = cb.white } },
-      replace  = { a = { bg = cb.orange, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.orange }, c = { bg = cb.black, fg = cb.white } },
-      command  = { a = { bg = cb.yellow, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.yellow }, c = { bg = cb.black, fg = cb.white } },
-      terminal = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.white } },
-    }
-  end,
-
-  flat_dark = function(cb)
+  minimal = function(cb)
     local bg_b = cb.darker_black
     return {
-      normal   = { a = { bg = cb.blue, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.white }, c = { bg = cb.black, fg = cb.white } },
-      insert   = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.white } },
-      visual   = { a = { bg = cb.purple, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.purple }, c = { bg = cb.black, fg = cb.white } },
-      replace  = { a = { bg = cb.orange, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.orange }, c = { bg = cb.black, fg = cb.white } },
-      command  = { a = { bg = cb.yellow, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.yellow }, c = { bg = cb.black, fg = cb.white } },
-      terminal = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.white } },
+      normal   = { a = { bg = cb.nord_blue, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
+      insert   = { a = { bg = cb.dark_purple, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.dark_purple }, c = { bg = cb.black, fg = cb.grey_fg } },
+      visual   = { a = { bg = cb.cyan, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.cyan }, c = { bg = cb.black, fg = cb.grey_fg } },
+      replace  = { a = { bg = cb.orange, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.orange }, c = { bg = cb.black, fg = cb.grey_fg } },
+      command  = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.grey_fg } },
+      terminal = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = bg_b, fg = cb.green }, c = { bg = cb.black, fg = cb.grey_fg } },
     }
   end,
 
-  atom = function(cb)
+  vscode = function(cb)
+    local sbg = require("chad46.config").options.transparency and "NONE" or cb.statusline_bg
+    local lg = require("chad46.colors").change_hex_lightness(cb.light_grey, 8)
     return {
-      normal   = { a = { bg = cb.blue, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
-      insert   = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
-      visual   = { a = { bg = cb.purple, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
-      replace  = { a = { bg = cb.orange, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
-      command  = { a = { bg = cb.yellow, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
-      terminal = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = { bg = cb.darker_black, fg = cb.white }, c = { bg = cb.black, fg = cb.grey_fg } },
+      normal   = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      insert   = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      visual   = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      replace  = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      command  = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      terminal = { a = { bg = cb.one_bg2, fg = lg }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
     }
   end,
 
-  atom_colored = function(cb)
-    local function b(mc) return { bg = cb.darker_black, fg = mc } end
+  vscode_colored = function(cb)
+    local sbg = require("chad46.config").options.transparency and "NONE" or cb.statusline_bg
+    local lg = require("chad46.colors").change_hex_lightness(cb.light_grey, 8)
     return {
-      normal   = { a = { bg = cb.blue, fg = cb.black, gui = "bold" }, b = b(cb.blue), c = { bg = cb.black, fg = cb.grey_fg } },
-      insert   = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = b(cb.green), c = { bg = cb.black, fg = cb.grey_fg } },
-      visual   = { a = { bg = cb.purple, fg = cb.black, gui = "bold" }, b = b(cb.purple), c = { bg = cb.black, fg = cb.grey_fg } },
-      replace  = { a = { bg = cb.orange, fg = cb.black, gui = "bold" }, b = b(cb.orange), c = { bg = cb.black, fg = cb.grey_fg } },
-      command  = { a = { bg = cb.yellow, fg = cb.black, gui = "bold" }, b = b(cb.yellow), c = { bg = cb.black, fg = cb.grey_fg } },
-      terminal = { a = { bg = cb.green, fg = cb.black, gui = "bold" }, b = b(cb.green), c = { bg = cb.black, fg = cb.grey_fg } },
+      normal   = { a = { bg = cb.one_bg3, fg = cb.blue, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      insert   = { a = { bg = cb.one_bg3, fg = cb.dark_purple, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      visual   = { a = { bg = cb.one_bg3, fg = cb.cyan, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      replace  = { a = { bg = cb.one_bg3, fg = cb.orange, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      command  = { a = { bg = cb.one_bg3, fg = cb.green, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
+      terminal = { a = { bg = cb.one_bg3, fg = cb.green, gui = "bold" }, b = { bg = sbg, fg = lg }, c = { bg = sbg, fg = lg } },
     }
   end,
 }
