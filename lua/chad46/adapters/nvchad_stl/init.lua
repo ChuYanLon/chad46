@@ -8,12 +8,19 @@ local cached_services = nil
 local refresh_pending = false
 local coalesce_timer
 local refresh_timer
+local config
 
 -- 16ms continuous poll (lualine style): events set flag, timer processes
 local function process_refresh()
   if not refresh_pending then return end
   refresh_pending = false
-  vim.cmd.redrawstatus()
+  local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
+  if not ok then return end
+  local ok2, result = pcall(theme_mod, config)
+  if not ok2 then return end
+  local ok3, str = pcall(result)
+  if not ok3 then return end
+  vim.o.statusline = str
 end
 
 local function queue_refresh()
@@ -219,7 +226,7 @@ local defaults = {
   refresh_interval = 1000, -- ms, periodic refresh for custom components; 0 = disable
 }
 
-local config = vim.deepcopy(defaults)
+config = vim.deepcopy(defaults)
 
 local function c()
   return require("chad46").get_theme_tb("base_30")
@@ -320,7 +327,8 @@ function M.enable(opts)
 
   patch_utils_for_coc()
 
-  vim.cmd.redrawstatus()
+  -- Placeholder (lualine style: set before timers, replaced on first refresh)
+  vim.o.statusline = ''
 
   -- LspProgress (replaces utils.autocmds())
   local spinners = { "", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "" }
@@ -380,7 +388,7 @@ function M.enable(opts)
     coalesce_timer = nil
   end
   coalesce_timer = vim.uv.new_timer()
-  coalesce_timer:start(16, 16, vim.schedule_wrap(process_refresh))
+  coalesce_timer:start(0, 16, vim.schedule_wrap(process_refresh))
 
   -- Periodic refresh for custom components (clock, etc.)
   if refresh_timer then
@@ -395,22 +403,12 @@ function M.enable(opts)
     end))
   end
 
-  _G.chad46_stl_render = function()
-    local ok, theme_mod = pcall(require, "chad46.adapters.nvchad_stl." .. config.theme)
-    if not ok then return "" end
-    local ok2, result = pcall(theme_mod, config)
-    if not ok2 then return "" end
-    local ok3, str = pcall(result)
-    if not ok3 then return "" end
-    return str
-  end
-
-  vim.o.statusline = "%!v:lua.chad46_stl_render()"
+  -- Initial render via schedule (lualine style)
+  vim.schedule(queue_refresh)
 end
 
 function M.disable()
   vim.o.statusline = ""
-  _G.chad46_stl_render = nil
   refresh_pending = false
   if coalesce_timer then
     coalesce_timer:stop()
