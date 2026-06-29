@@ -3,6 +3,26 @@ local utils = require("chad46.adapters.nvchad_stl.utils")
 -- Override utils LSP/Diagnostics to support coc.nvim
 -- utils.lua is synced from upstream, so local patches go here.
 
+local orig_generate = utils.generate
+utils.generate = function(theme, modules, config)
+  -- Stub missing order items so they don't crash generate()
+  if config then
+    if config.modules then
+      for k, v in pairs(config.modules) do
+        modules[k] = v
+      end
+    end
+    if config.order then
+      for _, name in ipairs(config.order) do
+        if name ~= "%=" and not modules[name] then
+          modules[name] = function() return "" end
+        end
+      end
+    end
+  end
+  return orig_generate(theme, modules, config)
+end
+
 local cached_services = nil
 
 local refresh_pending = false

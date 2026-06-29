@@ -68,13 +68,6 @@ elseif is_utils then
       table.insert(fixed, 'M.generate = function(theme, modules, config)')
     elseif line:match("^  local config = require") then
       -- skip, config is now a parameter
-    elseif line:match("^    module = type%(module%)") then
-      -- wrap module() call in nil guard
-      table.insert(fixed, "    if module then")
-      table.insert(fixed, line)
-    elseif line:match("^    table%.insert%(result, module%)") then
-      table.insert(fixed, line)
-      table.insert(fixed, "    end")
     else
       table.insert(fixed, line)
     end
