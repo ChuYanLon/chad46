@@ -1,9 +1,4 @@
 return function()
-  vim.g.coc_global_extensions = vim.g.coc_global_extensions or {
-    "coc-json",
-    "coc-tsserver",
-  }
-
   vim.g.coc_status_error_sign = " "
   vim.g.coc_status_warning_sign = " "
   vim.g.coc_status_info_sign = " "
