@@ -50,7 +50,7 @@ local plugin_configs = {
   gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns", mod = "gitsigns" },
   mason = { plugin = "mason.nvim", config = "mason", mod = "mason" },
   blankline = { plugin = "indent-blankline.nvim", config = "blankline", mod = "ibl" },
-  whichkey = { plugin = "which-key.nvim", config = "whichkey", mod = "which-key" },
+
   cmp = { plugin = "nvim-cmp", config = "cmp", mod = "cmp" },
   blink = { plugin = "blink.cmp", config = "blink", mod = "blink.cmp" },
   devicons = { plugin = "nvim-web-devicons", config = "devicons", mod = "nvim-web-devicons" },
