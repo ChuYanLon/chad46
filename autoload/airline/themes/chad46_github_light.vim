@@ -44,4 +44,4 @@ let g:airline#themes#chad46_github_light#palette.accents = {
 function! airline#themes#chad46_github_light#apply()
   let g:airline#themes#chad46_github_light#palette = g:airline#themes#chad46_github_light#palette
 endfunction
-" synced: ca8c140a89ca8b3b
+" synced: 17fbb00b2f239a47

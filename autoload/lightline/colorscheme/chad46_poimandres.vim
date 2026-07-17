@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_poimandres#palette.inactive = {
 \ 'right': [['#E4F0FB', '#2b3040', 255, 236], ['#E4F0FB', '#2b3040', 255, 236]],
 \ 'middle': [['#E4F0FB', '#2b3040', 255, 236]]
 \ }
-" synced: ea9a0213e02d0d3c
+" synced: 40fe7909b1441c21

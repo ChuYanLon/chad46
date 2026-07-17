@@ -44,4 +44,4 @@ let g:airline#themes#chad46_chadracula_evondev#palette.accents = {
 function! airline#themes#chad46_chadracula_evondev#apply()
   let g:airline#themes#chad46_chadracula_evondev#palette = g:airline#themes#chad46_chadracula_evondev#palette
 endfunction
-" synced: b3b6f2e326f878a9
+" synced: 30acbc22b1b37be2

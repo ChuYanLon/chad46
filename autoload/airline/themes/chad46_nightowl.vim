@@ -44,4 +44,4 @@ let g:airline#themes#chad46_nightowl#palette.accents = {
 function! airline#themes#chad46_nightowl#apply()
   let g:airline#themes#chad46_nightowl#palette = g:airline#themes#chad46_nightowl#palette
 endfunction
-" synced: d832a499f586ba64
+" synced: d2e1fcfbcc7213dc

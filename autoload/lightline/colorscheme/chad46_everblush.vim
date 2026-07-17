@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_everblush#palette.inactive = {
 \ 'right': [['#dadada', '#1e2528', 253, 235], ['#dadada', '#1e2528', 253, 235]],
 \ 'middle': [['#dadada', '#1e2528', 253, 235]]
 \ }
-" synced: c062520a03b1b96a
+" synced: 615e3f5ac00d3d1c
