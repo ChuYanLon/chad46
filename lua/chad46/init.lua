@@ -270,7 +270,7 @@ function M.load(name)
     end
   end
 
-  for name in ipairs({ "defaults", "syntax", "statusline", "treesitter" }) do load_integration(name) end
+  for _, name in ipairs({ "defaults", "syntax", "statusline", "treesitter" }) do load_integration(name) end
 
   for name, enabled in pairs(config.options.integrations) do
     if enabled then load_integration(name) end

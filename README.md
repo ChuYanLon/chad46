@@ -216,7 +216,7 @@ require("chad46").load("tokyonight")       -- switch theme at runtime (same as a
 local c = require("chad46").get_theme_tb("base_30")  -- { blue = "#...", red = "#...", ... }
 local c16 = require("chad46").get_theme_tb("base_16") -- { base00 = "#...", base01 = "#...", ... }
 
--- Apply plugin configs (non-lazy managers)
+-- Apply plugin configs
 require("chad46").apply_configs()                     -- all enabled
 require("chad46").apply_configs("telescope")          -- single plugin
 require("chad46").apply_configs({"lualine","bufferline"}) -- multiple

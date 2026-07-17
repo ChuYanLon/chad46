@@ -82,7 +82,7 @@ Note: `statusline` integration is excluded from `INTEGRATIONS` in `generate.lua:
 - **Devicons fixup**: `fixup_devicons.lua` renames DevIcon groups to PascalCase (e.g., `DevIconcss` → `DevIconCss`) to match `nvim-web-devicons` naming. Runs during sync AND at ColorScheme autocmd (`init.lua:31`)
 - **nvchad_stl fixup**: `fixup_stl.lua` rewrites upstream NvChad/ui modules to accept a `config` parameter instead of reading `nvconfig`
 - **`cmp.style` also controls coc.nvim PUM** — set via `nvconfig.ui.cmp.style` (`init.lua:108`)
-- **`apply_configs()`**: for non-lazy managers, wrap in `vim.schedule`. Scans `configs/*.lua` at runtime — no manual registration needed.
+- **`apply_configs()`**: wrap in `vim.schedule` for safety. Scans `configs/*.lua` at runtime — no manual registration needed.
 - **`colors/chad46.vim`** is an alias for the `bearded-arc` theme (`g:colors_name = "chad46"`, `M.load()` defaults to `"bearded-arc"`)
 
 ## Theme / integration lifecycle
