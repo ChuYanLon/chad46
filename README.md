@@ -418,7 +418,7 @@ Plug 'preservim/nerdtree'
 
 ## Sync
 
-File lists (themes, integrations, types, statusline modules) are discovered dynamically from upstream via GitHub API — new files are picked up automatically. Falls back to hardcoded lists if the API is unavailable.
+File lists (themes, integrations, types, statusline modules) are discovered dynamically from upstream via GitHub API — new files are picked up automatically. If the API is unavailable, the affected section is skipped.
 
 ```bash
 bash sync.sh              # themes + integrations + types + stl

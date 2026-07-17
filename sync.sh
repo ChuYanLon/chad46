@@ -20,56 +20,20 @@ log_add=()
 log_upd=()
 log_err=()
 
-# Fallback hardcoded lists (used when GitHub API is unavailable)
-HARDCODED_THEMES=(
-  aquarium ashes aylin ayu_dark ayu_light bearded-arc blossom_light carbonfox
-  catppuccin-latte catppuccin chadracula-evondev chadracula chadtain chocolate
-  darcula-dark dark_horizon decay default-dark default-light doomchad eldritch
-  embark everblush everforest everforest_light falcon flex-light flexoki-light
-  flexoki flouromachine gatekeeper github_dark github_light gruvbox
-  gruvbox_light gruvchad hiberbee horizon jabuti jellybeans kanagawa-dragon
-  kanagawa material-darker material-deep-ocean material-lighter melange
-  midnight_breeze mito-laser monekai monochrome mountain nano-light neofusion
-  nightfox nightlamp nightowl nord obsidian-ember oceanic-light oceanic-next
-  one_light onedark onenord onenord_light oxocarbon palenight pastelDark
-  pastelbeans penumbra_dark penumbra_light poimandres radium rosepine-dawn
-  rosepine rxyhn scaryforest seoul256_dark seoul256_light solarized_dark
-  solarized_light solarized_osaka starlight sunrise_breeze sweetpastel
-  tokyodark tokyonight tomorrow_night tundra vesper vscode_dark vscode_light
-  wombat yoru zenburn
-)
-
-HARDCODED_INTEGRATIONS=(
-  alpha avante blankline blink blink-pair bufferline cmp codeactionmenu dap
-  defaults devicons diffview edgy flash git git-conflict grug_far hop
-  leap lsp lspsaga markview mason mini-tabline navic neogit notify
-  nvimtree nvshades orgmode rainbowdelimiters render-markdown semantic_tokens
-  syntax telescope tiny-inline-diagnostic todo treesitter trouble
-  vim-illuminate whichkey
-)
-
-HARDCODED_TYPES=( base46 themes )
-
-HARDCODED_STL=( default minimal vscode vscode_colored utils )
-
 # Fetch .lua filenames (without extension) from a GitHub repo directory via API
 fetch_github_listing() {
   local url="https://api.github.com/repos/$1/contents/$2"
   curl -sL --max-time 15 "$url" 2>/dev/null | jq -r '.[] | select(.type=="file") | .name' 2>/dev/null | sed -n 's/\.lua$//p'
 }
 
-# Resolve a list: try GitHub API first, fall back to hardcoded array
+# Fetch .lua filenames from a GitHub repo directory via API into a named array
 resolve_list() {
-  local -n result="$1"; shift
-  local api_repo="$1" api_path="$2"; shift 2
-  local fallback=("$@")
+  local -n result="$1"
+  local api_repo="$2" api_path="$3"
   result=()
   while IFS= read -r name; do
     [[ -n "$name" ]] && result+=("$name")
   done < <(fetch_github_listing "$api_repo" "$api_path")
-  if [[ ${#result[@]} -eq 0 ]]; then
-    result=( "${fallback[@]}" )
-  fi
 }
 
 fetch() {
@@ -210,10 +174,10 @@ main() {
   local ALL_TYPES=()
   local ALL_STL=()
 
-  resolve_list ALL_THEMES "NvChad/base46" "lua/base46/themes" "${HARDCODED_THEMES[@]}"
-  resolve_list ALL_INTEGRATIONS "NvChad/base46" "lua/base46/integrations" "${HARDCODED_INTEGRATIONS[@]}"
-  resolve_list ALL_TYPES "NvChad/ui" "nvchad_types" "${HARDCODED_TYPES[@]}"
-  resolve_list ALL_STL "NvChad/ui" "lua/nvchad/stl" "${HARDCODED_STL[@]}"
+  resolve_list ALL_THEMES "NvChad/base46" "lua/base46/themes"
+  resolve_list ALL_INTEGRATIONS "NvChad/base46" "lua/base46/integrations"
+  resolve_list ALL_TYPES "NvChad/ui" "nvchad_types"
+  resolve_list ALL_STL "NvChad/ui" "lua/nvchad/stl"
 
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "themes" ]]; then
     local theme_before=$(( ${#log_add[@]} + ${#log_upd[@]} ))
