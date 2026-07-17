@@ -236,6 +236,13 @@ main() {
     sync_stl "$STL_DIR" "${ALL_STL[@]}"
     echo ""
   fi
+  if [[ -f "$CHAD46_DIR/sync.log" ]]; then
+    local total; total=$(wc -l < "$CHAD46_DIR/sync.log") || total=0
+    if [[ "$total" -gt "$MAX_LOG_LINES" ]]; then
+      echo "=== Pruning sync.log ($total lines -> $MAX_LOG_LINES) ==="
+      [[ "$DRY_RUN" != "--dry-run" ]] && sed -i "1,$((total - MAX_LOG_LINES))d" "$CHAD46_DIR/sync.log"
+    fi
+  fi
   echo "Errors: ${#log_err[@]}"
   for v in "${log_err[@]}"; do echo "  ! $v"; done
   [[ ${#log_err[@]} -gt 0 ]] && echo "Some files failed (see above)." && exit 1
