@@ -1,4 +1,4 @@
-*chad46.txt*    A collection of 94 NvChad themes with auto-detected plugin integrations.
+*chad46.txt*    NvChad themes with auto-detected plugin integrations, synced daily.
 
 ==============================================================================
 Contents                                    *chad46-contents*
@@ -14,16 +14,18 @@ Contents                                    *chad46-contents*
 ==============================================================================
 Introduction                                    *chad46-introduction*
 
-chad46 provides 94 themes synced daily from NvChad/base46, with 48 plugin
-highlight integrations and 15 auto-applied plugin configs. Works with any
+chad46 provides themes synced daily from NvChad/base46, with plugin
+highlight integrations and auto-applied plugin configs. Works with any
 plugin manager.
 
 Features:
   - Daily auto-sync from NvChad/base46 and NvChad/ui
   - Auto-detected integrations — install a plugin, highlights load automatically
-  - 94 themes
-  - 48 plugin integrations (highlights)
-  - 15 auto-applied plugin configs
+  - New themes and integrations auto-discovered via GitHub API — no manual list updates
+  - sync.log auto-prunes to 100 lines
+  - Themes — synced from NvChad/base46
+  - Plugin integrations (highlights)
+  - Auto-applied plugin configs
   - base_30 / base_16 dual color system
   - Native NvChad statusline (4 themes, auto-synced from NvChad/ui)
   - Lualine, Heirline, Bufferline, Airline & Lightline adapters
@@ -230,8 +232,7 @@ Heirline~
 <
 
 Airline & Lightline~
-  94 pre-generated themes each. See the Vim usage section in README for
-  configuration.
+  Pre-generated themes. See the README for configuration.
 <
 
 ==============================================================================
