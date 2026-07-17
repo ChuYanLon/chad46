@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/ChuYanLon/chad46)](LICENSE)
 [![Lua](https://img.shields.io/badge/lua-5.1-blue)](https://www.lua.org)
 
-> **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. A `sync.log` is maintained with each run. Always up to date with upstream.
+> **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. New themes and integrations are discovered automatically via GitHub API — no manual list updates needed. `sync.log` auto-prunes to 100 lines. Always up to date with upstream.
 
 94 themes · 48 plugin highlight integrations · 15 auto-applied plugin configs · Complete coc.nvim support (160+ highlights, completion icons, diagnostic config) · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline (4 styles)** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
@@ -92,10 +92,6 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
 > Seven integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc** (160+ highlights, auto-config), **CocLoader** (TUI highlights), and **NERDTree**.
-
-### Highlights (47 plugins)
-
-Alpha, Avante, Blankline, Blink, Blink-pair, Bufferline, Cmp, **Coc** (160+ groups), CodeActionMenu, Dap, Devicons, Diffview, Edgy, Flash, Git, Git-conflict, **Gitsigns***, Grug-far, Hop, Leap, Lsp, Lspsaga, Markview, Mason, Mini-tabline, Navic, **NERDTree***, Neogit, **Noice***, Notify, Nvimtree, Nvshades, Orgmode, Rainbow-delimiters, Render-markdown, Semantic-tokens, **Snacks***, Syntax, Telescope, Tiny-inline-diagnostic, Todo, Treesitter, Trouble, Vim-illuminate, Whichkey
 
 ### Auto-applied Configs (lazy.nvim only)
 
@@ -361,13 +357,6 @@ require("chad46").load("nord")
 :AirlineRefresh
 ```
 
-<details>
-<summary>View all 94 themes</summary>
-
-aquarium, ashes, aylin, ayu_dark, ayu_light, bearded-arc, blossom_light, carbonfox, catppuccin-latte, catppuccin, chadracula-evondev, chadracula, chadtain, chocolate, darcula-dark, dark_horizon, decay, default-dark, default-light, doomchad, eldritch, embark, everblush, everforest_light, everforest, falcon, flex-light, flexoki-light, flexoki, flouromachine, gatekeeper, github_dark, github_light, gruvbox_light, gruvbox, gruvchad, hiberbee, horizon, jabuti, jellybeans, kanagawa-dragon, kanagawa, material-darker, material-deep-ocean, material-lighter, melange, midnight_breeze, mito-laser, monekai, monochrome, mountain, nano-light, neofusion, nightfox, nightlamp, nightowl, nord, obsidian-ember, oceanic-light, oceanic-next, one_light, onedark, onenord_light, onenord, oxocarbon, palenight, pastelbeans, pastelDark, penumbra_dark, penumbra_light, poimandres, radium, rosepine-dawn, rosepine, rxyhn, scaryforest, seoul256_dark, seoul256_light, solarized_dark, solarized_light, solarized_osaka, starlight, sunrise_breeze, sweetpastel, tokyodark, tokyonight, tomorrow_night, tundra, vesper, vscode_dark, vscode_light, wombat, yoru, zenburn
-
-</details>
-
 ## Color System
 
 ```lua
@@ -429,16 +418,18 @@ Plug 'preservim/nerdtree'
 
 ## Sync
 
+File lists (themes, integrations, types, statusline modules) are discovered dynamically from upstream via GitHub API — new files are picked up automatically. Falls back to hardcoded lists if the API is unavailable.
+
 ```bash
-# Sync themes and integrations from NvChad/base46
-bash sync.sh
-
-# Sync types from NvChad/ui
-bash sync.sh --types
-
-# Sync native statusline modules from NvChad/ui (with chad46 compatibility fixup)
-bash sync.sh --stl
+bash sync.sh              # themes + integrations + types + stl
+bash sync.sh --themes     # only themes, then regenerates colors/*.vim
+bash sync.sh --integrations
+bash sync.sh --types      # from NvChad/ui
+bash sync.sh --stl        # native statusline from NvChad/ui
+bash sync.sh --dry-run    # no files written
 ```
+
+Log pruning (`sync.log`): keeps the most recent 100 entries, deletes older ones automatically on each sync.
 
 ## Related
 
