@@ -118,6 +118,25 @@ function M.setup(opts)
     end
     require("chad46.adapters.nvchad_stl").enable(nvchad_opts)
   end
+
+  -- Inject NvChad-style plugin defaults into lazy.nvim specs
+  local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
+  if lazy_ok then
+    for spec_name, spec in pairs(lazy_config.plugins) do
+      local config_name = spec_name:gsub("%.nvim$", ""):gsub("%.lua$", "")
+      local ok, chad_cfg = pcall(require, "chad46.configs." .. config_name)
+      if ok and type(chad_cfg) == "table" then
+        local user_opts = spec.opts
+        if type(user_opts) == "function" then
+          spec.opts = function(plugin, plugin_opts)
+            return vim.tbl_deep_extend("force", plugin_opts or {}, chad_cfg)
+          end
+        else
+          spec.opts = vim.tbl_deep_extend("force", {}, user_opts or {}, chad_cfg)
+        end
+      end
+    end
+  end
 end
 
 ---@param names? string|string[]
