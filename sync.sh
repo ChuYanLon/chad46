@@ -4,6 +4,7 @@ CHAD46_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEMES_DIR="$CHAD46_DIR/lua/chad46/themes"
 INTEG_DIR="$CHAD46_DIR/lua/chad46/integrations"
 BASE46_URL="https://raw.githubusercontent.com/NvChad/base46/v3.0"
+MAX_LOG_LINES=100
 DRY_RUN=""
 SYNC_MODE="all"
 for arg in "$@"; do
