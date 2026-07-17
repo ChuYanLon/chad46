@@ -8,7 +8,7 @@
 
 Themes · Plugin highlight integrations · Compatible with any plugin manager · Complete coc.nvim support · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
-Works with any plugin manager. Non-lazy users can call `apply_configs()` for NvChad-style plugin defaults.
+Works with any plugin manager. Call `apply_configs()` for NvChad-style plugin defaults.
 
 ## Preview
 
@@ -31,7 +31,7 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 - **Explicit integrations** — opt-in via `integrations = { telescope = true }`
 - **Themes** — synced from NvChad/base46
 - **Plugin integrations** (highlights) — including native `St_*` statusline groups
-- **Plugin configs** — `apply_configs()` for non-lazy managers
+- **Plugin configs** — `apply_configs()` for NvChad-style defaults
 - **base_30 / base_16** dual color system
 - **NvChad native statusline** — 4 themes (default, minimal, vscode, vscode_colored), auto-synced from NvChad/ui
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
@@ -72,7 +72,7 @@ require("chad46").setup({
 vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
-Optional: apply NvChad-style plugin configs for non-lazy managers:
+Optional: apply NvChad-style plugin configs:
 
 ```lua
 -- Apply all enabled integrations
@@ -105,7 +105,7 @@ Complete list of available integrations is in `lua/chad46/integrations/`.
 
 ### Plugin configs (`apply_configs()`)
 
-For non-lazy managers, `apply_configs()` sets NvChad-style defaults for supported plugins:
+`apply_configs()` sets NvChad-style defaults for supported plugins:
 
 | Plugin | What it does |
 |--------|-------------|

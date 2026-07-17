@@ -65,7 +65,7 @@ Other plugin managers~
   vim.cmd.colorscheme("chad46_bearded-arc")
 <
 
-  Optional: apply NvChad-style plugin configs for non-lazy managers:
+  Optional: apply NvChad-style plugin configs:
 >
   vim.schedule(function()
     require("chad46").apply_configs()
