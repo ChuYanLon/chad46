@@ -1,4 +1,4 @@
-*chad46.txt*    NvChad themes with opt-in plugin integrations, synced daily.
+*chad46.txt*    NvChad themes with auto-detected plugin integrations, synced daily.
 
 ==============================================================================
 Contents                                    *chad46-contents*
@@ -15,17 +15,18 @@ Contents                                    *chad46-contents*
 Introduction                                    *chad46-introduction*
 
 chad46 provides themes synced daily from NvChad/base46, with plugin
-highlight integrations and opt-in plugin configs. Works with any plugin
-manager. Integrations are explicitly enabled — no auto-detection.
+highlight integrations and NvChad-style plugin defaults. Integrations
+are auto-detected from installed lazy.nvim plugins; other managers use
+explicit `integrations = { telescope = true }`.
 
 Features:
   - Daily auto-sync from NvChad/base46 and NvChad/ui
-  - Explicit opt-in integrations — enables only what you need
+  - Auto-detected integrations for lazy.nvim; explicit for other managers
   - New themes and integrations auto-discovered via GitHub API — no manual list updates
   - sync.log auto-prunes to 100 lines
   - Themes — synced from NvChad/base46
   - Plugin integrations (highlights)
-  - Plugin configs via apply_configs()
+  - Plugin configs: auto-injected into lazy.nvim specs, apply_configs() for others
   - base_30 / base_16 dual color system
   - Native NvChad statusline (4 themes, auto-synced from NvChad/ui)
   - Lualine, Heirline, Bufferline, Airline & Lightline adapters
@@ -38,12 +39,6 @@ lazy.nvim~
 >
   {
     "ChuYanLon/chad46",
-    opts = {
-      integrations = {
-        telescope = true,
-        gitsigns = true,
-      },
-    },
     config = function(_, opts)
       require("chad46").setup(opts)
       vim.cmd.colorscheme("chad46_bearded-arc")
@@ -51,8 +46,13 @@ lazy.nvim~
   }
 <
 
-  Integrations are explicitly enabled. defaults, syntax, statusline, and
-  treesitter highlights are always loaded.
+  Integrations are auto-detected from installed lazy.nvim plugins.
+  Plugin configs are auto-injected into lazy.nvim specs. defaults,
+  syntax, statusline, and treesitter highlights are always loaded.
+
+  To disable auto-detection for a specific plugin: >
+  opts = { integrations = { telescope = false } }
+<
 
 Other plugin managers~
 >
@@ -65,7 +65,7 @@ Other plugin managers~
   vim.cmd.colorscheme("chad46_bearded-arc")
 <
 
-  Optional: apply NvChad-style plugin configs:
+  Apply NvChad-style plugin configs (wrap in vim.schedule for safety):
 >
   vim.schedule(function()
     require("chad46").apply_configs()
@@ -137,7 +137,8 @@ statusline.styles ~
                                                 *chad46-option-integrations*
 integrations ~
   Type: `table`, Default: `{}`
-  Explicit enable for plugin highlight integrations.
+  Override auto-detection: `{ telescope = false }` to disable,
+  `{ telescope = true }` for non-lazy managers.
 
                                                 *chad46-option-changed_themes*
 changed_themes ~

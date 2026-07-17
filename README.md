@@ -8,7 +8,7 @@
 
 Themes · Plugin highlight integrations · Compatible with any plugin manager · Complete coc.nvim support · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
-Works with any plugin manager. Call `apply_configs()` for NvChad-style plugin defaults.
+Works with any plugin manager. Highlights auto-detected from installed plugins. Plugin defaults auto-injected for lazy.nvim; non-lazy users call `apply_configs()`.
 
 ## Preview
 
@@ -28,10 +28,10 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 ## Features
 
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
-- **Explicit integrations** — opt-in via `integrations = { telescope = true }`
+- **Auto-detected integrations** — highlights load automatically for installed lazy.nvim plugins; non-lazy users enable via `integrations = { telescope = true }`
 - **Themes** — synced from NvChad/base46
 - **Plugin integrations** (highlights) — including native `St_*` statusline groups
-- **Plugin configs** — `apply_configs()` for NvChad-style defaults
+- **Plugin configs** — auto-injected into lazy.nvim specs; non-lazy users call `apply_configs()`
 - **base_30 / base_16** dual color system
 - **NvChad native statusline** — 4 themes (default, minimal, vscode, vscode_colored), auto-synced from NvChad/ui
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
@@ -151,7 +151,7 @@ Full reference of available `setup()` options:
 | `statusline.modules` | `table` | `nil` | Custom nvchad_stl component modules |
 | `statusline.refresh_interval` | `number` | `1000` | nvchad_stl periodic refresh in ms; 0 = disable |
 | `statusline.styles` | `table` | `{}` | Lualine/heirline theme style overrides |
-| `integrations` | `table` | `{}` | Explicit enable for plugin highlight integrations |
+| `integrations` | `table` | `{}` | Override auto-detection: `{ telescope = false }` to disable, `{ telescope = true }` for non-lazy |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
 | `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
 | `hl_add` | `table` | `{}` | Add custom highlight groups |
@@ -226,7 +226,7 @@ require("chad46").load("tokyonight")       -- switch theme at runtime (same as a
 local c = require("chad46").get_theme_tb("base_30")  -- { blue = "#...", red = "#...", ... }
 local c16 = require("chad46").get_theme_tb("base_16") -- { base00 = "#...", base01 = "#...", ... }
 
--- Apply plugin configs
+-- Apply plugin configs (non-lazy setups)
 require("chad46").apply_configs()                     -- all enabled
 require("chad46").apply_configs("telescope")          -- single plugin
 require("chad46").apply_configs({"lualine","bufferline"}) -- multiple
