@@ -41,15 +41,14 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 
 ### lazy.nvim
 
+Integrations are auto-detected from installed lazy.nvim plugins — no manual
+`integrations` table needed unless you want to override:
+
 ```lua
 {
   "ChuYanLon/chad46",
   opts = {
-    integrations = {
-      telescope = true,
-      gitsigns = true,
-      -- blink = true,
-    },
+    -- integrations = { telescope = false },  -- disable if needed
   },
   config = function(_, opts)
     require("chad46").setup(opts)
@@ -58,7 +57,9 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 }
 ```
 
-Only explicitly listed integrations are loaded. `defaults`, `syntax`, `statusline`, and `treesitter` highlights are always included.
+`defaults`, `syntax`, `statusline`, and `treesitter` highlights are always
+included. NvChad-style plugin defaults are injected into lazy.nvim specs
+automatically.
 
 ### vim.pack / packer.nvim / vim-plug / any
 
@@ -72,19 +73,12 @@ require("chad46").setup({
 vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
-Optional: apply NvChad-style plugin configs. For lazy.nvim users, configure
-plugins directly in your spec opts instead — `apply_configs()` is mainly for
-setups where the plugin manager doesn't support automatic opts merging:
+Optional: apply NvChad-style plugin configs. Only function presets (coc,
+lualine, bufferline) apply automatically — they set global state without
+calling plugin setup. Table presets are available as data for manual use:
 
 ```lua
--- Apply all enabled integrations
-vim.schedule(function()
-  require("chad46").apply_configs()
-end)
-
--- Or apply per-plugin
-require("chad46").apply_configs("telescope")
-require("chad46").apply_configs({ "lualine", "bufferline" })
+require("telescope").setup(require("chad46.configs").telescope)
 ```
 
 ## Integrations

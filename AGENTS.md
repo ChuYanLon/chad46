@@ -20,21 +20,25 @@ Neovim colorscheme plugin synced from [NvChad/base46](https://github.com/NvChad/
 | `chad46_types/*.lua` | LuaLS type annotations only (meta files) |
 | `autoload/airline/`, `autoload/lightline/` | Generated airline/lightline themes (auto, do not edit) |
 
-## Integrations: fully opt-in
+## Integrations
 
-No auto-detection. Users explicitly enable integrations in their config:
+Integrations are auto-detected from installed lazy.nvim plugins. No
+`integration_map` needed — `init.lua:297-303` iterates `lazy.core.config.plugins`
+and loads any matching `integrations/<name>.lua`. Users can still explicitly
+enable/disable via `integrations = { telescope = true, blink = false }`.
+
+`defaults`, `syntax`, `statusline`, `treesitter` are always loaded regardless.
+
+## Plugin configs
+
+NvChad-style plugin defaults in `configs/*.lua` are automatically injected into
+lazy.nvim specs during `setup()` (`init.lua:122-139`). For non-lazy managers,
+call `apply_configs()` — only function configs (coc, lualine, bufferline) apply;
+table configs are available as data:
 
 ```lua
-require("chad46").setup({
-  integrations = {
-    telescope = true,
-    gitsigns = true,
-    blink = true,
-  },
-})
+require("telescope").setup(require("chad46.configs").telescope)
 ```
-
-`defaults`, `syntax`, `statusline`, `treesitter` are always loaded. Everything else requires explicit `integrations = { name = true }`. This eliminates the maintenance burden of synchronizing plugin-name-to-integration-name mappings with upstream.
 
 ## Sync (upstream)
 

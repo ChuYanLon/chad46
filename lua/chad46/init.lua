@@ -282,8 +282,25 @@ function M.load(name)
 
   for _, name in ipairs({ "defaults", "syntax", "statusline", "treesitter" }) do load_integration(name) end
 
+  local loaded = { defaults = true, syntax = true, statusline = true, treesitter = true }
+
   for name, enabled in pairs(config.options.integrations) do
-    if enabled then load_integration(name) end
+    if enabled then
+      loaded[name] = true
+      load_integration(name)
+    end
+  end
+
+  -- Auto-detect integrations from installed lazy.nvim plugins
+  local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
+  if lazy_ok then
+    for spec_name, _ in pairs(lazy_config.plugins) do
+      local name = spec_name:gsub("%.nvim$", ""):gsub("%.lua$", "")
+      if not loaded[name] then
+        loaded[name] = true
+        load_integration(name)
+      end
+    end
   end
 
   for group, opts in pairs(config.options.hl_add) do
