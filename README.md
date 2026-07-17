@@ -6,9 +6,9 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. New themes and integrations are discovered automatically via GitHub API — no manual list updates needed. `sync.log` auto-prunes to 100 lines. Always up to date with upstream.
 
-Themes · Plugin highlight integrations · Auto-applied plugin configs · Complete coc.nvim support · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
+Themes · Plugin highlight integrations · Compatible with any plugin manager · Complete coc.nvim support · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
-Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
+Works with any plugin manager. Non-lazy users can call `apply_configs()` for NvChad-style plugin defaults.
 
 ## Preview
 
@@ -28,10 +28,10 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 ## Features
 
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
-- **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
+- **Explicit integrations** — opt-in via `integrations = { telescope = true }`
 - **Themes** — synced from NvChad/base46
 - **Plugin integrations** (highlights) — including native `St_*` statusline groups
-- **Auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
+- **Plugin configs** — `apply_configs()` for non-lazy managers
 - **base_30 / base_16** dual color system
 - **NvChad native statusline** — 4 themes (default, minimal, vscode, vscode_colored), auto-synced from NvChad/ui
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
@@ -41,13 +41,15 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 
 ### lazy.nvim
 
-Integrations are auto-detected — highlights for installed plugins load automatically:
-
 ```lua
 {
   "ChuYanLon/chad46",
   opts = {
-    -- cmp = { style = "atom_colored" },
+    integrations = {
+      telescope = true,
+      gitsigns = true,
+      -- blink = true,
+    },
   },
   config = function(_, opts)
     require("chad46").setup(opts)
@@ -56,46 +58,54 @@ Integrations are auto-detected — highlights for installed plugins load automat
 }
 ```
 
-To explicitly disable or enable a specific integration:
-
-```lua
-opts = {
-  integrations = {
-    telescope = false,   -- disable even if installed
-    blink = true,        -- force enable even if not auto-detected
-  },
-},
-```
+Only explicitly listed integrations are loaded. `defaults`, `syntax`, `statusline`, and `treesitter` highlights are always included.
 
 ### vim.pack / packer.nvim / vim-plug / any
 
 ```lua
-require("chad46").setup()
+require("chad46").setup({
+  integrations = {
+    telescope = true,
+    gitsigns = true,
+  },
+})
 vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
 Optional: apply NvChad-style plugin configs for non-lazy managers:
 
 ```lua
--- Apply all enabled
+-- Apply all enabled integrations
 vim.schedule(function()
   require("chad46").apply_configs()
 end)
 
--- Or apply per-plugin when it loads
+-- Or apply per-plugin
 require("chad46").apply_configs("telescope")
 require("chad46").apply_configs({ "lualine", "bufferline" })
 ```
 
 ## Integrations
 
-Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
+Plugin highlights are loaded only when explicitly enabled in `integrations`:
 
-> Some integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc**, **CocLoader**, and **NERDTree**.
+```lua
+integrations = {
+  telescope = true,
+  gitsigns = true,
+  blink = true,
+  snacks = true,
+  noice = true,
+}
+```
 
-### Auto-applied Configs (lazy.nvim only)
+Some integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc**, **CocLoader**, and **NERDTree**.
 
-Also auto-detected — when the plugin is installed, chad46 injects its defaults:
+Complete list of available integrations is in `lua/chad46/integrations/`.
+
+### Plugin configs (`apply_configs()`)
+
+For non-lazy managers, `apply_configs()` sets NvChad-style defaults for supported plugins:
 
 | Plugin | What it does |
 |--------|-------------|
@@ -131,7 +141,7 @@ Full reference of available `setup()` options:
 | `statusline.modules` | `table` | `nil` | Custom nvchad_stl component modules |
 | `statusline.refresh_interval` | `number` | `1000` | nvchad_stl periodic refresh in ms; 0 = disable |
 | `statusline.styles` | `table` | `{}` | Lualine/heirline theme style overrides |
-| `integrations` | `table` | `{}` | Explicit enable/disable overrides for auto-detection |
+| `integrations` | `table` | `{}` | Explicit enable for plugin highlight integrations |
 | `changed_themes` | `table` | `{}` | Per-theme color overrides (see below) |
 | `hl_override` | `table` | `{}` | Override highlight groups per integration (nested: `{ telescope = { TelescopeBorder = { ... } } }`) |
 | `hl_add` | `table` | `{}` | Add custom highlight groups |
@@ -198,7 +208,7 @@ require("chad46").setup({
 
 ```lua
 -- Load/setup
-require("chad46").setup(opts)              -- configure and enable auto-config patching
+require("chad46").setup(opts)              -- configure and apply options
 vim.cmd.colorscheme("chad46_tokyonight")   -- switch theme at runtime
 require("chad46").load("tokyonight")       -- switch theme at runtime (same as above)
 
@@ -397,7 +407,7 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = { 'colorscheme': 'chad46_bearded_arc' }
 ```
 
-**coc.nvim** — full support (160+ highlights + auto-config):
+**coc.nvim** — full support (160+ highlights + config via `apply_configs()`):
 
 ```vim
 Plug 'ChuYanLon/chad46'
@@ -435,12 +445,10 @@ Log pruning (`sync.log`): keeps the most recent 100 entries, deletes older ones 
 
 - [NvChad/base46](https://github.com/NvChad/base46) — upstream source for themes and integrations
 - [NvChad/ui](https://github.com/NvChad/ui) — upstream source for type definitions and statusline
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) — inspired the auto-detect integration system
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) — inspired the integration system
 
 ## License
 
 [MIT](LICENSE) © ChuYanLon
 
 **Acknowledgments:** This project contains code derived from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui). Themes, integrations, type definitions, and statusline modules are synced from those upstream projects. All upstream code remains copyright © NvChad contributors and is used under the terms of the MIT License.
-
-

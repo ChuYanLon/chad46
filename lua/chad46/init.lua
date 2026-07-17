@@ -38,108 +38,19 @@ local current_theme = nil
 ---@diagnostic disable-next-line: missing-fields
 local current_colors = {}
 
----@class PluginConfig
----@field plugin string
----@field config string
----@field mod string
-
----@type table<string, PluginConfig>
-local plugin_configs = {
-  telescope = { plugin = "telescope.nvim", config = "telescope", mod = "telescope" },
-  nvimtree = { plugin = "nvim-tree.lua", config = "nvimtree", mod = "nvim-tree" },
-  gitsigns = { plugin = "gitsigns.nvim", config = "gitsigns", mod = "gitsigns" },
-  mason = { plugin = "mason.nvim", config = "mason", mod = "mason" },
-  blankline = { plugin = "indent-blankline.nvim", config = "blankline", mod = "ibl" },
-
-  cmp = { plugin = "nvim-cmp", config = "cmp", mod = "cmp" },
-  blink = { plugin = "blink.cmp", config = "blink", mod = "blink.cmp" },
-  devicons = { plugin = "nvim-web-devicons", config = "devicons", mod = "nvim-web-devicons" },
-  lualine = { plugin = "lualine.nvim", config = "lualine", mod = "lualine" },
-  bufferline = { plugin = "bufferline.nvim", config = "bufferline", mod = "bufferline" },
-  dap = { plugin = "nvim-dap", config = "dap", mod = "dap" },
-  trouble = { plugin = "trouble.nvim", config = "trouble", mod = "trouble" },
-  snacks = { plugin = "snacks.nvim", config = "snacks", mod = "snacks" },
-  coc = { plugin = "coc.nvim", config = "coc", mod = "coc", no_auto = true },
-  ["coc-vscode-loader"] = { plugin = "coc-vscode-loader", config = "coc-vscode-loader", mod = "coc-vscode-loader", no_auto = true },
-}
-
----@type table<string, string>
-local integration_map = {
-  ["alpha-nvim"] = "alpha",
-  ["avante.nvim"] = "avante",
-  ["indent-blankline.nvim"] = "blankline",
-  ["blink.cmp"] = "blink",
-  ["bufferline.nvim"] = "bufferline",
-  ["nvim-cmp"] = "cmp",
-  ["coc.nvim"] = "coc",
-  ["coc-vscode-loader"] = "coc-vscode-loader",
-  ["codeactionmenu.nvim"] = "codeactionmenu",
-  ["nvim-dap"] = "dap",
-  ["nvim-web-devicons"] = "devicons",
-  ["diffview.nvim"] = "diffview",
-  ["edgy.nvim"] = "edgy",
-  ["flash.nvim"] = "flash",
-  ["git-conflict.nvim"] = "git-conflict",
-  ["gitsigns.nvim"] = "gitsigns",
-  ["grug-far.nvim"] = "grug_far",
-  ["hop.nvim"] = "hop",
-  ["leap.nvim"] = "leap",
-  ["lualine.nvim"] = "lualine",
-  ["nvim-lspconfig"] = "lsp",
-  ["lspsaga.nvim"] = "lspsaga",
-  ["markview.nvim"] = "markview",
-  ["mason.nvim"] = "mason",
-  ["nvim-navic"] = "navic",
-  ["nerdtree"] = "nerdtree",
-  ["neogit"] = "neogit",
-  ["noice.nvim"] = "noice",
-  ["nvim-notify"] = "notify",
-  ["nvim-tree.lua"] = "nvimtree",
-  ["nvim-orgmode"] = "orgmode",
-  ["rainbow-delimiters.nvim"] = "rainbowdelimiters",
-  ["render-markdown.nvim"] = "render-markdown",
-  ["snacks.nvim"] = "snacks",
-  ["telescope.nvim"] = "telescope",
-  ["tiny-inline-diagnostic.nvim"] = "tiny-inline-diagnostic",
-  ["todo-comments.nvim"] = "todo",
-  ["trouble.nvim"] = "trouble",
-  ["vim-illuminate"] = "vim-illuminate",
-  ["which-key.nvim"] = "whichkey",
-}
-
----@type table<string, string>
-local integration_to_plugin = {}
-for plugin_name, integration_name in pairs(integration_map) do
-  integration_to_plugin[integration_name] = plugin_name
-end
-
 ---@type string[]
-local integration_keys = vim.tbl_keys(integration_to_plugin)
+local plugin_configs = {}
 
----@type table<string, true>|false?
-local lazy_plugins = nil
-
-local function get_lazy_plugins()
-  if lazy_plugins == nil then
-    local ok, config = pcall(require, "lazy.core.config")
-    lazy_plugins = ok and config.plugins or false
+do
+  local files = vim.api.nvim_get_runtime_file("lua/chad46/configs/*.lua", true)
+  local seen = {}
+  for _, file in ipairs(files) do
+    local name = vim.fn.fnamemodify(file, ":t:r")
+    if not seen[name] then
+      seen[name] = true
+      table.insert(plugin_configs, name)
+    end
   end
-  return lazy_plugins
-end
-
----@param name string
----@return boolean
-local function integration_enabled(name)
-  local val = config.options.integrations[name]
-  if val ~= nil then return val end
-  if name == "treesitter" then return true end
-  local plugin = integration_to_plugin[name]
-  if plugin then
-    local plugins = get_lazy_plugins()
-    if plugins and plugins[plugin] then return true end
-    if name == "coc" and vim.fn.exists("*coc#rpc#started") == 2 then return true end
-  end
-  return false
 end
 
 ---@type { base_30: Base30Table, base_16: Base16Table, type: string, polish_hl: table }
@@ -208,62 +119,23 @@ function M.setup(opts)
     require("chad46.adapters.nvchad_stl").enable(nvchad_opts)
   end
 
-  local plugins = get_lazy_plugins()
-  if not plugins then return end
-
-  for integration_name, mapping in pairs(plugin_configs) do
-    if mapping.no_auto then goto continue end
-    if integration_enabled(integration_name) then
-      local spec = plugins[mapping.plugin]
-      if spec then
-        local chad46_mod = require("chad46.configs." .. mapping.config)
-        local user_opts = spec.opts
-        if type(user_opts) == "function" then
-          local mod_is_fn = type(chad46_mod) == "function"
-          spec.opts = function(plugin, plugin_opts)
-            local merged = plugin_opts or {}
-            local base = mod_is_fn and chad46_mod() or vim.tbl_deep_extend("force", {}, chad46_mod)
-            return vim.tbl_deep_extend("force", merged, base)
-          end
-        else
-          spec.opts = type(chad46_mod) == "function"
-            and vim.tbl_deep_extend("force", user_opts or {}, chad46_mod())
-            or vim.tbl_deep_extend("force", {}, user_opts or {}, chad46_mod)
-        end
-      end
-    end
-    ::continue::
-  end
-
-  for integration_name, mapping in pairs(plugin_configs) do
-    if not mapping.no_auto then goto cont end
-    if integration_enabled(integration_name) then
-      local spec = plugins[mapping.plugin]
-      if spec then
-        local chad_cfg = require("chad46.configs." .. mapping.config)
-        if type(chad_cfg) == "function" then chad_cfg() end
-      end
-    end
-    ::cont::
-  end
 end
 
----@diagnostic disable-next-line: lowercase-global
 ---@param names? string|string[]
 function M.apply_configs(names)
   if type(names) == "string" then names = { names } end
-  for integration_name, mapping in pairs(plugin_configs) do
+  for _, name in ipairs(plugin_configs) do
     if names then
-      if not vim.list_contains(names, integration_name) then goto continue end
-    elseif not integration_enabled(integration_name) then
+      if not vim.list_contains(names, name) then goto continue end
+    elseif not config.options.integrations[name] then
       goto continue
     end
-    local ok, mod = pcall(require, mapping.mod)
-    if ok then
-      local chad_cfg = require("chad46.configs." .. mapping.config)
-      if type(chad_cfg) == "function" then
-        chad_cfg()
-      elseif type(mod.setup) == "function" then
+    local chad_cfg = require("chad46.configs." .. name)
+    if type(chad_cfg) == "function" then
+      chad_cfg()
+    else
+      local ok, mod = pcall(require, name)
+      if ok and type(mod.setup) == "function" then
         local cfg = vim.tbl_deep_extend("force", {}, chad_cfg)
         mod.setup(cfg)
       end
@@ -398,15 +270,10 @@ function M.load(name)
     end
   end
 
-  for _, default_name in ipairs({ "defaults", "syntax", "statusline" }) do load_integration(default_name) end
+  for name in ipairs({ "defaults", "syntax", "statusline", "treesitter" }) do load_integration(name) end
 
   for name, enabled in pairs(config.options.integrations) do
     if enabled then load_integration(name) end
-  end
-  for _, name in ipairs(integration_keys) do
-    if config.options.integrations[name] == nil and integration_enabled(name) then
-      load_integration(name)
-    end
   end
 
   for group, opts in pairs(config.options.hl_add) do

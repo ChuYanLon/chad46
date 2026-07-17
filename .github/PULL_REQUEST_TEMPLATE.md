@@ -16,4 +16,4 @@ Closes # .
 
 - [ ] Code follows existing style (2-space indent, no trailing whitespace)
 - [ ] CHANGELOG.md updated (if user-facing change)
-- [ ] Integration mapping added to `init.lua:integration_map` (if new integration)
+- [ ] Integration file added to `lua/chad46/integrations/` (if new integration)

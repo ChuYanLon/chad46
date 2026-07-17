@@ -10,6 +10,7 @@
 
 ### Changed
 
+- **Removed auto-detection** — integrations are now fully opt-in. Users must explicitly set `integrations = { name = true }`. Removed `integration_map`, `integration_enabled()`, and lazy.nvim spec auto-patching. This eliminates the maintenance burden of keeping plugin-name-to-integration-name mappings in sync with upstream.
 - `nvchad_stl` rendering now matches lualine architecture: no `%!`, no `_G.chad46_stl_render`. `process_refresh()` iterates non-popup windows, sets `vim.g.statusline_winid` per-window, computes statusline strings, and sets them via `nvim_win_set_option`. Events only set a flag; the 16ms polling timer handles processing.
 
 ## v2.1.0 (2026-06-28)

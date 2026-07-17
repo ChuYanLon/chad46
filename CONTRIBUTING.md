@@ -3,7 +3,7 @@
 ## How to add a new integration
 
 1. Add your highlight file to `lua/chad46/integrations/<name>.lua`.
-2. Add the lazy.nvim plugin name mapping in `init.lua` → `integration_map`.
+2. Optionally add a config preset to `lua/chad46/configs/<name>.lua`.
 3. Run `bash sync.sh --dry-run` to verify no conflicts.
 
 ## How to add a new statusline theme

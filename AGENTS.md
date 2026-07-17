@@ -12,13 +12,29 @@ Neovim colorscheme plugin synced from [NvChad/base46](https://github.com/NvChad/
 | `lua/chad46/config.lua` | Default options + merge with user opts via `vim.tbl_deep_extend("keep", ...)` |
 | `lua/chad46/colors.lua` | Color utility: `lighten/darken/blend/resolve_colors` |
 | `lua/chad46/generate.lua` | Generates `colors/*.vim`, airline, lightline themes from Lua theme data |
-| `lua/chad46/themes/*.lua` | 95 theme files with `base_30`, `base_16`, `type`, `polish_hl` |
-| `lua/chad46/integrations/*.lua` | 51 plugin highlight modules (44 upstream + 7 local) |
-| `lua/chad46/configs/*.lua` | 16 plugin option presets (13 auto-patched into lazy.nvim, 2 with `no_auto`, 1 unregistered) |
+| `lua/chad46/themes/*.lua` | Theme files with `base_30`, `base_16`, `type`, `polish_hl` |
+| `lua/chad46/integrations/*.lua` | Plugin highlight modules |
+| `lua/chad46/configs/*.lua` | Plugin option presets — auto-discovered for `apply_configs()` |
 | `lua/chad46/adapters/` | Statusline adapters: lualine, bufferline, heirline, airline, lightline, nvchad_stl |
-| `colors/chad46_*.vim` | 95 generated Vim colorscheme files (auto, do not edit) |
+| `colors/chad46_*.vim` | Generated Vim colorscheme files (auto, do not edit) |
 | `chad46_types/*.lua` | LuaLS type annotations only (meta files) |
 | `autoload/airline/`, `autoload/lightline/` | Generated airline/lightline themes (auto, do not edit) |
+
+## Integrations: fully opt-in
+
+No auto-detection. Users explicitly enable integrations in their config:
+
+```lua
+require("chad46").setup({
+  integrations = {
+    telescope = true,
+    gitsigns = true,
+    blink = true,
+  },
+})
+```
+
+`defaults`, `syntax`, `statusline`, `treesitter` are always loaded. Everything else requires explicit `integrations = { name = true }`. This eliminates the maintenance burden of synchronizing plugin-name-to-integration-name mappings with upstream.
 
 ## Sync (upstream)
 
@@ -35,7 +51,7 @@ bash sync.sh --dry-run    # no files written
 - Types/stl from `https://raw.githubusercontent.com/NvChad/ui/v3.0`
 - Requires `nvim` on PATH: runs `fixup_devicons.lua` and `fixup_stl.lua` post-sync
 - Requires `jq` for dynamic listing via GitHub API (skip section if unavailable)
-- Theme/integration/type/stl lists are discovered dynamically via `api.github.com` — no manual list updates needed when upstream adds or removes files
+- File lists discovered dynamically via `api.github.com` — no manual list updates needed
 - When themes change, regenerates all `colors/*.vim`, airline, and lightline themes
 - CI (`.github/workflows/sync.yml`) runs daily at midnight UTC, creates branch + PR, squash-merges
 
@@ -52,27 +68,27 @@ Must be run from repo root. Calls `lua/chad46/generate.lua:M.run()` which:
 4. Generates lightline themes → `autoload/lightline/colorscheme/`
 5. Stamps colorscheme sha256 hashes into airline/lightline files for change tracking
 
-Note: `statusline` integration is excluded from `INTEGRATIONS` in `generate.lua:52-53` — always loaded at runtime in `init.lua:401` alongside `defaults` and `syntax`, but excluded from Vim-compat `.vim` generation.
+Note: `statusline` integration is excluded from `INTEGRATIONS` in `generate.lua:52-53`.
 
 ## Key conventions
 
 - **Integration modules**: can be a table `{ Group = { fg = "...", ... } }` or a function `fn({base_30, base_16, type})` returning the table
-- **Most integrations reference colors via `base46` shim**: `local colors = require("base46").get_theme_tb("base_30")`. The shim is set up at `init.lua:175-177` via `package.loaded["base46"]`
-- **`defaults`, `syntax`, `statusline`** always load first regardless of config (`init.lua:401`)
-- **Treesitter** is always enabled by default (`init.lua:135`)
-- **`coc` and `coc-vscode-loader`** configs have `no_auto = true` — not auto-patched by lazy.nvim; use `apply_configs()` or manual setup
+- **Most integrations reference colors via `base46` shim**: `local colors = require("base46").get_theme_tb("base_30")`. The shim is set up at `init.lua:86` via `package.loaded["base46"]`
+- **`defaults`, `syntax`, `statusline`, `treesitter`** always load regardless of config (`init.lua:273`)
 - **`changed_themes`**: supports both `all` (applied to every theme) and per-theme overrides; keys: `base_30`, `base_16`, `polish_hl`
 - **Transparency**: when `true`, sets `Normal`, `NormalFloat`, `SignColumn`, `WinBar`, `WinBarNC` bg to `"NONE"` and statusline mode c.bg to `"NONE"`
 - **Airline/lightline theme names** use underscores instead of hyphens: `bearded_arc` not `bearded-arc`
 - **`generate_vim.lua`** sets `package.path` to include `lua/?.lua` in cwd — run it from the repo root
-- **Devicons fixup**: `fixup_devicons.lua` renames DevIcon groups to PascalCase (e.g., `DevIconcss` → `DevIconCss`) to match `nvim-web-devicons` naming
+- **Devicons fixup**: `fixup_devicons.lua` renames DevIcon groups to PascalCase (e.g., `DevIconcss` → `DevIconCss`) to match `nvim-web-devicons` naming. Runs during sync AND at ColorScheme autocmd (`init.lua:31`)
 - **nvchad_stl fixup**: `fixup_stl.lua` rewrites upstream NvChad/ui modules to accept a `config` parameter instead of reading `nvconfig`
+- **`cmp.style` also controls coc.nvim PUM** — set via `nvconfig.ui.cmp.style` (`init.lua:108`)
+- **`apply_configs()`**: for non-lazy managers, wrap in `vim.schedule`. Scans `configs/*.lua` at runtime — no manual registration needed.
 - **`colors/chad46.vim`** is an alias for the `bearded-arc` theme (`g:colors_name = "chad46"`, `M.load()` defaults to `"bearded-arc"`)
 
 ## Theme / integration lifecycle
 
-- **Local additions (7, not synced from upstream)**: `coc`, `coc-vscode-loader`, `gitsigns`, `nerdtree`, `noice`, `snacks` (plugin integrations) + `statusline` (core integration, always loaded). `statusline` is absent from `generate.lua:INTEGRATIONS`.
-- To add a new integration: create `integrations/<name>.lua` — it is auto-discovered by both `sync.sh` (from upstream via GitHub API) and `generate.lua` (from local filesystem). Add plugin name mapping in `init.lua:integration_map`, optionally add config in `configs/`
+- **Local additions (not synced from upstream)**: `coc`, `coc-vscode-loader`, `gitsigns`, `nerdtree`, `noice`, `snacks` (plugin integrations) + `statusline` (core integration, always loaded). `statusline` is absent from `generate.lua:INTEGRATIONS`.
+- To add a new integration: create `integrations/<name>.lua` — synced by `sync.sh`, loaded at runtime when user adds `name = true` to their `integrations` config. Optionally create `configs/<name>.lua` for `apply_configs()` support.
 - To add a new theme: create `themes/<name>.lua` — it is auto-discovered by both `sync.sh` and `generate.lua`. Also add to `chad46_types/themes.lua` `ThemeName` alias and `ChangedTheme` annotations for LuaLS type checking
 
 ## No lint / test / typecheck commands
