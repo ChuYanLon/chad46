@@ -12,8 +12,8 @@ Neovim colorscheme plugin synced from [NvChad/base46](https://github.com/NvChad/
 | `lua/chad46/config.lua` | Default options + merge with user opts via `vim.tbl_deep_extend("keep", ...)` |
 | `lua/chad46/colors.lua` | Color utility: `lighten/darken/blend/resolve_colors` |
 | `lua/chad46/generate.lua` | Generates `colors/*.vim`, airline, lightline themes from Lua theme data |
-| `lua/chad46/themes/*.lua` | 94 theme files with `base_30`, `base_16`, `type`, `polish_hl` |
-| `lua/chad46/integrations/*.lua` | 48 plugin highlight modules (41 upstream + 7 local) |
+| `lua/chad46/themes/*.lua` | 95 theme files with `base_30`, `base_16`, `type`, `polish_hl` |
+| `lua/chad46/integrations/*.lua` | 51 plugin highlight modules (44 upstream + 7 local) |
 | `lua/chad46/configs/*.lua` | 16 plugin option presets (13 auto-patched into lazy.nvim, 2 with `no_auto`, 1 unregistered) |
 | `lua/chad46/adapters/` | Statusline adapters: lualine, bufferline, heirline, airline, lightline, nvchad_stl |
 | `colors/chad46_*.vim` | 95 generated Vim colorscheme files (auto, do not edit) |
@@ -46,18 +46,18 @@ nvim --headless --noplugin -c "luafile generate_vim.lua" -c "qa!"
 ```
 
 Must be run from repo root. Calls `lua/chad46/generate.lua:M.run()` which:
-1. Loads each theme + all integrations (in `INTEGRATIONS` list)
+1. Loads each theme + all integrations (excluding `statusline`)
 2. Renders `colors/chad46_<theme>.vim` (pure `hi` commands for Vim compat)
 3. Generates airline themes → `autoload/airline/themes/`
 4. Generates lightline themes → `autoload/lightline/colorscheme/`
 5. Stamps colorscheme sha256 hashes into airline/lightline files for change tracking
 
-Note: `statusline` integration is NOT in `generate.lua:INTEGRATIONS` — it's always loaded at runtime in `init.lua:401` alongside `defaults` and `syntax`, but excluded from Vim-compat `.vim` generation.
+Note: `statusline` integration is excluded from `INTEGRATIONS` in `generate.lua:52-53` — always loaded at runtime in `init.lua:401` alongside `defaults` and `syntax`, but excluded from Vim-compat `.vim` generation.
 
 ## Key conventions
 
 - **Integration modules**: can be a table `{ Group = { fg = "...", ... } }` or a function `fn({base_30, base_16, type})` returning the table
-- **Most integrations reference colors via `base46` shim**: `local colors = require("base46").get_theme_tb("base_30")`. The shim is set up at `lua/chad46/init.lua:175-177` via `package.loaded["base46"]`
+- **Most integrations reference colors via `base46` shim**: `local colors = require("base46").get_theme_tb("base_30")`. The shim is set up at `init.lua:175-177` via `package.loaded["base46"]`
 - **`defaults`, `syntax`, `statusline`** always load first regardless of config (`init.lua:401`)
 - **Treesitter** is always enabled by default (`init.lua:135`)
 - **`coc` and `coc-vscode-loader`** configs have `no_auto = true` — not auto-patched by lazy.nvim; use `apply_configs()` or manual setup
