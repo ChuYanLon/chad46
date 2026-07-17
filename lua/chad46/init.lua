@@ -137,7 +137,7 @@ function M.apply_configs(names)
       local ok, mod = pcall(require, name)
       if ok and type(mod.setup) == "function" then
         local cfg = vim.tbl_deep_extend("force", {}, chad_cfg)
-        mod.setup(cfg)
+        pcall(mod.setup, cfg)
       end
     end
     ::continue::

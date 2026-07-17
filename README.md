@@ -72,7 +72,9 @@ require("chad46").setup({
 vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
-Optional: apply NvChad-style plugin configs:
+Optional: apply NvChad-style plugin configs. For lazy.nvim users, configure
+plugins directly in your spec opts instead — `apply_configs()` is mainly for
+setups where the plugin manager doesn't support automatic opts merging:
 
 ```lua
 -- Apply all enabled integrations
