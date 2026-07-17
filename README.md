@@ -6,7 +6,7 @@
 
 > **Daily sync** — themes, integrations, type definitions, and colorscheme files are automatically synced from [NvChad/base46](https://github.com/NvChad/base46) and [NvChad/ui](https://github.com/NvChad/ui) every day at midnight UTC via GitHub Actions. New themes and integrations are discovered automatically via GitHub API — no manual list updates needed. `sync.log` auto-prunes to 100 lines. Always up to date with upstream.
 
-94 themes · 48 plugin highlight integrations · 15 auto-applied plugin configs · Complete coc.nvim support (160+ highlights, completion icons, diagnostic config) · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline (4 styles)** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
+Themes · Plugin highlight integrations · Auto-applied plugin configs · Complete coc.nvim support · Lualine, Heirline, Bufferline, Airline & Lightline adapters · **Native NvChad statusline** · base\_30 / base\_16 color system · base46/nvconfig compatibility layer
 
 Works with any plugin manager. Auto-config patching for lazy.nvim included; non-lazy users can call `apply_configs()`.
 
@@ -18,7 +18,7 @@ Works with any plugin manager. Auto-config patching for lazy.nvim included; non-
 | **nord** | **onedark** | **gruvbox** |
 | ![nord](https://nvchad.com/themes/nord.webp) | ![onedark](https://nvchad.com/themes/onedark.webp) | ![gruvbox](https://nvchad.com/themes/gruvbox.webp) |
 
-All 94 themes are visually identical to their NvChad/base46 counterparts.  
+All themes are visually identical to their NvChad/base46 counterparts.  
 See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 
 ## Requirements
@@ -29,9 +29,9 @@ See the [NvChad theme gallery](https://nvchad.com/themes) for all themes.
 
 - **Daily auto-sync** from NvChad/base46 — themes + integrations pulled every 24h
 - **Auto-detected integrations** — install a plugin, its highlights + config apply automatically
-- **94 themes**
-- **48 plugin integrations** (highlights) — including native `St_*` statusline groups
-- **15 auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
+- **Themes** — synced from NvChad/base46
+- **Plugin integrations** (highlights) — including native `St_*` statusline groups
+- **Auto-applied plugin configs** (icons, layout, appearance) — lazy.nvim auto, others via `apply_configs()`
 - **base_30 / base_16** dual color system
 - **NvChad native statusline** — 4 themes (default, minimal, vscode, vscode_colored), auto-synced from NvChad/ui
 - **Lualine, Heirline, Bufferline, Airline & Lightline** adapters with NvChad styling
@@ -91,7 +91,7 @@ require("chad46").apply_configs({ "lualine", "bufferline" })
 
 Plugin highlights and configs are auto-detected via lazy.nvim. No manual setup needed — install a plugin and its highlight loads automatically.
 
-> Seven integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc** (160+ highlights, auto-config), **CocLoader** (TUI highlights), and **NERDTree**.
+> Some integrations are local additions not present in upstream NvChad/base46: **Snacks**, **Noice**, **Gitsigns**, **Coc**, **CocLoader**, and **NERDTree**.
 
 ### Auto-applied Configs (lazy.nvim only)
 
@@ -350,7 +350,7 @@ require("chad46").load("nord")
 
 ### vim-airline themes
 
-94 airline themes match the colorschemes. Airline theme names use underscores instead of hyphens:
+Airline themes match the colorschemes. Theme names use underscores instead of hyphens:
 
 ```vim
 :let g:airline_theme = 'chad46_bearded_arc'   " note: bearded_arc (underscore)
@@ -381,7 +381,7 @@ syntax on
 colorscheme chad46_bearded-arc   " or chad46_nord, chad46_catppuccin, etc.
 ```
 
-**vim-airline** (94 themes, underscores instead of hyphens):
+**vim-airline** (underscores instead of hyphens):
 
 ```vim
 Plug 'ChuYanLon/chad46'
@@ -389,7 +389,7 @@ Plug 'vim-airline/vim-airline'
 let g:airline_theme = 'chad46_bearded_arc'
 ```
 
-**lightline** (94 themes):
+**lightline**:
 
 ```vim
 Plug 'ChuYanLon/chad46'
