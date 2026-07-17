@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_everforest_light#palette.inactive = {
 \ 'right': [['#272f35', '#E0DAC9', 236, 188], ['#272f35', '#E0DAC9', 236, 188]],
 \ 'middle': [['#272f35', '#E0DAC9', 236, 188]]
 \ }
-" synced: 2431c21d962d5ab1
+" synced: b4e3b823b2c1530b

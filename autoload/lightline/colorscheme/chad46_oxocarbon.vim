@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_oxocarbon#palette.inactive = {
 \ 'right': [['#f2f4f8', '#2a2a2a', 255, 235], ['#f2f4f8', '#2a2a2a', 255, 235]],
 \ 'middle': [['#f2f4f8', '#2a2a2a', 255, 235]]
 \ }
-" synced: 5e4d011bc25ee70e
+" synced: e854e36cb1fac4f2

@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_gruvbox#palette.inactive = {
 \ 'right': [['#ebdbb2', '#353535', 187, 236], ['#ebdbb2', '#353535', 187, 236]],
 \ 'middle': [['#ebdbb2', '#353535', 187, 236]]
 \ }
-" synced: d6f306c0f3957491
+" synced: 9f0f16af9b2ffc48
