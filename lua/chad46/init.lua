@@ -129,10 +129,10 @@ function M.setup(opts)
         local user_opts = spec.opts
         if type(user_opts) == "function" then
           spec.opts = function(plugin, plugin_opts)
-            return vim.tbl_deep_extend("force", plugin_opts or {}, chad_cfg)
+            return vim.tbl_deep_extend("force", {}, chad_cfg, plugin_opts or {})
           end
         else
-          spec.opts = vim.tbl_deep_extend("force", {}, user_opts or {}, chad_cfg)
+          spec.opts = vim.tbl_deep_extend("force", {}, chad_cfg, user_opts or {})
         end
       end
     end
