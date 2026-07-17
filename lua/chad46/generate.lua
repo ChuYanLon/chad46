@@ -29,41 +29,33 @@ local function hex_to_xterm(hex)
   return best
 end
 
-local INTEGRATIONS = {
-  "defaults", "syntax",
-  "alpha", "avante", "blankline", "blink", "blink-pair", "coc", "coc-vscode-loader", "nerdtree",
-  "bufferline", "cmp", "codeactionmenu", "dap", "devicons",
-  "diffview", "edgy", "flash", "git", "git-conflict",
-  "gitsigns", "grug_far", "hop", "leap", "lsp",
-  "lspsaga", "markview", "mason", "mini-tabline", "navic",
-  "neogit", "noice", "notify", "nvimtree", "nvshades",
-  "orgmode", "rainbowdelimiters", "render-markdown",
-  "semantic_tokens", "snacks", "telescope",
-  "tiny-inline-diagnostic", "todo", "treesitter", "trouble",
-  "vim-illuminate", "whichkey",
-}
+local function scan_dir(dir)
+  local results = {}
+  local handle = vim.loop.fs_scandir(dir)
+  if handle then
+    while true do
+      local name, type = vim.loop.fs_scandir_next(handle)
+      if not name then break end
+      if type == "file" and name:match("%.lua$") then
+        table.insert(results, (name:gsub("%.lua$", "")))
+      end
+    end
+  end
+  table.sort(results)
+  return results
+end
 
-local ALL_THEMES = {
-  "aquarium", "ashes", "aylin", "ayu_dark", "ayu_light", "bearded-arc",
-  "blossom_light", "carbonfox", "catppuccin-latte", "catppuccin",
-  "chadracula-evondev", "chadracula", "chadtain", "chocolate",
-  "darcula-dark", "dark_horizon", "decay", "default-dark", "default-light",
-  "doomchad", "eldritch", "embark", "everblush", "everforest",
-  "everforest_light", "falcon", "flex-light", "flexoki-light", "flexoki",
-  "flouromachine", "gatekeeper", "github_dark", "github_light", "gruvbox",
-  "gruvbox_light", "gruvchad", "hiberbee", "horizon", "jabuti", "jellybeans",
-  "kanagawa-dragon", "kanagawa", "material-darker", "material-deep-ocean",
-  "material-lighter", "melange", "midnight_breeze", "mito-laser", "monekai",
-  "monochrome", "mountain", "nano-light", "neofusion", "nightfox", "nightlamp",
-  "nightowl", "nord", "obsidian-ember", "oceanic-light", "oceanic-next",
-  "one_light", "onedark", "onenord", "onenord_light", "oxocarbon", "palenight",
-  "pastelDark", "pastelbeans", "penumbra_dark", "penumbra_light", "poimandres",
-  "radium", "rosepine-dawn", "rosepine", "rxyhn", "scaryforest",
-  "seoul256_dark", "seoul256_light", "solarized_dark", "solarized_light",
-  "solarized_osaka", "starlight", "sunrise_breeze", "sweetpastel", "tokyodark",
-  "tokyonight", "tomorrow_night", "tundra", "vesper", "vscode_dark",
-  "vscode_light", "wombat", "yoru", "zenburn",
-}
+local INTEGRATIONS = {}
+do
+  local all = scan_dir("lua/chad46/integrations")
+  for _, name in ipairs(all) do
+    if name ~= "statusline" then
+      table.insert(INTEGRATIONS, name)
+    end
+  end
+end
+
+local ALL_THEMES = scan_dir("lua/chad46/themes")
 
 local function nvim_guard(theme_name, colors_name)
   if colors_name == "chad46" and (theme_name == "bearded-arc" or theme_name == nil) then

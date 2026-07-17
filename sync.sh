@@ -20,7 +20,8 @@ log_add=()
 log_upd=()
 log_err=()
 
-ALL_THEMES=(
+# Fallback hardcoded lists (used when GitHub API is unavailable)
+HARDCODED_THEMES=(
   aquarium ashes aylin ayu_dark ayu_light bearded-arc blossom_light carbonfox
   catppuccin-latte catppuccin chadracula-evondev chadracula chadtain chocolate
   darcula-dark dark_horizon decay default-dark default-light doomchad eldritch
@@ -38,7 +39,7 @@ ALL_THEMES=(
   wombat yoru zenburn
 )
 
-ALL_INTEGRATIONS=(
+HARDCODED_INTEGRATIONS=(
   alpha avante blankline blink blink-pair bufferline cmp codeactionmenu dap
   defaults devicons diffview edgy flash git git-conflict grug_far hop
   leap lsp lspsaga markview mason mini-tabline navic neogit notify
@@ -47,13 +48,29 @@ ALL_INTEGRATIONS=(
   vim-illuminate whichkey
 )
 
-ALL_TYPES=(
-  base46 themes
-)
+HARDCODED_TYPES=( base46 themes )
 
-ALL_STL=(
-  default minimal vscode vscode_colored utils
-)
+HARDCODED_STL=( default minimal vscode vscode_colored utils )
+
+# Fetch .lua filenames (without extension) from a GitHub repo directory via API
+fetch_github_listing() {
+  local url="https://api.github.com/repos/$1/contents/$2"
+  curl -sL --max-time 15 "$url" 2>/dev/null | jq -r '.[] | select(.type=="file") | .name' 2>/dev/null | sed -n 's/\.lua$//p'
+}
+
+# Resolve a list: try GitHub API first, fall back to hardcoded array
+resolve_list() {
+  local -n result="$1"; shift
+  local api_repo="$1" api_path="$2"; shift 2
+  local fallback=("$@")
+  result=()
+  while IFS= read -r name; do
+    [[ -n "$name" ]] && result+=("$name")
+  done < <(fetch_github_listing "$api_repo" "$api_path")
+  if [[ ${#result[@]} -eq 0 ]]; then
+    result=( "${fallback[@]}" )
+  fi
+}
 
 fetch() {
   local url="$1" result="" i
@@ -74,7 +91,7 @@ sync_dir() {
     echo -n "  $name ... "
     local url="$BASE46_URL/lua/base46/$type/$name.lua"
     local content; content=$(fetch "$url")
-    [[ -z "$content" ]] && { log_err+=("$type: $name"); echo "FAILED"; ((err++)); [[ "$type" == "themes" ]] && gen_cs "$name"; continue; }
+    [[ -z "$content" ]] && { log_err+=("$type: $name"); echo "FAILED"; ((err++)); continue; }
     if [[ "$type" == "themes" ]]; then
       content=$(echo "$content" | grep -v 'require("base46").override_theme')
       content="${content%"${content##*[![:space:]]}"}"
@@ -92,13 +109,12 @@ sync_dir() {
     local f="$dst/$name.lua"
     if [[ -f "$f" ]]; then
       local old; old=$(<"$f")
-      [[ "$old" == "$content" ]] && { echo "skip"; [[ "$type" == "themes" ]] && gen_cs "$name"; continue; }
+      [[ "$old" == "$content" ]] && { echo "skip"; continue; }
       log_upd+=("$type: $name"); echo "updated"; ((upd++))
     else
       log_add+=("$type: $name"); echo "added"; ((add++))
     fi
     [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
-    [[ "$type" == "themes" ]] && gen_cs "$name"
   done
   echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
 }
@@ -173,8 +189,6 @@ generate_full_cs() {
   echo "  done"
 }
 
-gen_cs() { return 0; }
-
 # Fix devicons.lua: correct DevIcon group names to PascalCase
 # so they match nvim-web-devicons' naming convention.
 fixup_devicons() {
@@ -189,6 +203,18 @@ fixup_devicons() {
 main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
   mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
+
+  # Dynamically resolve lists from upstream, fall back to hardcoded
+  local ALL_THEMES=()
+  local ALL_INTEGRATIONS=()
+  local ALL_TYPES=()
+  local ALL_STL=()
+
+  resolve_list ALL_THEMES "NvChad/base46" "lua/base46/themes" "${HARDCODED_THEMES[@]}"
+  resolve_list ALL_INTEGRATIONS "NvChad/base46" "lua/base46/integrations" "${HARDCODED_INTEGRATIONS[@]}"
+  resolve_list ALL_TYPES "NvChad/ui" "nvchad_types" "${HARDCODED_TYPES[@]}"
+  resolve_list ALL_STL "NvChad/ui" "lua/nvchad/stl" "${HARDCODED_STL[@]}"
+
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "themes" ]]; then
     local theme_before=$(( ${#log_add[@]} + ${#log_upd[@]} ))
     sync_dir "themes" "$THEMES_DIR" "${ALL_THEMES[@]}"
