@@ -73,25 +73,35 @@ require("chad46").setup({
 vim.cmd.colorscheme("chad46_bearded-arc")
 ```
 
-Optional: apply NvChad-style plugin configs. Only function presets (coc,
-lualine, bufferline) apply automatically — they set global state without
-calling plugin setup. Table presets are available as data for manual use:
+Apply NvChad-style plugin configs (wrap in `vim.schedule` for safety):
 
 ```lua
-require("telescope").setup(require("chad46.configs").telescope)
+vim.schedule(function()
+  require("chad46").apply_configs()
+end)
 ```
+
+This applies function presets (coc, lualine, bufferline) directly and calls
+`setup()` with table presets (telescope, snacks, blink, etc.). For lazy.nvim
+users, configs are auto-injected via `setup()` — no need for `apply_configs()`.
 
 ## Integrations
 
-Plugin highlights are loaded only when explicitly enabled in `integrations`:
+Plugin highlights are auto-detected from installed lazy.nvim plugins. For
+other plugin managers, enable explicitly via `integrations`:
 
 ```lua
 integrations = {
   telescope = true,
   gitsigns = true,
-  blink = true,
-  snacks = true,
-  noice = true,
+}
+```
+
+To disable auto-detection for a specific plugin (lazy.nvim users):
+
+```lua
+integrations = {
+  telescope = false,
 }
 ```
 
@@ -101,32 +111,28 @@ Complete list of available integrations is in `lua/chad46/integrations/`.
 
 ### Plugin configs (`apply_configs()`)
 
-`apply_configs()` runs config presets for supported plugins. Only function
-presets (coc, lualine, bufferline) apply automatically — they set global
-state without calling plugin setup. Table presets (telescope, snacks,
-blink, etc.) are designed for lazy.nvim `opts`; for non-lazy setups,
-pass the config to the plugin's setup function directly:
-
-```lua
-require("telescope").setup(require("chad46.configs").telescope)
-```
+For non-lazy setups, `apply_configs()` runs NvChad-style config presets.
+Function presets (coc, lualine, bufferline) are called directly; table
+presets are applied via `mod:setup()`. Lazy.nvim users don't need
+`apply_configs()` — configs are auto-injected into plugin specs during
+`setup()`.
 
 | Plugin | What it does | Via `apply_configs()` |
 |--------|-------------|------|
-| Telescope | search prompt icon, layout, dropdown theme | |
-| Nvim-tree | Nerd Font file/folder icons, git status glyphs | |
-| Gitsigns | add/change/delete signs in signcolumn — local config | |
-| Mason | package pending/installed/uninstalled icons | |
-| Indent-blankline | indent guide character | |
-| Which-key | modern preset, group labels | |
-| Nvim-cmp | 30+ kind icons, menu formatting | |
-| Blink-cmp | rounded borders, kind icon column | |
-| Devicons | filetype icon color overrides | |
+| Telescope | search prompt icon, layout, dropdown theme | ✓ |
+| Nvim-tree | Nerd Font file/folder icons, git status glyphs | ✓ |
+| Gitsigns | add/change/delete signs in signcolumn — local config | ✓ |
+| Mason | package pending/installed/uninstalled icons | ✓ |
+| Indent-blankline | indent guide character | ✓ |
+| Which-key | modern preset, group labels | ✓ |
+| Nvim-cmp | 30+ kind icons, menu formatting | ✓ |
+| Blink-cmp | rounded borders, kind icon column | ✓ |
+| Devicons | filetype icon color overrides | ✓ |
 | Lualine | NvChad statusline color theme | ✓ |
 | Bufferline | NvChad buffer tab color theme | ✓ |
-| Dap | breakpoint signs | |
-| Trouble | right-side layout | |
-| Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style | |
+| Dap | breakpoint signs | ✓ |
+| Trouble | right-side layout | ✓ |
+| Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style | ✓ |
 | Coc | diagnostics, completion kind icons (Nerd Font), format items order, signature/hover/floating borders, inlayHint, codeLens — respects `cmp.style` | ✓ |
 
 ## Options

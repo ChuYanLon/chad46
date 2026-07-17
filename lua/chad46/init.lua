@@ -142,6 +142,7 @@ end
 ---@param names? string|string[]
 function M.apply_configs(names)
   if type(names) == "string" then names = { names } end
+  local lazy_ok = pcall(require, "lazy.core.config")
   for _, name in ipairs(plugin_configs) do
     if names then
       if not vim.list_contains(names, name) then goto continue end
@@ -149,7 +150,14 @@ function M.apply_configs(names)
       goto continue
     end
     local chad_cfg = require("chad46.configs." .. name)
-    if type(chad_cfg) == "function" then chad_cfg() end
+    if type(chad_cfg) == "function" then
+      chad_cfg()
+    elseif not lazy_ok then
+      local ok, mod = pcall(require, name)
+      if ok and type(mod.setup) == "function" then
+        mod:setup(vim.tbl_deep_extend("force", {}, chad_cfg))
+      end
+    end
     ::continue::
   end
 end
