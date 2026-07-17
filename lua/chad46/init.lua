@@ -125,14 +125,18 @@ function M.setup(opts)
     for spec_name, spec in pairs(lazy_config.plugins) do
       local config_name = spec_name:gsub("%.nvim$", ""):gsub("%.lua$", "")
       local ok, chad_cfg = pcall(require, "chad46.configs." .. config_name)
-      if ok and type(chad_cfg) == "table" then
-        local user_opts = spec.opts
-        if type(user_opts) == "function" then
-          spec.opts = function(plugin, plugin_opts)
-            return vim.tbl_deep_extend("force", {}, chad_cfg, plugin_opts or {})
+      if ok then
+        if type(chad_cfg) == "function" then
+          chad_cfg()
+        elseif type(chad_cfg) == "table" then
+          local user_opts = spec.opts
+          if type(user_opts) == "function" then
+            spec.opts = function(plugin, plugin_opts)
+              return vim.tbl_deep_extend("force", {}, chad_cfg, plugin_opts or {})
+            end
+          else
+            spec.opts = vim.tbl_deep_extend("force", {}, chad_cfg, user_opts or {})
           end
-        else
-          spec.opts = vim.tbl_deep_extend("force", {}, chad_cfg, user_opts or {})
         end
       end
     end
