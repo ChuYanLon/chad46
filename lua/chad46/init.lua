@@ -118,7 +118,6 @@ function M.setup(opts)
     end
     require("chad46.adapters.nvchad_stl").enable(nvchad_opts)
   end
-
 end
 
 ---@param names? string|string[]
@@ -131,9 +130,7 @@ function M.apply_configs(names)
       goto continue
     end
     local chad_cfg = require("chad46.configs." .. name)
-    if type(chad_cfg) == "function" then
-      chad_cfg()
-    end
+    if type(chad_cfg) == "function" then chad_cfg() end
     ::continue::
   end
 end

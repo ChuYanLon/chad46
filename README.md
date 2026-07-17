@@ -107,12 +107,17 @@ Complete list of available integrations is in `lua/chad46/integrations/`.
 
 ### Plugin configs (`apply_configs()`)
 
-`apply_configs()` runs config presets for supported plugins. Only presets
-that are functions (coc, lualine, bufferline) apply automatically. Table
-presets (telescope, snacks, blink, etc.) are designed for lazy.nvim
-`opts` merging — configure those directly in your plugin spec.
+`apply_configs()` runs config presets for supported plugins. Only function
+presets (coc, lualine, bufferline) apply automatically — they set global
+state without calling plugin setup. Table presets (telescope, snacks,
+blink, etc.) are designed for lazy.nvim `opts`; for non-lazy setups,
+pass the config to the plugin's setup function directly:
 
-| Plugin | What it does | Applies via `apply_configs()` |
+```lua
+require("telescope").setup(require("chad46.configs").telescope)
+```
+
+| Plugin | What it does | Via `apply_configs()` |
 |--------|-------------|------|
 | Telescope | search prompt icon, layout, dropdown theme | |
 | Nvim-tree | Nerd Font file/folder icons, git status glyphs | |
