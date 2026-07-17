@@ -107,25 +107,28 @@ Complete list of available integrations is in `lua/chad46/integrations/`.
 
 ### Plugin configs (`apply_configs()`)
 
-`apply_configs()` sets NvChad-style defaults for supported plugins:
+`apply_configs()` runs config presets for supported plugins. Only presets
+that are functions (coc, lualine, bufferline) apply automatically. Table
+presets (telescope, snacks, blink, etc.) are designed for lazy.nvim
+`opts` merging — configure those directly in your plugin spec.
 
-| Plugin | What it does |
-|--------|-------------|
-| Telescope | search prompt icon, layout, dropdown theme |
-| Nvim-tree | Nerd Font file/folder icons, git status glyphs |
-| Gitsigns | add/change/delete signs in signcolumn — local config |
-| Mason | package pending/installed/uninstalled icons |
-| Indent-blankline | indent guide character |
-| Which-key | modern preset, group labels |
-| Nvim-cmp | 30+ kind icons, menu formatting |
-| Blink-cmp | rounded borders, kind icon column |
-| Devicons | filetype icon color overrides |
-| Lualine | NvChad statusline color theme |
-| Bufferline | NvChad buffer tab color theme |
-| Dap | breakpoint signs |
-| Trouble | right-side layout |
-| Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style |
-| Coc | diagnostics, completion kind icons (Nerd Font), format items order, signature/hover/floating borders, inlayHint, codeLens — respects `cmp.style` |
+| Plugin | What it does | Applies via `apply_configs()` |
+|--------|-------------|------|
+| Telescope | search prompt icon, layout, dropdown theme | |
+| Nvim-tree | Nerd Font file/folder icons, git status glyphs | |
+| Gitsigns | add/change/delete signs in signcolumn — local config | |
+| Mason | package pending/installed/uninstalled icons | |
+| Indent-blankline | indent guide character | |
+| Which-key | modern preset, group labels | |
+| Nvim-cmp | 30+ kind icons, menu formatting | |
+| Blink-cmp | rounded borders, kind icon column | |
+| Devicons | filetype icon color overrides | |
+| Lualine | NvChad statusline color theme | ✓ |
+| Bufferline | NvChad buffer tab color theme | ✓ |
+| Dap | breakpoint signs | |
+| Trouble | right-side layout | |
+| Snacks | notifier icons, picker icons/keymaps/layout/explorer, indent style | |
+| Coc | diagnostics, completion kind icons (Nerd Font), format items order, signature/hover/floating borders, inlayHint, codeLens — respects `cmp.style` | ✓ |
 
 ## Options
 

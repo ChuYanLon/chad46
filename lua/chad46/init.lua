@@ -133,12 +133,6 @@ function M.apply_configs(names)
     local chad_cfg = require("chad46.configs." .. name)
     if type(chad_cfg) == "function" then
       chad_cfg()
-    else
-      local ok, mod = pcall(require, name)
-      if ok and type(mod.setup) == "function" then
-        local cfg = vim.tbl_deep_extend("force", {}, chad_cfg)
-        pcall(mod.setup, cfg)
-      end
     end
     ::continue::
   end
