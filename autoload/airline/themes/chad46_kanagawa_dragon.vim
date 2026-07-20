@@ -44,4 +44,4 @@ let g:airline#themes#chad46_kanagawa_dragon#palette.accents = {
 function! airline#themes#chad46_kanagawa_dragon#apply()
   let g:airline#themes#chad46_kanagawa_dragon#palette = g:airline#themes#chad46_kanagawa_dragon#palette
 endfunction
-" synced: 8b8323e2af2f8c55
+" synced: 2c9094d1fbbd1f5c
