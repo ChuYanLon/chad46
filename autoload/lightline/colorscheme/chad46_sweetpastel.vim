@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_sweetpastel#palette.inactive = {
 \ 'right': [['#FFDEDE', '#25292d', 224, 235], ['#FFDEDE', '#25292d', 224, 235]],
 \ 'middle': [['#FFDEDE', '#25292d', 224, 235]]
 \ }
-" synced: 2c9315bfee6bf63f
+" synced: ffec74ec575e241c

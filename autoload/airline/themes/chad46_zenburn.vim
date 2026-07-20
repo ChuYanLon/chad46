@@ -44,4 +44,4 @@ let g:airline#themes#chad46_zenburn#palette.accents = {
 function! airline#themes#chad46_zenburn#apply()
   let g:airline#themes#chad46_zenburn#palette = g:airline#themes#chad46_zenburn#palette
 endfunction
-" synced: 33d85be2b83fd0bf
+" synced: f5e69a83ccc25032

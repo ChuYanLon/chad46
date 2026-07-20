@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_kanagawa_dragon#palette.inactive = {
 \ 'right': [['#adada4', '#262424', 248, 235], ['#adada4', '#262424', 248, 235]],
 \ 'middle': [['#adada4', '#262424', 248, 235]]
 \ }
-" synced: 8b8323e2af2f8c55
+" synced: 2c9094d1fbbd1f5c

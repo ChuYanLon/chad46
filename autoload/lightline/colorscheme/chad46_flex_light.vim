@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_flex_light#palette.inactive = {
 \ 'right': [['#2a2929', '#ebe8dd', 235, 254], ['#2a2929', '#ebe8dd', 235, 254]],
 \ 'middle': [['#2a2929', '#ebe8dd', 235, 254]]
 \ }
-" synced: df7fd402277c7268
+" synced: 085caa0692ae02cb

@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_flexoki#palette.inactive = {
 \ 'right': [['#CECDC3', '#292626', 251, 235], ['#CECDC3', '#292626', 251, 235]],
 \ 'middle': [['#CECDC3', '#292626', 251, 235]]
 \ }
-" synced: 74450ab764064e8b
+" synced: f7c404a65a80db19

@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_doomchad#palette.inactive = {
 \ 'right': [['#bbc2cf', '#32363e', 251, 237], ['#bbc2cf', '#32363e', 251, 237]],
 \ 'middle': [['#bbc2cf', '#32363e', 251, 237]]
 \ }
-" synced: 6c1f8dd3cac277dc
+" synced: 4dccbcb0ce8d0283

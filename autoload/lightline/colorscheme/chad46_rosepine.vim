@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_rosepine#palette.inactive = {
 \ 'right': [['#e0def4', '#262431', 189, 235], ['#e0def4', '#262431', 189, 235]],
 \ 'middle': [['#e0def4', '#262431', 189, 235]]
 \ }
-" synced: 1d2edafbe07fbf50
+" synced: 4b94a5484fee335e

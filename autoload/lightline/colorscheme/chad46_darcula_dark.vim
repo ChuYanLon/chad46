@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_darcula_dark#palette.inactive = {
 \ 'right': [['#eeeeee', '#393939', 255, 237], ['#eeeeee', '#393939', 255, 237]],
 \ 'middle': [['#eeeeee', '#393939', 255, 237]]
 \ }
-" synced: f3827b107441cf43
+" synced: f6e2e7c010537e6a

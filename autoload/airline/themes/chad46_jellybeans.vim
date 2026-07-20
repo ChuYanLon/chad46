@@ -44,4 +44,4 @@ let g:airline#themes#chad46_jellybeans#palette.accents = {
 function! airline#themes#chad46_jellybeans#apply()
   let g:airline#themes#chad46_jellybeans#palette = g:airline#themes#chad46_jellybeans#palette
 endfunction
-" synced: b0b88e49eb577b45
+" synced: b9b41d4e214565b2

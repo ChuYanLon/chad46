@@ -44,4 +44,4 @@ let g:airline#themes#chad46_jabuti#palette.accents = {
 function! airline#themes#chad46_jabuti#apply()
   let g:airline#themes#chad46_jabuti#palette = g:airline#themes#chad46_jabuti#palette
 endfunction
-" synced: 2d6bed0c4a5aa807
+" synced: cfad7f77e4e19418
