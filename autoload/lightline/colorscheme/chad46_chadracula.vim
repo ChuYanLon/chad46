@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_chadracula#palette.inactive = {
 \ 'right': [['#F8F8F2', '#373844', 255, 237], ['#F8F8F2', '#373844', 255, 237]],
 \ 'middle': [['#F8F8F2', '#373844', 255, 237]]
 \ }
-" synced: f183ffabf79138fa
+" synced: cf7348d0665e1023

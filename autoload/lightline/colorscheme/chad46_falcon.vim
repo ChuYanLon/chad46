@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_falcon#palette.inactive = {
 \ 'right': [['#F8F8FF', '#161636', 231, 234], ['#F8F8FF', '#161636', 231, 234]],
 \ 'middle': [['#F8F8FF', '#161636', 231, 234]]
 \ }
-" synced: f9fbeb6266adec36
+" synced: 6f448e1477f98f7a

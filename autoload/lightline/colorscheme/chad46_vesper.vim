@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_vesper#palette.inactive = {
 \ 'right': [['#FFFFFF', '#232323', 231, 235], ['#FFFFFF', '#232323', 231, 235]],
 \ 'middle': [['#FFFFFF', '#232323', 231, 235]]
 \ }
-" synced: b00e623733a0218e
+" synced: 9c607bfeb1c769e6

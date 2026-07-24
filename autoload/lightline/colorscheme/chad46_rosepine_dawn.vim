@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_rosepine_dawn#palette.inactive = {
 \ 'right': [['#575279', '#EADCCF', 60, 253], ['#575279', '#EADCCF', 60, 253]],
 \ 'middle': [['#575279', '#EADCCF', 60, 253]]
 \ }
-" synced: 084583d792cb774d
+" synced: a3abfcfb3eca1d3e

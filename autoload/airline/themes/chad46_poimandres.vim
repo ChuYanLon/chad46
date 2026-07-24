@@ -44,4 +44,4 @@ let g:airline#themes#chad46_poimandres#palette.accents = {
 function! airline#themes#chad46_poimandres#apply()
   let g:airline#themes#chad46_poimandres#palette = g:airline#themes#chad46_poimandres#palette
 endfunction
-" synced: 9eaad938d814a588
+" synced: 3f11289a28441655
