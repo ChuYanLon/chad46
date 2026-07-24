@@ -42,29 +42,28 @@ jobs:
             echo "$sync_output" | grep '\.\.\. FAILED$' | while IFS= read -r line; do
               echo "  - $line" >> sync.log
             done
-          elif [[ $added -eq 0 && $updated -eq 0 ]]; then
-            echo "[$timestamp] OK - no updates" >> sync.log
-          else
+          elif [[ $added -gt 0 || $updated -gt 0 ]]; then
             echo "[$timestamp] OK - added: $added, updated: $updated" >> sync.log
           fi
 
-          git config user.name "chad46 sync"
-          git config user.email "sync@chad46"
+          if [[ $added -gt 0 || $updated -gt 0 ]]; then
+            git config user.name "chad46 sync"
+            git config user.email "sync@chad46"
 
-          git add -A
-          BRANCH="sync/auto-$(date +%s)"
-          git checkout -b "$BRANCH"
-          git commit -m "chore: sync themes & integrations from NvChad/base46"
+            git add -A
+            BRANCH="sync/auto-$(date +%s)"
+            git checkout -b "$BRANCH"
+            git commit -m "chore: sync themes & integrations from NvChad/base46"
 
-          git push origin "$BRANCH"
+            git push origin "$BRANCH"
 
-          PR_URL=$(gh pr create \
-            --title "chore: sync themes & integrations" \
-            --body "Automated sync from [NvChad/base46](https://github.com/NvChad/base46)." \
-            --base main \
-            --head "$BRANCH")
-          PR_NUM="${PR_URL##*/}"
-          gh pr merge --squash --delete-branch "$BRANCH"
+            PR_URL=$(gh pr create \
+              --title "chore: sync themes & integrations" \
+              --body "Automated sync from [NvChad/base46](https://github.com/NvChad/base46)." \
+              --base main \
+              --head "$BRANCH")
+            gh pr merge --squash --delete-branch "$BRANCH"
+          fi
 
           if [[ $sync_exit -ne 0 ]]; then
             exit 1
