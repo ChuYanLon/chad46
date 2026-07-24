@@ -1,17 +1,10 @@
 # Changelog
 
-## Unreleased
-
-### Added
-
-- `nvchad_stl` lualine-style refresh architecture: 16ms continuous polling timer (`coalesce_timer`) merges rapid events, 1000ms periodic fallback timer (`refresh_interval`) for custom components.
-- `nvchad_stl.enable({ modules = {}, order = {} })` — custom statusline components with full position control.
-- `nvchad_stl.enable({ refresh_interval = 1000 })` — configurable periodic refresh (default 1000ms, set 0 to disable).
+## v2.1.2 (2026-07-24)
 
 ### Changed
 
-- **Removed auto-detection** — integrations are now fully opt-in. Users must explicitly set `integrations = { name = true }`. Removed `integration_map`, `integration_enabled()`, and lazy.nvim spec auto-patching. This eliminates the maintenance burden of keeping plugin-name-to-integration-name mappings in sync with upstream.
-- `nvchad_stl` rendering now matches lualine architecture: no `%!`, no `_G.chad46_stl_render`. `process_refresh()` iterates non-popup windows, sets `vim.g.statusline_winid` per-window, computes statusline strings, and sets them via `nvim_win_set_option`. Events only set a flag; the 16ms polling timer handles processing.
+- **CI: skip git/PR when no upstream changes** — daily sync no longer creates empty PRs or appends log entries when there are no new or updated files.
 
 ## v2.1.0 (2026-06-28)
 
