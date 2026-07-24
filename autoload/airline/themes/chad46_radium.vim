@@ -44,4 +44,4 @@ let g:airline#themes#chad46_radium#palette.accents = {
 function! airline#themes#chad46_radium#apply()
   let g:airline#themes#chad46_radium#palette = g:airline#themes#chad46_radium#palette
 endfunction
-" synced: e434240bd51d8f98
+" synced: 112860473a973521

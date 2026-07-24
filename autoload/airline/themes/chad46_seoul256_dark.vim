@@ -44,4 +44,4 @@ let g:airline#themes#chad46_seoul256_dark#palette.accents = {
 function! airline#themes#chad46_seoul256_dark#apply()
   let g:airline#themes#chad46_seoul256_dark#palette = g:airline#themes#chad46_seoul256_dark#palette
 endfunction
-" synced: f6eb3670ac276624
+" synced: b75dd67ffdef5fba

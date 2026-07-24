@@ -44,4 +44,4 @@ let g:airline#themes#chad46_hiberbee#palette.accents = {
 function! airline#themes#chad46_hiberbee#apply()
   let g:airline#themes#chad46_hiberbee#palette = g:airline#themes#chad46_hiberbee#palette
 endfunction
-" synced: 78d5e2b55e903f8c
+" synced: df104e4f37cc29ef

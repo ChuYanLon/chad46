@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_wombat#palette.inactive = {
 \ 'right': [['#e4e0d7', '#333333', 253, 236], ['#e4e0d7', '#333333', 253, 236]],
 \ 'middle': [['#e4e0d7', '#333333', 253, 236]]
 \ }
-" synced: b9862a9967d44022
+" synced: 9ad90c9c39315dcc

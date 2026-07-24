@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_chadracula_evondev#palette.inactive = {
 \ 'right': [['#F8F8F2', '#23233d', 255, 236], ['#F8F8F2', '#23233d', 255, 236]],
 \ 'middle': [['#F8F8F2', '#23233d', 255, 236]]
 \ }
-" synced: 25a31f7d38b52bb1
+" synced: 02152a919bb605d5
