@@ -5,6 +5,8 @@ THEMES_DIR="$CHAD46_DIR/lua/chad46/themes"
 INTEG_DIR="$CHAD46_DIR/lua/chad46/integrations"
 BASE46_URL="https://raw.githubusercontent.com/NvChad/base46/v3.0"
 MAX_LOG_LINES=100
+# Configs listed here are NOT synced from upstream (local-only / customized)
+EXCLUDED_CONFIGS=("lspconfig")
 DRY_RUN=""
 SYNC_MODE="all"
 for arg in "$@"; do
@@ -274,7 +276,15 @@ main() {
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "configs" ]]; then
     local ALL_CONFIGS=()
     resolve_list ALL_CONFIGS "NvChad/NvChad" "lua/nvchad/configs?ref=v2.5"
-    sync_configs "$CONFIGS_DIR" "${ALL_CONFIGS[@]}"
+    local FILTERED_CONFIGS=()
+    for c in "${ALL_CONFIGS[@]}"; do
+      local skip=0
+      for x in "${EXCLUDED_CONFIGS[@]}"; do
+        [[ "$c" == "$x" ]] && { skip=1; break; }
+      done
+      (( skip )) || FILTERED_CONFIGS+=("$c")
+    done
+    sync_configs "$CONFIGS_DIR" "${FILTERED_CONFIGS[@]}"
     sync_all_configs_ui
     echo ""
   fi
