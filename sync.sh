@@ -14,6 +14,7 @@ for arg in "$@"; do
     --themes) SYNC_MODE="themes" ;;
     --integrations) SYNC_MODE="integrations" ;;
     --stl) SYNC_MODE="stl" ;;
+    --configs) SYNC_MODE="configs" ;;
   esac
 done
 
@@ -86,6 +87,8 @@ sync_dir() {
 
 TYPES_DIR="$CHAD46_DIR/chad46_types"
 UI_URL="https://raw.githubusercontent.com/NvChad/ui/v3.0"
+NVCONFIG_URL="https://raw.githubusercontent.com/NvChad/NvChad/v2.5"
+CONFIGS_DIR="$CHAD46_DIR/lua/chad46/configs"
 
 sync_types() {
   local dst="$1"
@@ -146,6 +149,74 @@ sync_stl() {
   echo "  total: ${#names[@]}, updated: $upd, errors: $err"
 }
 
+sync_configs() {
+  local dst="$1"
+  shift 1
+  local names=("$@")
+  echo "=== Syncing configs from NvChad/NvChad ==="
+  local add=0 upd=0 err=0
+  for name in "${names[@]}"; do
+    echo -n "  $name ... "
+    local url="$NVCONFIG_URL/lua/nvchad/configs/$name.lua"
+    local content; content=$(fetch "$url")
+    [[ -z "$content" ]] && { log_err+=("configs: $name"); echo "FAILED"; ((err++)); continue; }
+    local tmp=$(mktemp)
+    printf '%s\n' "$content" > "$tmp"
+    command -v nvim &>/dev/null && nvim --headless --noplugin \
+      -c "let g:fixup_file='$tmp'" \
+      -c "let g:fixup_name='$name'" \
+      -c "luafile $CHAD46_DIR/fixup_configs.lua" -c "qa!" 2>/dev/null
+    content=$(<"$tmp")
+    rm -f "$tmp"
+    local f="$dst/$name.lua"
+    if [[ -f "$f" ]]; then
+      local old; old=$(<"$f")
+      [[ "$old" == "$content" ]] && { echo "skip"; continue; }
+      log_upd+=("configs: $name"); echo "updated"; ((upd++))
+    else
+      log_add+=("configs: $name"); echo "added"; ((add++))
+    fi
+    [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
+  done
+  echo "  total: ${#names[@]}, added: $add, updated: $upd, errors: $err"
+}
+
+sync_config_ui() {
+  local name="$1" url="$2" dst_name="$3"
+  echo -n "  ui/$name -> $dst_name ... "
+  local content; content=$(fetch "$url")
+  if [[ -z "$content" ]]; then
+    log_err+=("configs_ui: $dst_name"); echo "FAILED"
+    return 1
+  fi
+  local tmp=$(mktemp)
+  printf '%s\n' "$content" > "$tmp"
+  command -v nvim &>/dev/null && nvim --headless --noplugin \
+    -c "let g:fixup_file='$tmp'" \
+    -c "let g:fixup_name='$dst_name'" \
+    -c "luafile $CHAD46_DIR/fixup_configs.lua" -c "qa!" 2>/dev/null
+  content=$(<"$tmp")
+  rm -f "$tmp"
+  local f="$CONFIGS_DIR/$dst_name.lua"
+  if [[ -f "$f" ]]; then
+    local old; old=$(<"$f")
+    [[ "$old" == "$content" ]] && { echo "skip"; return 0; }
+    log_upd+=("configs_ui: $dst_name"); echo "updated"
+  else
+    log_add+=("configs_ui: $dst_name"); echo "added"
+  fi
+  [[ "$DRY_RUN" != "--dry-run" ]] && printf '%s\n' "$content" > "$f"
+}
+
+sync_all_configs_ui() {
+  echo "=== Syncing configs from NvChad/ui ==="
+  sync_config_ui "cmp_ui" "$UI_URL/lua/nvchad/cmp/init.lua" "cmp_ui"
+  sync_config_ui "blink" "$UI_URL/lua/nvchad/blink/config.lua" "blink"
+  sync_config_ui "blink_menu" "$UI_URL/lua/nvchad/blink/init.lua" "blink_menu"
+  sync_config_ui "lspkind" "$UI_URL/lua/nvchad/icons/lspkind.lua" "lspkind"
+  echo "  done"
+}
+
 generate_full_cs() {
   command -v nvim &>/dev/null || return 0
   mkdir -p "$CHAD46_DIR/colors" "$CHAD46_DIR/autoload/airline/themes" "$CHAD46_DIR/autoload/lightline/colorscheme"
@@ -167,9 +238,8 @@ fixup_devicons() {
 
 main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
-  mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR" "$STL_DIR"
+  mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR" "$STL_DIR" "$CONFIGS_DIR"
 
-  # Dynamically resolve lists from upstream, fall back to hardcoded
   local ALL_THEMES=()
   local ALL_INTEGRATIONS=()
   local ALL_TYPES=()
@@ -199,6 +269,13 @@ main() {
   fi
   if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "stl" ]]; then
     sync_stl "$STL_DIR" "${ALL_STL[@]}"
+    echo ""
+  fi
+  if [[ "$SYNC_MODE" == "all" || "$SYNC_MODE" == "configs" ]]; then
+    local ALL_CONFIGS=()
+    resolve_list ALL_CONFIGS "NvChad/NvChad" "lua/nvchad/configs?ref=v2.5"
+    sync_configs "$CONFIGS_DIR" "${ALL_CONFIGS[@]}"
+    sync_all_configs_ui
     echo ""
   fi
   if [[ -f "$CHAD46_DIR/sync.log" ]]; then

@@ -23,7 +23,7 @@ return function()
   }
 
   if styled then
-    local cmp_icons = require("chad46.configs.cmp").icons
+    local cmp_icons = require("chad46.configs.cmp_icons")
     suggest.formatItems = { "kind", "abbr", "menu", "shortcut" }
     suggest.completionItemKindLabels = {
       text = " " .. (cmp_icons.Text or "") .. " ",

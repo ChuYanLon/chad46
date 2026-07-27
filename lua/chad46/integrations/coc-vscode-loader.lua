@@ -15,4 +15,12 @@ return {
   CocLoaderBackdrop = { bg = colors.black },
   CocLoaderHighlightBlock = { bg = colors.blue, fg = colors.black },
   CocLoaderMutedBlock = { bg = colors.grey, fg = colors.black },
+  config = {
+    icons = {
+      package_available = "",
+      package_installed = "",
+      package_pending = "",
+      package_failed = "",
+    },
+  },
 }

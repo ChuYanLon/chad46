@@ -56,6 +56,14 @@ end
 ---@type { base_30: Base30Table, base_16: Base16Table, type: string, polish_hl: table }
 local compat_theme = { base_30 = {}, base_16 = {}, type = "dark", polish_hl = {} }
 
+local function try_integration_config(name)
+  local ok, mod = pcall(require, "chad46.integrations." .. name)
+  if ok and type(mod) == "table" and mod.config ~= nil then
+    return mod.config
+  end
+  return nil
+end
+
 local compat = {
   get_theme_tb = function(tb)
     if tb == "base_30" then return compat_theme.base_30
@@ -125,6 +133,10 @@ function M.setup(opts)
     for spec_name, spec in pairs(lazy_config.plugins) do
       local config_name = spec_name:gsub("%.%w+$", "")
       local ok, chad_cfg = pcall(require, "chad46.configs." .. config_name)
+      if not ok then
+        chad_cfg = try_integration_config(config_name)
+        ok = chad_cfg ~= nil
+      end
       if ok then
         if type(chad_cfg) == "function" then
           chad_cfg()
@@ -153,7 +165,12 @@ function M.apply_configs(names)
     elseif not config.options.integrations[name] then
       goto continue
     end
-    local chad_cfg = require("chad46.configs." .. name)
+    local ok_cfg, chad_cfg = pcall(require, "chad46.configs." .. name)
+    if not ok_cfg then
+      chad_cfg = try_integration_config(name)
+      ok_cfg = chad_cfg ~= nil
+    end
+    if not ok_cfg then goto continue end
     if type(chad_cfg) == "function" then
       chad_cfg()
     elseif not lazy_ok then
@@ -271,11 +288,13 @@ function M.load(name)
   ---@param tb HLTable
   local function merge_hl(tb)
     for group, opts in pairs(tb) do
+      if group == "config" then goto continue end
       if highlights[group] then
         highlights[group] = vim.tbl_deep_extend("force", highlights[group], opts)
       else
         highlights[group] = opts
       end
+      ::continue::
     end
   end
 
