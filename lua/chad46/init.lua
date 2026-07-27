@@ -123,7 +123,7 @@ function M.setup(opts)
   local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
   if lazy_ok then
     for spec_name, spec in pairs(lazy_config.plugins) do
-      local config_name = spec_name:gsub("%.nvim$", ""):gsub("%.lua$", "")
+      local config_name = spec_name:gsub("%.%w+$", "")
       local ok, chad_cfg = pcall(require, "chad46.configs." .. config_name)
       if ok then
         if type(chad_cfg) == "function" then
@@ -307,7 +307,7 @@ function M.load(name)
   local lazy_ok, lazy_config = pcall(require, "lazy.core.config")
   if lazy_ok then
     for spec_name, _ in pairs(lazy_config.plugins) do
-      local name = spec_name:gsub("%.nvim$", ""):gsub("%.lua$", "")
+      local name = spec_name:gsub("%.%w+$", "")
       if not loaded[name] then
         loaded[name] = true
         load_integration(name)
