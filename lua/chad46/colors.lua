@@ -73,6 +73,8 @@ function M.resolve_colors(tb, colors)
           result[k] = M.blend(color_value, second, v[3])
         elseif type(v[2]) == "number" then
           result[k] = M.change_hex_lightness(color_value, v[2])
+        else
+          result[k] = color_value
         end
       else
         result[k] = color_value

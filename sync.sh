@@ -167,7 +167,7 @@ fixup_devicons() {
 
 main() {
   echo "chad46 sync${DRY_RUN:+ (DRY RUN)} [$SYNC_MODE]"
-  mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR"
+  mkdir -p "$THEMES_DIR" "$INTEG_DIR" "$TYPES_DIR" "$STL_DIR"
 
   # Dynamically resolve lists from upstream, fall back to hardcoded
   local ALL_THEMES=()
