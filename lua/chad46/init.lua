@@ -283,11 +283,16 @@ function M.load(name)
   local function load_integration(integration_name)
     local ok_mod, mod = pcall(require, "chad46.integrations." .. integration_name)
     if ok_mod then
-      local hl = type(mod) == "function" and mod({ base_30 = theme.base_30, base_16 = theme.base_16, type = theme.type }) or mod
-      if hl then
-        hl = apply_polish_hl(hl, integration_name, theme)
-        hl = apply_hl_override(hl, integration_name)
-        merge_hl(hl)
+      local ok_fn = true
+      if type(mod) == "function" then
+        ok_fn, mod = pcall(mod, { base_30 = theme.base_30, base_16 = theme.base_16, type = theme.type })
+      end
+      if ok_fn and mod then
+        mod = apply_polish_hl(mod, integration_name, theme)
+        mod = apply_hl_override(mod, integration_name)
+        merge_hl(mod)
+      elseif not ok_fn then
+        vim.notify(("chad46: integration '%s' errored: %s"):format(integration_name, mod), vim.log.levels.ERROR)
       end
     end
   end
@@ -297,8 +302,8 @@ function M.load(name)
   local loaded = { defaults = true, syntax = true, statusline = true, treesitter = true }
 
   for name, enabled in pairs(config.options.integrations) do
+    loaded[name] = true
     if enabled then
-      loaded[name] = true
       load_integration(name)
     end
   end
@@ -342,7 +347,7 @@ function M.load(name)
     end
   end
 
-  vim.g.colors_name = "chad46"
+  vim.g.colors_name = theme_name == "bearded-arc" and "chad46" or "chad46_" .. theme_name
   vim.api.nvim_exec_autocmds("User", { pattern = "Chad46ThemeReload" })
 end
 
