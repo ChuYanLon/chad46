@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_jabuti#palette.inactive = {
 \ 'right': [['#d9e0ee', '#343545', 254, 237], ['#d9e0ee', '#343545', 254, 237]],
 \ 'middle': [['#d9e0ee', '#343545', 254, 237]]
 \ }
-" synced: 91ab8636f80fe00c
+" synced: 80c051cf3a5bb5b6

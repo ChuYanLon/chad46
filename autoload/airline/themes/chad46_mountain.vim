@@ -44,4 +44,4 @@ let g:airline#themes#chad46_mountain#palette.accents = {
 function! airline#themes#chad46_mountain#apply()
   let g:airline#themes#chad46_mountain#palette = g:airline#themes#chad46_mountain#palette
 endfunction
-" synced: 970701f6699a5dab
+" synced: 39a16989a7eb24c7

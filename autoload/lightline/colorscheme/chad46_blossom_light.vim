@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_blossom_light#palette.inactive = {
 \ 'right': [['#695d57', '#d0c9c6', 59, 251], ['#695d57', '#d0c9c6', 59, 251]],
 \ 'middle': [['#695d57', '#d0c9c6', 59, 251]]
 \ }
-" synced: a441436fc8fc45b8
+" synced: a7ac10a4bb6b5aaf
