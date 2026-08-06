@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_gruvchad#palette.inactive = {
 \ 'right': [['#c7b89d', '#282b2c', 181, 235], ['#c7b89d', '#282b2c', 181, 235]],
 \ 'middle': [['#c7b89d', '#282b2c', 181, 235]]
 \ }
-" synced: f54aba9161c41d84
+" synced: 6bb25809e00d0639

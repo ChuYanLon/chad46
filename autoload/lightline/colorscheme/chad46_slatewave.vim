@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_slatewave#palette.inactive = {
 \ 'right': [['#e2e8f0', '#323843', 254, 237], ['#e2e8f0', '#323843', 254, 237]],
 \ 'middle': [['#e2e8f0', '#323843', 254, 237]]
 \ }
-" synced: 8aaf3bd01baae1de
+" synced: 70e5e988b2de918c

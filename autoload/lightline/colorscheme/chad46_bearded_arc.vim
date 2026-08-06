@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_bearded_arc#palette.inactive = {
 \ 'right': [['#ABB7C1', '#262e3d', 249, 236], ['#ABB7C1', '#262e3d', 249, 236]],
 \ 'middle': [['#ABB7C1', '#262e3d', 249, 236]]
 \ }
-" synced: 33afd8d484cce7c6
+" synced: e6b48f4b6fe43f03

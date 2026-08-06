@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_mito_laser#palette.inactive = {
 \ 'right': [['#eee8d5', '#2e2466', 254, 237], ['#eee8d5', '#2e2466', 254, 237]],
 \ 'middle': [['#eee8d5', '#2e2466', 254, 237]]
 \ }
-" synced: 272a3221634ad919
+" synced: 0ec5639ee4b666f4
