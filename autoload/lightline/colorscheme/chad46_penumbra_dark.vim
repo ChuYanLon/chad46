@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_penumbra_dark#palette.inactive = {
 \ 'right': [['#FFFDFB', '#3d4045', 231, 238], ['#FFFDFB', '#3d4045', 231, 238]],
 \ 'middle': [['#FFFDFB', '#3d4045', 231, 238]]
 \ }
-" synced: 68b5b7fea18d7e34
+" synced: 84c785409713d9b9

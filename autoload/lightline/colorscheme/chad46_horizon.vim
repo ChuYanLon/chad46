@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_horizon#palette.inactive = {
 \ 'right': [['#D5D8DA', '#2f3340', 188, 237], ['#D5D8DA', '#2f3340', 188, 237]],
 \ 'middle': [['#D5D8DA', '#2f3340', 188, 237]]
 \ }
-" synced: 08286f5c80cba4dd
+" synced: 62c5b617b25454de

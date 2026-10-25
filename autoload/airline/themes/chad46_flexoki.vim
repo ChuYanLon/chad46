@@ -44,4 +44,4 @@ let g:airline#themes#chad46_flexoki#palette.accents = {
 function! airline#themes#chad46_flexoki#apply()
   let g:airline#themes#chad46_flexoki#palette = g:airline#themes#chad46_flexoki#palette
 endfunction
-" synced: 19f1a7ce89763baf
+" synced: e4162cb17633f988

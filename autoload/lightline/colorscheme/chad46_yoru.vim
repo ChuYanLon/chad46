@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_yoru#palette.inactive = {
 \ 'right': [['#edeff0', '#161819', 255, 234], ['#edeff0', '#161819', 255, 234]],
 \ 'middle': [['#edeff0', '#161819', 255, 234]]
 \ }
-" synced: 06c178b5c0fb209f
+" synced: c5d70299f82c05e5

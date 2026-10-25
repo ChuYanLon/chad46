@@ -44,4 +44,4 @@ let g:airline#themes#chad46_doomchad#palette.accents = {
 function! airline#themes#chad46_doomchad#apply()
   let g:airline#themes#chad46_doomchad#palette = g:airline#themes#chad46_doomchad#palette
 endfunction
-" synced: 9f04b8babc324eb9
+" synced: aeb246a717f4f96f

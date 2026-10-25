@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_monekai#palette.inactive = {
 \ 'right': [['#f5f4f1', '#363731', 255, 236], ['#f5f4f1', '#363731', 255, 236]],
 \ 'middle': [['#f5f4f1', '#363731', 255, 236]]
 \ }
-" synced: 3656ce0cfa03b42c
+" synced: 7716e771d139d11f

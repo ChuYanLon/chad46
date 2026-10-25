@@ -44,4 +44,4 @@ let g:airline#themes#chad46_penumbra_dark#palette.accents = {
 function! airline#themes#chad46_penumbra_dark#apply()
   let g:airline#themes#chad46_penumbra_dark#palette = g:airline#themes#chad46_penumbra_dark#palette
 endfunction
-" synced: 68b5b7fea18d7e34
+" synced: 84c785409713d9b9
