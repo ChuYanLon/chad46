@@ -48,4 +48,4 @@ let g:lightline#colorscheme#chad46_espresso_light#palette.inactive = {
 \ 'right': [['#383838', '#f3f3f3', 237, 255], ['#383838', '#f3f3f3', 237, 255]],
 \ 'middle': [['#383838', '#f3f3f3', 237, 255]]
 \ }
-" synced: fd9822c00b7e3aec
+" synced: 670871bf0e33b048

@@ -44,4 +44,4 @@ let g:airline#themes#chad46_dark_horizon#palette.accents = {
 function! airline#themes#chad46_dark_horizon#apply()
   let g:airline#themes#chad46_dark_horizon#palette = g:airline#themes#chad46_dark_horizon#palette
 endfunction
-" synced: d05d64fd6a0beb19
+" synced: 4ee58a88b2fec8e4

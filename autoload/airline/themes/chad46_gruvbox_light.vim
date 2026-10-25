@@ -44,4 +44,4 @@ let g:airline#themes#chad46_gruvbox_light#palette.accents = {
 function! airline#themes#chad46_gruvbox_light#apply()
   let g:airline#themes#chad46_gruvbox_light#palette = g:airline#themes#chad46_gruvbox_light#palette
 endfunction
-" synced: bde813e3de42a571
+" synced: 76b628a2d3bb16b1

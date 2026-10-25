@@ -44,4 +44,4 @@ let g:airline#themes#chad46_github_dark#palette.accents = {
 function! airline#themes#chad46_github_dark#apply()
   let g:airline#themes#chad46_github_dark#palette = g:airline#themes#chad46_github_dark#palette
 endfunction
-" synced: 37e3471929362197
+" synced: 093d1278117135f7
